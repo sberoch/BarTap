@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    tools:context=".DistincionDeUsuario">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/crearCuenta"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/s1"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_login"
+            android:shadowRadius="5"
+            android:text="@string/crear_cuenta"
+            android:textColor="@color/blancoSemiTransparente" />
+
+        <Button
+            android:id="@+id/entrar"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/s3"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_login"
+            android:shadowRadius="5"
+            android:text="@string/entrar"
+            android:textColor="@color/blancoSemiTransparente" />
+
+        <Space
+            android:id="@+id/s1"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <Space
+            android:id="@+id/s2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_above="@+id/crearCuenta"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="true" />
+
+        <View
+            android:id="@+id/hl"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_above="@+id/s2"
+            android:background="#22FFFFFF" />
+
+        <Space
+            android:id="@+id/s3"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_above="@+id/s2"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="true" />
+
+        <Space
+            android:id="@+id/s4"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_above="@+id/entrar"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="true" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/passEditText"
+            android:layout_width="260dp"
+            android:layout_height="48dp"
+            android:layout_above="@+id/s4"
+            android:layout_centerInParent="true"
+            android:background="@drawable/edittext_login"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:textColorHint="#99FFFFFF" />
+
+        <Space
+            android:id="@+id/s5"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_above="@+id/passEditText"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="true" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/userEditText"
+            android:layout_width="260dp"
+            android:layout_height="48dp"
+            android:layout_above="@+id/s5"
+            android:layout_centerInParent="true"
+            android:background="@drawable/edittext_login"
+            android:ems="10"
+            android:hint="Usuario"
+            android:inputType="text"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:textAlignment="textStart"
+            android:textColorHint="#99FFFFFF" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
