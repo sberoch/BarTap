@@ -16,8 +16,10 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <Button
             android:id="@+id/tengoBar"
@@ -55,6 +57,15 @@
             android:layout_above="@+id/tengoBar"
             android:layout_alignParentBottom="false"
             android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="248dp"
+            android:layout_height="274dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/beer_logo" />
 
     </RelativeLayout>
 
