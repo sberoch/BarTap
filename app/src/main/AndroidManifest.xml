@@ -19,7 +19,9 @@
         </activity>
         <activity
             android:name=".Login"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity android:name=".Bar" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

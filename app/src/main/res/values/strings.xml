@@ -4,4 +4,7 @@
     <string name="busco_un_bar">Busco un bar</string>
     <string name="entrar">Entrar</string>
     <string name="crear_cuenta">Crear cuenta</string>
+    <string name="descubrir">Descubrir</string>
+    <string name="eventos">Eventos</string>
+    <string name="promociones">Promociones</string>
 </resources>
