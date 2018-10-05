@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_descubrir:
                         return true;
                     case R.id.navigation_eventos:
+                        EnviadorDeNotificaciones notif = new EnviadorDeNotificaciones(this);
+                        notif.crearNotificacion();
+                        notif.enviarNotificacion();
                         return true;
                 }
                 return false;
