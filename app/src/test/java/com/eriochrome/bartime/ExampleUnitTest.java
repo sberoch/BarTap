@@ -1,4 +1,4 @@
-package com.eriochrome.debares;
+package com.eriochrome.bartime;
 
 import org.junit.Test;
 

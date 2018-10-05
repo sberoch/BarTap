@@ -1,4 +1,4 @@
-package com.eriochrome.debares;
+package com.eriochrome.bartime;
 
 import android.content.Intent;
 import android.graphics.Typeface;

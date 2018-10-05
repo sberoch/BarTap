@@ -1,4 +1,4 @@
-package com.eriochrome.debares;
+package com.eriochrome.bartime;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

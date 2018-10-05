@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.eriochrome.debares">
+    package="com.eriochrome.bartime">
 
     <application
         android:allowBackup="true"

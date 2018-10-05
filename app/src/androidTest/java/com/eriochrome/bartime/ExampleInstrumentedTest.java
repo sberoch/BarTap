@@ -1,4 +1,4 @@
-package com.eriochrome.debares;
+package com.eriochrome.bartime;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.eriochrome.debares", appContext.getPackageName());
+        assertEquals("com.eriochrome.bartime", appContext.getPackageName());
     }
 }

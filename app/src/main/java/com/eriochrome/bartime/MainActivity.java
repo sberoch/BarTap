@@ -1,4 +1,4 @@
-package com.eriochrome.debares;
+package com.eriochrome.bartime;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
