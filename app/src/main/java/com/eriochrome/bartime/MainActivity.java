@@ -15,8 +15,6 @@ import com.eriochrome.bartime.utils.CustomTypefaceSpan;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
                 switch (item.getItemId()) {
@@ -40,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = findViewById(R.id.message);
         setupNavigation();
 
     }
