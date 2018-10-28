@@ -1,31 +1,34 @@
 package com.eriochrome.bartime;
 
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+class Bar {
 
-public class Bar extends AppCompatActivity {
+    private String nombre;
+    private String descripcion;
+    private int estrellas;
+    //Todo: super rancio, mock
+    private int numeroDeFoto;
 
-    private TextView barName;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bar);
-        setTitle("Pagina del Bar");
-
-        barName = findViewById(R.id.bar_nombre);
-        setTypefaces();
+    public Bar(String nombre, String descripcion, int numeroDeFoto, int estrellas) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.numeroDeFoto = numeroDeFoto;
+        this.estrellas = estrellas;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
 
+    public int getNumeroDeFoto() {
+        return numeroDeFoto;
+    }
 
-
-    private void setTypefaces() {
-
-        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Lato-Regular.ttf");
-        barName.setTypeface(tf);
+    public int getEstrellas() {
+        return estrellas;
     }
 }

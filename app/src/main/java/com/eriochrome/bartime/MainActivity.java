@@ -9,17 +9,26 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.eriochrome.bartime.utils.CustomTypefaceSpan;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ListView listView;
+    private ListaBaresAdapter adapter;
+
+    private ArrayList<Bar> listaBares;
+
+    private static final String DESCRIPCION_MOCK = "Descripcion breve del bar para que el usuario pueda ver...";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
                 switch (item.getItemId()) {
                     case R.id.navigation_promo:
-                        Intent i = new Intent(MainActivity.this, Bar.class);
+                        Intent i = new Intent(MainActivity.this, BarActivity.class);
                         startActivity(i);
                         return true;
                     case R.id.navigation_descubrir:
@@ -39,6 +48,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupNavigation();
+
+        //Todo: mock
+        listaBares = new ArrayList<>();
+        Bar bar1 = new Bar("Bar de prueba 1", DESCRIPCION_MOCK, 1, 175);
+        listaBares.add(bar1);
+
+        Bar bar2 = new Bar("Bar de prueba 2", DESCRIPCION_MOCK, 2, 9);
+        listaBares.add(bar2);
+
+        Bar bar3 = new Bar("Bar de prueba 3", DESCRIPCION_MOCK, 3, 2003);
+        listaBares.add(bar3);
+
+        Bar bar4 = new Bar("Bar de prueba 4", DESCRIPCION_MOCK, 4, 54);
+        listaBares.add(bar4);
+
+        Bar bar5 = new Bar("Bar de prueba 5", DESCRIPCION_MOCK, 5, 17);
+        listaBares.add(bar5);
+
+
+        listView = findViewById(R.id.listview);
+        adapter = new ListaBaresAdapter(listaBares, this);
+        listView.setAdapter(adapter);
 
     }
 
