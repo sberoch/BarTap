@@ -1,6 +1,5 @@
 package com.eriochrome.bartime;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -22,20 +21,28 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Bar> listaBares;
 
+    //TODO: mock
     private static final String DESCRIPCION_MOCK = "Descripcion breve del bar para que el usuario pueda ver...";
+
+    private String title1 = "Bar de prueba";
+    private String subtitle1 = "¡OFERTA! Cerveza 2X1 solo por la proxima hora! Que estas esperando?";
+
+    private String title2 = "Mi Bar";
+    private String subtitle2 = "¡DESAFIO! Tiempo Restante 0:59:59 - Sacarse una foto en...";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
                 switch (item.getItemId()) {
                     case R.id.navigation_promo:
-                        Intent i = new Intent(MainActivity.this, BarActivity.class);
-                        startActivity(i);
+                        EnviadorDeNotificaciones notif2 = new EnviadorDeNotificaciones(this);
+                        notif2.crearNotificacion(title2, subtitle2);
+                        notif2.enviarNotificacion();
                         return true;
                     case R.id.navigation_descubrir:
                         return true;
                     case R.id.navigation_eventos:
                         EnviadorDeNotificaciones notif = new EnviadorDeNotificaciones(this);
-                        notif.crearNotificacion();
+                        notif.crearNotificacion(title1, subtitle1);
                         notif.enviarNotificacion();
                         return true;
                 }

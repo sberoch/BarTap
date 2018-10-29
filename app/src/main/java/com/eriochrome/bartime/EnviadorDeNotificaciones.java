@@ -8,15 +8,13 @@ public class EnviadorDeNotificaciones {
 
     NotificationCompat.Builder mBuilder;
     private Context context;
-    private String title = "Bar de prueba";
-    private String subtitle = "¡OFERTA! Cerveza 2X1 solo por la proxima hora! Que estas esperando?";
 
     public EnviadorDeNotificaciones(Context context) {
         this.context = context;
         mBuilder = new NotificationCompat.Builder(context, "default");
     }
 
-    public void crearNotificacion() {
+    public void crearNotificacion(String title, String subtitle) {
         //TODO: mejorar
         mBuilder.setSmallIcon(R.mipmap.ic_launcher);
         mBuilder.setContentTitle(title);
