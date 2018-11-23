@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.eriochrome.bartime.modelos.Bar;
+
 import java.util.ArrayList;
 
 class ListaBaresAdapter extends BaseAdapter {

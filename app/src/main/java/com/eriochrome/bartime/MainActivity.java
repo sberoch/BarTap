@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.EnviadorDeNotificaciones;
 import com.eriochrome.bartime.utils.CustomTypefaceSpan;
 
 import java.util.ArrayList;
@@ -18,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listView;
     private ListaBaresAdapter adapter;
-
     private ArrayList<Bar> listaBares;
 
     //TODO: mock
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,21 +60,20 @@ public class MainActivity extends AppCompatActivity {
 
         //Todo: mock
         listaBares = new ArrayList<>();
-        Bar bar1 = new Bar("Bar de prueba 1", DESCRIPCION_MOCK, 1, 175);
+        Bar bar1 = new Bar("Bar de prueba 1", DESCRIPCION_MOCK, 1, 9.0);
         listaBares.add(bar1);
 
-        Bar bar2 = new Bar("Bar de prueba 2", DESCRIPCION_MOCK, 2, 9);
+        Bar bar2 = new Bar("Bar de prueba 2", DESCRIPCION_MOCK, 2, 7.5);
         listaBares.add(bar2);
 
-        Bar bar3 = new Bar("Bar de prueba 3", DESCRIPCION_MOCK, 3, 2003);
+        Bar bar3 = new Bar("Bar de prueba 3", DESCRIPCION_MOCK, 3, 8.3);
         listaBares.add(bar3);
 
-        Bar bar4 = new Bar("Bar de prueba 4", DESCRIPCION_MOCK, 4, 54);
+        Bar bar4 = new Bar("Bar de prueba 4", DESCRIPCION_MOCK, 4, 6.8);
         listaBares.add(bar4);
 
-        Bar bar5 = new Bar("Bar de prueba 5", DESCRIPCION_MOCK, 5, 17);
+        Bar bar5 = new Bar("Bar de prueba 5", DESCRIPCION_MOCK, 5, 9.5);
         listaBares.add(bar5);
-
 
         listView = findViewById(R.id.listview);
         adapter = new ListaBaresAdapter(listaBares, this);
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_descubrir);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
+
 
 
     private void setTypefaceMenuItem(MenuItem item) {

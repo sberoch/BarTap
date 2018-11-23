@@ -1,15 +1,15 @@
-package com.eriochrome.bartime;
+package com.eriochrome.bartime.modelos;
 
-class Bar {
+public class Bar {
 
     private String nombre;
     private String descripcion;
-    private int estrellas;
+    private double estrellas;
     //Todo: super rancio, mock
     private int numeroDeFoto;
 
 
-    public Bar(String nombre, String descripcion, int numeroDeFoto, int estrellas) {
+    public Bar(String nombre, String descripcion, int numeroDeFoto, double estrellas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.numeroDeFoto = numeroDeFoto;
@@ -28,7 +28,7 @@ class Bar {
         return numeroDeFoto;
     }
 
-    public int getEstrellas() {
+    public double getEstrellas() {
         return estrellas;
     }
 }

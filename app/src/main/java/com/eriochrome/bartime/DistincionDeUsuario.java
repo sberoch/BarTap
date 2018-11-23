@@ -2,14 +2,14 @@ package com.eriochrome.bartime;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 public class DistincionDeUsuario extends AppCompatActivity {
 
     private Button tengoBar;
-    private Button buscoBar;
+    private Button comenzar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +17,7 @@ public class DistincionDeUsuario extends AppCompatActivity {
         setContentView(R.layout.distincion_de_usuario);
 
         tengoBar = findViewById(R.id.tengoBar);
-        buscoBar = findViewById(R.id.buscoBar);
-
+        comenzar = findViewById(R.id.comenzar);
         setTypefaces();
         setListeners();
     }
@@ -27,8 +26,8 @@ public class DistincionDeUsuario extends AppCompatActivity {
 
     private void setListeners() {
 
-        tengoBar.setOnClickListener(view -> {
-            Intent i = new Intent(DistincionDeUsuario.this, Login.class);
+        comenzar.setOnClickListener(view -> {
+            Intent i = new Intent(DistincionDeUsuario.this, MainActivity.class);
             startActivity(i);
         });
     }
@@ -36,8 +35,8 @@ public class DistincionDeUsuario extends AppCompatActivity {
 
     private void setTypefaces() {
 
-        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Lato-Light.ttf");
+        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Lato-Bold.ttf");
         tengoBar.setTypeface(tf);
-        buscoBar.setTypeface(tf);
+        comenzar.setTypeface(tf);
     }
 }

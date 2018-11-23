@@ -7,47 +7,72 @@
 
     <TextView
         android:id="@+id/nombre_bar"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_toRightOf="@+id/imagen_bar"
+        android:layout_below="@+id/sArriba"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/imagen_bar"
+        android:fontFamily="@font/lato_bold"
         android:maxWidth="150dp"
+        android:text="Bar de Prueba "
         android:textColor="@android:color/background_dark"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/desc_bar"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nombre_bar"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/imagen_bar"
-        android:maxWidth="150dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/imagen_bar"
+        android:maxWidth="150dp"
+        android:text="Abierto de 12:00 a 1:00" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imagen_bar"
-        android:layout_width="130dp"
-        android:layout_height="88dp"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="false"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/sArriba"
         android:layout_margin="10dp"
-        app:srcCompat="@drawable/testbar" />
+        android:elevation="10dp"
+        android:src="@drawable/testbar"
+        app:civ_border_color="@android:color/darker_gray"
+        app:civ_border_width="2dp" />
+
+
+    <Space
+        android:id="@+id/sAbajo"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@+id/imagen_bar"
+        android:layout_centerHorizontal="true" />
+
+    <Space
+        android:id="@+id/sArriba"
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_centerHorizontal="true" />
 
     <RelativeLayout
         android:id="@+id/estrellas_rl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_below="@+id/sArriba"
         android:layout_marginEnd="10dp"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="20dp">
 
         <ImageButton
             android:id="@+id/estrellas_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="0dp"
             android:background="@drawable/ic_star_violet_24dp" />
 
         <TextView
@@ -55,9 +80,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="false"
-            android:layout_below="@+id/estrellas_icon"
-            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/estrellas_icon"
+            android:fontFamily="@font/lato_bold"
+            android:text="9.8"
             android:textAlignment="center"
-            android:textSize="12sp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
     </RelativeLayout>
 </RelativeLayout>
