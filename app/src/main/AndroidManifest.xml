@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity" />
+            android:name=".ListadoBares" />
 
         <meta-data
             android:name="preloaded_fonts"

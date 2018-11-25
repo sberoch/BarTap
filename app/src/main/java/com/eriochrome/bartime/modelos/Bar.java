@@ -8,6 +8,10 @@ public class Bar {
     //Todo: super rancio, mock
     private int numeroDeFoto;
 
+    //Requerido por la base de datos.
+    public Bar() {
+    }
+
 
     public Bar(String nombre, String descripcion, int numeroDeFoto, double estrellas) {
         this.nombre = nombre;

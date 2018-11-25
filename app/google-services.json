@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "533804054577",
+    "firebase_url": "https://bartime-a7bf8.firebaseio.com",
+    "project_id": "bartime-a7bf8",
+    "storage_bucket": "bartime-a7bf8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533804054577:android:4549253935abc6fd",
+        "android_client_info": {
+          "package_name": "com.eriochrome.bartime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533804054577-otcjrmt2098po7a9gdsgcvpl4v3q8uft.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eriochrome.bartime",
+            "certificate_hash": "cefffe369f6b37d3aa9bc80b8d84712409b24b19"
+          }
+        },
+        {
+          "client_id": "533804054577-250npes81rrafto60g93ikglnld9jhsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlP_1fi_13eCZd38CGWwQyBv9_8iCwiDs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533804054577-250npes81rrafto60g93ikglnld9jhsf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

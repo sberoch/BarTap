@@ -27,7 +27,7 @@ public class DistincionDeUsuario extends AppCompatActivity {
     private void setListeners() {
 
         comenzar.setOnClickListener(view -> {
-            Intent i = new Intent(DistincionDeUsuario.this, MainActivity.class);
+            Intent i = new Intent(DistincionDeUsuario.this, ListadoBares.class);
             startActivity(i);
         });
     }

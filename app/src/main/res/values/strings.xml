@@ -7,4 +7,6 @@
     <string name="descubrir">Descubrir</string>
     <string name="eventos">Eventos</string>
     <string name="promociones">Promociones</string>
+    <string name="no_encontras_titulo">¿No encontras el bar que buscas?</string>
+    <string name="no_encontras_link">¡Agregalo por tu cuenta!</string>
 </resources>

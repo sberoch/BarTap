@@ -64,7 +64,6 @@ class ListaBaresAdapter extends BaseAdapter {
 
         ImageView imagenBar = view.findViewById(R.id.imagen_bar);
         //TODO: mock
-        //TODO: se queda sin memoria porque las imagenes son grandes
         switch (bar.getNumeroDeFoto()) {
             case 1:
                 imagenBar.setImageResource(R.drawable.testbar);
