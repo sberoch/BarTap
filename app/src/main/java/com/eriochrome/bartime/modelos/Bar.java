@@ -12,6 +12,13 @@ public class Bar {
     public Bar() {
     }
 
+    public Bar(String nombre) {
+        this.nombre = nombre;
+        estrellas = 0;
+        numeroDeFoto = 2;
+        descripcion = "Test dis shit";
+    }
+
 
     public Bar(String nombre, String descripcion, int numeroDeFoto, double estrellas) {
         this.nombre = nombre;

@@ -109,5 +109,4 @@ public class ListadoBares extends AppCompatActivity {
         footerView.setVisibility(View.VISIBLE);
     }
 
-
 }
