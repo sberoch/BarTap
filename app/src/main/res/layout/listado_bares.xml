@@ -8,23 +8,67 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="70dp"
+        tools:ignore="MissingConstraints">
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:indeterminateDuration="2000"
-            android:indeterminateDrawable="@drawable/barra_progreso_circular"/>
+            android:indeterminateDrawable="@drawable/barra_progreso_circular"
+            android:indeterminateDuration="2000" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/barra_superior"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_alignParentTop="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="5dp">
 
-        </LinearLayout>
+            <EditText
+                android:id="@+id/buscar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_black"
+                android:drawableStart="@drawable/ic_search_black_24dp"
+                android:ems="10"
+                android:fontFamily="@font/lato_bold"
+                android:inputType="textPersonName"
+                android:padding="8dp"
+                android:text="@string/buscar"
+                android:textAlignment="center"
+                android:textColor="@color/negroSemiTransparente"
+                android:textColorHighlight="@color/colorPrimary"
+                android:textColorLink="@color/colorPrimary"
+                android:textCursorDrawable="@drawable/cursor_violeta" />
+
+            <Button
+                android:id="@+id/filtrar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@+id/buscar"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_violet"
+                android:drawableStart="@drawable/ic_filter_list_24dp"
+                android:fontFamily="@font/lato_bold"
+                android:padding="8dp"
+                android:text="@string/filtrar"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
+        </RelativeLayout>
 
         <ListView
             android:id="@+id/listview"

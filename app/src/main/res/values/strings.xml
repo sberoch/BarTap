@@ -9,4 +9,11 @@
     <string name="promociones">Promociones</string>
     <string name="no_encontras_titulo">¿No encontras el bar que buscas?</string>
     <string name="no_encontras_link">¡Agregalo por tu cuenta!</string>
+    <string name="buscar">Buscar</string>
+    <string name="filtrar">Filtrar</string>
+    <string name="listo">¡Listo!</string>
+    <string name="seleccionar_foto">Seleccionar Foto</string>
+    <string name="seleccionar_ubicacion">Seleccionar Ubicacion</string>
+    <string name="nombre">Nombre</string>
+    <string name="agregar_un_bar">Agregar un bar</string>
 </resources>

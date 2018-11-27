@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -31,10 +33,16 @@ public class ListadoBares extends AppCompatActivity {
 
     private ProgressBar loading;
 
+    private EditText buscar;
+    private Button filtrar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listado_bares);
+
+        buscar = findViewById(R.id.buscar);
+        filtrar = findViewById(R.id.filtrar);
 
         refBares = FirebaseDatabase.getInstance().getReference().child("bares");
 
@@ -51,8 +59,7 @@ public class ListadoBares extends AppCompatActivity {
         loading.setVisibility(View.GONE);
 
         footerView.setOnClickListener(view -> {
-            //TODO: cambiar por la actividad de agregar bares.
-            Intent i = new Intent(ListadoBares.this, DistincionDeUsuario.class);
+            Intent i = new Intent(ListadoBares.this, AgregarBarUsuario.class);
             startActivity(i);
         });
 
@@ -63,11 +70,12 @@ public class ListadoBares extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+
         listaBares.clear();
         adapter.notifyDataSetChanged();
         mostrarCargando();
 
-        refBares.orderByChild("estrellas").limitToFirst(2).addValueEventListener(new ValueEventListener() {
+        refBares.orderByChild("estrellas").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getChildrenCount() == 0) {
@@ -75,7 +83,7 @@ public class ListadoBares extends AppCompatActivity {
                 }
                 for (DataSnapshot barSnapshot : dataSnapshot.getChildren()) {
                     Bar bar = barSnapshot.getValue(Bar.class);
-                    listaBares.add(bar);
+                    listaBares.add(0, bar);
                 }
                 adapter.notifyDataSetChanged();
                 ocultarCargando();
