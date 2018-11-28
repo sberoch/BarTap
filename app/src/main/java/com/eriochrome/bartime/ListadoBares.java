@@ -4,15 +4,18 @@ package com.eriochrome.bartime;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.eriochrome.bartime.adapters.DrawerAdapter;
+import com.eriochrome.bartime.adapters.ListaBaresAdapter;
 import com.eriochrome.bartime.modelos.Bar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,42 +24,53 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ListadoBares extends AppCompatActivity {
 
-    private ListView listView;
+    private DrawerLayout drawerLayout;
+    private ListView drawerListView;
+    private ImageButton drawerButton;
+    private DrawerAdapter drawerAdapter;
+
+    private ListView baresListView;
     private View footerView;
-    private ListaBaresAdapter adapter;
+    private ListaBaresAdapter baresAdapter;
     private ArrayList<Bar> listaBares;
 
     private DatabaseReference refBares;
-
     private ProgressBar loading;
 
-    private EditText buscar;
-    private Button filtrar;
+    //TODO: mock
+    ArrayList<String> menulista = new ArrayList<>(Arrays.asList("Que","Onda","Gato","Piola"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listado_bares);
 
-        buscar = findViewById(R.id.buscar);
-        filtrar = findViewById(R.id.filtrar);
-
         refBares = FirebaseDatabase.getInstance().getReference().child("bares");
 
+        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerListView = findViewById(R.id.left_drawer);
+        drawerAdapter = new DrawerAdapter(this, menulista);
+        drawerListView.setAdapter(drawerAdapter);
+        drawerListView.setOnItemClickListener(null);
+        drawerButton = findViewById(R.id.drawer);
+
         listaBares = new ArrayList<>();
-        listView = findViewById(R.id.listview);
+        baresListView = findViewById(R.id.listview);
         footerView = ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE))
                 .inflate(R.layout.item_no_encontras, null, false);
-        listView.addFooterView(footerView);
+        baresListView.addFooterView(footerView);
         footerView.setVisibility(View.INVISIBLE);
-        adapter = new ListaBaresAdapter(listaBares, this);
-        listView.setAdapter(adapter);
+        baresAdapter = new ListaBaresAdapter(listaBares, this);
+        baresListView.setAdapter(baresAdapter);
 
         loading = findViewById(R.id.progressBar);
         loading.setVisibility(View.GONE);
+
+        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
 
         footerView.setOnClickListener(view -> {
             Intent i = new Intent(ListadoBares.this, AgregarBarUsuario.class);
@@ -72,7 +86,7 @@ public class ListadoBares extends AppCompatActivity {
 
 
         listaBares.clear();
-        adapter.notifyDataSetChanged();
+        baresAdapter.notifyDataSetChanged();
         mostrarCargando();
 
         refBares.orderByChild("estrellas").addValueEventListener(new ValueEventListener() {
@@ -85,7 +99,7 @@ public class ListadoBares extends AppCompatActivity {
                     Bar bar = barSnapshot.getValue(Bar.class);
                     listaBares.add(0, bar);
                 }
-                adapter.notifyDataSetChanged();
+                baresAdapter.notifyDataSetChanged();
                 ocultarCargando();
             }
 

@@ -1,4 +1,4 @@
-package com.eriochrome.bartime;
+package com.eriochrome.bartime.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -9,11 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.Bar;
 
 import java.util.ArrayList;
 
-class ListaBaresAdapter extends BaseAdapter {
+public class ListaBaresAdapter extends BaseAdapter {
 
     private Context context;
     ArrayList<Bar> bares;
