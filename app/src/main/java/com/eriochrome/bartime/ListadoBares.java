@@ -4,6 +4,7 @@ package com.eriochrome.bartime;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -14,7 +15,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.eriochrome.bartime.adapters.DrawerAdapter;
 import com.eriochrome.bartime.adapters.ListaBaresAdapter;
 import com.eriochrome.bartime.modelos.Bar;
 import com.google.firebase.database.DataSnapshot;
@@ -24,14 +24,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ListadoBares extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
-    private ListView drawerListView;
     private ImageButton drawerButton;
-    private DrawerAdapter drawerAdapter;
 
     private ListView baresListView;
     private View footerView;
@@ -41,9 +38,6 @@ public class ListadoBares extends AppCompatActivity {
     private DatabaseReference refBares;
     private ProgressBar loading;
 
-    //TODO: mock
-    ArrayList<String> menulista = new ArrayList<>(Arrays.asList("Que","Onda","Gato","Piola"));
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +46,13 @@ public class ListadoBares extends AppCompatActivity {
         refBares = FirebaseDatabase.getInstance().getReference().child("bares");
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        drawerListView = findViewById(R.id.left_drawer);
-        drawerAdapter = new DrawerAdapter(this, menulista);
-        drawerListView.setAdapter(drawerAdapter);
-        drawerListView.setOnItemClickListener(null);
-        drawerButton = findViewById(R.id.drawer);
+        drawerButton = findViewById(R.id.drawer_button);
+
+        NavigationView navigationView = findViewById(R.id.nav_drawer);
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            drawerLayout.closeDrawers();
+            return true;
+        });
 
         listaBares = new ArrayList<>();
         baresListView = findViewById(R.id.listview);
@@ -83,7 +79,6 @@ public class ListadoBares extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
 
         listaBares.clear();
         baresAdapter.notifyDataSetChanged();
