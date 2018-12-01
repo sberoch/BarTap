@@ -16,4 +16,12 @@
     <string name="seleccionar_ubicacion">Seleccionar Ubicacion</string>
     <string name="nombre">Nombre</string>
     <string name="agregar_un_bar">Agregar un bar</string>
+    <string name="estrellas">Estrellas</string>
+    <string name="distancia">Distancia</string>
+    <string name="ordenar_por">Ordenar por:</string>
+    <string name="tiene_ofertas">Ofertas</string>
+    <string name="filtros">Filtros</string>
+    <string name="aplicar_filtros">Aplicar filtros</string>
+    <string name="cancelar">Cancelar</string>
+
 </resources>

@@ -29,6 +29,7 @@ public class AgregarBarUsuario extends AppCompatActivity {
     private Button listo;
     private CircleImageView imagenBar;
     private EditText nombre;
+    private TextView botonUbicacion;
     private TextView botonFoto;
 
     final DatabaseReference baresRef = FirebaseDatabase.getInstance().getReference().child("bares");
@@ -42,6 +43,7 @@ public class AgregarBarUsuario extends AppCompatActivity {
 
         volver = findViewById(R.id.volver);
         nombre = findViewById(R.id.nombre);
+        botonUbicacion = findViewById(R.id.ubicacion);
         botonFoto = findViewById(R.id.foto);
         imagenBar = findViewById(R.id.imagen_bar);
         listo = findViewById(R.id.listo);
@@ -57,9 +59,15 @@ public class AgregarBarUsuario extends AppCompatActivity {
             Intent i = new Intent(AgregarBarUsuario.this, ListadoBares.class);
             startActivity(i);
         });
-        botonFoto.setOnClickListener(v -> {
-            seleccionarImagenDeGaleria();
+        botonUbicacion.setOnClickListener(v -> {
+            seleccionarUbicacion();
         });
+        botonFoto.setOnClickListener(v -> seleccionarImagenDeGaleria());
+    }
+
+
+    private void seleccionarUbicacion() {
+        //TODO: seleccionar ubicacion
     }
 
 

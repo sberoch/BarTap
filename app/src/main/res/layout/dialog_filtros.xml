@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titulo_filtros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="@string/filtros"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/hl"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/titulo_filtros"
+            android:layout_marginBottom="2dp"
+            android:background="#ccc" />
+
+        <Switch
+            android:id="@+id/descuentos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hl"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="false"
+            android:layout_margin="10dp"
+            android:text="@string/tiene_ofertas"
+            android:textColorLink="@color/colorPrimary"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/hl2"
+            android:layout_width="300dp"
+            android:layout_height="1dip"
+            android:layout_below="@+id/descuentos"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="#ccc" />
+
+        <TextView
+            android:id="@+id/ordenar_por"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hl2"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="@string/ordenar_por"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/ordenar_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ordenar_por"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:checkedButton="@+id/distancia">
+
+            <RadioButton
+                android:id="@+id/distancia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/distancia" />
+
+            <RadioButton
+                android:id="@+id/estrellas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/estrellas" />
+
+            <RadioButton
+                android:id="@+id/nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/nombre" />
+        </RadioGroup>
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

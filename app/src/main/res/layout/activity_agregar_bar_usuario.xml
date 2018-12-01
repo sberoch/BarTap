@@ -76,7 +76,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/direccion"
+            android:id="@+id/ubicacion"
             android:layout_width="250dp"
             android:layout_height="45dp"
             android:layout_below="@+id/nombre"
@@ -95,7 +95,7 @@
             android:id="@+id/foto"
             android:layout_width="250dp"
             android:layout_height="45dp"
-            android:layout_below="@+id/direccion"
+            android:layout_below="@+id/ubicacion"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:background="@drawable/edittext_violet"

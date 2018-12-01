@@ -13,13 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="70dp"
-        tools:ignore="MissingConstraints">
+        tools:layout_editor_absoluteY="70dp">
 
         <RelativeLayout
             android:id="@+id/barra_sup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <ImageButton
                 android:id="@+id/drawer_button"
@@ -29,6 +30,17 @@
                 android:background="@android:color/transparent"
                 android:padding="6dp"
                 app:srcCompat="@drawable/ic_menu_black_24dp" />
+
+            <TextView
+                android:id="@+id/puntos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="14dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="Puntos: 234"
+                android:textColor="@android:color/background_dark"
+                android:textSize="12sp" />
 
             <ImageButton
                 android:id="@+id/notificaciones"
@@ -59,8 +71,10 @@
                 android:drawableStart="@drawable/ic_search_black_24dp"
                 android:ems="10"
                 android:fontFamily="@font/lato_bold"
-                android:inputType="textPersonName"
+                android:inputType="textShortMessage"
                 android:padding="8dp"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:text="@string/buscar"
                 android:textAlignment="center"
                 android:textColor="@color/negroSemiTransparente"
