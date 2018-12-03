@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,8 +14,13 @@ import android.widget.TextView;
 
 
 import com.eriochrome.bartime.modelos.Bar;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -32,7 +38,10 @@ public class AgregarBarUsuario extends AppCompatActivity {
     private TextView botonUbicacion;
     private TextView botonFoto;
 
-    final DatabaseReference baresRef = FirebaseDatabase.getInstance().getReference().child("bares");
+    private final DatabaseReference baresRef = FirebaseDatabase.getInstance().getReference().child("bares");
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
+    private Uri path;
 
     int NUMERO_SOLICITUD_GALERIA = 1;
 
@@ -48,16 +57,11 @@ public class AgregarBarUsuario extends AppCompatActivity {
         imagenBar = findViewById(R.id.imagen_bar);
         listo = findViewById(R.id.listo);
 
-        volver.setOnClickListener(v -> {
-            finish();
-        });
+        volver.setOnClickListener(v -> finish());
         listo.setOnClickListener(v -> {
             String nombreBar = nombre.getText().toString();
             Bar nuevoBar = new Bar(nombreBar);
             agregarBar(nuevoBar);
-            //TODO: cambiar por la clase de confirmacion o lo que sea.
-            Intent i = new Intent(AgregarBarUsuario.this, ListadoBares.class);
-            startActivity(i);
         });
         botonUbicacion.setOnClickListener(v -> {
             seleccionarUbicacion();
@@ -82,10 +86,11 @@ public class AgregarBarUsuario extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //Mostrar en circulo.
         if (resultCode == RESULT_OK) {
             try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                path = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(path);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 imagenBar.setImageBitmap(selectedImage);
             } catch (FileNotFoundException e) {
@@ -100,13 +105,33 @@ public class AgregarBarUsuario extends AppCompatActivity {
 
 
     private void agregarBar(Bar nuevoBar) {
-        //TODO: como agrego al final?
-        baresRef.child("6").setValue(nuevoBar, (databaseError, databaseReference) -> {
-            if (databaseError != null) {
-                toastShort(AgregarBarUsuario.this, "No se pudo guardar el bar " + databaseError.getMessage());
-            } else {
-                toastShort(AgregarBarUsuario.this,"Se envio el bar con exito.");
-            }
-        });
+        if (path != null) {
+            String caminoEnStorage = "imagenes\\" + nuevoBar.getNombre() + ".jpg";
+            StorageReference imagenRef = storageReference.child(caminoEnStorage);
+            UploadTask uploadTask = imagenRef.putFile(path);
+            uploadTask.addOnSuccessListener(taskSnapshot -> {
+                toastShort(this, "Exito.");
+            }).addOnFailureListener(e -> {
+                toastShort(this, "Fallo.");
+            });
+
+            nuevoBar.setImagePath(caminoEnStorage);
+
+            //TODO: asignar un user id
+            baresRef.child(nuevoBar.getNombre()).setValue(nuevoBar, (databaseError, databaseReference) -> {
+                if (databaseError != null) {
+                    toastShort(AgregarBarUsuario.this, "No se pudo guardar el bar " + databaseError.getMessage());
+                } else {
+                    toastShort(AgregarBarUsuario.this,"Se envio el bar con exito.");
+                }
+            });
+
+            Intent i = new Intent(AgregarBarUsuario.this, ConfirmacionNuevoBar.class);
+            startActivity(i);
+        }
+        else {
+            toastShort(this, "Selecciona una imagen para el bar.");
+        }
     }
+
 }

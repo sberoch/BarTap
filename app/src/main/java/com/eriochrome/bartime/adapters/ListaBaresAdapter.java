@@ -1,7 +1,10 @@
 package com.eriochrome.bartime.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +12,22 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.eriochrome.bartime.BarActivity;
+import com.eriochrome.bartime.ListadoBares;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.utils.GlideApp;
+import com.eriochrome.bartime.utils.MyAppGlideModule;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
 public class ListaBaresAdapter extends BaseAdapter {
 
     private Context context;
-    ArrayList<Bar> bares;
-
+    private ArrayList<Bar> bares;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     public ListaBaresAdapter(ArrayList<Bar> listaBares, Context context) {
         bares = listaBares;
         this.context = context;
@@ -64,25 +73,17 @@ public class ListaBaresAdapter extends BaseAdapter {
         estrellas.setText(String.valueOf(bar.getEstrellas()));
 
         ImageView imagenBar = view.findViewById(R.id.imagen_bar);
-        //TODO: mock
-        switch (bar.getNumeroDeFoto()) {
-            case 1:
-                imagenBar.setImageResource(R.drawable.testbar);
-                break;
-            case 2:
-                imagenBar.setImageResource(R.drawable.testbar2);
-                break;
-            case 3:
-                imagenBar.setImageResource(R.drawable.testbar3);
-                break;
-            case 4:
-                imagenBar.setImageResource(R.drawable.testbar4);
-                break;
-            case 5:
-                imagenBar.setImageResource(R.drawable.testbar5);
-                break;
-        }
+        StorageReference imagenRef = storageReference.child(bar.getImagePath());
+        //TODO: se ve como el orto el placeholder
+        GlideApp.with(view)
+                .load(imagenRef).placeholder(R.drawable.placeholder)
+                .into(imagenBar);
 
+        view.setOnClickListener(view1 -> {
+            Intent intent = new Intent(context, BarActivity.class);
+            intent.putExtra("bar", bar);
+            context.startActivity(intent);
+        });
 
         return view;
     }

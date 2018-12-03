@@ -23,5 +23,7 @@
     <string name="filtros">Filtros</string>
     <string name="aplicar_filtros">Aplicar filtros</string>
     <string name="cancelar">Cancelar</string>
+    <string name="texto_confirmacion">Se ha enviado el bar que creaste para su revision. Proximamente lo veras con el resto</string>
+    <string name="continuar">Continuar</string>
 
 </resources>

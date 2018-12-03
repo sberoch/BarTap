@@ -1,12 +1,13 @@
 package com.eriochrome.bartime.modelos;
 
-public class Bar {
+import java.io.Serializable;
+
+public class Bar implements Serializable {
 
     private String nombre;
     private String descripcion;
     private double estrellas;
-    //Todo: super rancio, mock
-    private int numeroDeFoto;
+    private String imagePath;
 
     //Requerido por la base de datos.
     public Bar() {
@@ -15,15 +16,13 @@ public class Bar {
     public Bar(String nombre) {
         this.nombre = nombre;
         estrellas = 0;
-        numeroDeFoto = 2;
         descripcion = "Test dis shit";
     }
 
 
-    public Bar(String nombre, String descripcion, int numeroDeFoto, double estrellas) {
+    public Bar(String nombre, String descripcion, double estrellas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.numeroDeFoto = numeroDeFoto;
         this.estrellas = estrellas;
     }
 
@@ -35,11 +34,15 @@ public class Bar {
         return descripcion;
     }
 
-    public int getNumeroDeFoto() {
-        return numeroDeFoto;
-    }
-
     public double getEstrellas() {
         return estrellas;
+    }
+
+    public void setImagePath(String caminoEnStorage) {
+        this.imagePath = caminoEnStorage;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 }
