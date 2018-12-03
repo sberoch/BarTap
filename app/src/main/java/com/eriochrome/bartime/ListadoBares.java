@@ -272,5 +272,4 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
             startActivity(i);
         });
     }
-
 }

@@ -80,7 +80,8 @@
                 android:textColor="@color/negroSemiTransparente"
                 android:textColorHighlight="@color/colorPrimary"
                 android:textColorLink="@color/colorPrimary"
-                android:textCursorDrawable="@drawable/cursor_violeta" />
+                android:textCursorDrawable="@drawable/cursor_violeta"
+                android:selectAllOnFocus="true"/>
 
             <Button
                 android:id="@+id/filtrar"
