@@ -75,7 +75,6 @@ public class ListaBaresAdapter extends BaseAdapter {
         ImageView imagenBar = view.findViewById(R.id.imagen_bar);
         String imagePath = bar.getNombre() + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(imagePath);
-        //TODO: se ve como el orto el placeholder
         GlideApp.with(view)
                 .load(imagenRef).placeholder(R.drawable.placeholder)
                 .into(imagenBar);
