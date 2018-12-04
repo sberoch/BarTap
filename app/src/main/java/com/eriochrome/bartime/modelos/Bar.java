@@ -6,8 +6,10 @@ public class Bar implements Serializable {
 
     private String nombre;
     private String descripcion;
-    private double estrellas;
-    private String imagePath;
+    private float estrellas;
+    private long calificacionesAcumuladas;
+    private int numeroDeCalificaciones;
+
 
     //Requerido por la base de datos.
     public Bar() {
@@ -16,14 +18,9 @@ public class Bar implements Serializable {
     public Bar(String nombre) {
         this.nombre = nombre;
         estrellas = 0;
+        calificacionesAcumuladas = 0;
+        numeroDeCalificaciones = 0;
         descripcion = "Test dis shit";
-    }
-
-
-    public Bar(String nombre, String descripcion, double estrellas) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.estrellas = estrellas;
     }
 
     public String getNombre() {
@@ -38,11 +35,17 @@ public class Bar implements Serializable {
         return estrellas;
     }
 
-    public void setImagePath(String caminoEnStorage) {
-        this.imagePath = caminoEnStorage;
+    public long getCalificacionesAcumuladas() {
+        return calificacionesAcumuladas;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public int getNumeroDeCalificaciones() {
+        return numeroDeCalificaciones;
+    }
+
+    public void actualizarEstrellas(int calificacion) {
+        calificacionesAcumuladas += calificacion;
+        numeroDeCalificaciones++;
+        estrellas = (float)calificacionesAcumuladas / numeroDeCalificaciones;
     }
 }

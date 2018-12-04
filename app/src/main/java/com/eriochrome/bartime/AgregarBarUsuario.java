@@ -106,16 +106,14 @@ public class AgregarBarUsuario extends AppCompatActivity {
 
     private void agregarBar(Bar nuevoBar) {
         if (path != null) {
-            String caminoEnStorage = "imagenes\\" + nuevoBar.getNombre() + ".jpg";
-            StorageReference imagenRef = storageReference.child(caminoEnStorage);
+            String caminoEnStorage = nuevoBar.getNombre() + ".jpg";
+            StorageReference imagenRef = storageReference.child("imagenes").child(caminoEnStorage);
             UploadTask uploadTask = imagenRef.putFile(path);
             uploadTask.addOnSuccessListener(taskSnapshot -> {
                 toastShort(this, "Exito.");
             }).addOnFailureListener(e -> {
                 toastShort(this, "Fallo.");
             });
-
-            nuevoBar.setImagePath(caminoEnStorage);
 
             //TODO: asignar un user id
             baresRef.child(nuevoBar.getNombre()).setValue(nuevoBar, (databaseError, databaseReference) -> {
