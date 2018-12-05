@@ -1,90 +1,87 @@
 package com.eriochrome.bartime.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.eriochrome.bartime.BarActivity;
-import com.eriochrome.bartime.ListadoBares;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.Bar;
-import com.eriochrome.bartime.utils.GlideApp;
-import com.eriochrome.bartime.utils.MyAppGlideModule;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class ListaBaresAdapter extends BaseAdapter {
+public class ListaBaresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private static final int FOOTER_VIEW = 1;
 
     private Context context;
     private ArrayList<Bar> bares;
-    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-    public ListaBaresAdapter(ArrayList<Bar> listaBares, Context context) {
-        bares = listaBares;
+
+    public ListaBaresAdapter(Context context, ArrayList<Bar> bares) {
         this.context = context;
+        this.bares = bares;
+    }
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+        View view;
+
+        if (i == FOOTER_VIEW) {
+            view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.item_no_encontras, viewGroup, false);
+            return new FooterHolder(this.context, view);
+        }
+        else {
+            view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.item_bar, viewGroup, false);
+            return new BarHolder(this.context, view);
+        }
     }
 
     @Override
-    public int getCount() {
-        return bares.size();
-    }
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
-    @Override
-    public Object getItem(int i) {
-        return bares.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-
-        if (view == null) {
-            LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-            view = inflater.inflate(R.layout.item_bar, viewGroup, false);
+        try {
+            if (viewHolder instanceof BarHolder) {
+                BarHolder barHolder = (BarHolder) viewHolder;
+                Bar bar = this.bares.get(i);
+                barHolder.bindBar(bar);
+            }
+            else if (viewHolder instanceof FooterHolder) {
+                FooterHolder footerHolder = (FooterHolder) viewHolder;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        Typeface tfLight = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Light.ttf");
-        Typeface tfBold = Typeface.createFromAsset(context.getAssets(), "fonts/Lato-Bold.ttf");
 
-        Bar bar = bares.get(i);
 
-        TextView nombreBar = view.findViewById(R.id.nombre_bar);
-        nombreBar.setText(bar.getNombre());
-        nombreBar.setTypeface(tfBold);
+    }
 
-        TextView descripcionBar = view.findViewById(R.id.desc_bar);
-        descripcionBar.setText(bar.getDescripcion());
-        descripcionBar.setTypeface(tfLight);
+    @Override
+    public int getItemCount() {
 
-        TextView estrellas = view.findViewById(R.id.estrellas);
-        estrellas.setText(String.format("%.1f",bar.getEstrellas()));
+        if (this.bares == null) {
+            return 0;
+        }
 
-        ImageView imagenBar = view.findViewById(R.id.imagen_bar);
-        String imagePath = bar.getNombre() + ".jpg";
-        StorageReference imagenRef = storageReference.child("imagenes").child(imagePath);
-        GlideApp.with(view)
-                .load(imagenRef).placeholder(R.drawable.placeholder)
-                .into(imagenBar);
+        if (this.bares.size() == 0) {
+            return 1;
+        }
 
-        view.setOnClickListener(view1 -> {
-            Intent intent = new Intent(context, BarActivity.class);
-            intent.putExtra("bar", bar);
-            context.startActivity(intent);
-        });
+        //Uno extra para mostrar el footer
+        return this.bares.size() + 1;
+    }
 
-        return view;
+    @Override
+    public int getItemViewType(int position) {
+        if (position == bares.size()) {
+            return FOOTER_VIEW;
+        }
+        return super.getItemViewType(position);
     }
 }

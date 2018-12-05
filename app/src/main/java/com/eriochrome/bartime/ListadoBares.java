@@ -3,28 +3,29 @@ package com.eriochrome.bartime;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.ListaBaresAdapter;
+import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.modelos.Bar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,7 +47,7 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
     private Button filtrar;
     private EditText buscar;
 
-    private ListView baresListView;
+    private RecyclerView baresRecyclerView;
     private View footerView;
     private ListaBaresAdapter baresAdapter;
     private ArrayList<Bar> listaBares;
@@ -72,13 +73,12 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
         buscar = findViewById(R.id.buscar);
 
         listaBares = new ArrayList<>();
-        baresListView = findViewById(R.id.listview);
-        footerView = ((LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-                .inflate(R.layout.item_no_encontras, null, false);
-        baresListView.addFooterView(footerView);
-        footerView.setVisibility(View.INVISIBLE);
-        baresAdapter = new ListaBaresAdapter(listaBares, this);
-        baresListView.setAdapter(baresAdapter);
+        baresRecyclerView = findViewById(R.id.recycler_view);
+
+        baresAdapter = new ListaBaresAdapter(this, listaBares);
+        baresRecyclerView.setHasFixedSize(true);
+        setupRecyclerView();
+        baresRecyclerView.setAdapter(baresAdapter);
 
         loading = findViewById(R.id.progressBar);
         loading.setVisibility(View.GONE);
@@ -122,7 +122,6 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
 
     private void cargando() {
         loading.setVisibility(View.VISIBLE);
-        footerView.setVisibility(View.INVISIBLE);
         listaBares.clear();
         baresAdapter.notifyDataSetChanged();
     }
@@ -133,7 +132,6 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
             toastShort(this, "No hay resultados");
         }
         loading.setVisibility(View.GONE);
-        footerView.setVisibility(View.VISIBLE);
         baresAdapter.notifyDataSetChanged();
     }
 
@@ -267,9 +265,18 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
             }
             return false;
         });
-        footerView.setOnClickListener(view -> {
-            Intent i = new Intent(ListadoBares.this, AgregarBarUsuario.class);
-            startActivity(i);
-        });
+    }
+
+
+    private void setupRecyclerView() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+        int espacioVertical = 30;
+        EspacioVerticalDecorator espacioVerticalDecorator = new EspacioVerticalDecorator(espacioVertical);
+        SombraEspacioVerticalDecorator sombra = new SombraEspacioVerticalDecorator(this, R.drawable.drop_shadow);
+
+        baresRecyclerView.setLayoutManager(layoutManager);
+        baresRecyclerView.addItemDecoration(espacioVerticalDecorator);
+        baresRecyclerView.addItemDecoration(sombra);
     }
 }
