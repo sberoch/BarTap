@@ -35,6 +35,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
@@ -48,14 +49,16 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
     private EditText buscar;
 
     private RecyclerView baresRecyclerView;
-    private View footerView;
     private ListaBaresAdapter baresAdapter;
     private ArrayList<Bar> listaBares;
 
+    private DatabaseReference refGlobal;
     private DatabaseReference refBares;
+    private boolean ordenDescendente;
+
     private ProgressBar loading;
 
-    private DatabaseReference refGlobal;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,7 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
 
         refGlobal = FirebaseDatabase.getInstance().getReference();
         refBares = refGlobal.child("bares");
+        ordenDescendente = false;
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerButton = findViewById(R.id.drawer_button);
@@ -94,10 +98,7 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
         cargando();
         refBares.orderByChild("estrellas").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getChildrenCount() == 0) {
-                    Toast.makeText(ListadoBares.this, "No se encontraron resultados.", Toast.LENGTH_SHORT).show();
-                }
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot barSnapshot : dataSnapshot.getChildren()) {
                     Bar bar = barSnapshot.getValue(Bar.class);
                     listaBares.add(0, bar);
@@ -106,7 +107,7 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(ListadoBares.this, "Error al leer base de datos.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -197,6 +198,9 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
               for (DataSnapshot barSnap : dataSnapshot.getChildren()) {
                       listaBares.add(barSnap.getValue(Bar.class));
               }
+              if(ordenDescendente) {
+                  Collections.reverse(listaBares );
+              }
               finCargando(listaBares.size());
           }
 
@@ -215,6 +219,7 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
      * NOTAR: hay bares que estan en otra rama del json en firebase para poder combinar filtros.
      */
     private Query obtenerQuery(AlertDialog dialog) {
+        ordenDescendente = false;
         Query query = refBares;
         Switch hayOfertas = dialog.findViewById(R.id.descuentos);
         RadioGroup ordenamientos = dialog.findViewById(R.id.ordenar_group);
@@ -231,8 +236,8 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
                 break;
 
             case R.id.estrellas:
-                //TODO: mostrar en orden descendente!
                 query = query.orderByChild("estrellas");
+                ordenDescendente = true;
                 break;
 
             case R.id.nombre:
@@ -245,7 +250,9 @@ public class ListadoBares extends AppCompatActivity implements SeleccionFiltros.
 
     private void ocultarTeclado(){
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        if (imm != null) {
+            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        }
     }
 
 
