@@ -16,7 +16,7 @@ public class ConfirmacionNuevoBar extends AppCompatActivity {
 
         continuar = findViewById(R.id.continuar);
         continuar.setOnClickListener(v -> {
-            startActivity(new Intent(ConfirmacionNuevoBar.this, ListadoBares.class));
+            startActivity(new Intent(ConfirmacionNuevoBar.this, ListadosActivity.class));
         });
     }
 }
