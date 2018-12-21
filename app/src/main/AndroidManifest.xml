@@ -11,22 +11,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DistincionDeUsuario">
+        <activity android:name=".LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DistincionDeUsuario" />
         <activity android:name=".ListadosActivity" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
         <activity android:name=".AgregarBarUsuario" />
         <activity android:name=".ConfirmacionNuevoBar" />
-        <activity android:name=".BarActivity"></activity>
+        <activity android:name=".BarActivity" />
+        <activity android:name=".BarControl" />
+
     </application>
 
 </manifest>

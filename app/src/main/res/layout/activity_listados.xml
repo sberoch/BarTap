@@ -33,16 +33,14 @@
                 android:padding="6dp"
                 app:srcCompat="@drawable/ic_menu_black_24dp" />
 
-            <TextView
-                android:id="@+id/puntos"
+            <Spinner
+                android:id="@+id/spinner_listado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="14dp"
-                android:fontFamily="@font/lato_bold"
-                android:text="Puntos: 234"
-                android:textColor="@android:color/background_dark"
-                android:textSize="12sp" />
+                android:layout_marginTop="10dp"
+                android:dropDownWidth="match_parent" />
 
             <ImageButton
                 android:id="@+id/notificaciones"
@@ -64,19 +62,12 @@
 
         </RelativeLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:indeterminateDrawable="@drawable/barra_progreso_circular"
-            android:indeterminateDuration="2000" />
-
         <FrameLayout
             android:id="@+id/fragment_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/barra_sup">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/barra_sup"
+            android:layout_alignEnd="@+id/barra_sup">
 
         </FrameLayout>
 
@@ -88,7 +79,8 @@
         android:id="@+id/nav_drawer"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:menu="@menu/drawer_menu">
+        app:headerLayout="@layout/header_drawer"
+        app:menu="@menu/drawer_menu_usuario">
 
     </android.support.design.widget.NavigationView>
 
