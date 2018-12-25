@@ -25,6 +25,7 @@ public class FavoritosFragmentPresenter implements FavoritosFragmentContract.Com
         view.finCargando(interaccion.obtenerBares());
     }
 
+
     public void mostrarFavoritos() {
         view.cargando();
         interaccion.mostrarBaresFavoritosConPalabra("");

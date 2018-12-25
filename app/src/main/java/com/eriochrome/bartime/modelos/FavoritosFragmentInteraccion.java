@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.FavoritosFragmentContract;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,10 +15,10 @@ import java.util.ArrayList;
 
 public class FavoritosFragmentInteraccion implements FavoritosFragmentContract.Interaccion {
 
-    //private DatabaseReference refGlobal;
+    private DatabaseReference refGlobal;
     private DatabaseReference refBares;
-    //private DatabaseReference refGuardados;
-    private FirebaseAuth auth;
+    private DatabaseReference refFavoritos;
+    private FirebaseUser authUser;
 
     private ArrayList<Bar> listaBares;
     private UsuarioRegistrado usuario;
@@ -27,12 +28,15 @@ public class FavoritosFragmentInteraccion implements FavoritosFragmentContract.I
     public FavoritosFragmentInteraccion(FavoritosFragmentContract.CompleteListener listener) {
         this.listener = listener;
         listaBares = new ArrayList<>();
-        refBares = FirebaseDatabase.getInstance().getReference().child("bares");
-        auth = FirebaseAuth.getInstance();
-        //TODO: hay que crear al usuario con los bares favoritos (solo aca, que es donde importa, en otras actividades no hacerlo - 2 constructores -)
-        usuario = UsuarioRegistrado.crearConAuth(auth.getCurrentUser());
-        //TODO: mock
-        usuario.mockFavoritos();
+
+        authUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        refGlobal = FirebaseDatabase.getInstance().getReference();
+        refBares = refGlobal.child("bares");
+        refFavoritos = refGlobal.child("usuarios").child(authUser.getUid()).child("favoritos");
+
+        usuario = UsuarioRegistrado.crearConAuth(authUser);
+        descargarFavoritos(usuario);
     }
 
 
@@ -62,6 +66,24 @@ public class FavoritosFragmentInteraccion implements FavoritosFragmentContract.I
                     }
                 }
                 listener.onSuccess();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //TODO: throw
+            }
+        });
+    }
+
+
+    //TODO: probablemente necesite un onCompleteListener
+    private void descargarFavoritos(UsuarioRegistrado usuario) {
+        refFavoritos.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    usuario.addFavorito(ds.getValue(Bar.class));
+                }
             }
 
             @Override

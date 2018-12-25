@@ -11,5 +11,6 @@ public interface PaginaBarContract {
         void setBar(Bar bar);
         String getNombreDeBar();
         void actualizarEstrellas(int calificacion);
+        void agregarAFavoritos();
     }
 }

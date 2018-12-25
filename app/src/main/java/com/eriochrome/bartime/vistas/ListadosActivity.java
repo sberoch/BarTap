@@ -61,6 +61,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     private void updateUI() {
         setupDrawer();
+        setupSpinner();
     }
 
 
@@ -142,8 +143,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        ListadoBaresFragment fragment = new ListadoBaresFragment();
-                        startFragment(fragment);
+                        startFragment(new ListadoBaresFragment());
                         break;
 
                     case 1:
@@ -168,7 +168,9 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         ArrayList<String> listaFragments = new ArrayList<>();
         listaFragments.add("Bares");
         listaFragments.add("Desafios");
-        listaFragments.add("Favoritos");
+        if(presenter.estaConectado()) {
+            listaFragments.add("Mis Favoritos");
+        }
         ArrayAdapter<String> adapterFragments = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, listaFragments);
         adapterFragments.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

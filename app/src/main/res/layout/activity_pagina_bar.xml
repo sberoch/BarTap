@@ -61,4 +61,21 @@
         android:layout_below="@+id/calificacion"
         android:layout_marginBottom="2dp"
         android:background="#ccc" />
+
+    <Button
+        android:id="@+id/agregar_favorito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hl2"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="Agregar a Favoritos" />
+
+    <View
+        android:id="@+id/hl3"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_below="@+id/agregar_favorito"
+        android:layout_marginBottom="2dp"
+        android:background="#ccc" />
 </RelativeLayout>

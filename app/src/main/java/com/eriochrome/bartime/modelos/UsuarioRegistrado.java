@@ -8,6 +8,9 @@ public class UsuarioRegistrado extends Usuario {
 
     private ArrayList<String> favoritos;
 
+    public UsuarioRegistrado() {
+    }
+
     public UsuarioRegistrado(String nombre) {
         this.nombre = nombre;
         this.esBar = false;
@@ -26,9 +29,4 @@ public class UsuarioRegistrado extends Usuario {
         favoritos.add(bar.getNombre());
     }
 
-    //TODO: mock
-    public void mockFavoritos() {
-        favoritos.add("Nombre");
-        favoritos.add("Alohabar");
-    }
 }

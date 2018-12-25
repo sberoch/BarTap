@@ -30,7 +30,6 @@ import java.util.ArrayList;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-//TODO: no se puede implementar el listener en el fragmento, pasarlo a actividad y de actividad a aca mediante metodos.
 public class ListadoBaresFragment extends Fragment implements BaresFragmentContract.View{
 
     private Button filtrar;

@@ -26,8 +26,5 @@
     <string name="texto_confirmacion">Se ha enviado el bar que creaste para su revision. Proximamente lo veras con el resto</string>
     <string name="continuar">Continuar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 </resources>

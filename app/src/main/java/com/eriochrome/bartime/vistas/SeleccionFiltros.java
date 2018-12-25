@@ -30,7 +30,6 @@ public class SeleccionFiltros extends DialogFragment {
 
     @Override
     public void onAttach(Context context) {
-        //TODO: no se implementa la interfaz
         super.onAttach(context);
         try {
             listener = (FiltrosListener) context;

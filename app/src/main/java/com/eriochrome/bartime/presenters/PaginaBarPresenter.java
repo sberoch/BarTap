@@ -6,6 +6,7 @@ import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.modelos.PaginaBarInteraccion;
 
+
 public class PaginaBarPresenter {
 
     private PaginaBarContract.Interaccion interaccion;
@@ -35,5 +36,9 @@ public class PaginaBarPresenter {
     public void calificarBar() {
         int calificacion = view.getCalificacion();
         interaccion.actualizarEstrellas(calificacion);
+    }
+
+    public void agregarAFavoritos() {
+        interaccion.agregarAFavoritos();
     }
 }
