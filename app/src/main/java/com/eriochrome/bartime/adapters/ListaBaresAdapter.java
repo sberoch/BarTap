@@ -19,9 +19,15 @@ public class ListaBaresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private Context context;
     private ArrayList<Bar> bares;
 
-    public ListaBaresAdapter(Context context, ArrayList<Bar> bares) {
+    public ListaBaresAdapter(Context context) {
         this.context = context;
-        this.bares = bares;
+        this.bares = new ArrayList<>();
+    }
+
+    public void setItems(ArrayList<Bar> listaBares) {
+        bares.clear();
+        bares.addAll(listaBares);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -83,5 +89,11 @@ public class ListaBaresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             return FOOTER_VIEW;
         }
         return super.getItemViewType(position);
+    }
+
+
+    public void clear() {
+        bares.clear();
+        notifyDataSetChanged();
     }
 }

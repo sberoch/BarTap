@@ -2,14 +2,33 @@ package com.eriochrome.bartime.modelos;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 public class UsuarioRegistrado extends Usuario {
+
+    private ArrayList<String> favoritos;
 
     public UsuarioRegistrado(String nombre) {
         this.nombre = nombre;
-        esBar = false;
+        this.esBar = false;
+        this.favoritos = new ArrayList<>();
     }
 
-    public static Usuario crearConAuth(FirebaseUser currentUser) {
+    public static UsuarioRegistrado crearConAuth(FirebaseUser currentUser) {
         return new UsuarioRegistrado(currentUser.getDisplayName());
+    }
+
+    public ArrayList<String> getFavoritos() {
+        return favoritos;
+    }
+
+    public void addFavorito(Bar bar) {
+        favoritos.add(bar.getNombre());
+    }
+
+    //TODO: mock
+    public void mockFavoritos() {
+        favoritos.add("Nombre");
+        favoritos.add("Alohabar");
     }
 }

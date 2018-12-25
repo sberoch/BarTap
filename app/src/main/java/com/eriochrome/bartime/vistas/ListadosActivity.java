@@ -1,5 +1,6 @@
-package com.eriochrome.bartime;
+package com.eriochrome.bartime.vistas;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -14,18 +15,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.eriochrome.bartime.modelos.Usuario;
-import com.eriochrome.bartime.modelos.UsuarioAnonimo;
-import com.eriochrome.bartime.modelos.UsuarioRegistrado;
+import com.eriochrome.bartime.R;
+import com.eriochrome.bartime.contracts.ListadosContract;
+import com.eriochrome.bartime.presenters.ListadosPresenter;
 import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,39 +29,29 @@ import java.util.List;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class ListadosActivity extends AppCompatActivity {
+public class ListadosActivity extends AppCompatActivity implements ListadosContract.View, SeleccionFiltros.FiltrosListener {
 
     private DrawerLayout drawerLayout;
     private ImageButton drawerButton;
     private NavigationView navigationView;
     private Spinner spinner;
 
-    private DatabaseReference refGlobal;
-    private DatabaseReference refUsuarios;
-    private FirebaseAuth auth;
     private static final int RC_SIGN_IN = 1;
 
-    private Usuario usuario;
+    private ListadosPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listados);
 
-        refGlobal = FirebaseDatabase.getInstance().getReference();
-        refUsuarios = refGlobal.child("usuarios");
-        auth = FirebaseAuth.getInstance();
-
-        if (estaConectado()) {
-            usuario = UsuarioRegistrado.crearConAuth(auth.getCurrentUser());
-        } else {
-            usuario = new UsuarioAnonimo();
-        }
-
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerButton = findViewById(R.id.drawer_button);
         navigationView = findViewById(R.id.nav_drawer);
         spinner = findViewById(R.id.spinner_listado);
+
+        presenter = new ListadosPresenter();
+        presenter.bind(this);
 
         setupDrawer();
         setupSpinner();
@@ -73,15 +59,8 @@ public class ListadosActivity extends AppCompatActivity {
         updateUI();
     }
 
-
     private void updateUI() {
         setupDrawer();
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
     }
 
 
@@ -97,7 +76,7 @@ public class ListadosActivity extends AppCompatActivity {
                 break;
 
             case R.id.guardados:
-                toastShort(ListadosActivity.this, "Guardados");
+                startFragment(new ListadoFavoritosFragment());
                 break;
 
             case R.id.contacto:
@@ -112,18 +91,15 @@ public class ListadosActivity extends AppCompatActivity {
                 AuthUI.getInstance()
                         .signOut(this)
                         .addOnCompleteListener(task -> {
-                           startActivity(new Intent(ListadosActivity.this, DistincionDeUsuario.class));
+                           startActivity(new Intent(ListadosActivity.this, DistincionDeUsuarioActivity.class));
                            finish();
                         });
                 break;
+
+            case R.id.salir:
+                finishAndRemoveTask();
         }
     }
-
-
-    private boolean estaConectado() {
-        return auth.getCurrentUser() != null;
-    }
-
 
     private void loginUsuario() {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
@@ -144,12 +120,7 @@ public class ListadosActivity extends AppCompatActivity {
 
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                //Paso el usuario del auth a la database
-                FirebaseUser usuarioAuth = auth.getCurrentUser();
-                usuario = UsuarioRegistrado.crearConAuth(usuarioAuth);
-                refUsuarios.child(usuarioAuth.getUid()).setValue(usuario);
-
-                //Actualizo UI
+                presenter.subirUsuarioADatabase();
                 updateUI();
 
             } else {
@@ -171,14 +142,17 @@ public class ListadosActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Fragment baresFragment = new ListadoBaresFragment();
-                        ((ListadoBaresFragment) baresFragment).setReferenciaADatabase(refGlobal);
-                        startFragment(baresFragment);
+                        ListadoBaresFragment fragment = new ListadoBaresFragment();
+                        startFragment(fragment);
                         break;
 
                     case 1:
-                        Fragment desafiosFragment = new ListadoDesafiosFragment();
-                        startFragment(desafiosFragment);
+                        startFragment(new ListadoDesafiosFragment());
+                        break;
+
+                    case 2:
+                        startFragment(new ListadoFavoritosFragment());
+                        break;
                 }
             }
 
@@ -194,6 +168,7 @@ public class ListadosActivity extends AppCompatActivity {
         ArrayList<String> listaFragments = new ArrayList<>();
         listaFragments.add("Bares");
         listaFragments.add("Desafios");
+        listaFragments.add("Favoritos");
         ArrayAdapter<String> adapterFragments = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, listaFragments);
         adapterFragments.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -213,11 +188,11 @@ public class ListadosActivity extends AppCompatActivity {
         //Header
         View header = navigationView.getHeaderView(0);
         TextView usuarioActivo = header.findViewById(R.id.usuario_activo);
-        usuarioActivo.setText(usuario.getNombre());
+        usuarioActivo.setText(presenter.getNombreUsuario());
 
         //Opciones
         Menu menu = navigationView.getMenu();
-        setupItems(menu, estaConectado());
+        setupItems(menu, presenter.estaConectado());
     }
 
 
@@ -245,5 +220,20 @@ public class ListadosActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finishAndRemoveTask();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        presenter.unbind();
+        super.onDestroy();
+    }
+
+    @Override
+    public void aplicarFiltros(AlertDialog dialog) {
+        Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
+        if (f instanceof ListadoBaresFragment) {
+            ((ListadoBaresFragment) f).aplicarFiltros(dialog);
+        }
     }
 }

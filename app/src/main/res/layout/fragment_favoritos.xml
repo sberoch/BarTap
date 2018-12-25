@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vistas.ListadoDesafiosFragment">
+    tools:context=".vistas.ListadoFavoritosFragment">
 
+    <!-- TODO: Update blank fragment layout -->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,7 +19,7 @@
 
             <EditText
                 android:id="@+id/buscar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -39,31 +40,7 @@
                 android:textColorLink="@color/colorPrimary"
                 android:textCursorDrawable="@drawable/cursor_violeta" />
 
-            <Button
-                android:id="@+id/filtrar"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="8dp"
-                android:layout_toEndOf="@+id/buscar"
-                android:background="@drawable/edittext_violet"
-                android:drawableStart="@drawable/ic_filter_list_24dp"
-                android:fontFamily="@font/lato_bold"
-                android:padding="8dp"
-                android:text="@string/filtrar"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary" />
-
         </RelativeLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/barra_sup"
-            android:padding="8dp" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -72,5 +49,13 @@
             android:layout_centerInParent="true"
             android:indeterminateDrawable="@drawable/barra_progreso_circular"
             android:indeterminateDuration="2000" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/barra_sup"
+            android:padding="8dp" />
+
     </RelativeLayout>
 </FrameLayout>

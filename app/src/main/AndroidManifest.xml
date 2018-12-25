@@ -11,21 +11,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LauncherActivity">
+        <activity android:name=".vistas.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DistincionDeUsuario" />
-        <activity android:name=".ListadosActivity" />
+        <activity android:name=".vistas.DistincionDeUsuarioActivity" />
+        <activity android:name=".vistas.ListadosActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <activity android:name=".AgregarBarUsuario" />
-        <activity android:name=".ConfirmacionNuevoBar" />
-        <activity android:name=".BarActivity" />
-        <activity android:name=".BarControl" />
+        <activity android:name=".vistas.AgregarBarUsuarioActivity" />
+        <activity android:name=".vistas.PaginaBarActivity" />
+        <activity android:name=".vistas.BarControlActivity" />
+        <activity android:name=".vistas.ConfirmarNuevoBarActivity" />
 
     </application>
 

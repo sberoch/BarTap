@@ -1,4 +1,4 @@
-package com.eriochrome.bartime;
+package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -7,26 +7,22 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
-import com.eriochrome.bartime.modelos.Usuario;
-import com.eriochrome.bartime.modelos.UsuarioBar;
+import com.eriochrome.bartime.R;
+import com.eriochrome.bartime.contracts.DistincionContract;
+import com.eriochrome.bartime.presenters.DistincionPresenter;
 import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 
 import java.util.Arrays;
 import java.util.List;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class DistincionDeUsuario extends AppCompatActivity {
+public class DistincionDeUsuarioActivity extends AppCompatActivity implements DistincionContract.View {
 
     private Button tengoBar;
     private Button comenzar;
-    private FirebaseAuth auth;
-    private DatabaseReference refUsuarios;
+
+    DistincionPresenter presenter;
 
     private static final int RC_SIGN_IN = 1;
 
@@ -38,17 +34,17 @@ public class DistincionDeUsuario extends AppCompatActivity {
         tengoBar = findViewById(R.id.tengoBar);
         comenzar = findViewById(R.id.comenzar);
 
-        refUsuarios = FirebaseDatabase.getInstance().getReference().child("usuarios");
-        auth = FirebaseAuth.getInstance();
-
         setTypefaces();
         setListeners();
+
+        presenter = new DistincionPresenter();
+        presenter.bind(this);
     }
 
 
     private void setListeners() {
         comenzar.setOnClickListener(view -> {
-            startActivity(new Intent(DistincionDeUsuario.this, ListadosActivity.class));
+            startActivity(new Intent(DistincionDeUsuarioActivity.this, ListadosActivity.class));
             finish();
         });
         tengoBar.setOnClickListener(view -> loginBar());
@@ -62,7 +58,9 @@ public class DistincionDeUsuario extends AppCompatActivity {
     }
 
 
-    private void loginBar() {
+    @Override
+    public void loginBar() {
+        //TODO: rompe MVP, cuando lo haga custom pensar en eso.
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build());
 
@@ -82,17 +80,21 @@ public class DistincionDeUsuario extends AppCompatActivity {
 
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                //Paso el usuario del auth a la database
-                FirebaseUser barAuth = auth.getCurrentUser();
-                Usuario barUsuario = new UsuarioBar(barAuth.getDisplayName());
-                refUsuarios.child(barAuth.getUid()).setValue(barUsuario);
-
-                //Entro a BarControl
-                startActivity(new Intent(DistincionDeUsuario.this, BarControl.class));
+                presenter.subirUsuarioADatabase();
+                //Entro a BarControlActivity
+                startActivity(new Intent(DistincionDeUsuarioActivity.this, BarControlActivity.class));
+                overridePendingTransition(0,0);
                 finish();
             } else {
-                toastShort(DistincionDeUsuario.this, "Ocurrio un error. Intente nuevamente");
+                toastShort(DistincionDeUsuarioActivity.this, "Ocurrio un error. Intente nuevamente");
             }
         }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        presenter.unbind();
+        super.onDestroy();
     }
 }

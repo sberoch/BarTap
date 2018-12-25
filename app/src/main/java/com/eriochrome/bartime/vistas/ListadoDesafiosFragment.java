@@ -1,4 +1,4 @@
-package com.eriochrome.bartime;
+package com.eriochrome.bartime.vistas;
 
 
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.ListaBaresAdapter;
 import com.eriochrome.bartime.modelos.Desafio;
 import com.google.firebase.database.DatabaseReference;
@@ -18,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 
 
-public class ListadoDesafiosFragment extends Fragment implements ReferenciaDatabase {
+public class ListadoDesafiosFragment extends Fragment {
 
     private DatabaseReference refGlobal;
     private DatabaseReference refDesafios;
@@ -47,8 +48,8 @@ public class ListadoDesafiosFragment extends Fragment implements ReferenciaDatab
         return view;
     }
 
-    @Override
+    /*@Override
     public void setReferenciaADatabase(DatabaseReference ref) {
         this.refDesafios = ref.child("desafios");
-    }
+    }*/
 }

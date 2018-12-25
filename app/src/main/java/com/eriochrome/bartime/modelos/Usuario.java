@@ -1,8 +1,7 @@
 package com.eriochrome.bartime.modelos;
 
-import com.google.firebase.auth.FirebaseUser;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Usuario implements Serializable {
     protected String nombre;

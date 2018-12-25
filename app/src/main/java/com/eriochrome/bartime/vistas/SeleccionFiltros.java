@@ -1,4 +1,4 @@
-package com.eriochrome.bartime;
+package com.eriochrome.bartime.vistas;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,19 +15,22 @@ import android.view.LayoutInflater;
 import android.widget.Button;
 
 
+import com.eriochrome.bartime.R;
+
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class SeleccionFiltros extends DialogFragment {
 
 
     public interface FiltrosListener {
-        void aplicarFiltros(DialogFragment dialogFragment, AlertDialog dialog);
+        void aplicarFiltros(AlertDialog dialog);
     }
 
     FiltrosListener listener;
 
     @Override
     public void onAttach(Context context) {
+        //TODO: no se implementa la interfaz
         super.onAttach(context);
         try {
             listener = (FiltrosListener) context;
@@ -45,14 +48,13 @@ public class SeleccionFiltros extends DialogFragment {
 
         builder.setPositiveButton(R.string.aplicar_filtros, (dialogInterface, i) -> {
                     AlertDialog dialog = (AlertDialog) getDialog();
-                    listener.aplicarFiltros(SeleccionFiltros.this, dialog);
+                    listener.aplicarFiltros(dialog);
                     dismiss();
                 })
                 .setNegativeButton(R.string.cancelar, (dialogInterface, i) -> dismiss());
 
         return builder.create();
     }
-
 
 
     @Override

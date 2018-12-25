@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
-    tools:context=".DistincionDeUsuario">
+    tools:context=".vistas.DistincionDeUsuarioActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

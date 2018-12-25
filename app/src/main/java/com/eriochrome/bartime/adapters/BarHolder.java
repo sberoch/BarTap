@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.eriochrome.bartime.BarActivity;
+import com.eriochrome.bartime.vistas.PaginaBarActivity;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.utils.GlideApp;
@@ -68,7 +68,7 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if(this.bar != null) {
-            Intent intent = new Intent(context, BarActivity.class);
+            Intent intent = new Intent(context, PaginaBarActivity.class);
             intent.putExtra("bar", bar);
             context.startActivity(intent);
         }
