@@ -34,7 +34,9 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     private DrawerLayout drawerLayout;
     private ImageButton drawerButton;
     private NavigationView navigationView;
+
     private Spinner spinner;
+    private ArrayAdapter<String> spinnerAdapter;
 
     private static final int RC_SIGN_IN = 1;
 
@@ -78,6 +80,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
             case R.id.guardados:
                 startFragment(new ListadoFavoritosFragment());
+                spinner.setSelection(spinnerAdapter.getPosition("Mis Favoritos"));
                 break;
 
             case R.id.contacto:
@@ -148,6 +151,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
                     case 1:
                         startFragment(new ListadoDesafiosFragment());
+
                         break;
 
                     case 2:
@@ -171,10 +175,10 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         if(presenter.estaConectado()) {
             listaFragments.add("Mis Favoritos");
         }
-        ArrayAdapter<String> adapterFragments = new ArrayAdapter<>(this,
+        spinnerAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, listaFragments);
-        adapterFragments.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapterFragments);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
     }
 
 

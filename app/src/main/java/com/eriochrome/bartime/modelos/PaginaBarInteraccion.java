@@ -1,14 +1,9 @@
 package com.eriochrome.bartime.modelos;
 
-import android.support.annotation.NonNull;
-
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
 
@@ -49,6 +44,7 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
 
     @Override
     public void agregarAFavoritos() {
-        favoritosRef.child(bar.getNombre()).setValue(bar);
+        String nombreBar = bar.getNombre();
+        favoritosRef.child(nombreBar).setValue(nombreBar);
     }
 }

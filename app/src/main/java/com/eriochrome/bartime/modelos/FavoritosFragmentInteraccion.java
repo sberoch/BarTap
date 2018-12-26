@@ -16,27 +16,17 @@ import java.util.ArrayList;
 public class FavoritosFragmentInteraccion implements FavoritosFragmentContract.Interaccion {
 
     private DatabaseReference refGlobal;
-    private DatabaseReference refBares;
-    private DatabaseReference refFavoritos;
     private FirebaseUser authUser;
 
     private ArrayList<Bar> listaBares;
-    private UsuarioRegistrado usuario;
 
     private FavoritosFragmentContract.CompleteListener listener;
 
     public FavoritosFragmentInteraccion(FavoritosFragmentContract.CompleteListener listener) {
         this.listener = listener;
         listaBares = new ArrayList<>();
-
         authUser = FirebaseAuth.getInstance().getCurrentUser();
-
         refGlobal = FirebaseDatabase.getInstance().getReference();
-        refBares = refGlobal.child("bares");
-        refFavoritos = refGlobal.child("usuarios").child(authUser.getUid()).child("favoritos");
-
-        usuario = UsuarioRegistrado.crearConAuth(authUser);
-        descargarFavoritos(usuario);
     }
 
 
@@ -45,24 +35,28 @@ public class FavoritosFragmentInteraccion implements FavoritosFragmentContract.I
         return listaBares;
     }
 
+
     /**
-     * Por cada bar, se fija en toda la lista de nombres y lo agrega si es igual y si contiene a "s"
-     * Pasar "" si se quieren buscar todos los favoritos
+     * Por cada favorito, si contiene la palabra "s", convierte el String en un Bar y lo agrega a la lista
+     * Pasar "" para buscar todos los favoritos.
      * Puede ser lento - O(n^2) -
      */
     @Override
     public void mostrarBaresFavoritosConPalabra(String s) {
         String palabra = s.toLowerCase();
         listaBares.clear();
-        refBares.addListenerForSingleValueEvent(new ValueEventListener() {
+        refGlobal.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Bar bar = ds.getValue(Bar.class);
-                    for (String nombreBarFavorito : usuario.getFavoritos()) {
-                        if (nombreBarFavorito.equals(bar.getNombre()) && (nombreBarFavorito.toLowerCase().contains(palabra))) {
-                            listaBares.add(bar);
-                        }
+                ArrayList<String> favoritos = new ArrayList<>();
+                DataSnapshot dsFavoritos = dataSnapshot.child("usuarios").child(authUser.getUid()).child("favoritos");
+                for (DataSnapshot ds : dsFavoritos.getChildren()) {
+                    favoritos.add(ds.getValue(String.class));
+                }
+                for (String nombreFavorito : favoritos) {
+                    if (nombreFavorito.toLowerCase().contains(palabra)) {
+                        Bar bar = dataSnapshot.child("bares").child(nombreFavorito).getValue(Bar.class);
+                        listaBares.add(bar);
                     }
                 }
                 listener.onSuccess();
@@ -76,20 +70,4 @@ public class FavoritosFragmentInteraccion implements FavoritosFragmentContract.I
     }
 
 
-    //TODO: probablemente necesite un onCompleteListener
-    private void descargarFavoritos(UsuarioRegistrado usuario) {
-        refFavoritos.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    usuario.addFavorito(ds.getValue(Bar.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                //TODO: throw
-            }
-        });
-    }
 }
