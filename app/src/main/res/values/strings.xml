@@ -25,6 +25,8 @@
     <string name="cancelar">Cancelar</string>
     <string name="texto_confirmacion">Se ha enviado el bar que creaste para su revision. Proximamente lo veras con el resto</string>
     <string name="continuar">Continuar</string>
+    <string name="aun_no_tenes_un_bar_asociado">Aun no tenes un bar asociado.</string>
+    <string name="crear">Crear</string>
 
 
 </resources>

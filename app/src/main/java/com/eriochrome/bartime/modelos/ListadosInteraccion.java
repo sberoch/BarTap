@@ -10,7 +10,7 @@ public class ListadosInteraccion implements ListadosContract.Interaccion {
 
     private FirebaseAuth auth;
     private DatabaseReference refUsuarios;
-    private Usuario usuario;
+    private UsuarioComun usuario;
 
     //TODO: revisar esto de login
     public ListadosInteraccion() {

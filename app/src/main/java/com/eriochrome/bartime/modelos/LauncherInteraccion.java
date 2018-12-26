@@ -16,11 +16,13 @@ import com.google.firebase.database.ValueEventListener;
 public class LauncherInteraccion implements LauncherContract.Interaccion {
 
     private FirebaseAuth auth;
-    private DatabaseReference refUsuarios;
+    private DatabaseReference refUsuariosBar;
+    private LauncherContract.CompleteListener listener;
 
-    public LauncherInteraccion() {
+    public LauncherInteraccion(LauncherContract.CompleteListener listener) {
+        this.listener = listener;
         auth = FirebaseAuth.getInstance();
-        refUsuarios = FirebaseDatabase.getInstance().getReference().child("usuarios");
+        refUsuariosBar = FirebaseDatabase.getInstance().getReference().child("usuariosBar");
     }
 
     @Override
@@ -29,21 +31,19 @@ public class LauncherInteraccion implements LauncherContract.Interaccion {
     }
 
     @Override
-    public boolean esBar() {
-        final boolean[] esBar = new boolean[1];
-        String userID = auth.getCurrentUser().getUid();
-        Query query = refUsuarios.child(userID);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void esBar() {
+        refUsuariosBar.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                esBar[0] = dataSnapshot.getValue(Usuario.class).esBar();
+                if (dataSnapshot.hasChild(auth.getCurrentUser().getUid())) {
+                    listener.esBar(true);
+                } else {
+                    listener.esBar(false);
+                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //TODO: throw?
             }
         });
-        return esBar[0];
     }
 }

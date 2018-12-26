@@ -4,13 +4,13 @@ package com.eriochrome.bartime.presenters;
 import com.eriochrome.bartime.contracts.LauncherContract;
 import com.eriochrome.bartime.modelos.LauncherInteraccion;
 
-public class LauncherPresenter {
+public class LauncherPresenter implements LauncherContract.CompleteListener{
 
     private LauncherContract.Interaccion interaccion;
     private LauncherContract.View view;
 
     public LauncherPresenter() {
-        this.interaccion = new LauncherInteraccion();
+        this.interaccion = new LauncherInteraccion(this);
     }
 
     public void bind(LauncherContract.View view) {
@@ -23,13 +23,18 @@ public class LauncherPresenter {
 
     public void redirigir() {
         if (interaccion.estaConectado()) {
-            if(interaccion.esBar()) {
-                view.startBar();
-            } else {
-                view.startUsuario();
-            }
+            interaccion.esBar();
         } else {
             view.startNuevo();
+        }
+    }
+
+    @Override
+    public void esBar(boolean esBar) {
+        if (esBar) {
+            view.startBar();
+        } else {
+            view.startUsuario();
         }
     }
 }

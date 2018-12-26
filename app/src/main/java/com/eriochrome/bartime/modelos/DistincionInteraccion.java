@@ -9,17 +9,17 @@ import com.google.firebase.database.FirebaseDatabase;
 public class DistincionInteraccion implements DistincionContract.Interaccion {
 
     private FirebaseAuth auth;
-    private DatabaseReference refUsuarios;
+    private DatabaseReference refUsuarioBar;
 
     public DistincionInteraccion() {
-        refUsuarios = FirebaseDatabase.getInstance().getReference().child("usuarios");
+        refUsuarioBar = FirebaseDatabase.getInstance().getReference().child("usuariosBar");
         auth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void subirUsuarioBarADatabase() {
         FirebaseUser barAuth = auth.getCurrentUser();
-        Usuario barUsuario = new UsuarioBar(barAuth.getDisplayName());
-        refUsuarios.child(barAuth.getUid()).setValue(barUsuario);
+        UsuarioBar barUsuario = new UsuarioBarBasico(barAuth.getDisplayName());
+        refUsuarioBar.child(barAuth.getUid()).setValue(barUsuario);
     }
 }

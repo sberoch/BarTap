@@ -1,11 +1,9 @@
 package com.eriochrome.bartime.modelos;
 
-import java.util.ArrayList;
 
-public class UsuarioAnonimo extends Usuario {
+public class UsuarioAnonimo extends UsuarioComun {
 
     public UsuarioAnonimo() {
         nombre = "Invitado";
-        esBar = false;
     }
 }

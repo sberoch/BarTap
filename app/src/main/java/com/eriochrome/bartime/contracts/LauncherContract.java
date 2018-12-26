@@ -10,6 +10,10 @@ public interface LauncherContract {
 
     interface Interaccion {
         boolean estaConectado();
-        boolean esBar();
+        void esBar();
+    }
+
+    interface CompleteListener {
+        void esBar(boolean esBar);
     }
 }
