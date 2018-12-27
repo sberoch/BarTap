@@ -8,10 +8,10 @@ public interface DistincionContract {
 
     interface Interaccion {
         void subirUsuarioBarADatabase();
-        void checkearEsNuevo();
+        void checkearExiste();
     }
 
     interface CompleteListener {
-        void checkearNuevo(boolean esNuevo);
+        void checkearExiste(boolean esNuevo);
     }
 }

@@ -27,6 +27,8 @@
     <string name="continuar">Continuar</string>
     <string name="aun_no_tenes_un_bar_asociado">Aun no tenes un bar asociado.</string>
     <string name="crear">Crear</string>
+    <string name="crear_oferta">Crear oferta</string>
+    <string name="crear_desafio">Crear Desafio</string>
 
 
 </resources>

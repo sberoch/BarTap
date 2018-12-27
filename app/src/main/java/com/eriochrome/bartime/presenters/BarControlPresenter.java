@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.presenters;
 
 import com.eriochrome.bartime.contracts.BarControlContract;
+import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.modelos.BarControlInteraccion;
 
 public class BarControlPresenter implements BarControlContract.CompleteListener {
@@ -22,18 +23,45 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
         view = null;
     }
 
-    public boolean hayBarAsociado() {
-        interaccion.hayBarAsociado();
-        return hayBarAsociado;
-    }
-
-    @Override
-    public void onComplete(boolean hayBar) {
-        hayBarAsociado = hayBar;
+    public void setupBar() {
+        interaccion.setupBar();
     }
 
     //TODO: mock
     public void mockBarCreado() {
-        hayBarAsociado = true;
+        interaccion.mockearBar();
     }
+
+    public boolean hayBarAsociado() {
+        return hayBarAsociado;
+    }
+
+    @Override
+    public void onStart() {
+        view.cargando();
+    }
+
+    @Override
+    public void onComplete(Bar bar) {
+        hayBarAsociado = (bar != null);
+        view.finCargando();
+    }
+
+    public String getNombreBar() {
+        return interaccion.getNombreBar();
+    }
+
+
+    public void editarBar() {
+
+    }
+
+    public void crearOferta() {
+
+    }
+
+    public void crearDesafio() {
+
+    }
+
 }

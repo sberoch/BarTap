@@ -25,13 +25,13 @@ public class DistincionPresenter implements DistincionContract.CompleteListener{
         interaccion.subirUsuarioBarADatabase();
     }
 
-    public boolean esNuevoUsuario() {
-        interaccion.checkearEsNuevo();
+    public boolean existeUsuario() {
+        interaccion.checkearExiste();
         return esNuevo;
     }
 
     @Override
-    public void checkearNuevo(boolean esNuevo) {
+    public void checkearExiste(boolean esNuevo) {
         this.esNuevo = esNuevo;
     }
 }

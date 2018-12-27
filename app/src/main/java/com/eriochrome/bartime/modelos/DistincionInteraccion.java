@@ -31,12 +31,12 @@ public class DistincionInteraccion implements DistincionContract.Interaccion {
     }
 
     @Override
-    public void checkearEsNuevo() {
+    public void checkearExiste() {
         refUsuariosBar.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 boolean esNuevo = dataSnapshot.hasChild(auth.getCurrentUser().getUid());
-                listener.checkearNuevo(esNuevo);
+                listener.checkearExiste(esNuevo);
             }
 
             @Override

@@ -15,26 +15,46 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
 
     private FirebaseUser userAuth;
     private DatabaseReference barUsuarioRef;
+    private DatabaseReference refGlobal;
     private BarControlContract.CompleteListener listener;
+
+    private Bar bar;
 
     public BarControlInteraccion(BarControlContract.CompleteListener listener) {
         this.listener = listener;
         userAuth = FirebaseAuth.getInstance().getCurrentUser();
-        barUsuarioRef = FirebaseDatabase.getInstance().getReference().child("usuariosBar").child(userAuth.getUid());
+        refGlobal = FirebaseDatabase.getInstance().getReference();
+        barUsuarioRef = refGlobal.child("usuariosBar").child(userAuth.getUid());
     }
 
-
     @Override
-    public void hayBarAsociado() {
+    public void setupBar() {
+        listener.onStart();
         barUsuarioRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                boolean hayBar = dataSnapshot.hasChild("barAsociado");
-                listener.onComplete(hayBar);
+                if (dataSnapshot.child("barAsociado").child("nombre").exists()) {
+                    bar = dataSnapshot.child("barAsociado").getValue(Bar.class);
+                    listener.onComplete(bar);
+                } else {
+                    listener.onComplete(null);
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
+
+    @Override
+    public String getNombreBar() {
+        return bar.getNombre();
+    }
+
+
+    @Override
+    public void mockearBar() {
+        barUsuarioRef.child("barAsociado").setValue(new Bar("Testeando"));
+    }
+
 }

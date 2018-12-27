@@ -1,16 +1,22 @@
 package com.eriochrome.bartime.contracts;
 
+import com.eriochrome.bartime.modelos.Bar;
+
 public interface BarControlContract {
 
     interface Interaccion {
-        void hayBarAsociado();
+        void setupBar();
+        String getNombreBar();
+        void mockearBar();
     }
 
     interface View {
-
+        void cargando();
+        void finCargando();
     }
 
     interface CompleteListener {
-        void onComplete(boolean hayBar);
+        void onStart();
+        void onComplete(Bar bar);
     }
 }
