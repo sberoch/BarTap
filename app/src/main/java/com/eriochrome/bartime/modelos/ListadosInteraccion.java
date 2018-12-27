@@ -1,19 +1,25 @@
 package com.eriochrome.bartime.modelos;
 
+import android.support.annotation.NonNull;
+
 import com.eriochrome.bartime.contracts.ListadosContract;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ListadosInteraccion implements ListadosContract.Interaccion {
 
+    private final ListadosContract.CompleteListener listener;
     private FirebaseAuth auth;
     private DatabaseReference refUsuarios;
     private UsuarioComun usuario;
 
-    //TODO: revisar esto de login
-    public ListadosInteraccion() {
+    public ListadosInteraccion(ListadosContract.CompleteListener listener) {
+        this.listener = listener;
         auth = FirebaseAuth.getInstance();
         refUsuarios = FirebaseDatabase.getInstance().getReference().child("usuarios");
 
@@ -39,5 +45,21 @@ public class ListadosInteraccion implements ListadosContract.Interaccion {
     @Override
     public String getNombreUsuario() {
         return usuario.getNombre();
+    }
+
+    @Override
+    public void checkearNuevo() {
+        refUsuarios.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean esNuevo = dataSnapshot.hasChild(auth.getCurrentUser().getUid());
+                listener.checkearNuevo(esNuevo);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

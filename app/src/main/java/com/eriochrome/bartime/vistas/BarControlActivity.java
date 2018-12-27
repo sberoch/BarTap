@@ -33,13 +33,20 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
 
         sinBarButton.setOnClickListener(v -> {
             //Crear bar
+            //TODO: mock
+            presenter.mockBarCreado();
+            updateUI();
         });
     }
 
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
+    private void updateUI() {
         if (presenter.hayBarAsociado()) {
             sinBarRl.setVisibility(View.GONE);
             barControlRl.setVisibility(View.VISIBLE);
@@ -48,6 +55,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             barControlRl.setVisibility(View.GONE);
         }
     }
+
 
     @Override
     protected void onDestroy() {

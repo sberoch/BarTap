@@ -8,5 +8,10 @@ public interface ListadosContract {
         boolean estaConectado();
         void subirUsuarioADatabase();
         String getNombreUsuario();
+        void checkearNuevo();
+    }
+
+    interface CompleteListener {
+        void checkearNuevo(boolean esNuevoUsuario);
     }
 }

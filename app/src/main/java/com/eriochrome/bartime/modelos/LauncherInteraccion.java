@@ -35,11 +35,8 @@ public class LauncherInteraccion implements LauncherContract.Interaccion {
         refUsuariosBar.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(auth.getCurrentUser().getUid())) {
-                    listener.esBar(true);
-                } else {
-                    listener.esBar(false);
-                }
+                boolean esBar = dataSnapshot.hasChild(auth.getCurrentUser().getUid());
+                listener.esBar(esBar);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

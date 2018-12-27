@@ -31,4 +31,9 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
     public void onComplete(boolean hayBar) {
         hayBarAsociado = hayBar;
     }
+
+    //TODO: mock
+    public void mockBarCreado() {
+        hayBarAsociado = true;
+    }
 }
