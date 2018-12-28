@@ -17,10 +17,12 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     private Bar bar;
 
     public PaginaBarInteraccion() {
-        auth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference();
         baresRef = ref.child("bares");
-        favoritosRef = ref.child("usuarios").child(auth.getCurrentUser().getUid()).child("favoritos");
+        auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            favoritosRef = ref.child("usuarios").child(auth.getCurrentUser().getUid()).child("favoritos");
+        }
     }
 
     @Override

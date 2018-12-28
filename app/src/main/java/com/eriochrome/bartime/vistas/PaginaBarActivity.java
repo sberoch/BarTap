@@ -37,13 +37,32 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         agregarFavorito = findViewById(R.id.agregar_favorito);
 
         nombreBar.setText(presenter.getNombreDeBar());
+        setupListeners();
+
+        //TODO: cambiar los toast por dialogs que permitan crear cuenta
+    }
+
+    @Override
+    public int getCalificacion() {
+        return Integer.parseInt(calificacionEditText.getText().toString());
+    }
+
+    private void setupListeners() {
         calificacionOk.setOnClickListener(view -> {
-            presenter.calificarBar();
-            finish();
+            if (presenter.hayUsuarioConectado()) {
+                presenter.calificarBar();
+                finish();
+            } else {
+                toastShort(PaginaBarActivity.this, "Necesitas una cuenta para calificar este bar.");
+            }
         });
         agregarFavorito.setOnClickListener(v -> {
-            presenter.agregarAFavoritos();
-            toastShort(PaginaBarActivity.this, "Agregado a tus favoritos!");
+            if (presenter.hayUsuarioConectado()) {
+                presenter.agregarAFavoritos();
+                toastShort(PaginaBarActivity.this, "Agregado a tus favoritos!");
+            } else {
+                toastShort(PaginaBarActivity.this, "Necesitas una cuenta para agregar este bar a tus favoritos.");
+            }
         });
     }
 
@@ -51,10 +70,5 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     protected void onDestroy() {
         presenter.unbind();
         super.onDestroy();
-    }
-
-    @Override
-    public int getCalificacion() {
-        return Integer.parseInt(calificacionEditText.getText().toString());
     }
 }

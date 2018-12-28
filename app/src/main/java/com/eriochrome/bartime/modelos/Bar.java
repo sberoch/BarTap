@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Bar implements Serializable {
 
     private String nombre;
-    private String descripcion;
+    private String descripcion; //TODO: reemplazar por ubicacion
     private float estrellas;
     private long calificacionesAcumuladas;
     private int numeroDeCalificaciones;
@@ -26,6 +26,10 @@ public class Bar implements Serializable {
         calificacionesAcumuladas = 0;
         numeroDeCalificaciones = 0;
         descripcion = "Test dis shit";
+        horarioInicial = 0;
+        horarioFinal = 23;
+        happyhourInicial = 999;
+        happuhourFinal = 999;
     }
 
     public String getNombre() {

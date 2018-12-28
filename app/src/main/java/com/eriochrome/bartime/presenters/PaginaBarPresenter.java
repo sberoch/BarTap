@@ -41,4 +41,8 @@ public class PaginaBarPresenter {
     public void agregarAFavoritos() {
         interaccion.agregarAFavoritos();
     }
+
+    public boolean hayUsuarioConectado() {
+        return false;
+    }
 }
