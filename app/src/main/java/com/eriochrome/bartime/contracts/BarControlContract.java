@@ -7,7 +7,6 @@ public interface BarControlContract {
     interface Interaccion {
         void setupBar();
         String getNombreBar();
-        void mockearBar();
     }
 
     interface View {

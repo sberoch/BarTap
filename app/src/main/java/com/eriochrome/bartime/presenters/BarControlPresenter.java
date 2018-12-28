@@ -27,11 +27,6 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
         interaccion.setupBar();
     }
 
-    //TODO: mock
-    public void mockBarCreado() {
-        interaccion.mockearBar();
-    }
-
     public boolean hayBarAsociado() {
         return hayBarAsociado;
     }

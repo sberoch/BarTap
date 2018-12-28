@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".vistas.AgregarBarOwnerActivity"
+    android:focusable="true">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/barra_progreso_circular"
+        android:indeterminateDuration="2000" />
+
+    <RelativeLayout
+        android:id="@+id/agregar_bar_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="@string/agrega_tu_bar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/listo"
+            android:layout_below="@+id/titulo"
+            android:layout_centerInParent="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:focusable="true">
+
+                <EditText
+                    android:id="@+id/nombre_bar_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="@string/nombre" />
+
+                <Button
+                    android:id="@+id/seleccionar_imagen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/seleccionar_foto" />
+
+                <Button
+                    android:id="@+id/seleccionar_ubicacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/seleccionar_ubicacion" />
+
+                <TextView
+                    android:id="@+id/horario_titulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/horarios"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/desde_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/horario_inicial"
+                        android:layout_weight="1"
+                        android:text="@string/desde" />
+
+                    <EditText
+                        android:id="@+id/horario_inicial"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_toStartOf="@+id/s1"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <Space
+                        android:id="@+id/s1"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+
+                    <TextView
+                        android:id="@+id/hasta_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/s1"
+                        android:text="@string/hasta" />
+
+                    <EditText
+                        android:id="@+id/horario_final"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_toEndOf="@+id/hasta_1"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/happyhour_titulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/happy_hour_opcional"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/desde_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/happyhour_inicial"
+                        android:layout_weight="1"
+                        android:text="@string/desde" />
+
+                    <EditText
+                        android:id="@+id/happyhour_inicial"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_toStartOf="@+id/s2"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                    <Space
+                        android:id="@+id/s2"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+
+                    <TextView
+                        android:id="@+id/hasta_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/s2"
+                        android:text="@string/hasta" />
+
+                    <EditText
+                        android:id="@+id/happyhour_final"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_toEndOf="@+id/hasta_2"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/metodos_pago"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/metodos_de_pago"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/efectivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/efectivo" />
+
+                <RadioButton
+                    android:id="@+id/tarjeta_credito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tarjeta_de_credito" />
+
+                <RadioButton
+                    android:id="@+id/tarjeta_debito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tarjeta_de_debito" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/listo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="@string/listo" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

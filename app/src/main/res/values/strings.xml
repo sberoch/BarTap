@@ -29,6 +29,15 @@
     <string name="crear">Crear</string>
     <string name="crear_oferta">Crear oferta</string>
     <string name="crear_desafio">Crear Desafio</string>
+    <string name="agrega_tu_bar">Agrega tu bar</string>
+    <string name="metodos_de_pago">Metodos de pago</string>
+    <string name="hasta">Hasta</string>
+    <string name="desde">Desde</string>
+    <string name="happy_hour_opcional">Happy Hour (opcional)</string>
+    <string name="horarios">Horarios</string>
+    <string name="efectivo">Efectivo</string>
+    <string name="tarjeta_de_credito">Tarjeta de Credito</string>
+    <string name="tarjeta_de_debito">Tarjeta de Debito</string>
 
 
 </resources>

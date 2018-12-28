@@ -26,6 +26,7 @@
         <activity android:name=".vistas.PaginaBarActivity" />
         <activity android:name=".vistas.BarControlActivity" />
         <activity android:name=".vistas.ConfirmarNuevoBarActivity" />
+        <activity android:name=".vistas.AgregarBarOwnerActivity" />
 
     </application>
 

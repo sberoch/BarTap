@@ -52,9 +52,4 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     }
 
 
-    @Override
-    public void mockearBar() {
-        barUsuarioRef.child("barAsociado").setValue(new Bar("Testeando"));
-    }
-
 }
