@@ -3,6 +3,7 @@ package com.eriochrome.bartime.modelos;
 import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.PaginaBarContract;
+import com.eriochrome.bartime.utils.ActualizadorFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,8 +17,7 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     private DatabaseReference ref;
     private DatabaseReference baresRef;
     private DatabaseReference favoritosRef;
-    /*
-    private DatabaseReference conOfertasRef = ref.child("baresConOferta");*/
+    //private DatabaseReference conOfertasRef = ref.child("baresConOferta");
     private FirebaseAuth auth;
 
     private Bar bar;
@@ -25,7 +25,6 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     public PaginaBarInteraccion(PaginaBarContract.CompleteListener listener) {
         this.listener = listener;
         ref = FirebaseDatabase.getInstance().getReference();
-        baresRef = ref.child("bares");
         auth = FirebaseAuth.getInstance();
         if (hayUsuarioConectado()) {
             favoritosRef = ref.child("usuarios").child(auth.getCurrentUser().getUid()).child("favoritos");
@@ -45,10 +44,7 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     @Override
     public void actualizarEstrellas(int calificacion) {
         bar.actualizarEstrellas(calificacion);
-        //TODO: agregar a bares con oferta tambien
-        baresRef.child(bar.getNombre()).child("estrellas").setValue(bar.getEstrellas());
-        baresRef.child(bar.getNombre()).child("calificacionesAcumuladas").setValue(bar.getCalificacionesAcumuladas());
-        baresRef.child(bar.getNombre()).child("numeroDeCalificaciones").setValue(bar.getNumeroDeCalificaciones());
+        ActualizadorFirebase.actualizarEstrellas(bar, ref);
     }
 
     @Override

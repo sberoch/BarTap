@@ -14,7 +14,6 @@ import com.google.firebase.database.ValueEventListener;
 public class BarControlInteraccion implements BarControlContract.Interaccion {
 
     private FirebaseUser userAuth;
-    private DatabaseReference barUsuarioRef;
     private DatabaseReference refGlobal;
     private BarControlContract.CompleteListener listener;
 
@@ -24,17 +23,18 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
         this.listener = listener;
         userAuth = FirebaseAuth.getInstance().getCurrentUser();
         refGlobal = FirebaseDatabase.getInstance().getReference();
-        barUsuarioRef = refGlobal.child("usuariosBar").child(userAuth.getUid());
     }
 
     @Override
     public void setupBar() {
         listener.onStart();
-        barUsuarioRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        refGlobal.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("barAsociado").child("nombre").exists()) {
-                    bar = dataSnapshot.child("barAsociado").getValue(Bar.class);
+                DataSnapshot barAsociadoPath = dataSnapshot.child("usuariosBar").child(userAuth.getUid()).child("barAsociado");
+                if (barAsociadoPath.exists()) {
+                    String nombreBarAsociado = barAsociadoPath.getValue(String.class);
+                    bar = dataSnapshot.child("bares").child(nombreBarAsociado).getValue(Bar.class);
                     listener.onComplete(bar);
                 } else {
                     listener.onComplete(null);

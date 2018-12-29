@@ -41,7 +41,7 @@ public class AgregarBarOwnerInteraccion implements AgregarBarOwnerContract.Inter
     public void subirBar() {
         listener.onStart();
         refGlobal.child("bares").child(bar.getNombre()).setValue(bar);
-        refGlobal.child("usuariosBar").child(authUser.getUid()).child("barAsociado").setValue(bar)
+        refGlobal.child("usuariosBar").child(authUser.getUid()).child("barAsociado").setValue(bar.getNombre())
                 .addOnSuccessListener(aVoid -> listener.onSuccess());
     }
 
