@@ -38,6 +38,8 @@
     <string name="efectivo">Efectivo</string>
     <string name="tarjeta_de_credito">Tarjeta de Credito</string>
     <string name="tarjeta_de_debito">Tarjeta de Debito</string>
+    <string name="agregar_a_favoritos">Agregar a Favoritos</string>
+    <string name="quitar_de_favoritos">Quitar de favoritos</string>
 
 
 </resources>

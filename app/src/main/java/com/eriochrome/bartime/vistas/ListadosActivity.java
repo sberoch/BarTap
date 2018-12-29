@@ -124,6 +124,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
+                presenter.conectar();
                 if (presenter.esNuevoUsuario()) {
                     presenter.subirUsuarioADatabase();
                 }

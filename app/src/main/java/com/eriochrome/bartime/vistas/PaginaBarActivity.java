@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
@@ -18,7 +20,9 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private TextView nombreBar;
     private Button calificacionOk;
     private EditText calificacionEditText;
-    private Button agregarFavorito;
+    private Button favorito;
+
+    private ProgressBar progressBar;
 
     private PaginaBarPresenter presenter;
 
@@ -31,10 +35,13 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         presenter.bind(this);
         presenter.obtenerBar(getIntent());
 
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
+
         nombreBar = findViewById(R.id.nombre_bar);
         calificacionEditText = findViewById(R.id.calificacion);
         calificacionOk = findViewById(R.id.calificacion_ok);
-        agregarFavorito = findViewById(R.id.agregar_favorito);
+        favorito = findViewById(R.id.agregar_favorito);
 
         nombreBar.setText(presenter.getNombreDeBar());
         setupListeners();
@@ -43,8 +50,36 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (presenter.hayUsuarioConectado()) {
+            presenter.checkeoFavorito();
+        }
+    }
+
+    @Override
     public int getCalificacion() {
         return Integer.parseInt(calificacionEditText.getText().toString());
+    }
+
+    @Override
+    public void agregadoAFavoritos() {
+        favorito.setText(getString(R.string.quitar_de_favoritos));
+    }
+
+    @Override
+    public void quitadoDeFavoritos() {
+        favorito.setText(getString(R.string.agregar_a_favoritos));
+    }
+
+    @Override
+    public void cargando() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void finCargando() {
+        progressBar.setVisibility(View.GONE);
     }
 
     private void setupListeners() {
@@ -56,10 +91,15 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
                 toastShort(PaginaBarActivity.this, "Necesitas una cuenta para calificar este bar.");
             }
         });
-        agregarFavorito.setOnClickListener(v -> {
+
+        favorito.setOnClickListener(v -> {
             if (presenter.hayUsuarioConectado()) {
-                presenter.agregarAFavoritos();
-                toastShort(PaginaBarActivity.this, "Agregado a tus favoritos!");
+                if (presenter.esFavorito()) {
+                    presenter.quitarDeFavoritos();
+                } else {
+                    presenter.agregarAFavoritos();
+                }
+
             } else {
                 toastShort(PaginaBarActivity.this, "Necesitas una cuenta para agregar este bar a tus favoritos.");
             }

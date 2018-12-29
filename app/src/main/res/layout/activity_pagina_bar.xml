@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".vistas.PaginaBarActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hl2"
+        android:layout_margin="10dp"
+        android:layout_toEndOf="@+id/agregar_favorito"
+        android:indeterminateDrawable="@drawable/barra_progreso_circular"
+        android:indeterminateDuration="2000" />
+
 
     <TextView
         android:id="@+id/nombre_bar"
@@ -69,7 +79,7 @@
         android:layout_below="@+id/hl2"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:text="Agregar a Favoritos" />
+        android:text="@string/agregar_a_favoritos" />
 
     <View
         android:id="@+id/hl3"

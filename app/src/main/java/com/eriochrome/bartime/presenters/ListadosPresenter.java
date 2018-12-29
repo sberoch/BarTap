@@ -42,4 +42,8 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
     public void checkearNuevo(boolean esNuevoUsuario) {
         this.esNuevoUsuario = esNuevoUsuario;
     }
+
+    public void conectar() {
+        interaccion.conectar();
+    }
 }

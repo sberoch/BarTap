@@ -71,11 +71,10 @@ public class ListadoFavoritosFragment extends Fragment implements FavoritosFragm
 
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onResume() {
+        super.onResume();
         presenter.mostrarFavoritos();
     }
-
 
     @Override
     public void cargando() {

@@ -36,10 +36,13 @@ public class ListadosInteraccion implements ListadosContract.Interaccion {
     }
 
     @Override
+    public void conectar() {
+        usuario = UsuarioRegistrado.crearConAuth(auth.getCurrentUser());
+    }
+
+    @Override
     public void subirUsuarioADatabase() {
-        FirebaseUser userAuth = auth.getCurrentUser();
-        usuario = UsuarioRegistrado.crearConAuth(userAuth);
-        refUsuarios.child(userAuth.getUid()).setValue(usuario);
+        refUsuarios.child(auth.getCurrentUser().getUid()).setValue(usuario);
     }
 
     @Override

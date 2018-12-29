@@ -9,6 +9,7 @@ public interface ListadosContract {
         void subirUsuarioADatabase();
         String getNombreUsuario();
         void checkearNuevo();
+        void conectar();
     }
 
     interface CompleteListener {
