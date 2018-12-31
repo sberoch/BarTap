@@ -64,7 +64,6 @@ public class FavoritosFragmentInteraccion implements FavoritosFragmentContract.I
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //TODO: throw
             }
         });
     }

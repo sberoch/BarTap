@@ -26,12 +26,10 @@ public class AgregarBarUsuarioInteraccion implements AgregarBarUsuarioContract.I
         StorageReference imagenRef = storageReference.child("imagenes").child(caminoEnStorage);
         UploadTask uploadTask = imagenRef.putFile(path);
         uploadTask.addOnFailureListener(e -> {
-            //TODO: throw
         });
 
         baresRef.child(nuevoBar.getNombre()).setValue(nuevoBar, (databaseError, databaseReference) -> {
             if (databaseError != null) {
-                //TODO: throw
             }
         });
 

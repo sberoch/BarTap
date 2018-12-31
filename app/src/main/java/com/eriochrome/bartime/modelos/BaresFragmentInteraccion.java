@@ -50,7 +50,6 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //TODO: throw
             }
         });
     }
@@ -78,7 +77,6 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //TODO: throw
             }
         });
 

@@ -167,6 +167,11 @@ public class AgregarBarOwnerActivity extends AppCompatActivity implements Agrega
     }
 
     @Override
+    public void mostrarError() {
+        toastShort(AgregarBarOwnerActivity.this, "Ocurrio un error inesperado. Intente nuevamente");
+    }
+
+    @Override
     public void subiendo() {
         progressBar.setVisibility(View.VISIBLE);
         agregarBarRl.setVisibility(View.GONE);

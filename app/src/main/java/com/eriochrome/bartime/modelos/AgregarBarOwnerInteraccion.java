@@ -42,7 +42,10 @@ public class AgregarBarOwnerInteraccion implements AgregarBarOwnerContract.Inter
         listener.onStart();
         refGlobal.child("bares").child(bar.getNombre()).setValue(bar);
         refGlobal.child("usuariosBar").child(authUser.getUid()).child("barAsociado").setValue(bar.getNombre())
-                .addOnSuccessListener(aVoid -> listener.onSuccess());
+                .addOnSuccessListener(aVoid -> listener.onSuccess())
+                .addOnFailureListener(e -> {
+                    throw new RuntimeException();
+                });
     }
 
     @Override
@@ -51,12 +54,12 @@ public class AgregarBarOwnerInteraccion implements AgregarBarOwnerContract.Inter
     }
 
     @Override
-    public void subirFoto() {
+    public void subirFoto() throws RuntimeException {
         String caminoEnStorage = bar.getNombre() + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(caminoEnStorage);
         UploadTask uploadTask = imagenRef.putFile(path);
         uploadTask.addOnFailureListener(e -> {
-            //TODO: throw
+            throw new RuntimeException();
         });
     }
 

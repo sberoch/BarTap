@@ -31,10 +31,18 @@ public class AgregarBarOwnerPresenter implements AgregarBarOwnerContract.Complet
         }
         interaccion.getBar().agregarMetodosDePago(view.obtenerMetodosDePago());
         if (view.hayImagen()) {
-            interaccion.subirFoto();
-            interaccion.subirBar();
+            subir();
         } else {
             view.noHayImagenError();
+        }
+    }
+
+    private void subir() {
+        try {
+            interaccion.subirFoto();
+            interaccion.subirBar();
+        } catch (RuntimeException e) {
+            view.mostrarError();
         }
     }
 

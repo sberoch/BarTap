@@ -179,8 +179,8 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             listaFragments.add("Mis Favoritos");
         }
         spinnerAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, listaFragments);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.spinner_text, listaFragments);
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_text_dropdown);
         spinner.setAdapter(spinnerAdapter);
     }
 

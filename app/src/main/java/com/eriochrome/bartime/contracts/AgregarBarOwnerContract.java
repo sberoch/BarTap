@@ -28,8 +28,7 @@ public interface AgregarBarOwnerContract {
         void finSubiendo();
         boolean hayImagen();
         void noHayImagenError();
-
-
+        void mostrarError();
     }
 
     interface CompleteListener {
