@@ -84,7 +84,8 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
                 break;
 
             case R.id.contacto:
-                toastShort(ListadosActivity.this, "Contacto");
+                startActivity(new Intent(ListadosActivity.this, ContactoActivity.class));
+                finish();
                 break;
 
             case R.id.ajustes:

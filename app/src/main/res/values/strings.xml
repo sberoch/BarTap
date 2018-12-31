@@ -40,6 +40,8 @@
     <string name="tarjeta_de_debito">Tarjeta de Debito</string>
     <string name="agregar_a_favoritos">Agregar a Favoritos</string>
     <string name="quitar_de_favoritos">Quitar de favoritos</string>
+    <string name="contactate">¡Contactate!</string>
+    <string name="contacto_text">¿Alguna sugerencia?¿Queres dejar un comentario?</string>
 
 
 </resources>
