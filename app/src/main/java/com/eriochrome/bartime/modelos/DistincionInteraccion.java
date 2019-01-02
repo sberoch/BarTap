@@ -35,8 +35,8 @@ public class DistincionInteraccion implements DistincionContract.Interaccion {
         refUsuariosBar.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                boolean esNuevo = dataSnapshot.hasChild(auth.getCurrentUser().getUid());
-                listener.checkearExiste(esNuevo);
+                boolean existe = dataSnapshot.hasChild(auth.getCurrentUser().getUid());
+                listener.checkearExiste(existe);
             }
 
             @Override

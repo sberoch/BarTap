@@ -102,6 +102,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
             case R.id.salir:
                 finishAndRemoveTask();
+                break;
         }
     }
 

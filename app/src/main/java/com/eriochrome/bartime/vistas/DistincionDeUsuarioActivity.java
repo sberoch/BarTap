@@ -80,9 +80,7 @@ public class DistincionDeUsuarioActivity extends AppCompatActivity implements Di
 
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                if (!presenter.existeUsuario()) {
-                    presenter.subirUsuarioADatabase();
-                }
+                presenter.checkearExisteUsuario();
                 //Entro a BarControlActivity
                 startActivity(new Intent(DistincionDeUsuarioActivity.this, BarControlActivity.class));
                 overridePendingTransition(0,0);

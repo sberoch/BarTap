@@ -7,7 +7,7 @@ public class DistincionPresenter implements DistincionContract.CompleteListener{
 
     private DistincionContract.Interaccion interaccion;
     private DistincionContract.View view;
-    private boolean esNuevo;
+    private boolean existe;
 
     public DistincionPresenter() {
         this.interaccion = new DistincionInteraccion(this);
@@ -21,17 +21,20 @@ public class DistincionPresenter implements DistincionContract.CompleteListener{
         this.view = null;
     }
 
-    public void subirUsuarioADatabase() {
-        interaccion.subirUsuarioBarADatabase();
-    }
-
-    public boolean existeUsuario() {
+    public void checkearExisteUsuario() {
         interaccion.checkearExiste();
-        return esNuevo;
     }
 
     @Override
-    public void checkearExiste(boolean esNuevo) {
-        this.esNuevo = esNuevo;
+    public void checkearExiste(boolean existe) {
+        if (!existe) subirUsuarioADatabase();
     }
+
+    private void subirUsuarioADatabase() {
+        interaccion.subirUsuarioBarADatabase();
+    }
+
+
+
+
 }

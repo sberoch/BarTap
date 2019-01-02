@@ -59,4 +59,7 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
 
     }
 
+    public String getNombreUsuario() {
+        return interaccion.getNombreBar();
+    }
 }

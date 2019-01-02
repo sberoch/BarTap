@@ -1,8 +1,12 @@
 package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,10 +18,15 @@ import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.AgregarBarOwnerContract;
 import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.presenters.BarControlPresenter;
+import com.firebase.ui.auth.AuthUI;
 
 public class BarControlActivity extends AppCompatActivity implements BarControlContract.View {
 
     private BarControlPresenter presenter;
+
+    private DrawerLayout drawerLayout;
+    private ImageButton drawerButton;
+    private NavigationView navigationView;
 
     private ProgressBar loading;
     private RelativeLayout sinBarRl;
@@ -36,6 +45,10 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
 
         presenter = new BarControlPresenter();
         presenter.bind(this);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerButton = findViewById(R.id.drawer_button);
+        navigationView = findViewById(R.id.nav_drawer);
 
         loading = findViewById(R.id.progressBar);
 
@@ -63,6 +76,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             sinBarRl.setVisibility(View.GONE);
             barControlRl.setVisibility(View.VISIBLE);
             nombreBar.setText(presenter.getNombreBar());
+            setupDrawer();
         } else {
             sinBarRl.setVisibility(View.VISIBLE);
             barControlRl.setVisibility(View.GONE);
@@ -90,6 +104,37 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         crearOferta.setOnClickListener(v -> {
             presenter.crearOferta();
         });
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            drawerLayout.closeDrawers();
+            ejecutarOpcionMenu(menuItem.getItemId());
+            return true;
+        });
+        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+
+    }
+
+    private void ejecutarOpcionMenu(int itemId) {
+        switch (itemId) {
+            case R.id.cerrar_sesion:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(task -> {
+                            startActivity(new Intent(BarControlActivity.this, DistincionDeUsuarioActivity.class));
+                            finish();
+                        });
+                break;
+
+            case R.id.salir:
+                finishAndRemoveTask();
+                break;
+        }
+    }
+
+    private void setupDrawer() {
+        View header = navigationView.getHeaderView(0);
+        TextView usuarioActivo = header.findViewById(R.id.usuario_activo);
+        usuarioActivo.setText(presenter.getNombreUsuario());
+
     }
 
     @Override
