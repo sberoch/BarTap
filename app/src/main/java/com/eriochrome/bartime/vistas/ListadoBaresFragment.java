@@ -95,9 +95,21 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
     }
 
     @Override
-    public boolean hayOfertas(AlertDialog dialog) {
+    public boolean filtroOfertas(AlertDialog dialog) {
         Switch hayOfertas = dialog.findViewById(R.id.descuentos);
         return hayOfertas.isChecked();
+    }
+
+    @Override
+    public boolean filtroHappyHour(AlertDialog dialog) {
+        Switch happyhour = dialog.findViewById(R.id.happyhour);
+        return happyhour.isChecked();
+    }
+
+    @Override
+    public boolean filtroAbierto(AlertDialog dialog) {
+        Switch abierto = dialog.findViewById(R.id.abierto);
+        return abierto.isChecked();
     }
 
     @Override
@@ -117,6 +129,7 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
         }
         return ordenamiento;
     }
+
 
     private void ocultarTeclado(){
         InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);

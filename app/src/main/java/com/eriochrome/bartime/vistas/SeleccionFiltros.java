@@ -12,7 +12,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.app.DialogFragment;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 
 
 import com.eriochrome.bartime.R;
@@ -61,6 +63,15 @@ public class SeleccionFiltros extends DialogFragment {
         super.onStart();
         Resources res = getResources();
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Lato-Bold.ttf");
+
+        Switch estaAbierto = ((AlertDialog)getDialog()).findViewById(R.id.abierto);
+        Switch happyHour = ((AlertDialog)getDialog()).findViewById(R.id.happyhour);
+        happyHour.setVisibility(View.GONE);
+
+        estaAbierto.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) happyHour.setVisibility(View.VISIBLE);
+            else happyHour.setVisibility(View.GONE);
+        });
 
         Button aplicarFiltros = ((AlertDialog)getDialog()).getButton(DialogInterface.BUTTON_POSITIVE);
         aplicarFiltros.setTextColor(res.getColor(R.color.colorPrimary));

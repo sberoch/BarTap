@@ -109,7 +109,8 @@ public class AgregarBarOwnerActivity extends AppCompatActivity implements Agrega
 
     @Override
     public boolean tieneHappyHour() {
-        return (TextUtils.isEmpty(happyhourInicial.getText()) && TextUtils.isEmpty(happyhourFinal.getText()));
+        //Tiene happy hour si ninguno de los dos campos esta vacio
+        return ((!TextUtils.isEmpty(happyhourInicial.getText())) && (!TextUtils.isEmpty(happyhourFinal.getText())));
     }
 
     @Override

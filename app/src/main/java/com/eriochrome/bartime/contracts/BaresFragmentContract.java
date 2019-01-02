@@ -18,9 +18,11 @@ public interface BaresFragmentContract {
     interface View {
         void cargando();
         void finCargando(ArrayList<Bar> listaBares);
-        boolean hayOfertas(AlertDialog dialog);
         String getOrdenamiento(AlertDialog dialog);
 
+        boolean filtroOfertas(AlertDialog dialog);
+        boolean filtroHappyHour(AlertDialog dialog);
+        boolean filtroAbierto(AlertDialog dialog);
     }
 
     interface CompleteListener {

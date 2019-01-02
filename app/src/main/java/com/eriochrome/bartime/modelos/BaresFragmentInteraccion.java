@@ -67,11 +67,26 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot barSnap : dataSnapshot.getChildren()) {
-                    listaBares.add(barSnap.getValue(Bar.class));
+                    Bar bar = barSnap.getValue(Bar.class);
+
+                    //Si los filtros estos estan activados, agregar si se cumple la condicion que piden
+                    if (filtro.filtroAbierto()) {
+                        if (filtro.filtroHappyHour()) {
+                            if (bar.hayHappyHour()) listaBares.add(bar);
+                        }
+                        else {
+                            if (bar.estaAbierto()) listaBares.add(bar);
+                        }
+                    }
+                    else {
+                        listaBares.add(bar);
+                    }
                 }
+
                 if(ordenDescendente) {
                     Collections.reverse(listaBares);
                 }
+
                 listener.onSuccess();
             }
 
@@ -89,11 +104,14 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
      * NOTAR: hay bares que estan en otra rama del json en firebase para poder combinar filtros.
      */
     private Query obtenerQuery(Filtro filtro) {
+        //TODO: filtrar con abierto y happyhour
         ordenDescendente = false;
         Query query = refBares;
-        if (filtro.hayOferta()) {
+
+        if (filtro.filtroOferta()) {
             query = refGlobal.child("baresConOferta");
         }
+
         switch (filtro.getOrdenamiento()) {
             case "distancia":
                 //TODO: distancias (geoloc)

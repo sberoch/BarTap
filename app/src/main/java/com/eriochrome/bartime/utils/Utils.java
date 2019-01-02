@@ -3,10 +3,33 @@ package com.eriochrome.bartime.utils;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class Utils {
 
     public static void toastShort(Context context, String mensaje) {
         Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
     }
 
+    public static boolean estaEntreHoras(int horaInicial, int horaFinal, Calendar ahora) {
+
+        //Inicial
+        Calendar dateInicial = Calendar.getInstance();
+        dateInicial.set(Calendar.HOUR_OF_DAY, horaInicial);
+        dateInicial.set(Calendar.MINUTE, 0);
+
+        //Final
+        Calendar dateFinal = Calendar.getInstance();
+        dateFinal.set(Calendar.HOUR_OF_DAY, horaFinal);
+        dateFinal.set(Calendar.MINUTE, 0);
+
+        if(dateFinal.before(dateInicial)) {
+            if (ahora.after(dateFinal))
+                dateFinal.add(Calendar.DATE, 1);
+            else
+                dateInicial.add(Calendar.DATE, -1);
+        }
+        return ahora.after(dateInicial) && ahora.before(dateFinal);
+    }
 }

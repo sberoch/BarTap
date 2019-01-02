@@ -1,7 +1,11 @@
 package com.eriochrome.bartime.modelos;
 
+import com.eriochrome.bartime.utils.Utils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Bar implements Serializable {
 
@@ -81,5 +85,17 @@ public class Bar implements Serializable {
 
     public void agregarMetodosDePago(ArrayList<String> metodosDePago) {
         this.metodosDePago = metodosDePago;
+    }
+
+    public boolean estaAbierto() {
+        Calendar ahora = Calendar.getInstance();
+        ahora.setTime(new Date());
+        return Utils.estaEntreHoras(horarioInicial, horarioFinal, ahora);
+    }
+
+    public boolean hayHappyHour() {
+        Calendar ahora = Calendar.getInstance();
+        ahora.setTime(new Date());
+        return Utils.estaEntreHoras(happyhourInicial, happuhourFinal, ahora);
     }
 }

@@ -42,6 +42,8 @@
     <string name="quitar_de_favoritos">Quitar de favoritos</string>
     <string name="contactate">¡Contactate!</string>
     <string name="contacto_text">¿Alguna sugerencia?¿Queres dejar un comentario?</string>
+    <string name="esta_abierto">Esta abierto</string>
+    <string name="happy_hour">Happy Hour</string>
 
 
 </resources>

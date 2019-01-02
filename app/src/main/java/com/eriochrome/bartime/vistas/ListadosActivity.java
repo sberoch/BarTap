@@ -85,7 +85,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
             case R.id.contacto:
                 startActivity(new Intent(ListadosActivity.this, ContactoActivity.class));
-                finish();
                 break;
 
             case R.id.ajustes:
@@ -155,7 +154,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
                     case 1:
                         startFragment(new ListadoDesafiosFragment());
-
                         break;
 
                     case 2:

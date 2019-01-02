@@ -12,8 +12,11 @@ public class BaresFragmentPresenter implements BaresFragmentContract.CompleteLis
     private BaresFragmentContract.Interaccion interaccion;
     BaresFragmentContract.View view;
 
+    Filtro filtro;
+
     public BaresFragmentPresenter() {
         this.interaccion = new BaresFragmentInteraccion(this);
+        filtro = new Filtro();
     }
 
     public void bind(BaresFragmentContract.View view) {
@@ -36,7 +39,9 @@ public class BaresFragmentPresenter implements BaresFragmentContract.CompleteLis
 
     public void mostrarConFiltros(AlertDialog dialog) {
         view.cargando();
-        Filtro filtro = new Filtro(view.hayOfertas(dialog));
+        filtro.aplicarAbierto(view.filtroAbierto(dialog));
+        filtro.aplicarHappyHour(view.filtroHappyHour(dialog));
+        filtro.aplicarOfertas(view.filtroOfertas(dialog));
         filtro.ordenarSegun(view.getOrdenamiento(dialog));
         interaccion.mostrarConFiltros(filtro);
     }
@@ -45,7 +50,6 @@ public class BaresFragmentPresenter implements BaresFragmentContract.CompleteLis
     public void onSuccess() {
         view.finCargando(interaccion.obtenerLista());
     }
-
 
 }
 
