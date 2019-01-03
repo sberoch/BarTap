@@ -108,7 +108,8 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     private void loginUsuario() {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build());
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
 
         startActivityForResult(
                 AuthUI.getInstance()

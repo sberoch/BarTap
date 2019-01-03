@@ -62,7 +62,8 @@ public class DistincionDeUsuarioActivity extends AppCompatActivity implements Di
     public void loginBar() {
         //TODO: rompe MVP, cuando lo haga custom pensar en eso.
         List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build());
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
 
         startActivityForResult(
                 AuthUI.getInstance()
