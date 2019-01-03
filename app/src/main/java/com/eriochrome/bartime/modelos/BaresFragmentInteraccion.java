@@ -104,7 +104,6 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
      * NOTAR: hay bares que estan en otra rama del json en firebase para poder combinar filtros.
      */
     private Query obtenerQuery(Filtro filtro) {
-        //TODO: filtrar con abierto y happyhour
         ordenDescendente = false;
         Query query = refBares;
 

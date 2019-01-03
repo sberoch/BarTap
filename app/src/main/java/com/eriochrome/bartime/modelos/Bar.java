@@ -6,17 +6,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Bar implements Serializable {
 
     private String nombre;
-    private String descripcion; //TODO: reemplazar por ubicacion
+    private String ubicacion; //TODO: reemplazar por ubicacion
     private float estrellas;
     private long calificacionesAcumuladas;
     private int numeroDeCalificaciones;
-    private int horarioInicial, horarioFinal;
-    private int happyhourInicial;
-    private int happuhourFinal;
+    private HashMap<String, Integer> horariosInicial;
+    private HashMap<String, Integer> horariosFinal;
+    private HashMap<String, Integer> happyhourInicial;
+    private HashMap<String, Integer> happyhourFinal;
     private ArrayList<String> metodosDePago;
 
 
@@ -29,18 +31,18 @@ public class Bar implements Serializable {
         estrellas = 0;
         calificacionesAcumuladas = 0;
         numeroDeCalificaciones = 0;
-        descripcion = "Test dis shit";
-        horarioInicial = 0;
-        horarioFinal = 23;
-        happyhourInicial = 999;
-        happuhourFinal = 999;
+        ubicacion = "Test dis shit";
+        horariosInicial = inicializarHorarios();
+        horariosFinal = inicializarHorarios();
+        happyhourInicial = inicializarHorarios();
+        happyhourFinal = inicializarHorarios();
     }
 
     public String getNombre() {
         return nombre;
     }
-    public String getDescripcion() {
-        return descripcion;
+    public String getUbicacion() {
+        return ubicacion;
     }
     public double getEstrellas() {
         return estrellas;
@@ -51,17 +53,17 @@ public class Bar implements Serializable {
     public int getNumeroDeCalificaciones() {
         return numeroDeCalificaciones;
     }
-    public int getHorarioInicial() {
-        return horarioInicial;
+    public HashMap<String, Integer> getHorariosInicial() {
+        return horariosInicial;
     }
-    public int getHorarioFinal() {
-        return horarioFinal;
+    public HashMap<String, Integer> getHorariosFinal() {
+        return horariosFinal;
     }
-    public int getHappyhourInicial() {
+    public HashMap<String, Integer> getHappyhourInicial() {
         return happyhourInicial;
     }
-    public int getHappuhourFinal() {
-        return happuhourFinal;
+    public HashMap<String, Integer> getHappyhourFinal() {
+        return happyhourFinal;
     }
     public ArrayList<String> getMetodosDePago() {
         return metodosDePago;
@@ -73,14 +75,14 @@ public class Bar implements Serializable {
         estrellas = (float)calificacionesAcumuladas / numeroDeCalificaciones;
     }
 
-    public void agregarHorarios(int horarioInicial, int horarioFinal) {
-        this.horarioInicial = horarioInicial;
-        this.horarioFinal = horarioFinal;
+    public void agregarHorarios(HashMap<String, Integer> horariosInicial, HashMap<String, Integer> horariosFinal) {
+        this.horariosInicial = horariosInicial;
+        this.horariosFinal = horariosFinal;
     }
 
-    public void agregarHappyhourHorarios(int happyhourInicial, int happyhourFinal) {
+    public void agregarHappyhourHorarios(HashMap<String, Integer> happyhourInicial, HashMap<String, Integer> happyhourFinal) {
         this.happyhourInicial = happyhourInicial;
-        this.happuhourFinal = happyhourFinal;
+        this.happyhourFinal = happyhourFinal;
     }
 
     public void agregarMetodosDePago(ArrayList<String> metodosDePago) {
@@ -90,12 +92,28 @@ public class Bar implements Serializable {
     public boolean estaAbierto() {
         Calendar ahora = Calendar.getInstance();
         ahora.setTime(new Date());
-        return Utils.estaEntreHoras(horarioInicial, horarioFinal, ahora);
+        String diaDeHoy = Utils.getStringDiaDeSemana(ahora);
+        return Utils.estaEntreHoras(horariosInicial.get(diaDeHoy), horariosFinal.get(diaDeHoy), ahora);
     }
 
     public boolean hayHappyHour() {
         Calendar ahora = Calendar.getInstance();
         ahora.setTime(new Date());
-        return Utils.estaEntreHoras(happyhourInicial, happuhourFinal, ahora);
+        String diaDeHoy = Utils.getStringDiaDeSemana(ahora);
+        return Utils.estaEntreHoras(happyhourInicial.get(diaDeHoy), happyhourFinal.get(diaDeHoy), ahora);
     }
+
+
+    private HashMap<String, Integer> inicializarHorarios() {
+        HashMap<String, Integer> devolver = new HashMap<>();
+        devolver.put("Domingo", 0);
+        devolver.put("Lunes", 0);
+        devolver.put("Martes", 0);
+        devolver.put("Miercoles", 0);
+        devolver.put("Jueves", 0);
+        devolver.put("Viernes", 0);
+        devolver.put("Sabado", 0);
+        return devolver;
+    }
+
 }

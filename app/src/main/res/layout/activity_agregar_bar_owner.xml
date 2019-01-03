@@ -77,54 +77,348 @@
                     android:textAlignment="center"
                     android:textSize="18sp" />
 
-                <RelativeLayout
+                <LinearLayout
+                    android:id="@+id/horarios"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/desde_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/horario_inicial"
-                        android:layout_weight="1"
-                        android:text="@string/desde" />
+                    <RelativeLayout
+                        android:id="@+id/horario_lunes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
 
-                    <EditText
-                        android:id="@+id/horario_inicial"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_toStartOf="@+id/s1"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number" />
+                        <TextView
+                            android:id="@+id/lunes_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Lunes" />
 
-                    <Space
-                        android:id="@+id/s1"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true" />
+                        <EditText
+                            android:id="@+id/hi_lunes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-lunes"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
 
-                    <TextView
-                        android:id="@+id/hasta_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/s1"
-                        android:text="@string/hasta" />
+                        <EditText
+                            android:id="@+id/hf_lunes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
 
-                    <EditText
-                        android:id="@+id/horario_final"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_toEndOf="@+id/hasta_1"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number" />
-                </RelativeLayout>
+                        <TextView
+                            android:id="@+id/-lunes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hf_lunes"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/horario_martes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/martes_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Martes" />
+
+                        <EditText
+                            android:id="@+id/hi_martes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-martes"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hf_martes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-martes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hf_martes"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/horario_miercoles"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/miercoles_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Miercoles" />
+
+                        <EditText
+                            android:id="@+id/hi_miercoles"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-miercoles"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hf_miercoles"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-miercoles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hf_miercoles"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/horario_jueves"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/jueves_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Jueves" />
+
+                        <EditText
+                            android:id="@+id/hi_jueves"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-jueves"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hf_jueves"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-jueves"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hf_jueves"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/horario_viernes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/viernes_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Viernes" />
+
+                        <EditText
+                            android:id="@+id/hi_viernes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-viernes"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hf_viernes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-viernes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hf_viernes"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/horario_sabado"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/sabado_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Sabado" />
+
+                        <EditText
+                            android:id="@+id/hi_sabado"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-sabado"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hf_sabado"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-sabado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hf_sabado"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/horario_domingo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/domingo_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Domingo" />
+
+                        <EditText
+                            android:id="@+id/hi_domingo"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-domingo"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hf_domingo"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-domingo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hf_domingo"
+                            android:text="-" />
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/happyhour_titulo"
@@ -135,54 +429,348 @@
                     android:textAlignment="center"
                     android:textSize="18sp" />
 
-                <RelativeLayout
+                <LinearLayout
+                    android:id="@+id/happyhours"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/desde_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/happyhour_inicial"
-                        android:layout_weight="1"
-                        android:text="@string/desde" />
+                    <RelativeLayout
+                        android:id="@+id/hh_lunes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
 
-                    <EditText
-                        android:id="@+id/happyhour_inicial"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_toStartOf="@+id/s2"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number" />
+                        <TextView
+                            android:id="@+id/lunes_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Lunes" />
 
-                    <Space
-                        android:id="@+id/s2"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true" />
+                        <EditText
+                            android:id="@+id/hhi_lunes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-luneshh"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
 
-                    <TextView
-                        android:id="@+id/hasta_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/s2"
-                        android:text="@string/hasta" />
+                        <EditText
+                            android:id="@+id/hhf_lunes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
 
-                    <EditText
-                        android:id="@+id/happyhour_final"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_toEndOf="@+id/hasta_2"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="number" />
-                </RelativeLayout>
+                        <TextView
+                            android:id="@+id/-luneshh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hhf_lunes"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/hh_martes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/martes_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Martes" />
+
+                        <EditText
+                            android:id="@+id/hhi_martes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-marteshh"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hhf_martes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-marteshh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hhf_martes"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/hh_miercoles"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/miercoles_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Miercoles" />
+
+                        <EditText
+                            android:id="@+id/hhi_miercoles"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-miercoleshh"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hhf_miercoles"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-miercoleshh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hhf_miercoles"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/hh_jueves"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/jueves_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Jueves" />
+
+                        <EditText
+                            android:id="@+id/hhi_jueves"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-jueveshh"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hhf_jueves"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-jueveshh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hhf_jueves"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/hh_viernes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/viernes_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Viernes" />
+
+                        <EditText
+                            android:id="@+id/hhi_viernes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-vierneshh"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hhf_viernes"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-vierneshh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hhf_viernes"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/hh_sabado"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/sabado_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Sabado" />
+
+                        <EditText
+                            android:id="@+id/hhi_sabado"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-sabadohh"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hhf_sabado"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-sabadohh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hhf_sabado"
+                            android:text="-" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/hh_domingo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp">
+
+                        <TextView
+                            android:id="@+id/domingo_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_weight="1"
+                            android:text="Domingo" />
+
+                        <EditText
+                            android:id="@+id/hhi_domingo"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:layout_toStartOf="@+id/-domingohh"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <EditText
+                            android:id="@+id/hhf_domingo"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="number" />
+
+                        <TextView
+                            android:id="@+id/-domingohh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/hhf_domingo"
+                            android:text="-" />
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/metodos_pago"

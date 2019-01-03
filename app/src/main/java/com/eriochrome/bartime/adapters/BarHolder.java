@@ -22,7 +22,7 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
     private View view;
 
     private TextView nombreBar;
-    private TextView descBar;
+    private TextView ubicacionBar;
     private TextView estrellas;
     private ImageView imagenBar;
 
@@ -34,7 +34,7 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
         this.view = view;
 
         this.nombreBar = view.findViewById(R.id.nombre_bar);
-        this.descBar = view.findViewById(R.id.desc_bar);
+        this.ubicacionBar = view.findViewById(R.id.ubicacion_bar);
         this.estrellas = view.findViewById(R.id.estrellas);
         this.imagenBar = view.findViewById(R.id.imagen_bar);
 
@@ -51,8 +51,8 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
         this.nombreBar.setText(bar.getNombre());
         this.nombreBar.setTypeface(tfBold);
 
-        this.descBar.setText(bar.getDescripcion());
-        this.descBar.setTypeface(tfLight);
+        this.ubicacionBar.setText(bar.getUbicacion());
+        this.ubicacionBar.setTypeface(tfLight);
 
         this.estrellas.setText(String.format("%.1f",bar.getEstrellas()));
 

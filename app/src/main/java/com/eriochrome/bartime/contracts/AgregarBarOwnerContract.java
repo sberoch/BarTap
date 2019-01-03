@@ -5,6 +5,7 @@ import android.net.Uri;
 import com.eriochrome.bartime.modelos.Bar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface AgregarBarOwnerContract {
 
@@ -18,11 +19,11 @@ public interface AgregarBarOwnerContract {
 
     interface View {
         String getTextNombreBar();
-        int getHorarioInicial();
-        int getHorarioFinal();
+        HashMap<String, Integer> getHorariosInicial();
+        HashMap<String, Integer> getHorariosFinal();
         boolean tieneHappyHour();
-        int getHappyhourInicial();
-        int getHappyhourFinal();
+        HashMap<String, Integer> getHappyhourInicial();
+        HashMap<String, Integer> getHappyhourFinal();
         ArrayList<String> obtenerMetodosDePago();
         void subiendo();
         void finSubiendo();

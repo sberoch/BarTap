@@ -26,7 +26,7 @@ public class AgregarBarOwnerPresenter implements AgregarBarOwnerContract.Complet
         interaccion.crearBar(view.getTextNombreBar());
         //TODO: ubicacion
 
-        interaccion.getBar().agregarHorarios(view.getHorarioInicial(), view.getHorarioFinal());
+        interaccion.getBar().agregarHorarios(view.getHorariosInicial(), view.getHorariosFinal());
         if (view.tieneHappyHour()) {
             interaccion.getBar().agregarHappyhourHorarios(view.getHappyhourInicial(), view.getHappyhourFinal());
         }

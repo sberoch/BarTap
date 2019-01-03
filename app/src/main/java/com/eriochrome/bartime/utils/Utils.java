@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.utils;
 
 import android.content.Context;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -11,6 +12,7 @@ public class Utils {
     public static void toastShort(Context context, String mensaje) {
         Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
     }
+
 
     public static boolean estaEntreHoras(int horaInicial, int horaFinal, Calendar ahora) {
 
@@ -31,5 +33,41 @@ public class Utils {
                 dateInicial.add(Calendar.DATE, -1);
         }
         return ahora.after(dateInicial) && ahora.before(dateFinal);
+    }
+
+
+    public static int editTextToInt(EditText editText) {
+        return Integer.parseInt(editText.getText().toString());
+    }
+
+
+    public static String getStringDiaDeSemana(Calendar cal) {
+        String devolver = "";
+        switch (cal.get(Calendar.DAY_OF_WEEK)) {
+            case Calendar.SUNDAY:
+                devolver = "Domingo";
+                break;
+            case Calendar.MONDAY:
+                devolver = "Lunes";
+                break;
+            case Calendar.TUESDAY:
+                devolver = "Martes";
+                break;
+            case Calendar.WEDNESDAY:
+                devolver = "Miercoles";
+                break;
+            case Calendar.THURSDAY:
+                devolver = "Jueves";
+                break;
+            case Calendar.FRIDAY:
+                devolver = "Viernes";
+                break;
+            case Calendar.SATURDAY:
+                devolver = "Sabado";
+                break;
+        }
+
+
+        return devolver;
     }
 }
