@@ -1,14 +1,16 @@
 package com.eriochrome.bartime.contracts;
 
         import com.eriochrome.bartime.modelos.Bar;
+        import com.eriochrome.bartime.modelos.Comentario;
 
 public interface PaginaBarContract {
     interface View {
-        int getCalificacion();
         void agregadoAFavoritos();
         void quitadoDeFavoritos();
         void cargando();
         void finCargando();
+        void comentarioListo();
+
     }
 
     interface Interaccion {
@@ -19,10 +21,12 @@ public interface PaginaBarContract {
         boolean hayUsuarioConectado();
         void quitarDeFavoritos();
         void checkearFavorito();
+        void enviarComentario(Comentario comentario);
     }
 
     interface CompleteListener {
         void onStart();
         void onComplete(boolean esFav);
+        void comentarioListo();
     }
 }

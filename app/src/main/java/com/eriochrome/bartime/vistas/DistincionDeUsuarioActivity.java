@@ -60,7 +60,6 @@ public class DistincionDeUsuarioActivity extends AppCompatActivity implements Di
 
     @Override
     public void loginBar() {
-        //TODO: rompe MVP, cuando lo haga custom pensar en eso.
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
@@ -70,6 +69,7 @@ public class DistincionDeUsuarioActivity extends AppCompatActivity implements Di
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
                         .setTheme(R.style.AppTheme)
+                        .setLogo(R.drawable.bar_time_2)
                         .build(),
                 RC_SIGN_IN);
     }

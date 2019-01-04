@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.Comentario;
 import com.eriochrome.bartime.modelos.PaginaBarInteraccion;
 
 
@@ -34,8 +35,12 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
         return interaccion.getNombreDeBar();
     }
 
-    public void calificarBar() {
-        int calificacion = view.getCalificacion();
+    public void enviarComentario(Comentario comentario) {
+        interaccion.enviarComentario(comentario);
+        calificarBar(comentario.getEstrellas());
+    }
+
+    private void calificarBar(int calificacion) {
         interaccion.actualizarEstrellas(calificacion);
     }
 
@@ -76,4 +81,11 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
         }
         this.esFav = esFav;
     }
+
+    @Override
+    public void comentarioListo() {
+        view.comentarioListo();
+    }
+
+
 }

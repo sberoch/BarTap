@@ -1,5 +1,7 @@
 package com.eriochrome.bartime.presenters;
 
+import android.content.Intent;
+
 import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.modelos.BarControlInteraccion;
@@ -47,8 +49,8 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
     }
 
 
-    public void editarBar() {
-
+    public Intent enviarBar(Intent i) {
+        return i.putExtra("bar", interaccion.getBar());
     }
 
     public void crearOferta() {
@@ -62,4 +64,6 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
     public String getNombreUsuario() {
         return interaccion.getNombreBar();
     }
+
+
 }

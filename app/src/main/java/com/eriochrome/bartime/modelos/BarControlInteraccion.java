@@ -51,5 +51,10 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
         return bar.getNombre();
     }
 
+    @Override
+    public Bar getBar() {
+        return bar;
+    }
+
 
 }

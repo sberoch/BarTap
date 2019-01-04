@@ -116,6 +116,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
                         .setTheme(R.style.AppTheme)
+                        .setLogo(R.drawable.bar_time_2)
                         .build(),
                 RC_SIGN_IN);
     }

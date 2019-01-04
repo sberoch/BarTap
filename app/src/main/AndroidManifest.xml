@@ -28,6 +28,7 @@
         <activity android:name=".vistas.ConfirmarNuevoBarActivity" />
         <activity android:name=".vistas.AgregarBarOwnerActivity" />
         <activity android:name=".vistas.ContactoActivity" />
+        <activity android:name=".vistas.EditarBarActivity" />
 
     </application>
 

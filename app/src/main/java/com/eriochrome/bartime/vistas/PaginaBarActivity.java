@@ -1,25 +1,25 @@
 package com.eriochrome.bartime.vistas;
 
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
+import com.eriochrome.bartime.modelos.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class PaginaBarActivity extends AppCompatActivity implements PaginaBarContract.View {
+public class PaginaBarActivity extends AppCompatActivity implements PaginaBarContract.View, DialogComentario.ComentarioListener {
 
     private TextView nombreBar;
-    private Button calificacionOk;
-    private EditText calificacionEditText;
+    private Button calificarBar;
     private Button favorito;
 
     private ProgressBar progressBar;
@@ -39,8 +39,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         progressBar.setVisibility(View.GONE);
 
         nombreBar = findViewById(R.id.nombre_bar);
-        calificacionEditText = findViewById(R.id.calificacion);
-        calificacionOk = findViewById(R.id.calificacion_ok);
+        calificarBar = findViewById(R.id.calificarBar);
         favorito = findViewById(R.id.agregar_favorito);
 
         nombreBar.setText(presenter.getNombreDeBar());
@@ -55,11 +54,6 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         if (presenter.hayUsuarioConectado()) {
             presenter.checkeoFavorito();
         }
-    }
-
-    @Override
-    public int getCalificacion() {
-        return Integer.parseInt(calificacionEditText.getText().toString());
     }
 
     @Override
@@ -82,13 +76,15 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         progressBar.setVisibility(View.GONE);
     }
 
+
+
     private void setupListeners() {
-        calificacionOk.setOnClickListener(view -> {
+        calificarBar.setOnClickListener(view -> {
             if (presenter.hayUsuarioConectado()) {
-                presenter.calificarBar();
-                finish();
+                DialogFragment comentarioDialog = new DialogComentario();
+                comentarioDialog.show(getSupportFragmentManager(), "comentario");
             } else {
-                toastShort(PaginaBarActivity.this, "Necesitas una cuenta para calificar este bar.");
+                toastShort(PaginaBarActivity.this, getString(R.string.necesitas_cuenta_calificar));
             }
         });
 
@@ -101,10 +97,23 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
                 }
 
             } else {
-                toastShort(PaginaBarActivity.this, "Necesitas una cuenta para agregar este bar a tus favoritos.");
+                toastShort(PaginaBarActivity.this, getString(R.string.necesitas_cuenta_favoritos));
             }
         });
     }
+
+
+    @Override
+    public void enviarComentario(Comentario comentario) {
+        presenter.enviarComentario(comentario);
+        toastShort(this, getString(R.string.enviando));
+    }
+
+    @Override
+    public void comentarioListo() {
+        toastShort(this, getString(R.string.comentario_enviado));
+    }
+
 
     @Override
     protected void onDestroy() {

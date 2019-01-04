@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.AgregarBarOwnerContract;
 import com.eriochrome.bartime.contracts.BarControlContract;
+import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.presenters.BarControlPresenter;
 import com.firebase.ui.auth.AuthUI;
 
@@ -96,7 +97,9 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             finish();
         });
         editarBar.setOnClickListener(v -> {
-            presenter.editarBar();
+            Intent i = new Intent(BarControlActivity.this, EditarBarActivity.class);
+            i = presenter.enviarBar(i);
+            startActivity(i);
         });
         crearDesafio.setOnClickListener(v -> {
             presenter.crearDesafio();
@@ -149,4 +152,5 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         loading.setVisibility(View.GONE);
         updateUI();
     }
+
 }

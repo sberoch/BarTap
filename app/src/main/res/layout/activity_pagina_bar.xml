@@ -37,38 +37,20 @@
         android:layout_marginBottom="2dp"
         android:background="#ccc" />
 
-    <TextView
-        android:id="@+id/texto_calificacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nombre_bar"
-        android:layout_margin="30dp"
-        android:text="Deja tu calificacion:" />
-
-    <EditText
-        android:id="@+id/calificacion"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nombre_bar"
-        android:layout_margin="15dp"
-        android:layout_toLeftOf="@+id/calificacion_ok"
-        android:ems="10"
-        android:inputType="numberSigned" />
-
     <Button
-        android:id="@+id/calificacion_ok"
+        android:id="@+id/calificarBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nombre_bar"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_margin="15dp"
-        android:text="OK" />
+        android:text="Calificar Bar" />
 
     <View
         android:id="@+id/hl2"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:layout_below="@+id/calificacion"
+        android:layout_below="@+id/calificarBar"
         android:layout_marginBottom="2dp"
         android:background="#ccc" />
 
@@ -88,4 +70,5 @@
         android:layout_below="@+id/agregar_favorito"
         android:layout_marginBottom="2dp"
         android:background="#ccc" />
+
 </RelativeLayout>

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.utils.ActualizadorFirebase;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,7 +16,6 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
 
     private final PaginaBarContract.CompleteListener listener;
     private DatabaseReference ref;
-    private DatabaseReference baresRef;
     private DatabaseReference favoritosRef;
     //private DatabaseReference conOfertasRef = ref.child("baresConOferta");
     private FirebaseAuth auth;
@@ -79,5 +79,19 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
             }
         });
 
+    }
+
+    @Override
+    public void enviarComentario(Comentario comentario) {
+        comentario.setComentador(auth.getCurrentUser().getDisplayName());
+        comentario.setNombreBar(bar.getNombre());
+
+        String comentarioID = ref.child("comentarios").push().getKey();
+        comentario.setID(comentarioID);
+
+        ref.child("comentarios").child(comentario.getID()).setValue(comentario)
+            .addOnSuccessListener(aVoid -> {
+                listener.comentarioListo();
+            });
     }
 }

@@ -7,6 +7,7 @@ public interface BarControlContract {
     interface Interaccion {
         void setupBar();
         String getNombreBar();
+        Bar getBar();
     }
 
     interface View {
