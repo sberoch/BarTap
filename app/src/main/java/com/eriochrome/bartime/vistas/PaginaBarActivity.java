@@ -1,11 +1,11 @@
 package com.eriochrome.bartime.vistas;
 
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -21,6 +21,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private TextView nombreBar;
     private Button calificarBar;
     private Button favorito;
+    private Button verComentarios;
 
     private ProgressBar progressBar;
 
@@ -41,6 +42,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         nombreBar = findViewById(R.id.nombre_bar);
         calificarBar = findViewById(R.id.calificarBar);
         favorito = findViewById(R.id.agregar_favorito);
+        verComentarios = findViewById(R.id.ver_comentarios);
 
         nombreBar.setText(presenter.getNombreDeBar());
         setupListeners();
@@ -53,6 +55,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         super.onResume();
         if (presenter.hayUsuarioConectado()) {
             presenter.checkeoFavorito();
+            presenter.checkearUsuarioCalificoBar();
         }
     }
 
@@ -100,6 +103,12 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
                 toastShort(PaginaBarActivity.this, getString(R.string.necesitas_cuenta_favoritos));
             }
         });
+
+        verComentarios.setOnClickListener(v -> {
+            Intent i = new Intent(PaginaBarActivity.this, ComentariosActivity.class);
+            i = presenter.enviarBar(i);
+            startActivity(i);
+        });
     }
 
 
@@ -112,6 +121,12 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     @Override
     public void comentarioListo() {
         toastShort(this, getString(R.string.comentario_enviado));
+        calificarBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void yaCalificoElBar() {
+        calificarBar.setVisibility(View.GONE);
     }
 
 

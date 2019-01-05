@@ -17,7 +17,7 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     private final PaginaBarContract.CompleteListener listener;
     private DatabaseReference ref;
     private DatabaseReference favoritosRef;
-    //private DatabaseReference conOfertasRef = ref.child("baresConOferta");
+    private DatabaseReference refUsuario;
     private FirebaseAuth auth;
 
     private Bar bar;
@@ -27,7 +27,8 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
         ref = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
         if (hayUsuarioConectado()) {
-            favoritosRef = ref.child("usuarios").child(auth.getCurrentUser().getUid()).child("favoritos");
+            refUsuario = ref.child("usuarios").child(auth.getCurrentUser().getUid());
+            favoritosRef = refUsuario.child("favoritos");
         }
     }
 
@@ -89,9 +90,29 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
         String comentarioID = ref.child("comentarios").push().getKey();
         comentario.setID(comentarioID);
 
+        refUsuario.child("calificoEn").child(bar.getNombre()).setValue(bar.getNombre());
         ref.child("comentarios").child(comentario.getID()).setValue(comentario)
             .addOnSuccessListener(aVoid -> {
                 listener.comentarioListo();
             });
+    }
+
+    @Override
+    public void checkearUsuarioCalificoBar() {
+        refUsuario.child("calificoEn").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(bar.getNombre())) listener.yaCalificoEsteBar();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
+
+    @Override
+    public Bar getBar() {
+        return bar;
     }
 }

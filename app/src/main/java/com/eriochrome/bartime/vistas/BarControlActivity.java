@@ -81,6 +81,8 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         } else {
             sinBarRl.setVisibility(View.VISIBLE);
             barControlRl.setVisibility(View.GONE);
+            navigationView.getHeaderView(0).setVisibility(View.GONE);
+
         }
     }
 

@@ -10,7 +10,7 @@ public interface PaginaBarContract {
         void cargando();
         void finCargando();
         void comentarioListo();
-
+        void yaCalificoElBar();
     }
 
     interface Interaccion {
@@ -22,11 +22,14 @@ public interface PaginaBarContract {
         void quitarDeFavoritos();
         void checkearFavorito();
         void enviarComentario(Comentario comentario);
+        void checkearUsuarioCalificoBar();
+        Bar getBar();
     }
 
     interface CompleteListener {
         void onStart();
         void onComplete(boolean esFav);
         void comentarioListo();
+        void yaCalificoEsteBar();
     }
 }

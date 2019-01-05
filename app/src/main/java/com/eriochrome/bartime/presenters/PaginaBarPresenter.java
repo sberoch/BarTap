@@ -87,5 +87,17 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
         view.comentarioListo();
     }
 
+    public void checkearUsuarioCalificoBar() {
+        interaccion.checkearUsuarioCalificoBar();
+    }
 
+    @Override
+    public void yaCalificoEsteBar() {
+        view.yaCalificoElBar();
+    }
+
+
+    public Intent enviarBar(Intent i) {
+        return i.putExtra("bar", interaccion.getBar());
+    }
 }

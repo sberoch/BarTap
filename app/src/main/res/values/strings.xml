@@ -48,6 +48,9 @@
     <string name="enviando">Enviando...</string>
     <string name="necesitas_cuenta_favoritos">Necesitas una cuenta para agregar este bar a tus favoritos.</string>
     <string name="necesitas_cuenta_calificar">Necesitas una cuenta para calificar este bar.</string>
+    <string name="calificar_bar">Calificar Bar</string>
+    <string name="ver_comentarios">Ver Comentarios</string>
+    <string name="no_hay_resultados">No hay resultados</string>
 
 
 </resources>

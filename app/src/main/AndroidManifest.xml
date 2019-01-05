@@ -11,24 +11,48 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".vistas.LauncherActivity">
+        <activity android:name=".vistas.LauncherActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" >
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".vistas.DistincionDeUsuarioActivity" />
-        <activity android:name=".vistas.ListadosActivity" />
+        <activity android:name=".vistas.DistincionDeUsuarioActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.ListadosActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <activity android:name=".vistas.AgregarBarUsuarioActivity" />
-        <activity android:name=".vistas.PaginaBarActivity" />
-        <activity android:name=".vistas.BarControlActivity" />
-        <activity android:name=".vistas.ConfirmarNuevoBarActivity" />
-        <activity android:name=".vistas.AgregarBarOwnerActivity" />
-        <activity android:name=".vistas.ContactoActivity" />
-        <activity android:name=".vistas.EditarBarActivity" />
+        <activity android:name=".vistas.AgregarBarUsuarioActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.PaginaBarActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.BarControlActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.ConfirmarNuevoBarActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.AgregarBarOwnerActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.ContactoActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.EditarBarActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".vistas.ComentariosActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
 
     </application>
 
