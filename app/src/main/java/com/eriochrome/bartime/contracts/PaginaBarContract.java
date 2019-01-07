@@ -3,6 +3,8 @@ package com.eriochrome.bartime.contracts;
         import com.eriochrome.bartime.modelos.Bar;
         import com.eriochrome.bartime.modelos.Comentario;
 
+        import java.util.ArrayList;
+
 public interface PaginaBarContract {
     interface View {
         void agregadoAFavoritos();
@@ -11,6 +13,8 @@ public interface PaginaBarContract {
         void finCargando();
         void comentarioListo();
         void yaCalificoElBar();
+        void cargaDeComentarios();
+        void finCargaDeComentarios();
     }
 
     interface Interaccion {
@@ -24,6 +28,8 @@ public interface PaginaBarContract {
         void enviarComentario(Comentario comentario);
         void checkearUsuarioCalificoBar();
         Bar getBar();
+        ArrayList<Comentario> getComentarios();
+        void cargarComentarios();
     }
 
     interface CompleteListener {
@@ -31,5 +37,7 @@ public interface PaginaBarContract {
         void onComplete(boolean esFav);
         void comentarioListo();
         void yaCalificoEsteBar();
+        void cargaDeComentarios();
+        void finCargaDeComentarios();
     }
 }

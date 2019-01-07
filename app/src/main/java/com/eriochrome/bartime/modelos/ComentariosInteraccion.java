@@ -32,14 +32,11 @@ public class ComentariosInteraccion implements ComentariosContract.Interaccion {
     @Override
     public void mostrarComentarios() {
         listener.onStart();
-        refComentarios.addListenerForSingleValueEvent(new ValueEventListener() {
+        refComentarios.child(bar.getNombre()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String nombreBar = ds.child("nombreBar").getValue(String.class);
-                    if (nombreBar.equals(bar.getNombre())) {
-                        listaComentarios.add(ds.getValue(Comentario.class));
-                    }
+                    listaComentarios.add(ds.getValue(Comentario.class));
                 }
                 listener.onSuccess();
             }

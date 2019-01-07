@@ -7,6 +7,8 @@ import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.modelos.Comentario;
 import com.eriochrome.bartime.modelos.PaginaBarInteraccion;
 
+import java.util.ArrayList;
+
 
 public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
 
@@ -96,8 +98,25 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
         view.yaCalificoElBar();
     }
 
+    @Override
+    public void cargaDeComentarios() {
+        view.cargaDeComentarios();
+    }
+
+    @Override
+    public void finCargaDeComentarios() {
+        view.finCargaDeComentarios();
+    }
 
     public Intent enviarBar(Intent i) {
         return i.putExtra("bar", interaccion.getBar());
+    }
+
+    public ArrayList<Comentario> getComentarios() {
+        return interaccion.getComentarios();
+    }
+
+    public void cargarComentarios() {
+        interaccion.cargarComentarios();
     }
 }

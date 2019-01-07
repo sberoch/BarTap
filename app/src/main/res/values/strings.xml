@@ -45,11 +45,11 @@
     <string name="esta_abierto">Esta abierto</string>
     <string name="happy_hour">Happy Hour</string>
     <string name="comentario_enviado">Comentario enviado</string>
-    <string name="enviando">Enviando...</string>
+    <string name="enviando">Enviando…</string>
     <string name="necesitas_cuenta_favoritos">Necesitas una cuenta para agregar este bar a tus favoritos.</string>
     <string name="necesitas_cuenta_calificar">Necesitas una cuenta para calificar este bar.</string>
     <string name="calificar_bar">Calificar Bar</string>
-    <string name="ver_comentarios">Ver Comentarios</string>
+    <string name="ver_mas">Ver Mas</string>
     <string name="no_hay_resultados">No hay resultados</string>
 
 

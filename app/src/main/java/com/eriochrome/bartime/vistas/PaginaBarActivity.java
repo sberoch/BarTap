@@ -4,12 +4,18 @@ import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
+import com.eriochrome.bartime.adapters.ListaComentariosAdapter;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
@@ -18,10 +24,14 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class PaginaBarActivity extends AppCompatActivity implements PaginaBarContract.View, DialogComentario.ComentarioListener {
 
+    private RelativeLayout paginaBarRl;
     private TextView nombreBar;
     private Button calificarBar;
     private Button favorito;
-    private Button verComentarios;
+    private ListView listView;
+    private Button verMas;
+
+    private ListaComentariosAdapter adapter;
 
     private ProgressBar progressBar;
 
@@ -39,15 +49,21 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
+        paginaBarRl = findViewById(R.id.pagina_bar_rl);
         nombreBar = findViewById(R.id.nombre_bar);
         calificarBar = findViewById(R.id.calificarBar);
         favorito = findViewById(R.id.agregar_favorito);
-        verComentarios = findViewById(R.id.ver_comentarios);
+        verMas = findViewById(R.id.ver_mas);
+
+        listView = findViewById(R.id.listview);
+        adapter = new ListaComentariosAdapter();
+        listView.setAdapter(adapter);
 
         nombreBar.setText(presenter.getNombreDeBar());
         setupListeners();
 
         //TODO: cambiar los toast por dialogs que permitan crear cuenta
+        //TODO: se muestra de a un comentario, esta medio bug que repite dentro de la lista y no se porque
     }
 
     @Override
@@ -57,6 +73,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             presenter.checkeoFavorito();
             presenter.checkearUsuarioCalificoBar();
         }
+        presenter.cargarComentarios();
     }
 
     @Override
@@ -72,13 +89,14 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     @Override
     public void cargando() {
         progressBar.setVisibility(View.VISIBLE);
+        paginaBarRl.setVisibility(View.GONE);
     }
 
     @Override
     public void finCargando() {
         progressBar.setVisibility(View.GONE);
+        paginaBarRl.setVisibility(View.VISIBLE);
     }
-
 
 
     private void setupListeners() {
@@ -104,7 +122,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             }
         });
 
-        verComentarios.setOnClickListener(v -> {
+        verMas.setOnClickListener(v -> {
             Intent i = new Intent(PaginaBarActivity.this, ComentariosActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
@@ -121,12 +139,24 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     @Override
     public void comentarioListo() {
         toastShort(this, getString(R.string.comentario_enviado));
+        findViewById(R.id.hl2).setVisibility(View.GONE);
         calificarBar.setVisibility(View.GONE);
     }
 
     @Override
     public void yaCalificoElBar() {
+        findViewById(R.id.hl2).setVisibility(View.GONE);
         calificarBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void cargaDeComentarios() {
+        adapter.clear();
+    }
+
+    @Override
+    public void finCargaDeComentarios() {
+        adapter.setItems(presenter.getComentarios());
     }
 
 

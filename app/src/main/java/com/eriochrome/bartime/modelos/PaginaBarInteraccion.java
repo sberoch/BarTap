@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
 
     private final PaginaBarContract.CompleteListener listener;
@@ -21,6 +23,7 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     private FirebaseAuth auth;
 
     private Bar bar;
+    private ArrayList<Comentario> listaComentarios;
 
     public PaginaBarInteraccion(PaginaBarContract.CompleteListener listener) {
         this.listener = listener;
@@ -30,6 +33,7 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
             refUsuario = ref.child("usuarios").child(auth.getCurrentUser().getUid());
             favoritosRef = refUsuario.child("favoritos");
         }
+        listaComentarios = new ArrayList<>();
     }
 
     @Override
@@ -87,11 +91,11 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
         comentario.setComentador(auth.getCurrentUser().getDisplayName());
         comentario.setNombreBar(bar.getNombre());
 
-        String comentarioID = ref.child("comentarios").push().getKey();
+        String comentarioID = ref.child("comentarios").child(bar.getNombre()).push().getKey();
         comentario.setID(comentarioID);
 
         refUsuario.child("calificoEn").child(bar.getNombre()).setValue(bar.getNombre());
-        ref.child("comentarios").child(comentario.getID()).setValue(comentario)
+        ref.child("comentarios").child(bar.getNombre()).child(comentario.getID()).setValue(comentario)
             .addOnSuccessListener(aVoid -> {
                 listener.comentarioListo();
             });
@@ -111,8 +115,32 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
         });
     }
 
+
     @Override
     public Bar getBar() {
         return bar;
+    }
+
+    @Override
+    public ArrayList<Comentario> getComentarios() {
+        return listaComentarios;
+    }
+
+    @Override
+    public void cargarComentarios() {
+        listener.cargaDeComentarios();
+        ref.child("comentarios").child(bar.getNombre()).limitToLast(3)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    listaComentarios.add(ds.getValue(Comentario.class));
+                }
+                listener.finCargaDeComentarios();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 }
