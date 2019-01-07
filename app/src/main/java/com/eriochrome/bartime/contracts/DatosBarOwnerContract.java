@@ -7,7 +7,7 @@ import com.eriochrome.bartime.modelos.Bar;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public interface AgregarBarOwnerContract {
+public interface DatosBarOwnerContract {
 
     interface Interaccion {
         void crearBar(String textNombreBar);
@@ -15,6 +15,8 @@ public interface AgregarBarOwnerContract {
         void subirBar();
         void subirFoto();
         void agregarFoto(Uri path);
+        void editarBar();
+
     }
 
     interface View {
@@ -30,6 +32,14 @@ public interface AgregarBarOwnerContract {
         boolean hayImagen();
         void noHayImagenError();
         void mostrarError();
+        void setNombreBar(String nombre);
+        void setHorariosIniciales(HashMap<String, Integer> horariosInicial);
+        void setHorariosFinales(HashMap<String, Integer> horariosFinal);
+        void setHappyHourInicial(HashMap<String, Integer> happyHourInicial);
+        void setHappyHourFinal(HashMap<String, Integer> happyHourFinal);
+        void setMetodosDePago(ArrayList<String> metodosDePago);
+        void yaTieneImagen();
+        void setTitleEditar();
     }
 
     interface CompleteListener {

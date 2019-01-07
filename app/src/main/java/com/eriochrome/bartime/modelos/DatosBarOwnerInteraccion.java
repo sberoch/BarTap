@@ -2,7 +2,7 @@ package com.eriochrome.bartime.modelos;
 
 import android.net.Uri;
 
-import com.eriochrome.bartime.contracts.AgregarBarOwnerContract;
+import com.eriochrome.bartime.contracts.DatosBarOwnerContract;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -11,16 +11,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class AgregarBarOwnerInteraccion implements AgregarBarOwnerContract.Interaccion {
+public class DatosBarOwnerInteraccion implements DatosBarOwnerContract.Interaccion {
 
-    private AgregarBarOwnerContract.CompleteListener listener;
+    private DatosBarOwnerContract.CompleteListener listener;
     private Bar bar;
     private FirebaseUser authUser;
     private DatabaseReference refGlobal;
     private StorageReference storageReference;
     private Uri path;
 
-    public AgregarBarOwnerInteraccion(AgregarBarOwnerContract.CompleteListener listener) {
+    public DatosBarOwnerInteraccion(DatosBarOwnerContract.CompleteListener listener) {
         this.listener = listener;
         authUser = FirebaseAuth.getInstance().getCurrentUser();
         refGlobal = FirebaseDatabase.getInstance().getReference();
@@ -51,6 +51,21 @@ public class AgregarBarOwnerInteraccion implements AgregarBarOwnerContract.Inter
     @Override
     public void agregarFoto(Uri path) {
         this.path = path;
+    }
+
+    /**
+     * Suposicion: el bar no cambia de nombre
+     * TODO: handle this
+     */
+    @Override
+    public void editarBar() {
+        DatabaseReference refBar = refGlobal.child("bares").child(bar.getNombre());
+        refBar.child("horariosInicial").setValue(bar.getHorariosInicial());
+        refBar.child("horariosFinal").setValue(bar.getHorariosFinal());
+        refBar.child("happyhourInicial").setValue(bar.getHappyhourInicial());
+        refBar.child("happyhourFinal").setValue(bar.getHappyhourFinal());
+        refBar.child("metodosDePago").setValue(bar.getMetodosDePago());
+
     }
 
     @Override

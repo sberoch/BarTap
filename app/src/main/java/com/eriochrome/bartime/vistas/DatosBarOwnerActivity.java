@@ -1,14 +1,11 @@
 package com.eriochrome.bartime.vistas;
 
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,11 +14,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.contracts.AgregarBarOwnerContract;
-import com.eriochrome.bartime.presenters.AgregarBarOwnerPresenter;
+import com.eriochrome.bartime.contracts.DatosBarOwnerContract;
+import com.eriochrome.bartime.presenters.DatosBarOwnerPresenter;
 import com.eriochrome.bartime.utils.TimePicker;
 
 import java.util.ArrayList;
@@ -30,19 +28,21 @@ import java.util.HashMap;
 import static com.eriochrome.bartime.utils.Utils.editTextToInt;
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class AgregarBarOwnerActivity extends AppCompatActivity implements AgregarBarOwnerContract.View {
+public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBarOwnerContract.View {
 
     private static final int NUMERO_SOLICITUD_GALERIA = 1;
     private Uri path;
 
-    private AgregarBarOwnerPresenter presenter;
+    private DatosBarOwnerPresenter presenter;
 
     private ProgressBar progressBar;
     private RelativeLayout agregarBarRl;
+    private TextView titulo;
 
     private EditText nombreBar;
     private Button seleccionarFoto;
     private Button seleccionarUbicacion;
+    private boolean hayImagen;
 
     /**
      * hi: Horario Inicial
@@ -79,14 +79,15 @@ public class AgregarBarOwnerActivity extends AppCompatActivity implements Agrega
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agregar_bar_owner);
+        setContentView(R.layout.activity_datos_bar_owner);
 
-        presenter = new AgregarBarOwnerPresenter();
+        presenter = new DatosBarOwnerPresenter();
         presenter.bind(this);
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         agregarBarRl = findViewById(R.id.agregar_bar_rl);
+        titulo = findViewById(R.id.titulo);
 
         nombreBar = findViewById(R.id.nombre_bar_edit_text);
         seleccionarFoto = findViewById(R.id.seleccionar_imagen);
@@ -98,6 +99,7 @@ public class AgregarBarOwnerActivity extends AppCompatActivity implements Agrega
         listo = findViewById(R.id.listo);
 
         setupListeners();
+        presenter.checkUsarDatosBar(getIntent());
 
         //TODO: hacer preview de foto
         //TODO: preguntar si quiere reclamar un bar sin dueño
@@ -120,26 +122,26 @@ public class AgregarBarOwnerActivity extends AppCompatActivity implements Agrega
     @Override
     public HashMap<String, Integer> getHorariosInicial() {
         HashMap<String, Integer> devolver = new HashMap<>();
-        devolver.put("Domingo",editTextToInt(hiDomingo));
-        devolver.put("Lunes",editTextToInt(hiLunes));
-        devolver.put("Martes",editTextToInt(hiMartes));
-        devolver.put("Miercoles",editTextToInt(hiMiercoles));
-        devolver.put("Jueves",editTextToInt(hiJueves));
-        devolver.put("Viernes",editTextToInt(hiViernes));
-        devolver.put("Sabado",editTextToInt(hiSabado));
+        devolver.put("Domingo", editTextToInt(hiDomingo));
+        devolver.put("Lunes", editTextToInt(hiLunes));
+        devolver.put("Martes", editTextToInt(hiMartes));
+        devolver.put("Miercoles", editTextToInt(hiMiercoles));
+        devolver.put("Jueves", editTextToInt(hiJueves));
+        devolver.put("Viernes", editTextToInt(hiViernes));
+        devolver.put("Sabado", editTextToInt(hiSabado));
         return devolver;
     }
 
     @Override
     public HashMap<String, Integer> getHorariosFinal() {
         HashMap<String, Integer> devolver = new HashMap<>();
-        devolver.put("Domingo",editTextToInt(hfDomingo));
-        devolver.put("Lunes",editTextToInt(hfLunes));
-        devolver.put("Martes",editTextToInt(hfMartes));
-        devolver.put("Miercoles",editTextToInt(hfMiercoles));
-        devolver.put("Jueves",editTextToInt(hfJueves));
-        devolver.put("Viernes",editTextToInt(hfViernes));
-        devolver.put("Sabado",editTextToInt(hfSabado));
+        devolver.put("Domingo", editTextToInt(hfDomingo));
+        devolver.put("Lunes", editTextToInt(hfLunes));
+        devolver.put("Martes", editTextToInt(hfMartes));
+        devolver.put("Miercoles", editTextToInt(hfMiercoles));
+        devolver.put("Jueves", editTextToInt(hfJueves));
+        devolver.put("Viernes", editTextToInt(hfViernes));
+        devolver.put("Sabado", editTextToInt(hfSabado));
         return devolver;
     }
 
@@ -153,26 +155,26 @@ public class AgregarBarOwnerActivity extends AppCompatActivity implements Agrega
     @Override
     public HashMap<String, Integer> getHappyhourInicial() {
         HashMap<String, Integer> devolver = new HashMap<>();
-        devolver.put("Domingo",editTextToInt(hhiDomingo));
-        devolver.put("Lunes",editTextToInt(hhiLunes));
-        devolver.put("Martes",editTextToInt(hhiMartes));
-        devolver.put("Miercoles",editTextToInt(hhiMiercoles));
-        devolver.put("Jueves",editTextToInt(hhiJueves));
-        devolver.put("Viernes",editTextToInt(hhiViernes));
-        devolver.put("Sabado",editTextToInt(hhiSabado));
+        devolver.put("Domingo", editTextToInt(hhiDomingo));
+        devolver.put("Lunes", editTextToInt(hhiLunes));
+        devolver.put("Martes", editTextToInt(hhiMartes));
+        devolver.put("Miercoles", editTextToInt(hhiMiercoles));
+        devolver.put("Jueves", editTextToInt(hhiJueves));
+        devolver.put("Viernes", editTextToInt(hhiViernes));
+        devolver.put("Sabado", editTextToInt(hhiSabado));
         return devolver;
     }
 
     @Override
     public HashMap<String, Integer> getHappyhourFinal() {
         HashMap<String, Integer> devolver = new HashMap<>();
-        devolver.put("Domingo",editTextToInt(hhfDomingo));
-        devolver.put("Lunes",editTextToInt(hhfLunes));
-        devolver.put("Martes",editTextToInt(hhfMartes));
-        devolver.put("Miercoles",editTextToInt(hhfMiercoles));
-        devolver.put("Jueves",editTextToInt(hhfJueves));
-        devolver.put("Viernes",editTextToInt(hhfViernes));
-        devolver.put("Sabado",editTextToInt(hhfSabado));
+        devolver.put("Domingo", editTextToInt(hhfDomingo));
+        devolver.put("Lunes", editTextToInt(hhfLunes));
+        devolver.put("Martes", editTextToInt(hhfMartes));
+        devolver.put("Miercoles", editTextToInt(hhfMiercoles));
+        devolver.put("Jueves", editTextToInt(hhfJueves));
+        devolver.put("Viernes", editTextToInt(hhfViernes));
+        devolver.put("Sabado", editTextToInt(hhfSabado));
         return devolver;
 
     }
@@ -205,26 +207,27 @@ public class AgregarBarOwnerActivity extends AppCompatActivity implements Agrega
         if (resultCode == RESULT_OK) {
             path = data.getData();
             presenter.agregarFoto(path);
-        }
-        else {
-            toastShort(AgregarBarOwnerActivity.this, "No elegiste ninguna imagen.");
+            hayImagen = true;
+        } else {
+            toastShort(DatosBarOwnerActivity.this, "No elegiste ninguna imagen.");
         }
     }
 
     @Override
     public boolean hayImagen() {
-        return path != null;
+        return hayImagen;
     }
 
     @Override
     public void noHayImagenError() {
-        toastShort(AgregarBarOwnerActivity.this, "Debes elegir una imagen para continuar.");
+        toastShort(DatosBarOwnerActivity.this, "Debes elegir una imagen para continuar.");
     }
 
     @Override
     public void mostrarError() {
-        toastShort(AgregarBarOwnerActivity.this, "Ocurrio un error inesperado. Intente nuevamente");
+        toastShort(DatosBarOwnerActivity.this, "Ocurrio un error inesperado. Intente nuevamente");
     }
+
 
     @Override
     public void subiendo() {
@@ -235,14 +238,13 @@ public class AgregarBarOwnerActivity extends AppCompatActivity implements Agrega
     @Override
     public void finSubiendo() {
         progressBar.setVisibility(View.GONE);
-        startActivity(new Intent(AgregarBarOwnerActivity.this, BarControlActivity.class));
+        startActivity(new Intent(DatosBarOwnerActivity.this, BarControlActivity.class));
         finish();
     }
 
 
-
-    private void ocultarTeclado(){
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+    private void ocultarTeclado() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         }
@@ -311,6 +313,94 @@ public class AgregarBarOwnerActivity extends AppCompatActivity implements Agrega
         hhfDomingo = findViewById(R.id.hhf_domingo);
         TimePicker hhfDomingoTp = new TimePicker(hhfDomingo, this);
     }
+
+
+    /**
+     * ------------------------Seccion editar----------------------------
+     */
+
+    @Override
+    public void setNombreBar(String nombre) {
+        nombreBar.setText(nombre);
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    public void setHorariosIniciales(HashMap<String, Integer> horariosInicial) {
+        hiLunes.setText(String.valueOf(horariosInicial.get("Lunes")));
+        hiMartes.setText(String.valueOf(horariosInicial.get("Martes")));
+        hiMiercoles.setText(String.valueOf(horariosInicial.get("Miercoles")));
+        hiJueves.setText(String.valueOf(horariosInicial.get("Jueves")));
+        hiViernes.setText(String.valueOf(horariosInicial.get("Viernes")));
+        hiSabado.setText(String.valueOf(horariosInicial.get("Sabado")));
+        hiDomingo.setText(String.valueOf(horariosInicial.get("Domingo")));
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    public void setHorariosFinales(HashMap<String, Integer> horariosFinal) {
+        hfLunes.setText(String.valueOf(horariosFinal.get("Lunes")));
+        hfMartes.setText(String.valueOf(horariosFinal.get("Martes")));
+        hfMiercoles.setText(String.valueOf(horariosFinal.get("Miercoles")));
+        hfJueves.setText(String.valueOf(horariosFinal.get("Jueves")));
+        hfViernes.setText(String.valueOf(horariosFinal.get("Viernes")));
+        hfSabado.setText(String.valueOf(horariosFinal.get("Sabado")));
+        hfDomingo.setText(String.valueOf(horariosFinal.get("Domingo")));
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    public void setHappyHourInicial(HashMap<String, Integer> happyHourInicial) {
+        hhiLunes.setText(String.valueOf(happyHourInicial.get("Lunes")));
+        hhiMartes.setText(String.valueOf(happyHourInicial.get("Martes")));
+        hhiMiercoles.setText(String.valueOf(happyHourInicial.get("Miercoles")));
+        hhiJueves.setText(String.valueOf(happyHourInicial.get("Jueves")));
+        hhiViernes.setText(String.valueOf(happyHourInicial.get("Viernes")));
+        hhiSabado.setText(String.valueOf(happyHourInicial.get("Sabado")));
+        hhiDomingo.setText(String.valueOf(happyHourInicial.get("Domingo")));
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    public void setHappyHourFinal(HashMap<String, Integer> happyHourFinal) {
+        hhfLunes.setText(String.valueOf(happyHourFinal.get("Lunes")));
+        hhfMartes.setText(String.valueOf(happyHourFinal.get("Martes")));
+        hhfMiercoles.setText(String.valueOf(happyHourFinal.get("Miercoles")));
+        hhfJueves.setText(String.valueOf(happyHourFinal.get("Jueves")));
+        hhfViernes.setText(String.valueOf(happyHourFinal.get("Viernes")));
+        hhfSabado.setText(String.valueOf(happyHourFinal.get("Sabado")));
+        hhfDomingo.setText(String.valueOf(happyHourFinal.get("Domingo")));
+    }
+
+    @Override
+    public void setMetodosDePago(ArrayList<String> metodosDePago) {
+        if (metodosDePago.contains("efectivo")) {
+            efectivo.setChecked(true);
+        }
+        if (metodosDePago.contains("tarjeta de credito")) {
+            tCredito.setChecked(true);
+        }
+        if (metodosDePago.contains("tarjeta de debito")) {
+            tDebito.setChecked(true);
+        }
+    }
+
+    /**
+     * Al editar se supone que ya hay una foto subida. No va a pedir otra
+     */
+    @Override
+    public void yaTieneImagen() {
+        hayImagen = true;
+    }
+
+    @Override
+    public void setTitleEditar() {
+        titulo.setText(getString(R.string.editar_bar));
+    }
+
+    /**
+     * ---------------------------Fin seccion editar----------------------------------
+     */
 
 
     @Override

@@ -57,7 +57,7 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
 
     }
 
-    public void crearDesafio() {
+    public void crearJuego() {
 
     }
 

@@ -1,4 +1,4 @@
 package com.eriochrome.bartime.modelos;
 
-public class Desafio {
+public class Juego {
 }

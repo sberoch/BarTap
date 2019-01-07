@@ -28,7 +28,7 @@
     <string name="aun_no_tenes_un_bar_asociado">Aun no tenes un bar asociado.</string>
     <string name="crear">Crear</string>
     <string name="crear_oferta">Crear oferta</string>
-    <string name="crear_desafio">Crear Desafio</string>
+    <string name="crear_juego">Crear Juego</string>
     <string name="agrega_tu_bar">Agrega tu bar</string>
     <string name="metodos_de_pago">Metodos de pago</string>
     <string name="hasta">Hasta</string>
@@ -51,6 +51,10 @@
     <string name="calificar_bar">Calificar Bar</string>
     <string name="ver_mas">Ver Mas</string>
     <string name="no_hay_resultados">No hay resultados</string>
+    <string name="bares">Bares</string>
+    <string name="juegos">Juegos</string>
+    <string name="mis_favoritos">Mis Favoritos</string>
+    <string name="editar_bar">Editar Bar</string>
 
 
 </resources>

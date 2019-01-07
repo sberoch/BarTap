@@ -41,13 +41,10 @@
         <activity android:name=".vistas.ConfirmarNuevoBarActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".vistas.AgregarBarOwnerActivity"
+        <activity android:name=".vistas.DatosBarOwnerActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity android:name=".vistas.ContactoActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait" />
-        <activity android:name=".vistas.EditarBarActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity android:name=".vistas.ComentariosActivity"

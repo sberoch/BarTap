@@ -36,6 +36,7 @@ public class Bar implements Serializable {
         horariosFinal = inicializarHorarios();
         happyhourInicial = inicializarHorarios();
         happyhourFinal = inicializarHorarios();
+        metodosDePago = new ArrayList<>();
     }
 
     public String getNombre() {

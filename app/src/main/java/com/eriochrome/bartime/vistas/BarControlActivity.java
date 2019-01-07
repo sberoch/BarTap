@@ -6,7 +6,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,9 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.contracts.AgregarBarOwnerContract;
 import com.eriochrome.bartime.contracts.BarControlContract;
-import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.presenters.BarControlPresenter;
 import com.firebase.ui.auth.AuthUI;
 
@@ -36,7 +33,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     private RelativeLayout barControlRl;
     private TextView nombreBar;
     private ImageButton editarBar;
-    private Button crearDesafio;
+    private Button crearJuego;
     private Button crearOferta;
 
     @Override
@@ -59,7 +56,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         barControlRl = findViewById(R.id.bar_control_rl);
         nombreBar = findViewById(R.id.nombre_bar);
         editarBar = findViewById(R.id.editar_bar);
-        crearDesafio = findViewById(R.id.crear_desafio);
+        crearJuego = findViewById(R.id.crear_juego);
         crearOferta = findViewById(R.id.crear_oferta);
 
         setupListeners();
@@ -95,16 +92,16 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
 
     private void setupListeners() {
         sinBarButton.setOnClickListener(v -> {
-            startActivity(new Intent(BarControlActivity.this, AgregarBarOwnerActivity.class));
+            startActivity(new Intent(BarControlActivity.this, DatosBarOwnerActivity.class));
             finish();
         });
         editarBar.setOnClickListener(v -> {
-            Intent i = new Intent(BarControlActivity.this, EditarBarActivity.class);
+            Intent i = new Intent(BarControlActivity.this, DatosBarOwnerActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
         });
-        crearDesafio.setOnClickListener(v -> {
-            presenter.crearDesafio();
+        crearJuego.setOnClickListener(v -> {
+            presenter.crearJuego();
         });
         crearOferta.setOnClickListener(v -> {
             presenter.crearOferta();

@@ -95,13 +95,13 @@
                 android:text="@string/crear_oferta" />
 
             <Button
-                android:id="@+id/crear_desafio"
+                android:id="@+id/crear_juego"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/crear_oferta"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
-                android:text="@string/crear_desafio" />
+                android:text="@string/crear_juego" />
 
         </RelativeLayout>
     </RelativeLayout>

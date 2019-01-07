@@ -156,7 +156,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
                         break;
 
                     case 1:
-                        startFragment(new ListadoDesafiosFragment());
+                        startFragment(new ListadoJuegosFragment());
                         break;
 
                     case 2:
@@ -173,12 +173,11 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
 
     private void setupSpinner() {
-        //TODO: hacer un adapter custom para estos fragments, para abrirlos on click
         ArrayList<String> listaFragments = new ArrayList<>();
-        listaFragments.add("Bares");
-        listaFragments.add("Desafios");
+        listaFragments.add(getString(R.string.bares));
+        listaFragments.add(getString(R.string.juegos));
         if(presenter.estaConectado()) {
-            listaFragments.add("Mis Favoritos");
+            listaFragments.add(getString(R.string.mis_favoritos));
         }
         spinnerAdapter = new ArrayAdapter<>(this,
                 R.layout.spinner_text, listaFragments);

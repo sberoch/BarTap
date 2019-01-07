@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusableInTouchMode="true"
-    tools:context=".vistas.AgregarBarOwnerActivity"
+    tools:context=".vistas.DatosBarOwnerActivity"
     android:focusable="true">
 
     <ProgressBar
