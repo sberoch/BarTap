@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class ListaBaresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    //TODO: footer que no aparezca donde no corresponde
+
     private static final int FOOTER_VIEW = 1;
 
     private Context context;

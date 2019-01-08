@@ -44,6 +44,17 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
         view.finCargando();
     }
 
+    @Override
+    public void creandoOferta() {
+        view.creandoOferta();
+    }
+
+
+    @Override
+    public void finCreandoOferta() {
+        view.finCreandoOferta();
+    }
+
     public String getNombreBar() {
         return interaccion.getNombreBar();
     }
@@ -54,7 +65,7 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
     }
 
     public void crearOferta() {
-
+        interaccion.crearOfertaMock();
     }
 
     public void crearJuego() {

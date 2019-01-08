@@ -12,6 +12,10 @@ public class ActualizadorFirebase {
         baresRef.child(bar.getNombre()).child("calificacionesAcumuladas").setValue(bar.getCalificacionesAcumuladas());
         baresRef.child(bar.getNombre()).child("numeroDeCalificaciones").setValue(bar.getNumeroDeCalificaciones());
 
-        //TODO: agregar a bares con oferta tambien
+        //Bares en oferta
+        DatabaseReference ofertaRef = ref.child("baresEnOferta");
+        ofertaRef.child(bar.getNombre()).child("estrellas").setValue(bar.getEstrellas());
+        ofertaRef.child(bar.getNombre()).child("calificacionesAcumuladas").setValue(bar.getCalificacionesAcumuladas());
+        ofertaRef.child(bar.getNombre()).child("numeroDeCalificaciones").setValue(bar.getNumeroDeCalificaciones());
     }
 }

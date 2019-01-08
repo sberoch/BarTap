@@ -18,6 +18,8 @@ import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.presenters.BarControlPresenter;
 import com.firebase.ui.auth.AuthUI;
 
+import static com.eriochrome.bartime.utils.Utils.toastShort;
+
 public class BarControlActivity extends AppCompatActivity implements BarControlContract.View {
 
     private BarControlPresenter presenter;
@@ -84,12 +86,6 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     }
 
 
-    @Override
-    protected void onDestroy() {
-        presenter.unbind();
-        super.onDestroy();
-    }
-
     private void setupListeners() {
         sinBarButton.setOnClickListener(v -> {
             startActivity(new Intent(BarControlActivity.this, DatosBarOwnerActivity.class));
@@ -104,6 +100,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             presenter.crearJuego();
         });
         crearOferta.setOnClickListener(v -> {
+            //TODO: esto es mock, crear un dialog para crear oferta para que se la describa y hasta que fecha
             presenter.crearOferta();
         });
         navigationView.setNavigationItemSelectedListener(menuItem -> {
@@ -152,4 +149,19 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         updateUI();
     }
 
+    @Override
+    public void finCreandoOferta() {
+        toastShort(this, getString(R.string.creando_oferta));
+    }
+
+    @Override
+    public void creandoOferta() {
+        toastShort(this, getString(R.string.se_creo_la_oferta_con_exito));
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.unbind();
+        super.onDestroy();
+    }
 }

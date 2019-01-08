@@ -56,6 +56,9 @@
     <string name="mis_favoritos">Mis Favoritos</string>
     <string name="editar_bar">Editar Bar</string>
     <string name="se_requiere_cuenta">Se requiere cuenta</string>
+    <string name="creando_oferta">Creando oferta…</string>
+    <string name="se_creo_la_oferta_con_exito">Se creo la oferta con exito!</string>
+    <string name="oferta_signos">¡¡Oferta!!</string>
 
 
 </resources>

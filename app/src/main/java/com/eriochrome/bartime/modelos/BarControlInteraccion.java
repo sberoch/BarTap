@@ -3,6 +3,7 @@ package com.eriochrome.bartime.modelos;
 import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.BarControlContract;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,6 +55,15 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     @Override
     public Bar getBar() {
         return bar;
+    }
+
+    @Override
+    public void crearOfertaMock() {
+        listener.creandoOferta();
+        refGlobal.child("baresConOferta").child(bar.getNombre()).setValue(bar);
+        refGlobal.child("baresConOferta").child(bar.getNombre()).child("oferta").setValue("50% de descuento hasta las 23:00");
+        refGlobal.child("bares").child(bar.getNombre()).child("oferta").setValue("50% de descuento hasta las 23:00")
+            .addOnSuccessListener(aVoid -> listener.finCreandoOferta());
     }
 
 
