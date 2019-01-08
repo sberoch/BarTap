@@ -55,6 +55,7 @@
     <string name="juegos">Juegos</string>
     <string name="mis_favoritos">Mis Favoritos</string>
     <string name="editar_bar">Editar Bar</string>
+    <string name="se_requiere_cuenta">Se requiere cuenta</string>
 
 
 </resources>

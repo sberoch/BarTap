@@ -21,7 +21,7 @@ import com.eriochrome.bartime.R;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class SeleccionFiltros extends DialogFragment {
+public class DialogSeleccionFiltros extends DialogFragment {
 
 
     public interface FiltrosListener {

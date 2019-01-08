@@ -140,7 +140,7 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
 
 
     private void mostrarFiltros() {
-        DialogFragment filtros = new SeleccionFiltros();
+        DialogFragment filtros = new DialogSeleccionFiltros();
         filtros.show(getFragmentManager(), "filtros");
     }
 

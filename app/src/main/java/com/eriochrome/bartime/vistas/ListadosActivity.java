@@ -29,7 +29,7 @@ import java.util.List;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class ListadosActivity extends AppCompatActivity implements ListadosContract.View, SeleccionFiltros.FiltrosListener {
+public class ListadosActivity extends AppCompatActivity implements ListadosContract.View, DialogSeleccionFiltros.FiltrosListener {
 
     private DrawerLayout drawerLayout;
     private ImageButton drawerButton;
@@ -66,6 +66,11 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         setupSpinner();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUI();
+    }
 
     private void ejecutarOpcionMenu(int id) {
         //TODO: mock

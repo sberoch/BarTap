@@ -1,14 +1,13 @@
 package com.eriochrome.bartime.vistas;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -19,11 +18,16 @@ import com.eriochrome.bartime.adapters.ListaComentariosAdapter;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
+import com.firebase.ui.auth.AuthUI;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class PaginaBarActivity extends AppCompatActivity implements PaginaBarContract.View, DialogComentario.ComentarioListener {
+public class PaginaBarActivity extends AppCompatActivity implements PaginaBarContract.View, DialogComentario.ComentarioListener, DialogCrearCuenta.Listener {
 
+    private static final int RC_SIGN_IN = 1;
     private RelativeLayout paginaBarRl;
     private TextView nombreBar;
     private Button calificarBar;
@@ -62,7 +66,6 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         nombreBar.setText(presenter.getNombreDeBar());
         setupListeners();
 
-        //TODO: cambiar los toast por dialogs que permitan crear cuenta
         //TODO: se muestra de a un comentario, esta medio bug que repite dentro de la lista y no se porque
     }
 
@@ -105,7 +108,9 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
                 DialogFragment comentarioDialog = new DialogComentario();
                 comentarioDialog.show(getSupportFragmentManager(), "comentario");
             } else {
-                toastShort(PaginaBarActivity.this, getString(R.string.necesitas_cuenta_calificar));
+                DialogCrearCuenta crearCuentaDialog = new DialogCrearCuenta();
+                crearCuentaDialog.setTexto(getString(R.string.necesitas_cuenta_calificar));
+                crearCuentaDialog.show(getSupportFragmentManager(), "crearCuentaDialog");
             }
         });
 
@@ -118,7 +123,9 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
                 }
 
             } else {
-                toastShort(PaginaBarActivity.this, getString(R.string.necesitas_cuenta_favoritos));
+                DialogCrearCuenta crearCuentaDialog = new DialogCrearCuenta();
+                crearCuentaDialog.setTexto(getString(R.string.necesitas_cuenta_favoritos));
+                crearCuentaDialog.show(getSupportFragmentManager(), "crearCuentaDialog");
             }
         });
 
@@ -129,6 +136,33 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         });
     }
 
+
+    @Override
+    public void login() {
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+
+        startActivityForResult(
+                AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setAvailableProviders(providers)
+                        .setTheme(R.style.AppTheme)
+                        .setLogo(R.drawable.bar_time_2)
+                        .build(),
+                RC_SIGN_IN);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                overridePendingTransition(0,0);
+                finish();
+            }
+        }
+    }
 
     @Override
     public void enviarComentario(Comentario comentario) {
@@ -165,4 +199,5 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         presenter.unbind();
         super.onDestroy();
     }
+
 }
