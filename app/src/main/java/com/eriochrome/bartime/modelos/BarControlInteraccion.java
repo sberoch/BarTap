@@ -58,13 +58,15 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     }
 
     @Override
-    public void crearOfertaMock() {
-        listener.creandoOferta();
+    public void crearOferta(String oferta, String fechafinal) {
         refGlobal.child("baresConOferta").child(bar.getNombre()).setValue(bar);
-        refGlobal.child("baresConOferta").child(bar.getNombre()).child("oferta").setValue("50% de descuento hasta las 23:00");
-        refGlobal.child("bares").child(bar.getNombre()).child("oferta").setValue("50% de descuento hasta las 23:00")
-            .addOnSuccessListener(aVoid -> listener.finCreandoOferta());
-    }
 
+        refGlobal.child("baresConOferta").child(bar.getNombre()).child("oferta").setValue(oferta);
+        refGlobal.child("bares").child(bar.getNombre()).child("oferta").setValue(oferta);
+
+        refGlobal.child("baresConOferta").child(bar.getNombre()).child("fechaFinalOferta").setValue(fechafinal);
+        refGlobal.child("bares").child(bar.getNombre()).child("fechaFinalOferta").setValue(fechafinal)
+        .addOnSuccessListener(aVoid -> listener.finCrearOferta());
+    }
 
 }

@@ -8,20 +8,18 @@ public interface BarControlContract {
         void setupBar();
         String getNombreBar();
         Bar getBar();
-        void crearOfertaMock();
+        void crearOferta(String oferta, String fechafinal);
     }
 
     interface View {
         void cargando();
         void finCargando();
-        void finCreandoOferta();
-        void creandoOferta();
+        void finCrearOferta();
     }
 
     interface CompleteListener {
         void onStart();
         void onComplete(Bar bar);
-        void creandoOferta();
-        void finCreandoOferta();
+        void finCrearOferta();
     }
 }

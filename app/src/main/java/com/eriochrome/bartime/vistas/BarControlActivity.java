@@ -1,13 +1,16 @@
 package com.eriochrome.bartime.vistas;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -20,7 +23,7 @@ import com.firebase.ui.auth.AuthUI;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class BarControlActivity extends AppCompatActivity implements BarControlContract.View {
+public class BarControlActivity extends AppCompatActivity implements BarControlContract.View, DialogCrearOferta.Listener {
 
     private BarControlPresenter presenter;
 
@@ -100,8 +103,8 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             presenter.crearJuego();
         });
         crearOferta.setOnClickListener(v -> {
-            //TODO: esto es mock, crear un dialog para crear oferta para que se la describa y hasta que fecha
-            presenter.crearOferta();
+            DialogFragment dialog = new DialogCrearOferta();
+            dialog.show(getSupportFragmentManager(), "crearOferta");
         });
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
@@ -150,13 +153,15 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     }
 
     @Override
-    public void finCreandoOferta() {
-        toastShort(this, getString(R.string.creando_oferta));
+    public void crearOferta(AlertDialog dialog) {
+        String oferta = ((EditText)dialog.findViewById(R.id.oferta)).getText().toString();
+        String fechaFinal = ((EditText)dialog.findViewById(R.id.fecha_final)).getText().toString();
+        presenter.crearOferta(oferta, fechaFinal);
     }
 
     @Override
-    public void creandoOferta() {
-        toastShort(this, getString(R.string.se_creo_la_oferta_con_exito));
+    public void finCrearOferta() {
+        toastShort(this, "Oferta creada con exito!");
     }
 
     @Override

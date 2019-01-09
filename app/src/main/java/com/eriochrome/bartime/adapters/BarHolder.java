@@ -3,6 +3,7 @@ package com.eriochrome.bartime.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +13,11 @@ import com.eriochrome.bartime.vistas.PaginaBarActivity;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.utils.GlideApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -25,8 +31,16 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
     private TextView ubicacionBar;
     private TextView estrellas;
     private ImageView imagenBar;
+    private TextView oferta;
+
+    //TODO: como recicla las views aparecen ofertas donde no deberia haber
 
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    private DatabaseReference baresRef = FirebaseDatabase.getInstance().getReference().child("bares");
+
+    public interface Callback {
+        void onCallback();
+    }
 
     public BarHolder(Context context, View view) {
         super(view);
@@ -37,6 +51,7 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
         this.ubicacionBar = view.findViewById(R.id.ubicacion_bar);
         this.estrellas = view.findViewById(R.id.estrellas);
         this.imagenBar = view.findViewById(R.id.imagen_bar);
+        this.oferta = view.findViewById(R.id.oferta);
 
         view.setOnClickListener(this);
     }
@@ -56,12 +71,28 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
 
         this.estrellas.setText(String.format("%.1f",bar.getEstrellas()));
 
+        checkearSiHayOferta(bar, () -> oferta.setVisibility(View.VISIBLE));
+
         String imagePath = bar.getNombre() + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(imagePath);
         GlideApp.with(this.view)
                 .load(imagenRef).placeholder(R.drawable.placeholder)
                 .into(this.imagenBar);
 
+    }
+
+    private void checkearSiHayOferta(Bar bar, Callback callback) {
+        baresRef.child(bar.getNombre()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("oferta")) {
+                    callback.onCallback();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
 
