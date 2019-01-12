@@ -60,12 +60,26 @@ public class DatosBarOwnerInteraccion implements DatosBarOwnerContract.Interacci
     @Override
     public void editarBar() {
         DatabaseReference refBar = refGlobal.child("bares").child(bar.getNombre());
+        refBar.child("ubicacion").setValue(bar.getUbicacion());
+        refBar.child("lat").setValue(bar.getLat());
+        refBar.child("lng").setValue(bar.getLng());
         refBar.child("horariosInicial").setValue(bar.getHorariosInicial());
         refBar.child("horariosFinal").setValue(bar.getHorariosFinal());
         refBar.child("happyhourInicial").setValue(bar.getHappyhourInicial());
         refBar.child("happyhourFinal").setValue(bar.getHappyhourFinal());
         refBar.child("metodosDePago").setValue(bar.getMetodosDePago());
 
+    }
+
+    @Override
+    public void setUbicacion(String direccion, double lat, double lng) {
+        bar.setUbicacion(direccion);
+        bar.setLatLng(lat,lng);
+    }
+
+    @Override
+    public String getDireccion() {
+        return bar.getUbicacion();
     }
 
     @Override

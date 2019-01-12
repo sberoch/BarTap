@@ -31,6 +31,7 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBarOwnerContract.View {
 
     private static final int NUMERO_SOLICITUD_GALERIA = 1;
+    private static final int NUMERO_SOLICITUD_UBICACION = 2;
     private Uri path;
 
     private DatosBarOwnerPresenter presenter;
@@ -75,6 +76,7 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
     View.OnFocusChangeListener changeListener = (v, hasFocus) -> {
         if (!hasFocus) ocultarTeclado();
     };
+    private double lat, lng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +109,15 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
 
 
     private void setupListeners() {
-        listo.setOnClickListener(v -> presenter.listo());
+        listo.setOnClickListener(v -> {
+            presenter.listo();
+            finish();
+        });
         seleccionarFoto.setOnClickListener(v -> seleccionarImagenDeGaleria());
-        //TODO: ubicacion
+        seleccionarUbicacion.setOnClickListener(v -> {
+            Intent i = new Intent(DatosBarOwnerActivity.this, MapsActivity.class);
+            startActivityForResult(i, NUMERO_SOLICITUD_UBICACION);
+        });
         nombreBar.setOnFocusChangeListener(changeListener);
     }
 
@@ -204,12 +212,23 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            path = data.getData();
-            presenter.agregarFoto(path);
-            hayImagen = true;
-        } else {
-            toastShort(DatosBarOwnerActivity.this, "No elegiste ninguna imagen.");
+        if (requestCode == NUMERO_SOLICITUD_GALERIA) {
+            if (resultCode == RESULT_OK) {
+                path = data.getData();
+                presenter.agregarFoto(path);
+                hayImagen = true;
+            }
+            else {
+                toastShort(DatosBarOwnerActivity.this, "No elegiste ninguna imagen.");
+            }
+        }
+        else if (requestCode == NUMERO_SOLICITUD_UBICACION) {
+            if (resultCode == RESULT_OK) {
+                lat = data.getDoubleExtra("latitud", 0);
+                lng = data.getDoubleExtra("longitud", 0);
+                String direccion = data.getStringExtra("direccion");
+                seleccionarUbicacion.setText(direccion);
+            }
         }
     }
 
@@ -314,6 +333,21 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
         TimePicker hhfDomingoTp = new TimePicker(hhfDomingo, this);
     }
 
+    @Override
+    public String getDireccion() {
+        return seleccionarUbicacion.getText().toString();
+    }
+
+    @Override
+    public double getLat() {
+        return lat;
+    }
+
+    @Override
+    public double getLng() {
+        return lng;
+    }
+
 
     /**
      * ------------------------Seccion editar----------------------------
@@ -323,6 +357,12 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
     public void setNombreBar(String nombre) {
         nombreBar.setText(nombre);
     }
+
+    @Override
+    public void setUbicacion(String ubicacion) {
+        seleccionarUbicacion.setText(ubicacion);
+    }
+
 
     @SuppressWarnings("ConstantConditions")
     @Override
@@ -401,7 +441,6 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
     /**
      * ---------------------------Fin seccion editar----------------------------------
      */
-
 
     @Override
     protected void onDestroy() {

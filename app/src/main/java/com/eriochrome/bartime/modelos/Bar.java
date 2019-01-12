@@ -11,7 +11,9 @@ import java.util.HashMap;
 public class Bar implements Serializable {
 
     private String nombre;
-    private String ubicacion; //TODO: reemplazar por ubicacion
+    private String ubicacion;
+    private double lat;
+    private double lng;
     private float estrellas;
     private long calificacionesAcumuladas;
     private int numeroDeCalificaciones;
@@ -20,7 +22,6 @@ public class Bar implements Serializable {
     private HashMap<String, Integer> happyhourInicial;
     private HashMap<String, Integer> happyhourFinal;
     private ArrayList<String> metodosDePago;
-
 
     //Requerido por la base de datos.
     public Bar() {
@@ -31,7 +32,8 @@ public class Bar implements Serializable {
         estrellas = 0;
         calificacionesAcumuladas = 0;
         numeroDeCalificaciones = 0;
-        ubicacion = "Test dis shit";
+        ubicacion = "";
+        lat = 0; lng = 0;
         horariosInicial = inicializarHorarios();
         horariosFinal = inicializarHorarios();
         happyhourInicial = inicializarHorarios();
@@ -68,6 +70,12 @@ public class Bar implements Serializable {
     }
     public ArrayList<String> getMetodosDePago() {
         return metodosDePago;
+    }
+    public double getLat() {
+        return lat;
+    }
+    public double getLng() {
+        return lng;
     }
 
     public void actualizarEstrellas(int calificacion) {
@@ -117,4 +125,12 @@ public class Bar implements Serializable {
         return devolver;
     }
 
+    public void setUbicacion(String direccion) {
+        this.ubicacion = direccion;
+    }
+
+    public void setLatLng(double lat, double lng) {
+        this.lat = lat;
+        this.lng = lng;
+    }
 }

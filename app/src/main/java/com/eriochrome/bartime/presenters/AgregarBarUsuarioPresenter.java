@@ -24,12 +24,26 @@ public class AgregarBarUsuarioPresenter {
         this.view = null;
     }
 
-    public void agregarBar(String nombre, Uri path) {
-        Bar bar = new Bar(nombre);
-        if(view.hayImagenSeleccionada()){
-            interaccion.agregarBar(bar, path);
-            view.startConfirmacion();
-        }
+    public void agregarImagen(Uri path) {
+        interaccion.agregarImagen(path);
     }
 
+    public void agregarUbicacion(String direccion, double lat, double lng) {
+        interaccion.agregarUbicacion(direccion, lat, lng);
+    }
+
+    public void crearBar(String nombreBar) {
+        interaccion.crearBar(nombreBar);
+    }
+
+    public void subirBar() {
+        interaccion.subirBar();
+        view.startConfirmacion();
+    }
+
+    public boolean datosCompletos() {
+        return view.hayImagenSeleccionada() &&
+               view.hayUbicacionSeleccionada() &&
+               view.hayNombreValido();
+    }
 }

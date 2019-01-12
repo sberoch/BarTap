@@ -28,11 +28,15 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
     private Button listo;
     private CircleImageView imagenBar;
     private EditText nombre;
-    private TextView botonUbicacion;
-    private TextView botonFoto;
 
+    private TextView ubicacion;
+    private final int NUMERO_SOLICITUD_UBICACION = 1;
+    private double lat;
+    private double lng;
+
+    private TextView botonFoto;
     private Uri path;
-    int NUMERO_SOLICITUD_GALERIA = 1;
+    private final int NUMERO_SOLICITUD_GALERIA = 2;
 
     AgregarBarUsuarioPresenter presenter;
 
@@ -43,7 +47,7 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
 
         volver = findViewById(R.id.volver);
         nombre = findViewById(R.id.nombre);
-        botonUbicacion = findViewById(R.id.ubicacion);
+        ubicacion = findViewById(R.id.ubicacion);
         botonFoto = findViewById(R.id.foto);
         imagenBar = findViewById(R.id.imagen_bar);
         listo = findViewById(R.id.listo);
@@ -54,6 +58,24 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
         presenter.bind(this);
     }
 
+
+    private void setupListeners() {
+        volver.setOnClickListener(v -> finish());
+        ubicacion.setOnClickListener(v -> {
+            Intent intentUbicacion = new Intent(AgregarBarUsuarioActivity.this, MapsActivity.class);
+            startActivityForResult(intentUbicacion, NUMERO_SOLICITUD_UBICACION);
+        });
+        botonFoto.setOnClickListener(v -> seleccionarImagenDeGaleria());
+        listo.setOnClickListener(v -> {
+            String nombreBar = nombre.getText().toString();
+            if (presenter.datosCompletos()) {
+                presenter.crearBar(nombreBar);
+                presenter.agregarImagen(path);
+                presenter.agregarUbicacion(ubicacion.getText().toString(), lat, lng);
+                presenter.subirBar();
+            }
+        });
+    }
 
     private void seleccionarImagenDeGaleria() {
         Intent elegirFotoIntent = new Intent(Intent.ACTION_PICK);
@@ -66,33 +88,33 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //Mostrar en circulo.
-        if (resultCode == RESULT_OK) {
-            try {
-                path = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(path);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                imagenBar.setImageBitmap(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                toastShort(AgregarBarUsuarioActivity.this, "Algo fallo");
+        if (requestCode == NUMERO_SOLICITUD_GALERIA) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    path = data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(path);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    imagenBar.setImageBitmap(selectedImage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    toastShort(AgregarBarUsuarioActivity.this, "Algo fallo");
+                }
+            }
+            else {
+                toastShort(AgregarBarUsuarioActivity.this, "No elegiste ninguna imagen.");
             }
         }
-        else {
-            toastShort(AgregarBarUsuarioActivity.this, "No elegiste ninguna imagen.");
-        }
-    }
 
-    private void setupListeners() {
-        volver.setOnClickListener(v -> finish());
-        listo.setOnClickListener(v -> {
-            String nombreBar = nombre.getText().toString();
-            presenter.agregarBar(nombreBar, path);
-        });
-        botonUbicacion.setOnClickListener(v -> {
-            //TODO: seleccionar ubicacion
-        });
-        botonFoto.setOnClickListener(v -> seleccionarImagenDeGaleria());
+        else if (requestCode == NUMERO_SOLICITUD_UBICACION) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    lat = data.getDoubleExtra("latitud", 0);
+                    lng = data.getDoubleExtra("longitud", 0);
+                    String direccion = data.getStringExtra("direccion");
+                    ubicacion.setText(direccion);
+                }
+            }
+        }
     }
 
 
@@ -100,6 +122,19 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
     public boolean hayImagenSeleccionada() {
         return path != null;
     }
+
+    @Override
+    public boolean hayUbicacionSeleccionada() {
+        String strUbicacion = ubicacion.getText().toString();
+        return (!strUbicacion.equals(getString(R.string.seleccionar_ubicacion))) &&
+                (!strUbicacion.equals(""));
+    }
+
+    @Override
+    public boolean hayNombreValido() {
+        return !nombre.getText().toString().equals("");
+    }
+
 
     @Override
     public void startConfirmacion() {

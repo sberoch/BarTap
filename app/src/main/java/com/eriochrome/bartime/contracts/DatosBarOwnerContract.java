@@ -16,7 +16,8 @@ public interface DatosBarOwnerContract {
         void subirFoto();
         void agregarFoto(Uri path);
         void editarBar();
-
+        void setUbicacion(String direccion, double lat, double lng);
+        String getDireccion();
     }
 
     interface View {
@@ -40,6 +41,11 @@ public interface DatosBarOwnerContract {
         void setMetodosDePago(ArrayList<String> metodosDePago);
         void yaTieneImagen();
         void setTitleEditar();
+        void setUbicacion(String ubicacion);
+        String getDireccion();
+        double getLat();
+        double getLng();
+
     }
 
     interface CompleteListener {

@@ -14,6 +14,7 @@ public class AgregarBarUsuarioInteraccion implements AgregarBarUsuarioContract.I
 
     private DatabaseReference baresRef;
     private StorageReference storageReference;
+    private Bar bar;
 
    public AgregarBarUsuarioInteraccion() {
        baresRef = FirebaseDatabase.getInstance().getReference().child("bares");
@@ -21,17 +22,27 @@ public class AgregarBarUsuarioInteraccion implements AgregarBarUsuarioContract.I
    }
 
     @Override
-    public void agregarBar(Bar nuevoBar, Uri path) {
-        String caminoEnStorage = nuevoBar.getNombre() + ".jpg";
+    public void crearBar(String nombreBar) {
+        bar = new Bar(nombreBar);
+    }
+
+    @Override
+    public void agregarUbicacion(String direccion, double lat, double lng) {
+        bar.setUbicacion(direccion);
+        bar.setLatLng(lat, lng);
+    }
+
+    @Override
+    public void agregarImagen(Uri path) {
+        String caminoEnStorage = bar.getNombre() + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(caminoEnStorage);
         UploadTask uploadTask = imagenRef.putFile(path);
         uploadTask.addOnFailureListener(e -> {
         });
+    }
 
-        baresRef.child(nuevoBar.getNombre()).setValue(nuevoBar, (databaseError, databaseReference) -> {
-            if (databaseError != null) {
-            }
-        });
-
+    @Override
+    public void subirBar() {
+        baresRef.child(bar.getNombre()).setValue(bar);
     }
 }

@@ -29,8 +29,7 @@ public class DatosBarOwnerPresenter implements DatosBarOwnerContract.CompleteLis
 
     public void listo() {
         interaccion.crearBar(view.getTextNombreBar());
-        //TODO: ubicacion
-
+        interaccion.setUbicacion(view.getDireccion(), view.getLat(), view.getLng());
         interaccion.getBar().agregarHorarios(view.getHorariosInicial(), view.getHorariosFinal());
         if (view.tieneHappyHour()) {
             interaccion.getBar().agregarHappyhourHorarios(view.getHappyhourInicial(), view.getHappyhourFinal());
@@ -96,11 +95,22 @@ public class DatosBarOwnerPresenter implements DatosBarOwnerContract.CompleteLis
     private void setInputs(Bar bar) {
         view.setNombreBar(bar.getNombre());
         view.yaTieneImagen();
-        //TODO: set ubicacion
+        view.setUbicacion(bar.getUbicacion());
         view.setHorariosIniciales(bar.getHorariosInicial());
         view.setHorariosFinales(bar.getHorariosFinal());
         view.setHappyHourInicial(bar.getHorariosInicial());
         view.setHappyHourFinal(bar.getHorariosFinal());
         view.setMetodosDePago(bar.getMetodosDePago());
+    }
+
+    public void setUbicacion(Intent data) {
+        double lat = data.getDoubleExtra("latitud", 0);
+        double lng = data.getDoubleExtra("longitud", 0);
+        String direccion = data.getStringExtra("direccion");
+        interaccion.setUbicacion(direccion, lat, lng);
+    }
+
+    public String getDireccion() {
+        return interaccion.getDireccion();
     }
 }
