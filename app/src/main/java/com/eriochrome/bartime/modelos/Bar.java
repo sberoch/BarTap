@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.modelos;
 
 import com.eriochrome.bartime.utils.Utils;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Bar implements Serializable {
     private HashMap<String, Integer> happyhourInicial;
     private HashMap<String, Integer> happyhourFinal;
     private ArrayList<String> metodosDePago;
+    private String oferta;
 
     //Requerido por la base de datos.
     public Bar() {
@@ -39,6 +41,7 @@ public class Bar implements Serializable {
         happyhourInicial = inicializarHorarios();
         happyhourFinal = inicializarHorarios();
         metodosDePago = new ArrayList<>();
+        oferta = "";
     }
 
     public String getNombre() {
@@ -77,6 +80,9 @@ public class Bar implements Serializable {
     public double getLng() {
         return lng;
     }
+    public String getOferta() {
+        return oferta;
+    }
 
     public void actualizarEstrellas(int calificacion) {
         calificacionesAcumuladas += calificacion;
@@ -98,14 +104,14 @@ public class Bar implements Serializable {
         this.metodosDePago = metodosDePago;
     }
 
-    public boolean estaAbierto() {
+    private boolean estaAbierto() {
         Calendar ahora = Calendar.getInstance();
         ahora.setTime(new Date());
         String diaDeHoy = Utils.getStringDiaDeSemana(ahora);
         return Utils.estaEntreHoras(horariosInicial.get(diaDeHoy), horariosFinal.get(diaDeHoy), ahora);
     }
 
-    public boolean hayHappyHour() {
+    private boolean hayHappyHour() {
         Calendar ahora = Calendar.getInstance();
         ahora.setTime(new Date());
         String diaDeHoy = Utils.getStringDiaDeSemana(ahora);
@@ -132,5 +138,28 @@ public class Bar implements Serializable {
     public void setLatLng(double lat, double lng) {
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public LatLng getLatLng() {
+        return new LatLng(lat, lng);
+    }
+
+
+    public boolean contieneFiltros(Filtro filtro) {
+        boolean contiene = true;
+
+        if (filtro.filtroOferta()) {
+            if (oferta.equals("")) contiene = false;
+        }
+
+        if (filtro.filtroAbierto()) {
+            if (!estaAbierto()) contiene = false;
+        }
+
+        if (filtro.filtroAbierto() && filtro.filtroHappyHour()) {
+            if (!hayHappyHour()) contiene = false;
+        }
+
+        return contiene;
     }
 }

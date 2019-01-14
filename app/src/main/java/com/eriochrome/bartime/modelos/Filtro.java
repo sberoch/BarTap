@@ -2,10 +2,10 @@ package com.eriochrome.bartime.modelos;
 
 public class Filtro {
 
-    boolean hayOferta;
-    boolean abierto;
-    boolean happyHour;
-    String ordenamiento;
+    private boolean hayOferta;
+    private boolean abierto;
+    private boolean happyHour;
+    private String ordenamiento;
 
     public void ordenarSegun(String ordenamiento) {
         this.ordenamiento = ordenamiento;

@@ -61,32 +61,20 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
 
     @Override
     public void mostrarConFiltros(Filtro filtro) {
-        Query query = obtenerQuery(filtro);
+        Query query = obtenerOrdenamiento(filtro);
         listaBares.clear();
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot barSnap : dataSnapshot.getChildren()) {
                     Bar bar = barSnap.getValue(Bar.class);
-
-                    //Si los filtros estos estan activados, agregar si se cumple la condicion que piden
-                    if (filtro.filtroAbierto()) {
-                        if (filtro.filtroHappyHour()) {
-                            if (bar.hayHappyHour()) listaBares.add(bar);
-                        }
-                        else {
-                            if (bar.estaAbierto()) listaBares.add(bar);
-                        }
-                    }
-                    else {
+                    if ((bar != null) && (bar.contieneFiltros(filtro))) {
                         listaBares.add(bar);
                     }
                 }
-
                 if(ordenDescendente) {
                     Collections.reverse(listaBares);
                 }
-
                 listener.onSuccess();
             }
 
@@ -98,18 +86,9 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
     }
 
 
-    /**
-     * Achica el query segun los datos marcados en el dialog.
-     *
-     * NOTAR: hay bares que estan en otra rama del json en firebase para poder combinar filtros.
-     */
-    private Query obtenerQuery(Filtro filtro) {
+    private Query obtenerOrdenamiento(Filtro filtro) {
         ordenDescendente = false;
         Query query = refBares;
-
-        if (filtro.filtroOferta()) {
-            query = refGlobal.child("baresConOferta");
-        }
 
         switch (filtro.getOrdenamiento()) {
             case "distancia":

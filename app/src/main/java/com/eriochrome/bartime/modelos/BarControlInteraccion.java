@@ -59,14 +59,11 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
 
     @Override
     public void crearOferta(String oferta, String fechafinal) {
-        refGlobal.child("baresConOferta").child(bar.getNombre()).setValue(bar);
 
-        refGlobal.child("baresConOferta").child(bar.getNombre()).child("oferta").setValue(oferta);
-        refGlobal.child("bares").child(bar.getNombre()).child("oferta").setValue(oferta);
-
-        refGlobal.child("baresConOferta").child(bar.getNombre()).child("fechaFinalOferta").setValue(fechafinal);
-        refGlobal.child("bares").child(bar.getNombre()).child("fechaFinalOferta").setValue(fechafinal)
+        refGlobal.child("bares").child(bar.getNombre()).child("oferta").setValue(oferta)
         .addOnSuccessListener(aVoid -> listener.finCrearOferta());
+        //refGlobal.child("bares").child(bar.getNombre()).child("fechaFinalOferta").setValue(fechafinal)
+        //.addOnSuccessListener(aVoid -> listener.finCrearOferta()); TODO: ponerlo en un solo lugar
     }
 
 }

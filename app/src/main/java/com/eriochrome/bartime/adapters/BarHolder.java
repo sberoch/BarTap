@@ -85,7 +85,8 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
         baresRef.child(bar.getNombre()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild("oferta")) {
+                String ofertaTexto =  dataSnapshot.child("oferta").getValue(String.class);
+                if (!ofertaTexto.equals("")) {
                     callback.onCallback();
                 }
             }
