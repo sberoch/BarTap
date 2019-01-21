@@ -23,6 +23,9 @@ public interface BaresFragmentContract {
         boolean filtroOfertas(AlertDialog dialog);
         boolean filtroHappyHour(AlertDialog dialog);
         boolean filtroAbierto(AlertDialog dialog);
+        boolean filtroEfectivo(AlertDialog dialog);
+        boolean filtroCredito(AlertDialog dialog);
+        boolean filtroDebito(AlertDialog dialog);
     }
 
     interface CompleteListener {

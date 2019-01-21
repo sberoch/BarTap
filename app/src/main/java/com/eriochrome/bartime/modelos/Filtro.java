@@ -6,6 +6,9 @@ public class Filtro {
     private boolean abierto;
     private boolean happyHour;
     private String ordenamiento;
+    private boolean pagoEfectivo;
+    private boolean pagoCredito;
+    private boolean pagoDebito;
 
     public void ordenarSegun(String ordenamiento) {
         this.ordenamiento = ordenamiento;
@@ -37,5 +40,23 @@ public class Filtro {
 
     public void aplicarOfertas(boolean ofertas) {
         this.hayOferta = ofertas;
+    }
+
+    public boolean filtroPagoEfectivo() {
+        return pagoEfectivo;
+    }
+
+    public boolean filtroPagoCredito() {
+        return pagoCredito;
+    }
+
+    public boolean filtroPagoDebito() {
+        return pagoDebito;
+    }
+
+    public void aplicarMetodosDePago(boolean pagoEfectivo, boolean pagoCredito, boolean pagoDebito) {
+        this.pagoEfectivo = pagoEfectivo;
+        this.pagoCredito = pagoCredito;
+        this.pagoDebito = pagoDebito;
     }
 }

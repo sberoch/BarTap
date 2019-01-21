@@ -77,17 +77,6 @@
             android:layout_marginBottom="10dp"
             android:background="#ccc" />
 
-        <TextView
-            android:id="@+id/ordenar_por"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/hl2"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:text="@string/ordenar_por"
-            android:textColor="@android:color/background_dark"
-            android:textSize="16sp" />
-
         <RadioGroup
             android:id="@+id/ordenar_group"
             android:layout_width="wrap_content"
@@ -119,5 +108,56 @@
                 android:text="@string/nombre" />
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/ordenar_por"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hl2"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="@string/ordenar_por"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/hl4"
+            android:layout_width="250dp"
+            android:layout_height="1dip"
+            android:layout_below="@+id/ordenar_group"
+            android:layout_centerHorizontal="true"
+            android:background="#ccc" />
+
+        <RelativeLayout
+            android:id="@+id/metodos_pago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ordenar_group">
+
+            <RadioButton
+                android:id="@+id/efectivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_toStartOf="@+id/credito"
+                android:text="E" />
+
+            <RadioButton
+                android:id="@+id/credito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text="C" />
+
+            <RadioButton
+                android:id="@+id/debito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_toEndOf="@+id/credito"
+                android:text="D" />
+        </RelativeLayout>
+
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

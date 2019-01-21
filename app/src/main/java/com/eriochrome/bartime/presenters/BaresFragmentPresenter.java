@@ -42,6 +42,9 @@ public class BaresFragmentPresenter implements BaresFragmentContract.CompleteLis
         filtro.aplicarAbierto(view.filtroAbierto(dialog));
         filtro.aplicarHappyHour(view.filtroHappyHour(dialog));
         filtro.aplicarOfertas(view.filtroOfertas(dialog));
+        filtro.aplicarMetodosDePago(view.filtroEfectivo(dialog),
+                                    view.filtroCredito(dialog),
+                                    view.filtroDebito(dialog));
         filtro.ordenarSegun(view.getOrdenamiento(dialog));
         interaccion.mostrarConFiltros(filtro);
     }

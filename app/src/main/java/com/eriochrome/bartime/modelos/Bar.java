@@ -160,6 +160,18 @@ public class Bar implements Serializable {
             if (!hayHappyHour()) contiene = false;
         }
 
+        if (filtro.filtroPagoEfectivo()) {
+            if(metodosDePago == null || !metodosDePago.contains("efectivo")) contiene = false;
+        }
+
+        if (filtro.filtroPagoCredito()) {
+            if(metodosDePago == null || !metodosDePago.contains("tarjeta de credito")) contiene = false;
+        }
+
+        if (filtro.filtroPagoDebito()) {
+            if(metodosDePago == null || !metodosDePago.contains("tarjeta de debito")) contiene = false;
+        }
+
         return contiene;
     }
 }
