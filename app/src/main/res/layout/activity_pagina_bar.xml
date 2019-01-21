@@ -21,6 +21,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/nombre_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="Titulo"
+            android:textColor="@android:color/background_dark"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/hl"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/nombre_bar"
+            android:layout_marginBottom="2dp"
+            android:background="#ccc" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -36,7 +56,6 @@
                     android:id="@+id/calificarBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_margin="15dp"
                     android:text="@string/calificar_bar" />
 
@@ -51,13 +70,26 @@
                     android:id="@+id/agregar_favorito"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:text="@string/agregar_a_favoritos" />
 
                 <View
                     android:id="@+id/hl3"
                     android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_marginBottom="2dp"
+                    android:background="#ccc" />
+
+                <Button
+                    android:id="@+id/ver_mapa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/ver_en_mapa" />
+
+                <View
+                    android:id="@+id/hl4"
+                    android:layout_width="match_parent"
                     android:layout_height="1dip"
                     android:layout_marginBottom="2dp"
                     android:background="#ccc" />
@@ -71,31 +103,12 @@
                     android:id="@+id/ver_mas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
                     android:text="@string/ver_mas" />
+
             </LinearLayout>
         </ScrollView>
 
-        <View
-            android:id="@+id/hl"
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
-            android:layout_below="@+id/nombre_bar"
-            android:layout_marginBottom="2dp"
-            android:background="#ccc" />
-
-        <TextView
-            android:id="@+id/nombre_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="20dp"
-            android:fontFamily="@font/lato_bold"
-            android:text="Titulo"
-            android:textColor="@android:color/background_dark"
-            android:textSize="18sp" />
     </RelativeLayout>
 
 

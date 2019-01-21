@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class SeleccionarUbicacionActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private static final int CODIGO_REQUEST_LOCATION = 123;
 
@@ -47,12 +47,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView lugarTexto;
     private Button listo;
 
-    //TODO: PROBAR TODO LO RESPECTO A LOS MAPAS ACA, PERO DESPUES INTEGRARLO A LA APP
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_seleccionar_ubicacion);
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -113,11 +111,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String aMostrar = new CustomDireccion(calle, numero, ciudad, provincia, pais).construir();
                 lugarTexto.setText(aMostrar);
             } else {
-                lugarTexto.setText("No se encontro direccion");
+                lugarTexto.setText(getString(R.string.no_se_encontro_direccion));
             }
         } catch (IOException e) {
             e.printStackTrace();
-            lugarTexto.setText("No se puede obtener direccion");
+            lugarTexto.setText(getString(R.string.no_se_puede_obtener_direccion));
         }
     }
 

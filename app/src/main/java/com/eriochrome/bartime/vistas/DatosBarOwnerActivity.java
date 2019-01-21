@@ -115,7 +115,7 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
         });
         seleccionarFoto.setOnClickListener(v -> seleccionarImagenDeGaleria());
         seleccionarUbicacion.setOnClickListener(v -> {
-            Intent i = new Intent(DatosBarOwnerActivity.this, MapsActivity.class);
+            Intent i = new Intent(DatosBarOwnerActivity.this, SeleccionarUbicacionActivity.class);
             startActivityForResult(i, NUMERO_SOLICITUD_UBICACION);
         });
         nombreBar.setOnFocusChangeListener(changeListener);

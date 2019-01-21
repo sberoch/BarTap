@@ -62,7 +62,7 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
     private void setupListeners() {
         volver.setOnClickListener(v -> finish());
         ubicacion.setOnClickListener(v -> {
-            Intent intentUbicacion = new Intent(AgregarBarUsuarioActivity.this, MapsActivity.class);
+            Intent intentUbicacion = new Intent(AgregarBarUsuarioActivity.this, SeleccionarUbicacionActivity.class);
             startActivityForResult(intentUbicacion, NUMERO_SOLICITUD_UBICACION);
         });
         botonFoto.setOnClickListener(v -> seleccionarImagenDeGaleria());

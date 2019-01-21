@@ -59,6 +59,10 @@
     <string name="creando_oferta">Creando oferta…</string>
     <string name="se_creo_la_oferta_con_exito">Se creo la oferta con exito!</string>
     <string name="oferta_signos">¡¡Oferta!!</string>
+    <string name="no_se_encontro_direccion">No se encontro direccion</string>
+    <string name="no_se_puede_obtener_direccion">No se puede obtener direccion</string>
+    <string name="ubicacion_del_bar">Ubicacion del Bar</string>
+    <string name="ver_en_mapa">Ver en Mapa</string>
 
 
 </resources>

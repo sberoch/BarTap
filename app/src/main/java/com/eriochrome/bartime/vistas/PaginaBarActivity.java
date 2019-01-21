@@ -33,6 +33,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private Button favorito;
     private ListView listView;
     private Button verMas;
+    private Button verMapa;
 
     private ListaComentariosAdapter adapter;
 
@@ -57,6 +58,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         calificarBar = findViewById(R.id.calificarBar);
         favorito = findViewById(R.id.agregar_favorito);
         verMas = findViewById(R.id.ver_mas);
+        verMapa = findViewById(R.id.ver_mapa);
 
         listView = findViewById(R.id.listview);
         adapter = new ListaComentariosAdapter();
@@ -130,6 +132,12 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
         verMas.setOnClickListener(v -> {
             Intent i = new Intent(PaginaBarActivity.this, ComentariosActivity.class);
+            i = presenter.enviarBar(i);
+            startActivity(i);
+        });
+
+        verMapa.setOnClickListener(v -> {
+            Intent i = new Intent(PaginaBarActivity.this, VerMapaActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
         });
