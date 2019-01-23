@@ -1,8 +1,11 @@
 package com.eriochrome.bartime.modelos;
 
+import android.location.Location;
 import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
+import com.eriochrome.bartime.utils.ComparadorBaresDistancia;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,12 +23,15 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
     private boolean ordenDescendente;
     private ArrayList<Bar> listaBares;
 
-
     private BaresFragmentContract.CompleteListener listener;
+
+    private LatLng ubicacion;
+    private boolean ordenPorDistancia;
 
 
     public BaresFragmentInteraccion(BaresFragmentContract.CompleteListener listener) {
         ordenDescendente = false;
+        ordenPorDistancia = false;
         refGlobal = FirebaseDatabase.getInstance().getReference();
         refBares = refGlobal.child("bares");
         listaBares = new ArrayList<>();
@@ -72,8 +78,11 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
                         listaBares.add(bar);
                     }
                 }
-                if(ordenDescendente) {
+                if (ordenDescendente) {
                     Collections.reverse(listaBares);
+                }
+                if (ordenPorDistancia) {
+                    Collections.sort(listaBares, new ComparadorBaresDistancia(ubicacion));
                 }
                 listener.onSuccess();
             }
@@ -85,15 +94,20 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
 
     }
 
+    @Override
+    public void setUltimaUbicacion(Location ultimaUbicacion) {
+        ubicacion = new LatLng(ultimaUbicacion.getLatitude(), ultimaUbicacion.getLongitude());
+    }
+
 
     private Query obtenerOrdenamiento(Filtro filtro) {
         ordenDescendente = false;
+        ordenPorDistancia = false;
         Query query = refBares;
 
         switch (filtro.getOrdenamiento()) {
             case "distancia":
-                //TODO: distancias (geoloc)
-                query = query.orderByChild("estrellas");
+                ordenPorDistancia = true;
                 break;
             case "estrellas":
                 query = query.orderByChild("estrellas");

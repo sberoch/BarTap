@@ -2,13 +2,17 @@ package com.eriochrome.bartime.vistas;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.app.FragmentTransaction;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -21,7 +25,11 @@ import android.widget.TextView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.ListadosContract;
 import com.eriochrome.bartime.presenters.ListadosPresenter;
+import com.eriochrome.bartime.utils.LocationHelper;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +37,9 @@ import java.util.List;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class ListadosActivity extends AppCompatActivity implements ListadosContract.View, DialogSeleccionFiltros.FiltrosListener {
+public class ListadosActivity extends AppCompatActivity implements
+        ListadosContract.View, DialogSeleccionFiltros.FiltrosListener, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private DrawerLayout drawerLayout;
     private ImageButton drawerButton;
@@ -41,6 +51,9 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     private static final int RC_SIGN_IN = 1;
 
     private ListadosPresenter presenter;
+
+    private LocationHelper locationHelper;
+    private Location ultimaUbicacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +68,18 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         presenter = new ListadosPresenter();
         presenter.bind(this);
 
+        locationHelper = new LocationHelper(this);
+        locationHelper.checkpermission();
+        if (locationHelper.checkPlayServices()) {
+            locationHelper.buildGoogleApiClient();
+        }
+
         setupDrawer();
         setupSpinner();
         setupListeners();
         updateUI();
     }
+
 
     private void updateUI() {
         setupDrawer();
@@ -70,6 +90,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     protected void onResume() {
         super.onResume();
         updateUI();
+        locationHelper.checkPlayServices();
     }
 
     private void ejecutarOpcionMenu(int id) {
@@ -100,8 +121,8 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
                 AuthUI.getInstance()
                         .signOut(this)
                         .addOnCompleteListener(task -> {
-                           startActivity(new Intent(ListadosActivity.this, DistincionDeUsuarioActivity.class));
-                           finish();
+                            startActivity(new Intent(ListadosActivity.this, DistincionDeUsuarioActivity.class));
+                            finish();
                         });
                 break;
 
@@ -141,6 +162,8 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             } else {
                 toastShort(ListadosActivity.this, "Ocurrio un error. Intente nuevamente");
             }
+        } else {
+            locationHelper.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -181,7 +204,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         ArrayList<String> listaFragments = new ArrayList<>();
         listaFragments.add(getString(R.string.bares));
         listaFragments.add(getString(R.string.juegos));
-        if(presenter.estaConectado()) {
+        if (presenter.estaConectado()) {
             listaFragments.add(getString(R.string.mis_favoritos));
         }
         spinnerAdapter = new ArrayAdapter<>(this,
@@ -231,7 +254,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         }
     }
 
-
     @Override
     public void onBackPressed() {
         finishAndRemoveTask();
@@ -247,8 +269,29 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     public void aplicarFiltros(AlertDialog dialog) {
         Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
+        ultimaUbicacion = locationHelper.getLocation();
         if (f instanceof ListadoBaresFragment) {
-            ((ListadoBaresFragment) f).aplicarFiltros(dialog);
+            ((ListadoBaresFragment) f).aplicarFiltros(dialog, ultimaUbicacion);
         }
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        ultimaUbicacion = locationHelper.getLocation();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        locationHelper.connectApiClient();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.i("Fallo", "Fallo en la conexion");
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        locationHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

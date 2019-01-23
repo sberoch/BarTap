@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.contracts;
 
 import android.app.AlertDialog;
+import android.location.Location;
 
 import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.modelos.Filtro;
@@ -13,6 +14,7 @@ public interface BaresFragmentContract {
         void buscarConPalabra(String s);
         ArrayList<Bar> obtenerLista();
         void mostrarConFiltros(Filtro filtro);
+        void setUltimaUbicacion(Location ultimaUbicacion);
     }
 
     interface View {

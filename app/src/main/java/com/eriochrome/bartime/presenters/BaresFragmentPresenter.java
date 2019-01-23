@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.presenters;
 
 import android.app.AlertDialog;
+import android.location.Location;
 
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
 import com.eriochrome.bartime.modelos.BaresFragmentInteraccion;
@@ -54,6 +55,9 @@ public class BaresFragmentPresenter implements BaresFragmentContract.CompleteLis
         view.finCargando(interaccion.obtenerLista());
     }
 
+    public void setUltimaUbicacion(Location ultimaUbicacion) {
+        interaccion.setUltimaUbicacion(ultimaUbicacion);
+    }
 }
 
 

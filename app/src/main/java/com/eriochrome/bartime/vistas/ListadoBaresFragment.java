@@ -2,6 +2,7 @@ package com.eriochrome.bartime.vistas;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.app.DialogFragment;
@@ -164,7 +165,14 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
     }
 
 
-    public void aplicarFiltros(AlertDialog dialog) {
+    public void aplicarFiltros(AlertDialog dialog, Location ultimaUbicacion) {
+        if (getOrdenamiento(dialog).equals("distancia")) {
+            if (ultimaUbicacion != null) {
+                presenter.setUltimaUbicacion(ultimaUbicacion);
+            } else {
+                toastShort(getActivity(), "No se pudo obtener su ubicacion, se usara la establecida por defecto.");
+            }
+        }
         presenter.mostrarConFiltros(dialog);
     }
 

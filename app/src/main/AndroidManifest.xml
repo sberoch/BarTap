@@ -12,6 +12,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.location.network" />
@@ -41,11 +42,6 @@
             android:name=".vistas.ListadosActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
         <activity
             android:name=".vistas.AgregarBarUsuarioActivity"
             android:configChanges="orientation"
@@ -74,11 +70,21 @@
             android:name=".vistas.ComentariosActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".vistas.SeleccionarUbicacionActivity" />
+        <activity
+            android:name=".vistas.SeleccionarUbicacionActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.VerMapaActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -92,7 +98,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".vistas.VerMapaActivity"></activity>
     </application>
 
 </manifest>
