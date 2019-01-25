@@ -3,6 +3,7 @@ package com.eriochrome.bartime.vistas;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.ListaComentariosAdapter;
+import com.eriochrome.bartime.adapters.ViewPagerAdapter;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
@@ -35,7 +37,10 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private Button verMas;
     private Button verMapa;
 
-    private ListaComentariosAdapter adapter;
+    private ViewPager viewPager;
+    private ViewPagerAdapter viewPagerAdapter;
+
+    private ListaComentariosAdapter listaComentariosAdapter;
 
     private ProgressBar progressBar;
 
@@ -60,9 +65,13 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         verMas = findViewById(R.id.ver_mas);
         verMapa = findViewById(R.id.ver_mapa);
 
+        viewPager = findViewById(R.id.view_pager);
+        viewPagerAdapter = new ViewPagerAdapter(this, presenter.getBar());
+        viewPager.setAdapter(viewPagerAdapter);
+
         listView = findViewById(R.id.listview);
-        adapter = new ListaComentariosAdapter();
-        listView.setAdapter(adapter);
+        listaComentariosAdapter = new ListaComentariosAdapter();
+        listView.setAdapter(listaComentariosAdapter);
 
         nombreBar.setText(presenter.getNombreDeBar());
         setupListeners();
@@ -180,24 +189,22 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     @Override
     public void comentarioListo() {
         toastShort(this, getString(R.string.comentario_enviado));
-        findViewById(R.id.hl2).setVisibility(View.GONE);
         calificarBar.setVisibility(View.GONE);
     }
 
     @Override
     public void yaCalificoElBar() {
-        findViewById(R.id.hl2).setVisibility(View.GONE);
         calificarBar.setVisibility(View.GONE);
     }
 
     @Override
     public void cargaDeComentarios() {
-        adapter.clear();
+        listaComentariosAdapter.clear();
     }
 
     @Override
     public void finCargaDeComentarios() {
-        adapter.setItems(presenter.getComentarios());
+        listaComentariosAdapter.setItems(presenter.getComentarios());
     }
 
 

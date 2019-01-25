@@ -68,4 +68,12 @@ public class Utils {
         }
         return devolver;
     }
+
+    public static String getNumeroDeFoto(int pos) {
+        if (pos == 0) {
+            return "";
+        } else {
+            return ("_" + Integer.toString(pos + 1));
+        }
+    }
 }

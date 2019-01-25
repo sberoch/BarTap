@@ -24,6 +24,7 @@ public class Bar implements Serializable {
     private HashMap<String, Integer> happyhourFinal;
     private ArrayList<String> metodosDePago;
     private String oferta;
+    private int cantidadDeFotos;
 
     //Requerido por la base de datos.
     public Bar() {
@@ -42,6 +43,7 @@ public class Bar implements Serializable {
         happyhourFinal = inicializarHorarios();
         metodosDePago = new ArrayList<>();
         oferta = "";
+        cantidadDeFotos = 1;
     }
 
     public String getNombre() {
@@ -82,6 +84,9 @@ public class Bar implements Serializable {
     }
     public String getOferta() {
         return oferta;
+    }
+    public int getCantidadDeFotos() {
+        return cantidadDeFotos;
     }
 
     public void actualizarEstrellas(int calificacion) {
@@ -171,7 +176,12 @@ public class Bar implements Serializable {
         if (filtro.filtroPagoDebito()) {
             if(metodosDePago == null || !metodosDePago.contains("tarjeta de debito")) contiene = false;
         }
-
         return contiene;
     }
+
+    public void aumentarCantidadDeFotos() {
+        cantidadDeFotos++;
+    }
+
+
 }

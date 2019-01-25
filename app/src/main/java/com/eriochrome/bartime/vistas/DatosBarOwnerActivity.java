@@ -32,7 +32,6 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
 
     private static final int NUMERO_SOLICITUD_GALERIA = 1;
     private static final int NUMERO_SOLICITUD_UBICACION = 2;
-    private Uri path;
 
     private DatosBarOwnerPresenter presenter;
 
@@ -214,7 +213,7 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NUMERO_SOLICITUD_GALERIA) {
             if (resultCode == RESULT_OK) {
-                path = data.getData();
+                Uri path = data.getData();
                 presenter.agregarFoto(path);
                 hayImagen = true;
             }

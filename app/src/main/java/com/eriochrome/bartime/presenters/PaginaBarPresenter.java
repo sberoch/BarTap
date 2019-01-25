@@ -119,4 +119,8 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
     public void cargarComentarios() {
         interaccion.cargarComentarios();
     }
+
+    public Bar getBar() {
+        return interaccion.getBar();
+    }
 }

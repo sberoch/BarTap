@@ -79,8 +79,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nombre_bar"
-                android:layout_centerHorizontal="true"
+                android:layout_toStartOf="@+id/asd"
                 app:srcCompat="@drawable/ic_edit_24dp" />
+
+            <Space
+                android:id="@+id/asd"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nombre_bar"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp" />
+
+            <ImageButton
+                android:id="@+id/agregar_fotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nombre_bar"
+                android:layout_toEndOf="@+id/asd"
+                app:srcCompat="@drawable/ic_add_to_photos_24dp" />
 
             <Button
                 android:id="@+id/crear_oferta"

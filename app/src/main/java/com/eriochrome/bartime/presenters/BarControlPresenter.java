@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.presenters;
 
 import android.content.Intent;
+import android.net.Uri;
 
 import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.modelos.Bar;
@@ -71,4 +72,7 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
     }
 
 
+    public void subirFoto(Uri path) {
+        interaccion.subirFoto(path);
+    }
 }

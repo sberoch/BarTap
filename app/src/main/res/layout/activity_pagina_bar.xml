@@ -52,19 +52,19 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                </android.support.v4.view.ViewPager>
+
                 <Button
                     android:id="@+id/calificarBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:text="@string/calificar_bar" />
-
-                <View
-                    android:id="@+id/hl2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dip"
-                    android:layout_marginBottom="2dp"
-                    android:background="#ccc" />
 
                 <Button
                     android:id="@+id/agregar_favorito"
@@ -73,26 +73,12 @@
                     android:layout_margin="10dp"
                     android:text="@string/agregar_a_favoritos" />
 
-                <View
-                    android:id="@+id/hl3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dip"
-                    android:layout_marginBottom="2dp"
-                    android:background="#ccc" />
-
                 <Button
                     android:id="@+id/ver_mapa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="@string/ver_en_mapa" />
-
-                <View
-                    android:id="@+id/hl4"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:layout_marginBottom="2dp"
-                    android:background="#ccc" />
 
                 <ListView
                     android:id="@+id/listview"

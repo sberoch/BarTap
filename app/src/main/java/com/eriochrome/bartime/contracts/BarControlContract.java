@@ -1,5 +1,7 @@
 package com.eriochrome.bartime.contracts;
 
+import android.net.Uri;
+
 import com.eriochrome.bartime.modelos.Bar;
 
 public interface BarControlContract {
@@ -9,6 +11,7 @@ public interface BarControlContract {
         String getNombreBar();
         Bar getBar();
         void crearOferta(String oferta, String fechafinal);
+        void subirFoto(Uri path);
     }
 
     interface View {
