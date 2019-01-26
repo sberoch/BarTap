@@ -114,7 +114,9 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             startActivity(i);
         });
         crearJuego.setOnClickListener(v -> {
-            presenter.crearJuego();
+            Intent i = new Intent(BarControlActivity.this, NuevoJuegoActivity.class);
+            i = presenter.enviarBar(i);
+            startActivity(i);
         });
         agregarFotos.setOnClickListener(v -> {
             seleccionarImagenDeGaleria();

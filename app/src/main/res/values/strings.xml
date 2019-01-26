@@ -63,6 +63,8 @@
     <string name="no_se_puede_obtener_direccion">No se puede obtener direccion</string>
     <string name="ubicacion_del_bar">Ubicacion del Bar</string>
     <string name="ver_en_mapa">Ver en Mapa</string>
+    <string name="crear_desafio">Crear Desafio</string>
+    <string name="crear_trivia">Crear Trivia</string>
 
 
 </resources>
