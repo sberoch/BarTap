@@ -65,6 +65,9 @@
     <string name="ver_en_mapa">Ver en Mapa</string>
     <string name="crear_desafio">Crear Desafio</string>
     <string name="crear_trivia">Crear Trivia</string>
+    <string name="dificil">Dificil</string>
+    <string name="medio">Medio</string>
+    <string name="facil">Facil</string>
 
 
 </resources>

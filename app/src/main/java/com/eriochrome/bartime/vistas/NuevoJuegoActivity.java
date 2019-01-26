@@ -3,11 +3,14 @@ package com.eriochrome.bartime.vistas;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.NuevoJuegoContract;
 import com.eriochrome.bartime.presenters.NuevoJuegoPresenter;
+
+import java.util.ArrayList;
 
 public class NuevoJuegoActivity extends AppCompatActivity implements NuevoJuegoContract.View {
 
@@ -38,6 +41,7 @@ public class NuevoJuegoActivity extends AppCompatActivity implements NuevoJuegoC
             //TODO: crear trivia activity
         });
     }
+
 
     @Override
     protected void onDestroy() {
