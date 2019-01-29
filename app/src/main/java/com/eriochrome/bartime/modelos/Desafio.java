@@ -1,8 +1,9 @@
 package com.eriochrome.bartime.modelos;
 
-public class Desafio extends Juego{
+public class Desafio extends Juego {
 
     private String desafioTexto;
+
 
     public Desafio(String desafioTexto) {
         this.desafioTexto = desafioTexto;
@@ -16,10 +17,18 @@ public class Desafio extends Juego{
         super.asignarTipo("Desafio");
     }
 
+    public void setID(String id) {
+        super.setID(id);
+    }
+
 
     /**
      * Requerido por firebase
      */
+
+    public Desafio() {
+    }
+
     @Override
     public int getPuntos() {
         return super.getPuntos();

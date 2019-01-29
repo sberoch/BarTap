@@ -68,6 +68,8 @@
     <string name="dificil">Dificil</string>
     <string name="medio">Medio</string>
     <string name="facil">Facil</string>
+    <string name="participar">Participar</string>
+    <string name="necesitas_cuenta_participar">Necesitas una cuenta para participar del juego.</string>
 
 
 </resources>

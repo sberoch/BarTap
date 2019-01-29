@@ -59,9 +59,6 @@ public class ListaBaresAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 Bar bar = this.bares.get(i);
                 barHolder.bindBar(bar);
             }
-            else if (viewHolder instanceof FooterHolder) {
-                FooterHolder footerHolder = (FooterHolder) viewHolder;
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -23,7 +23,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
+import com.eriochrome.bartime.adapters.JuegoHolder;
 import com.eriochrome.bartime.contracts.ListadosContract;
+import com.eriochrome.bartime.modelos.Juego;
 import com.eriochrome.bartime.presenters.ListadosPresenter;
 import com.eriochrome.bartime.utils.LocationHelper;
 import com.firebase.ui.auth.AuthUI;
@@ -37,9 +39,14 @@ import java.util.List;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class ListadosActivity extends AppCompatActivity implements
-        ListadosContract.View, DialogSeleccionFiltros.FiltrosListener, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, ActivityCompat.OnRequestPermissionsResultCallback {
+public class ListadosActivity extends AppCompatActivity implements ListadosContract.View,
+        DialogSeleccionFiltros.FiltrosListener,
+        JuegoHolder.OnJuegoHolderClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        ActivityCompat.OnRequestPermissionsResultCallback,
+        DialogResumenJuego.Listener,
+        DialogCrearCuenta.Listener{
 
     private DrawerLayout drawerLayout;
     private ImageButton drawerButton;
@@ -73,11 +80,7 @@ public class ListadosActivity extends AppCompatActivity implements
         if (locationHelper.checkPlayServices()) {
             locationHelper.buildGoogleApiClient();
         }
-
-        setupDrawer();
-        setupSpinner();
         setupListeners();
-        updateUI();
     }
 
 
@@ -276,6 +279,19 @@ public class ListadosActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onClickJuego(Juego juego) {
+        Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
+        if (f instanceof ListadoJuegosFragment) {
+            ((ListadoJuegosFragment) f).onClickJuego(juego);
+        }
+    }
+
+    @Override
+    public void login() {
+        loginUsuario();
+    }
+
+    @Override
     public void onConnected(@Nullable Bundle bundle) {
         ultimaUbicacion = locationHelper.getLocation();
     }
@@ -293,5 +309,13 @@ public class ListadosActivity extends AppCompatActivity implements
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         locationHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void participarDeJuego(Juego juego) {
+        Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
+        if (f instanceof ListadoJuegosFragment) {
+            ((ListadoJuegosFragment) f).participarDeJuego(juego);
+        }
     }
 }

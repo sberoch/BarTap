@@ -5,6 +5,7 @@ public class Juego {
     protected int puntos;
     private String nombreBar;
     private String tipoDeJuego;
+    private String id;
 
     public int getPuntos() {
         return puntos;
@@ -23,8 +24,23 @@ public class Juego {
     public String getTipoDeJuego() {
         return tipoDeJuego;
     }
+
     protected void asignarTipo(String tipo) {
         this.tipoDeJuego = tipo;
     }
 
+    public String getTextoResumen() {
+        if (this instanceof Desafio) {
+            return ((Desafio) this).getDesafioTexto();
+        }
+        return "";
+    }
+
+    public String getID() {
+        return id;
+    }
+
+    public void setID(String id) {
+        this.id = id;
+    }
 }

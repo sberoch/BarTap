@@ -31,8 +31,10 @@ public class CrearDesafioInteraccion implements CrearDesafioContract.Interaccion
         desafio.asignarTipo();
 
         String desafioID = refJuegos.push().getKey();
+        desafio.setID(desafioID);
+
         if (desafioID != null) {
-            refJuegos.child(desafioID).setValue(desafio)
+            refJuegos.child("Desafio").child(desafioID).setValue(desafio)
                     .addOnSuccessListener(aVoid -> listener.enviado());
         }
 

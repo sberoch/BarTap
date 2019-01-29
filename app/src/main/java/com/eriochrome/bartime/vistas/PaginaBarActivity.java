@@ -120,7 +120,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             } else {
                 DialogCrearCuenta crearCuentaDialog = new DialogCrearCuenta();
                 crearCuentaDialog.setTexto(getString(R.string.necesitas_cuenta_calificar));
-                crearCuentaDialog.show(getSupportFragmentManager(), "crearCuentaDialog");
+                crearCuentaDialog.show(getFragmentManager(), "crearCuentaDialog");
             }
         });
 
@@ -135,7 +135,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             } else {
                 DialogCrearCuenta crearCuentaDialog = new DialogCrearCuenta();
                 crearCuentaDialog.setTexto(getString(R.string.necesitas_cuenta_favoritos));
-                crearCuentaDialog.show(getSupportFragmentManager(), "crearCuentaDialog");
+                crearCuentaDialog.show(getFragmentManager(), "crearCuentaDialog");
             }
         });
 

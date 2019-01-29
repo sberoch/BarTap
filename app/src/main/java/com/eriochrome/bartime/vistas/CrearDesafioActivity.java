@@ -46,7 +46,7 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
     @Override
     protected void onStart() {
         super.onStart();
-        spinnerDificultad.setSelection(spinnerAdapter.getPosition("Medio"));
+        spinnerDificultad.setSelection(spinnerAdapter.getPosition(getString(R.string.medio)));
     }
 
     private void setupSpinner() {
