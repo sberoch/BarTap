@@ -99,25 +99,13 @@
                 app:srcCompat="@drawable/ic_add_to_photos_24dp" />
 
             <Button
-                android:id="@+id/crear_oferta"
+                android:id="@+id/juegos"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/crear_oferta" />
-
-            <Button
-                android:id="@+id/crear_juego"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/crear_oferta"
-                android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
-                android:text="@string/crear_juego" />
+                android:text="@string/juegos" />
 
         </RelativeLayout>
     </RelativeLayout>

@@ -2,8 +2,6 @@ package com.eriochrome.bartime.vistas;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -25,9 +23,6 @@ import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.presenters.BarControlPresenter;
 import com.firebase.ui.auth.AuthUI;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class BarControlActivity extends AppCompatActivity implements BarControlContract.View, DialogCrearOferta.Listener {
@@ -48,8 +43,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     private RelativeLayout barControlRl;
     private TextView nombreBar;
     private ImageButton editarBar;
-    private Button crearJuego;
-    private Button crearOferta;
+    private Button juegos;
     private ImageButton agregarFotos;
 
 
@@ -74,8 +68,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         barControlRl = findViewById(R.id.bar_control_rl);
         nombreBar = findViewById(R.id.nombre_bar);
         editarBar = findViewById(R.id.editar_bar);
-        crearJuego = findViewById(R.id.crear_juego);
-        crearOferta = findViewById(R.id.crear_oferta);
+        juegos = findViewById(R.id.juegos);
         agregarFotos = findViewById(R.id.agregar_fotos);
 
         setupListeners();
@@ -113,17 +106,13 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             i = presenter.enviarBar(i);
             startActivity(i);
         });
-        crearJuego.setOnClickListener(v -> {
-            Intent i = new Intent(BarControlActivity.this, NuevoJuegoActivity.class);
+        juegos.setOnClickListener(v -> {
+            Intent i = new Intent(BarControlActivity.this, JuegosGeneralActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
         });
         agregarFotos.setOnClickListener(v -> {
             seleccionarImagenDeGaleria();
-        });
-        crearOferta.setOnClickListener(v -> {
-            DialogFragment dialog = new DialogCrearOferta();
-            dialog.show(getSupportFragmentManager(), "crearOferta");
         });
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
