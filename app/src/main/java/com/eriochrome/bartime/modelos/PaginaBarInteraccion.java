@@ -49,7 +49,6 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     @Override
     public void actualizarEstrellas(int calificacion) {
         bar.actualizarEstrellas(calificacion);
-        //TODO: no tiene que actualizar ofertas si no esta en oferta xd
         ActualizadorFirebase.actualizarEstrellas(bar, ref);
     }
 

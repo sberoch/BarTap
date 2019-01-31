@@ -16,25 +16,41 @@ public class ListaJuegosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private ArrayList<Juego> juegos;
     private Context context;
+    private boolean esCreadoPorBar;
 
-    public ListaJuegosAdapter(Context context) {
+    public ListaJuegosAdapter(Context context, boolean esCreadoPorBar) {
         this.context = context;
         this.juegos = new ArrayList<>();
+        this.esCreadoPorBar = esCreadoPorBar;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_juego, viewGroup, false);
-        return new JuegoHolder(view, context);
+        if (esCreadoPorBar) {
+            View view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.item_juego_del_bar, viewGroup, false);
+            return new JuegoDelBarHolder(view, context);
+        }
+        else {
+            View view = LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.item_juego, viewGroup, false);
+            return new JuegoHolder(view, context);
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        JuegoHolder juegoHolder = (JuegoHolder) viewHolder;
-        Juego juego = juegos.get(i);
-        juegoHolder.bindJuego(juego);
+        if (esCreadoPorBar) {
+            JuegoDelBarHolder juegoDelBarHolder = (JuegoDelBarHolder) viewHolder;
+            Juego juego = juegos.get(i);
+            juegoDelBarHolder.bindJuego(juego);
+        }
+        else {
+            JuegoHolder juegoHolder = (JuegoHolder) viewHolder;
+            Juego juego = juegos.get(i);
+            juegoHolder.bindJuego(juego);
+        }
     }
 
     @Override

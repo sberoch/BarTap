@@ -26,20 +26,6 @@
             android:background="#ccc" />
 
         <Switch
-            android:id="@+id/descuentos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/happyhour"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentTop="false"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="25dp"
-            android:text="@string/tiene_ofertas"
-            android:textColorLink="@color/colorPrimary"
-            android:textSize="16sp" />
-
-        <Switch
             android:id="@+id/abierto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +57,7 @@
             android:id="@+id/hl2"
             android:layout_width="250dp"
             android:layout_height="1dip"
-            android:layout_below="@+id/descuentos"
+            android:layout_below="@+id/happyhour"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"

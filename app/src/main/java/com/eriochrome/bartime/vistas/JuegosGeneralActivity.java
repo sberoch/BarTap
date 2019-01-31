@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
+import com.eriochrome.bartime.adapters.JuegoDelBarHolder;
 import com.eriochrome.bartime.adapters.ListaJuegosAdapter;
 import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.JuegosGeneralContract;
@@ -21,9 +22,7 @@ import java.util.ArrayList;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class JuegosGeneralActivity extends AppCompatActivity implements JuegosGeneralContract.View {
-
-    //TODO: crear un holder diferente para los juegos cuando los ve el bar
+public class JuegosGeneralActivity extends AppCompatActivity implements JuegosGeneralContract.View, JuegoDelBarHolder.OnJuegoHolderClickListener {
 
     private JuegosGeneralPresenter presenter;
 
@@ -45,7 +44,7 @@ public class JuegosGeneralActivity extends AppCompatActivity implements JuegosGe
         juegosRecyclerView = findViewById(R.id.recycler_view);
         juegosRecyclerView.setHasFixedSize(true);
         setupRecyclerView();
-        juegosAdapter = new ListaJuegosAdapter(this);
+        juegosAdapter = new ListaJuegosAdapter(this, true);
         juegosRecyclerView.setAdapter(juegosAdapter);
 
         progressBar = findViewById(R.id.progressBar);
@@ -75,7 +74,7 @@ public class JuegosGeneralActivity extends AppCompatActivity implements JuegosGe
     @Override
     public void finCargando(ArrayList<Juego> listaJuegos) {
         if (listaJuegos.size() == 0) {
-            toastShort(this, "No hay resultados.");
+            toastShort(this, getString(R.string.no_hay_resultados));
         }
         juegosAdapter.setItems(listaJuegos);
         progressBar.setVisibility(View.GONE);
@@ -99,4 +98,11 @@ public class JuegosGeneralActivity extends AppCompatActivity implements JuegosGe
         super.onDestroy();
     }
 
+    @Override
+    public void onClickJuego(Juego juego) {
+        Intent i = new Intent(this, PaginaJuegoActivity.class);
+        i = presenter.enviarJuego(i, juego);
+        i = presenter.enviarBar(i);
+        startActivity(i);
+    }
 }

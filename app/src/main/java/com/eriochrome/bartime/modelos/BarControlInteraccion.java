@@ -63,12 +63,6 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     }
 
     @Override
-    public void crearOferta(String oferta, String fechafinal) {
-        refGlobal.child("bares").child(bar.getNombre()).child("oferta").setValue(oferta)
-                .addOnSuccessListener(aVoid -> listener.finCrearOferta());
-    }
-
-    @Override
     public void subirFoto(Uri path) {
         listener.onStart();
         String strNumeroDeFoto = "_" + Integer.toString(bar.getCantidadDeFotos() + 1);

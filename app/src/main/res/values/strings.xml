@@ -19,7 +19,6 @@
     <string name="estrellas">Estrellas</string>
     <string name="distancia">Distancia</string>
     <string name="ordenar_por">Ordenar por:</string>
-    <string name="tiene_ofertas">Ofertas</string>
     <string name="filtros">Filtros</string>
     <string name="aplicar_filtros">Aplicar filtros</string>
     <string name="cancelar">Cancelar</string>
@@ -27,7 +26,6 @@
     <string name="continuar">Continuar</string>
     <string name="aun_no_tenes_un_bar_asociado">Aun no tenes un bar asociado.</string>
     <string name="crear">Crear</string>
-    <string name="crear_oferta">Crear oferta</string>
     <string name="crear_juego">Crear Juego</string>
     <string name="agrega_tu_bar">Agrega tu bar</string>
     <string name="metodos_de_pago">Metodos de pago</string>
@@ -50,15 +48,12 @@
     <string name="necesitas_cuenta_calificar">Necesitas una cuenta para calificar este bar.</string>
     <string name="calificar_bar">Calificar Bar</string>
     <string name="ver_mas">Ver Mas</string>
-    <string name="no_hay_resultados">No hay resultados</string>
+    <string name="no_hay_resultados">No hay resultados.</string>
     <string name="bares">Bares</string>
     <string name="juegos">Juegos</string>
     <string name="mis_favoritos">Mis Favoritos</string>
     <string name="editar_bar">Editar Bar</string>
     <string name="se_requiere_cuenta">Se requiere cuenta</string>
-    <string name="creando_oferta">Creando oferta…</string>
-    <string name="se_creo_la_oferta_con_exito">Se creo la oferta con exito!</string>
-    <string name="oferta_signos">¡¡Oferta!!</string>
     <string name="no_se_encontro_direccion">No se encontro direccion</string>
     <string name="no_se_puede_obtener_direccion">No se puede obtener direccion</string>
     <string name="ubicacion_del_bar">Ubicacion del Bar</string>
@@ -71,6 +66,10 @@
     <string name="participar">Participar</string>
     <string name="necesitas_cuenta_participar">Necesitas una cuenta para participar del juego.</string>
     <string name="premio">Premio:</string>
+    <string name="lista_de_participantes">Lista de participantes:</string>
+    <string name="deseas_declarar_ganador">¿Deseas declarar a este usuario como ganador del juego?</string>
+    <string name="ok">OK</string>
+    <string name="exito_participar_juego">¡Exito! Ya estas participando en el juego.</string>
 
 
 </resources>

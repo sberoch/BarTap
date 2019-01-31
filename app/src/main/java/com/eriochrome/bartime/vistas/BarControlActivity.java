@@ -25,7 +25,7 @@ import com.firebase.ui.auth.AuthUI;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class BarControlActivity extends AppCompatActivity implements BarControlContract.View, DialogCrearOferta.Listener {
+public class BarControlActivity extends AppCompatActivity implements BarControlContract.View {
 
     private static final int NUMERO_SOLICITUD_GALERIA = 1;
     private Uri path;
@@ -178,18 +178,6 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
                 toastShort(BarControlActivity.this, "No elegiste ninguna imagen.");
             }
         }
-    }
-
-    @Override
-    public void crearOferta(AlertDialog dialog) {
-        String oferta = ((EditText)dialog.findViewById(R.id.oferta)).getText().toString();
-        String fechaFinal = ((EditText)dialog.findViewById(R.id.fecha_final)).getText().toString();
-        presenter.crearOferta(oferta, fechaFinal);
-    }
-
-    @Override
-    public void finCrearOferta() {
-        toastShort(this, "Oferta creada con exito!");
     }
 
     @Override

@@ -37,7 +37,6 @@ public class CrearDesafioInteraccion implements CrearDesafioContract.Interaccion
             refJuegos.child("Desafio").child(desafioID).setValue(desafio)
                     .addOnSuccessListener(aVoid -> listener.enviado());
         }
-
     }
 
 

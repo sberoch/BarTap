@@ -2,7 +2,6 @@ package com.eriochrome.bartime.modelos;
 
 public class Filtro {
 
-    private boolean hayOferta;
     private boolean abierto;
     private boolean happyHour;
     private String ordenamiento;
@@ -12,10 +11,6 @@ public class Filtro {
 
     public void ordenarSegun(String ordenamiento) {
         this.ordenamiento = ordenamiento;
-    }
-
-    public boolean filtroOferta() {
-        return hayOferta;
     }
 
     public String getOrdenamiento() {
@@ -36,10 +31,6 @@ public class Filtro {
 
     public void aplicarHappyHour(boolean happyHour) {
         this.happyHour = happyHour;
-    }
-
-    public void aplicarOfertas(boolean ofertas) {
-        this.hayOferta = ofertas;
     }
 
     public boolean filtroPagoEfectivo() {

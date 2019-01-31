@@ -22,7 +22,6 @@ public interface BaresFragmentContract {
         void finCargando(ArrayList<Bar> listaBares);
         String getOrdenamiento(AlertDialog dialog);
 
-        boolean filtroOfertas(AlertDialog dialog);
         boolean filtroHappyHour(AlertDialog dialog);
         boolean filtroAbierto(AlertDialog dialog);
         boolean filtroEfectivo(AlertDialog dialog);

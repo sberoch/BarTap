@@ -1,6 +1,8 @@
 package com.eriochrome.bartime.modelos;
 
-public class Juego {
+import java.io.Serializable;
+
+public class Juego implements Serializable {
 
     protected int puntos;
     private String nombreBar;

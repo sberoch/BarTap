@@ -89,14 +89,4 @@
             android:textSize="18sp" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/oferta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ubicacion_bar"
-        android:layout_margin="10dp"
-        android:layout_toEndOf="@+id/imagen_bar"
-        android:text="@string/oferta_signos"
-        android:textColor="@color/colorPrimary"
-        android:visibility="gone"/>
 </RelativeLayout>

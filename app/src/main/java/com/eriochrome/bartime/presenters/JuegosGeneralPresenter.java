@@ -46,4 +46,8 @@ public class JuegosGeneralPresenter implements JuegosGeneralContract.Listener {
     public Intent enviarBar(Intent i) {
         return i.putExtra("bar", interaccion.getBar());
     }
+
+    public Intent enviarJuego(Intent i, Juego juego) {
+        return i.putExtra("juego", juego);
+    }
 }

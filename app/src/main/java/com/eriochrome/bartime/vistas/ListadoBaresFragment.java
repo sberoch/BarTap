@@ -89,17 +89,11 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
     @Override
     public void finCargando(ArrayList<Bar> listaBares) {
         if (listaBares.size() == 0) {
-            toastShort(getActivity(), "No hay resultados");
+            toastShort(getActivity(), getString(R.string.no_hay_resultados));
         }
         loading.setVisibility(View.GONE);
         baresAdapter.setItems(listaBares);
 
-    }
-
-    @Override
-    public boolean filtroOfertas(AlertDialog dialog) {
-        Switch hayOfertas = dialog.findViewById(R.id.descuentos);
-        return hayOfertas.isChecked();
     }
 
     @Override

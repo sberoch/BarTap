@@ -23,7 +23,6 @@ public class Bar implements Serializable {
     private HashMap<String, Integer> happyhourInicial;
     private HashMap<String, Integer> happyhourFinal;
     private ArrayList<String> metodosDePago;
-    private String oferta;
     private int cantidadDeFotos;
 
     //Requerido por la base de datos.
@@ -42,7 +41,6 @@ public class Bar implements Serializable {
         happyhourInicial = inicializarHorarios();
         happyhourFinal = inicializarHorarios();
         metodosDePago = new ArrayList<>();
-        oferta = "";
         cantidadDeFotos = 1;
     }
 
@@ -81,9 +79,6 @@ public class Bar implements Serializable {
     }
     public double getLng() {
         return lng;
-    }
-    public String getOferta() {
-        return oferta;
     }
     public int getCantidadDeFotos() {
         return cantidadDeFotos;
@@ -152,10 +147,6 @@ public class Bar implements Serializable {
 
     public boolean contieneFiltros(Filtro filtro) {
         boolean contiene = true;
-
-        if (filtro.filtroOferta()) {
-            if (oferta.equals("")) contiene = false;
-        }
 
         if (filtro.filtroAbierto()) {
             if (!estaAbierto()) contiene = false;

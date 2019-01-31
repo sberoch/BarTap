@@ -51,7 +51,7 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
         juegosRecyclerView = view.findViewById(R.id.recycler_view);
         juegosRecyclerView.setHasFixedSize(true);
         setupRecyclerView();
-        juegosAdapter = new ListaJuegosAdapter(getActivity());
+        juegosAdapter = new ListaJuegosAdapter(getActivity(), false);
         juegosRecyclerView.setAdapter(juegosAdapter);
 
         filtrar = view.findViewById(R.id.filtrar);
@@ -117,7 +117,7 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
     @Override
     public void finCargando(ArrayList<Juego> juegos) {
         if (juegos.size() == 0) {
-            toastShort(getActivity(), "No hay resultados");
+            toastShort(getActivity(), getString(R.string.no_hay_resultados));
         }
         juegosAdapter.setItems(juegos);
         loading.setVisibility(View.GONE);
@@ -125,7 +125,7 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
 
     @Override
     public void successParticipando() {
-        toastShort(getActivity(), "¡Exito! Ya estas participando en el juego.");
+        toastShort(getActivity(), getString(R.string.exito_participar_juego));
     }
 
     private void ocultarTeclado() {

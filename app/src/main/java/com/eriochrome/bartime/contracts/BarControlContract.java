@@ -10,19 +10,16 @@ public interface BarControlContract {
         void setupBar();
         String getNombreBar();
         Bar getBar();
-        void crearOferta(String oferta, String fechafinal);
         void subirFoto(Uri path);
     }
 
     interface View {
         void cargando();
         void finCargando();
-        void finCrearOferta();
     }
 
     interface CompleteListener {
         void onStart();
         void onComplete(Bar bar);
-        void finCrearOferta();
     }
 }

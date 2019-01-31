@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vistas.PaginaJuegoActivity">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="false"
+        android:layout_margin="10dp"
+        android:indeterminateDrawable="@drawable/barra_progreso_circular"
+        android:indeterminateDuration="2000" />
+
+    <TextView
+        android:id="@+id/tipo_de_juego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="Desafio"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/resumen_juego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tipo_de_juego"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="Tomarte 3 birras diferentes." />
+
+    <TextView
+        android:id="@+id/lista_de_participantes_texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/resumen_juego"
+        android:layout_margin="20dp"
+        android:text="@string/lista_de_participantes" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/lista_de_participantes_texto" />
+
+</RelativeLayout>

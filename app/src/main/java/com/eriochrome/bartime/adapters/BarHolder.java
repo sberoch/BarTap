@@ -31,16 +31,11 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
     private TextView ubicacionBar;
     private TextView estrellas;
     private ImageView imagenBar;
-    private TextView oferta;
 
-    //TODO: como recicla las views aparecen ofertas donde no deberia haber
 
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private DatabaseReference baresRef = FirebaseDatabase.getInstance().getReference().child("bares");
 
-    public interface Callback {
-        void onCallback();
-    }
 
     public BarHolder(Context context, View view) {
         super(view);
@@ -51,7 +46,6 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
         this.ubicacionBar = view.findViewById(R.id.ubicacion_bar);
         this.estrellas = view.findViewById(R.id.estrellas);
         this.imagenBar = view.findViewById(R.id.imagen_bar);
-        this.oferta = view.findViewById(R.id.oferta);
 
         view.setOnClickListener(this);
     }
@@ -71,8 +65,6 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
 
         this.estrellas.setText(String.format("%.1f",bar.getEstrellas()));
 
-        checkearSiHayOferta(bar, () -> oferta.setVisibility(View.VISIBLE));
-
         String imagePath = bar.getNombre() + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(imagePath);
         GlideApp.with(this.view)
@@ -81,20 +73,7 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
 
     }
 
-    private void checkearSiHayOferta(Bar bar, Callback callback) {
-        baresRef.child(bar.getNombre()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String ofertaTexto =  dataSnapshot.child("oferta").getValue(String.class);
-                if (!ofertaTexto.equals("")) {
-                    callback.onCallback();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
+
 
 
     @Override
