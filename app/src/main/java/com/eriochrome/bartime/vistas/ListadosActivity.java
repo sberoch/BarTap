@@ -31,7 +31,6 @@ import com.eriochrome.bartime.utils.LocationHelper;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +50,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     private DrawerLayout drawerLayout;
     private ImageButton drawerButton;
     private NavigationView navigationView;
+    private ImageButton avisos;
 
     private Spinner spinner;
     private ArrayAdapter<String> spinnerAdapter;
@@ -69,6 +69,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerButton = findViewById(R.id.drawer_button);
+        avisos = findViewById(R.id.avisos);
         navigationView = findViewById(R.id.nav_drawer);
         spinner = findViewById(R.id.spinner_listado);
 
@@ -93,6 +94,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     protected void onResume() {
         super.onResume();
         updateUI();
+        presenter.checkearAvisos();
         locationHelper.checkPlayServices();
     }
 
@@ -177,6 +179,11 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             drawerLayout.closeDrawers();
             ejecutarOpcionMenu(menuItem.getItemId());
             return true;
+        });
+        avisos.setOnClickListener(v -> {
+            if (presenter.estaConectado()) {
+                startActivity(new Intent(ListadosActivity.this, AvisosActivity.class));
+            }
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -289,6 +296,16 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     public void login() {
         loginUsuario();
+    }
+
+    @Override
+    public void hayAvisos() {
+        avisos.setImageResource(R.drawable.ic_notifications_active_violet_24dp);
+    }
+
+    @Override
+    public void noHayAvisos() {
+        avisos.setImageResource(R.drawable.ic_notifications_none_violet_24dp);
     }
 
     @Override

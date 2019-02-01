@@ -43,7 +43,21 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
         this.esNuevoUsuario = esNuevoUsuario;
     }
 
+    @Override
+    public void hayAvisos() {
+        view.hayAvisos();
+    }
+
+    @Override
+    public void noHayAvisos() {
+        view.noHayAvisos();
+    }
+
     public void conectar() {
         interaccion.conectar();
+    }
+
+    public void checkearAvisos() {
+        interaccion.checkearAvisos();
     }
 }

@@ -1,18 +1,15 @@
 package com.eriochrome.bartime.vistas;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -44,6 +41,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     private TextView nombreBar;
     private ImageButton editarBar;
     private Button juegos;
+    private Button miTienda;
     private ImageButton agregarFotos;
 
 
@@ -69,6 +67,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         nombreBar = findViewById(R.id.nombre_bar);
         editarBar = findViewById(R.id.editar_bar);
         juegos = findViewById(R.id.juegos);
+        miTienda = findViewById(R.id.mi_tienda);
         agregarFotos = findViewById(R.id.agregar_fotos);
 
         setupListeners();
@@ -91,7 +90,6 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             sinBarRl.setVisibility(View.VISIBLE);
             barControlRl.setVisibility(View.GONE);
             navigationView.getHeaderView(0).setVisibility(View.GONE);
-
         }
     }
 
@@ -111,6 +109,11 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             i = presenter.enviarBar(i);
             startActivity(i);
         });
+        /*miTienda.setOnClickListener(v -> {
+            Intent i = new Intent(BarControlActivity.this, TiendaBarActivity.class);
+            i = presenter.enviarBar(i);
+            startActivity(i);
+        });*/ //TODO: tienda
         agregarFotos.setOnClickListener(v -> {
             seleccionarImagenDeGaleria();
         });

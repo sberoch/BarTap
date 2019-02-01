@@ -80,6 +80,7 @@
         <activity android:name=".vistas.CrearDesafioActivity" />
         <activity android:name=".vistas.JuegosGeneralActivity" />
         <activity android:name=".vistas.PaginaJuegoActivity" />
+        <activity android:name=".vistas.AvisosActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

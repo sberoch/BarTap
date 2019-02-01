@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.PaginaJuegoContract;
 import com.eriochrome.bartime.utils.ActualizadorFirebase;
-import com.google.firebase.auth.FirebaseUser;
+import com.eriochrome.bartime.utils.CreadorDeAvisos;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -79,9 +79,11 @@ public class PaginaJuegoInteraccion implements PaginaJuegoContract.Interaccion {
     public void declararGanador(String ganador) {
 
         ActualizadorFirebase.actualizarPuntos(ganador, bar, juego.getPuntos(), refGlobal);
+
         refGlobal.child("juegos").child(juego.getTipoDeJuego()).child(juego.getID()).removeValue();
 
-        //TODO: avisarle al usuario que gano
-    }
+        CreadorDeAvisos creadorDeAvisos = new CreadorDeAvisos();
+        creadorDeAvisos.avisarGanadorDeJuego(juego, ganador);
 
+    }
 }

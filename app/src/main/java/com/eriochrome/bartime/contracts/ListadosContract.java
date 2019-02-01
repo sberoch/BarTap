@@ -2,6 +2,8 @@ package com.eriochrome.bartime.contracts;
 
 public interface ListadosContract {
     interface View {
+        void hayAvisos();
+        void noHayAvisos();
     }
 
     interface Interaccion {
@@ -10,9 +12,12 @@ public interface ListadosContract {
         String getNombreUsuario();
         void checkearNuevo();
         void conectar();
+        void checkearAvisos();
     }
 
     interface CompleteListener {
         void checkearNuevo(boolean esNuevoUsuario);
+        void hayAvisos();
+        void noHayAvisos();
     }
 }

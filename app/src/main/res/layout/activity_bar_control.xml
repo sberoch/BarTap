@@ -99,6 +99,14 @@
                 app:srcCompat="@drawable/ic_add_to_photos_24dp" />
 
             <Button
+                android:id="@+id/mi_tienda"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/juegos"
+                android:layout_centerHorizontal="true"
+                android:text="@string/mi_tienda" />
+
+            <Button
                 android:id="@+id/juegos"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"

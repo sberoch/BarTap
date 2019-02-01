@@ -15,13 +15,15 @@ public class ListadosInteraccion implements ListadosContract.Interaccion {
 
     private final ListadosContract.CompleteListener listener;
     private FirebaseAuth auth;
+    private DatabaseReference refGlobal;
     private DatabaseReference refUsuarios;
     private UsuarioComun usuario;
 
     public ListadosInteraccion(ListadosContract.CompleteListener listener) {
         this.listener = listener;
         auth = FirebaseAuth.getInstance();
-        refUsuarios = FirebaseDatabase.getInstance().getReference().child("usuarios");
+        refGlobal = FirebaseDatabase.getInstance().getReference();
+        refUsuarios = refGlobal.child("usuarios");
 
         if (estaConectado()) {
             usuario = UsuarioRegistrado.crearConAuth(auth.getCurrentUser());
@@ -38,6 +40,23 @@ public class ListadosInteraccion implements ListadosContract.Interaccion {
     @Override
     public void conectar() {
         usuario = UsuarioRegistrado.crearConAuth(auth.getCurrentUser());
+    }
+
+    @Override
+    public void checkearAvisos() {
+        refGlobal.child("avisos").child(auth.getCurrentUser().getDisplayName())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChildren()) listener.hayAvisos();
+                        else listener.noHayAvisos();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 
     @Override
