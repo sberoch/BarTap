@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -20,6 +21,7 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
     private CrearDesafioPresenter presenter;
     private EditText desafioText;
     private Spinner spinnerDificultad;
+    private CheckBox unicoGanador;
     private Button listo;
     private ArrayAdapter<String> spinnerAdapter;
 
@@ -36,6 +38,7 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
 
         desafioText = findViewById(R.id.desafio_text);
         spinnerDificultad = findViewById(R.id.dificultad_spinner);
+        unicoGanador = findViewById(R.id.unico_ganador);
         listo = findViewById(R.id.listo);
 
         listo.setOnClickListener(v -> presenter.enviarDesafio());
@@ -73,6 +76,11 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
     @Override
     public void enviado() {
         toastShort(this, "Se ha enviado el desafio con exito!");
+    }
+
+    @Override
+    public boolean esDeUnicoGanador() {
+        return unicoGanador.isChecked();
     }
 
     @Override

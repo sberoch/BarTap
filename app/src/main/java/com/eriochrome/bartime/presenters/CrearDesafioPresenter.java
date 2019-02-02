@@ -31,7 +31,8 @@ public class CrearDesafioPresenter implements CrearDesafioContract.Callback{
     public void enviarDesafio() {
         String desafio = view.getDesafioText();
         String dificultad = view.getDificultad();
-        interaccion.enviarDesafio(desafio, dificultad);
+        boolean unicoGanador = view.esDeUnicoGanador();
+        interaccion.enviarDesafio(desafio, dificultad, unicoGanador);
     }
 
     @Override

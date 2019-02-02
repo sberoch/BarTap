@@ -36,6 +36,15 @@
         android:layout_marginBottom="100dp"
         android:text="Dificultad:" />
 
+    <CheckBox
+        android:id="@+id/unico_ganador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dificultad_spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="30dp"
+        android:text="@string/es_un_desafio_de_unico_ganador" />
+
     <Spinner
         android:id="@+id/dificultad_spinner"
         android:layout_width="wrap_content"
@@ -52,4 +61,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/listo" />
+
 </RelativeLayout>

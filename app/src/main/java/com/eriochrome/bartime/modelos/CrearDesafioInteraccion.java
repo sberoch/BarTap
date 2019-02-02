@@ -21,7 +21,7 @@ public class CrearDesafioInteraccion implements CrearDesafioContract.Interaccion
     }
 
     @Override
-    public void enviarDesafio(String desafioTexto, String dificultad) {
+    public void enviarDesafio(String desafioTexto, String dificultad, boolean unicoGanador) {
 
         Desafio desafio = new Desafio(desafioTexto);
 
@@ -29,6 +29,9 @@ public class CrearDesafioInteraccion implements CrearDesafioContract.Interaccion
         desafio.asignarPuntos(puntos);
         desafio.asignarNombreBar(bar.getNombre());
         desafio.asignarTipo();
+
+        boolean esPermanente = !unicoGanador;
+        desafio.setPermanente(esPermanente);
 
         String desafioID = refJuegos.push().getKey();
         desafio.setID(desafioID);

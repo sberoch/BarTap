@@ -77,13 +77,32 @@ public class PaginaJuegoInteraccion implements PaginaJuegoContract.Interaccion {
 
     @Override
     public void declararGanador(String ganador) {
+        DatabaseReference refJuego =  refGlobal.child("juegos")
+                .child(juego.getTipoDeJuego()).child(juego.getID());
 
+        //Sumarle puntos al ganador
         ActualizadorFirebase.actualizarPuntos(ganador, bar, juego.getPuntos(), refGlobal);
 
-        refGlobal.child("juegos").child(juego.getTipoDeJuego()).child(juego.getID()).removeValue();
+        //Remover al usuario si es permantente, sino remover el juego
+        if (!esJuegoPermanente()) {
+            refJuego.removeValue();
+        } else {
+           refJuego.child("participantes").child(ganador).removeValue();
+        }
 
+        //Avisarle al usuario que gano
         CreadorDeAvisos creadorDeAvisos = new CreadorDeAvisos();
         creadorDeAvisos.avisarGanadorDeJuego(juego, ganador);
 
+    }
+
+    private boolean esJuegoPermanente() {
+        switch (juego.getTipoDeJuego()) {
+            case "Desafio":
+                return ((Desafio)juego).isPermanente();
+
+            default:
+                return false;
+        }
     }
 }

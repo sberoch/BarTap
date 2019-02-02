@@ -2,11 +2,13 @@ package com.eriochrome.bartime.modelos;
 
 public class Desafio extends Juego {
 
+    private boolean permanente;
     private String desafioTexto;
 
 
     public Desafio(String desafioTexto) {
         this.desafioTexto = desafioTexto;
+        this.permanente = false;
     }
 
     public String getDesafioTexto() {
@@ -21,11 +23,17 @@ public class Desafio extends Juego {
         super.setID(id);
     }
 
+    public void setPermanente(boolean permanente) {
+        this.permanente = permanente;
+    }
+
+    public boolean isPermanente() {
+        return permanente;
+    }
 
     /**
      * Requerido por firebase
      */
-
     public Desafio() {
     }
 

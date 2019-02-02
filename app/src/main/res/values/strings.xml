@@ -72,6 +72,7 @@
     <string name="exito_participar_juego">¡Exito! Ya estas participando en el juego.</string>
     <string name="mi_tienda">Mi Tienda</string>
     <string name="crear_nuevo_item">Crear nuevo item</string>
+    <string name="es_un_desafio_de_unico_ganador">¿Es un desafio de unico ganador?</string>
 
 
 </resources>

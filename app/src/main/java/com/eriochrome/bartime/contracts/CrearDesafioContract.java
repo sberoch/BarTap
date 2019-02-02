@@ -6,13 +6,14 @@ public interface CrearDesafioContract {
 
     interface Interaccion {
         void setBar(Bar bar);
-        void enviarDesafio(String desafio, String dificultad);
+        void enviarDesafio(String desafio, String dificultad, boolean unicoGanador);
     }
 
     interface View {
         String getDesafioText();
         String getDificultad();
         void enviado();
+        boolean esDeUnicoGanador();
     }
 
     interface Callback {

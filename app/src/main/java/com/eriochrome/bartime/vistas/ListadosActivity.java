@@ -94,7 +94,9 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     protected void onResume() {
         super.onResume();
         updateUI();
-        presenter.checkearAvisos();
+        if (presenter.estaConectado()) {
+            presenter.checkearAvisos();
+        }
         locationHelper.checkPlayServices();
     }
 

@@ -57,7 +57,7 @@ public class JuegosFragmentInteraccion implements JuegosFragmentContract.Interac
     @Override
     public void participarDeJuego(Juego juego) {
         refJuegos.child(juego.getTipoDeJuego()).child(juego.getID()).child("participantes")
-                .child(authUser.getUid()).setValue(authUser.getDisplayName())
+                .child(authUser.getDisplayName()).setValue(authUser.getDisplayName())
                 .addOnSuccessListener(aVoid -> listener.successParticipando());
     }
 
