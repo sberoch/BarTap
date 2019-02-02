@@ -43,6 +43,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     private Button juegos;
     private Button miTienda;
     private ImageButton agregarFotos;
+    private ImageButton avisos;
 
 
 
@@ -69,6 +70,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         juegos = findViewById(R.id.juegos);
         miTienda = findViewById(R.id.mi_tienda);
         agregarFotos = findViewById(R.id.agregar_fotos);
+        avisos = findViewById(R.id.avisos);
 
         setupListeners();
     }
@@ -117,6 +119,9 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         agregarFotos.setOnClickListener(v -> {
             seleccionarImagenDeGaleria();
         });
+        avisos.setOnClickListener(v -> {
+            startActivity(new Intent(BarControlActivity.this, AvisosBarActivity.class));
+        });
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
             ejecutarOpcionMenu(menuItem.getItemId());
@@ -163,6 +168,16 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         updateUI();
     }
 
+    @Override
+    public void hayAvisos() {
+        avisos.setImageResource(R.drawable.ic_notifications_active_violet_24dp);
+    }
+
+    @Override
+    public void noHayAvisos() {
+        avisos.setImageResource(R.drawable.ic_notifications_none_violet_24dp);
+    }
+
     private void seleccionarImagenDeGaleria() {
         Intent elegirFotoIntent = new Intent(Intent.ACTION_PICK);
         elegirFotoIntent.setType("image/*");
@@ -186,6 +201,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     @Override
     protected void onDestroy() {
         presenter.unbind();
+        presenter.dejarDeCheckearAvisos();
         super.onDestroy();
     }
 }

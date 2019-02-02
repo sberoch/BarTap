@@ -24,9 +24,9 @@ public class AvisosPresenter implements AvisosContract.Listener {
         view = null;
     }
 
-    public void cargarAvisos() {
+    public void cargarAvisos(boolean esBar) {
         view.cargando();
-        interaccion.cargarAvisos();
+        interaccion.cargarAvisos(esBar);
     }
 
     @Override
@@ -34,7 +34,12 @@ public class AvisosPresenter implements AvisosContract.Listener {
         view.finCargando(avisos);
     }
 
-    public void quitarItem(String idItem) {
-        interaccion.quitarItem(idItem);
+    @Override
+    public void quitarItemBar(String idItem, String nombreBar) {
+        interaccion.quitarConNombreBar(idItem, nombreBar);
+    }
+
+    public void quitarItem(String idItem, boolean esBar) {
+        interaccion.quitarItem(idItem, esBar);
     }
 }

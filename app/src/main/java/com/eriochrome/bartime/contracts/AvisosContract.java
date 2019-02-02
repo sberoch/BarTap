@@ -7,8 +7,9 @@ import java.util.ArrayList;
 public interface AvisosContract {
 
     interface Interaccion {
-        void cargarAvisos();
-        void quitarItem(String idItem);
+        void cargarAvisos(boolean esBar);
+        void quitarItem(String idItem, boolean esBar);
+        void quitarConNombreBar(String idItem, String nombreBar);
     }
 
     interface View {
@@ -18,5 +19,6 @@ public interface AvisosContract {
 
     interface Listener {
         void listo(ArrayList<Aviso> avisos);
+        void quitarItemBar(String idItem, String nombreBar);
     }
 }

@@ -271,13 +271,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         finishAndRemoveTask();
     }
 
-
-    @Override
-    protected void onDestroy() {
-        presenter.unbind();
-        super.onDestroy();
-    }
-
     @Override
     public void aplicarFiltros(AlertDialog dialog) {
         Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
@@ -336,5 +329,14 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         if (f instanceof ListadoJuegosFragment) {
             ((ListadoJuegosFragment) f).participarDeJuego(juego);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (presenter.estaConectado()) {
+            presenter.dejarDeCheckearAvisos();
+        }
+        presenter.unbind();
+        super.onDestroy();
     }
 }

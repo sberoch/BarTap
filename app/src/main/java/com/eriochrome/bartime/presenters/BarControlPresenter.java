@@ -42,7 +42,18 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
     @Override
     public void onComplete(Bar bar) {
         hayBarAsociado = (bar != null);
+        checkearAvisos();
         view.finCargando();
+    }
+
+    @Override
+    public void hayAvisos() {
+        view.hayAvisos();
+    }
+
+    @Override
+    public void noHayAvisos() {
+        view.noHayAvisos();
     }
 
     public String getNombreBar() {
@@ -54,9 +65,6 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
         return i.putExtra("bar", interaccion.getBar());
     }
 
-    public void crearJuego() {
-
-    }
 
     public String getNombreUsuario() {
         return interaccion.getNombreBar();
@@ -65,5 +73,13 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
 
     public void subirFoto(Uri path) {
         interaccion.subirFoto(path);
+    }
+
+    public void checkearAvisos() {
+        interaccion.checkearAvisos();
+    }
+
+    public void dejarDeCheckearAvisos() {
+        interaccion.dejarDeCheckearAvisos();
     }
 }

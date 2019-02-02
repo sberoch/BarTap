@@ -13,6 +13,7 @@ public interface ListadosContract {
         void checkearNuevo();
         void conectar();
         void checkearAvisos();
+        void dejarDeCheckearAvisos();
     }
 
     interface CompleteListener {

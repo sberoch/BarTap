@@ -24,6 +24,16 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     private Bar bar;
     private StorageReference storageReference;
 
+    private ValueEventListener valueEventListenerAvisos = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            if (dataSnapshot.hasChildren()) listener.hayAvisos();
+            else listener.noHayAvisos();
+        }
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) { }
+    };
+
     public BarControlInteraccion(BarControlContract.CompleteListener listener) {
         this.listener = listener;
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -74,6 +84,22 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
             refGlobal.child("bares").child(bar.getNombre()).child("cantidadDeFotos").setValue(bar.getCantidadDeFotos());
             listener.onComplete(bar);
         });
+    }
+
+    @Override
+    public void checkearAvisos() {
+        if (bar != null) {
+            refGlobal.child("avisos").child(bar.getNombre())
+                    .addValueEventListener(valueEventListenerAvisos);
+        }
+    }
+
+    @Override
+    public void dejarDeCheckearAvisos() {
+        if (bar != null) {
+            refGlobal.child("avisos").child(bar.getNombre())
+                    .removeEventListener(valueEventListenerAvisos);
+        }
     }
 
 }

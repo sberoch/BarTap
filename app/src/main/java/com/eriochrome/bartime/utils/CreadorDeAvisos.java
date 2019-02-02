@@ -14,18 +14,24 @@ public class CreadorDeAvisos {
 
     public void avisarGanadorDeJuego(Juego juego, String ganador) {
 
-        String texto = getTextoSegunTipoDeJuego(juego);
+        String texto = getTextoGanadorDeJuego(juego);
         String key = ref.child(ganador).push().getKey();
         if (key != null) {
             ref.child(ganador).child(key).setValue(texto);
         }
     }
 
+    public void avisarParticipacion(String nombreParticipante, Juego juego) {
+
+        String texto =  getTextoParticipacion(juego, nombreParticipante);
+        String key = ref.child(juego.getNombreBar()).push().getKey();
+        if (key != null) {
+            ref.child(juego.getNombreBar()).child(key).setValue(texto);
+        }
+    }
 
 
-
-
-    private String getTextoSegunTipoDeJuego(Juego juego) {
+    private String getTextoGanadorDeJuego(Juego juego) {
         switch (juego.getTipoDeJuego()) {
             case "Desafio":
                 return "Has ganado "
@@ -35,6 +41,20 @@ public class CreadorDeAvisos {
                         + "' en "
                         + juego.getNombreBar()
                         + ".";
+
+            default:
+                return "";
+        }
+    }
+
+
+    private String getTextoParticipacion(Juego juego, String nombreParticipante) {
+        switch (juego.getTipoDeJuego()) {
+            case "Desafio":
+                return nombreParticipante
+                        + " esta ahora participando en el desafio '"
+                        + juego.getTextoResumen()
+                        + "'.";
 
             default:
                 return "";

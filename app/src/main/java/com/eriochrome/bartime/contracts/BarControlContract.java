@@ -11,15 +11,21 @@ public interface BarControlContract {
         String getNombreBar();
         Bar getBar();
         void subirFoto(Uri path);
+        void checkearAvisos();
+        void dejarDeCheckearAvisos();
     }
 
     interface View {
         void cargando();
         void finCargando();
+        void hayAvisos();
+        void noHayAvisos();
     }
 
     interface CompleteListener {
         void onStart();
         void onComplete(Bar bar);
+        void hayAvisos();
+        void noHayAvisos();
     }
 }

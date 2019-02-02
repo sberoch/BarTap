@@ -81,6 +81,7 @@
         <activity android:name=".vistas.JuegosGeneralActivity" />
         <activity android:name=".vistas.PaginaJuegoActivity" />
         <activity android:name=".vistas.AvisosActivity" />
+        <activity android:name=".vistas.AvisosBarActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -2,7 +2,6 @@ package com.eriochrome.bartime.vistas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class AvisosActivity extends AppCompatActivity implements AvisosContract.View, AvisosAdapter.ClickListener {
+public class AvisosBarActivity extends AppCompatActivity implements AvisosContract.View, AvisosAdapter.ClickListener {
 
     private AvisosPresenter presenter;
 
@@ -44,7 +43,7 @@ public class AvisosActivity extends AppCompatActivity implements AvisosContract.
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.cargarAvisos(false);
+        presenter.cargarAvisos(true);
     }
 
     @Override
@@ -64,7 +63,7 @@ public class AvisosActivity extends AppCompatActivity implements AvisosContract.
 
     @Override
     public void onRemoveItem(String idItem) {
-        presenter.quitarItem(idItem, false);
+        presenter.quitarItem(idItem, true);
     }
 
     @Override
@@ -72,5 +71,4 @@ public class AvisosActivity extends AppCompatActivity implements AvisosContract.
         presenter.unbind();
         super.onDestroy();
     }
-
 }

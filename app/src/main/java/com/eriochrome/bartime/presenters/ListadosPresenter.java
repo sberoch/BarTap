@@ -60,4 +60,8 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
     public void checkearAvisos() {
         interaccion.checkearAvisos();
     }
+
+    public void dejarDeCheckearAvisos() {
+        interaccion.dejarDeCheckearAvisos();
+    }
 }

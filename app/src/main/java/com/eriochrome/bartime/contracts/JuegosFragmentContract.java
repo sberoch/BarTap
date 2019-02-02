@@ -11,7 +11,6 @@ public interface JuegosFragmentContract {
         ArrayList<Juego> obtenerJuegos();
         void participarDeJuego(Juego juego);
         boolean estaConectado();
-
     }
 
     interface View {

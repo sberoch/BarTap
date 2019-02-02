@@ -48,4 +48,5 @@ public class JuegosFragmentPresenter implements JuegosFragmentContract.Listener{
     public boolean estaConectado() {
         return interaccion.estaConectado();
     }
+
 }
