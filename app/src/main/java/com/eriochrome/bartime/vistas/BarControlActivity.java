@@ -111,11 +111,11 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             i = presenter.enviarBar(i);
             startActivity(i);
         });
-        /*miTienda.setOnClickListener(v -> {
+        miTienda.setOnClickListener(v -> {
             Intent i = new Intent(BarControlActivity.this, TiendaBarActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
-        });*/ //TODO: tienda
+        });
         agregarFotos.setOnClickListener(v -> {
             seleccionarImagenDeGaleria();
         });

@@ -104,7 +104,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-lunes"
+                            android:layout_toStartOf="@+id/lunes_guion"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -118,12 +118,11 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="30dp"
                             android:layout_marginBottom="10dp"
-                            android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-lunes"
+                            android:id="@+id/lunes_guion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -152,7 +151,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-martes"
+                            android:layout_toStartOf="@+id/martes_guion"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -171,7 +170,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-martes"
+                            android:id="@+id/martes_guion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -200,7 +199,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-miercoles"
+                            android:layout_toStartOf="@+id/miercoles_guion"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -219,7 +218,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-miercoles"
+                            android:id="@+id/miercoles_guion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -248,7 +247,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-jueves"
+                            android:layout_toStartOf="@+id/jueves_guion"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -267,7 +266,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-jueves"
+                            android:id="@+id/jueves_guion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -296,7 +295,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-viernes"
+                            android:layout_toStartOf="@+id/viernes_guion"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -315,7 +314,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-viernes"
+                            android:id="@+id/viernes_guion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -344,7 +343,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-sabado"
+                            android:layout_toStartOf="@+id/sabado_guion"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -363,7 +362,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-sabado"
+                            android:id="@+id/sabado_guion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -392,7 +391,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-domingo"
+                            android:layout_toStartOf="@+id/domingo_guion"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -411,7 +410,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-domingo"
+                            android:id="@+id/domingo_guion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -456,7 +455,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-luneshh"
+                            android:layout_toStartOf="@+id/lunes_guionhh"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -475,7 +474,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-luneshh"
+                            android:id="@+id/lunes_guionhh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -504,7 +503,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-marteshh"
+                            android:layout_toStartOf="@+id/martes_guionhh"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -523,7 +522,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-marteshh"
+                            android:id="@+id/martes_guionhh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -552,7 +551,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-miercoleshh"
+                            android:layout_toStartOf="@+id/miercoles_guionhh"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -571,7 +570,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-miercoleshh"
+                            android:id="@+id/miercoles_guionhh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -600,7 +599,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-jueveshh"
+                            android:layout_toStartOf="@+id/jueves_guionhh"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -619,7 +618,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-jueveshh"
+                            android:id="@+id/jueves_guionhh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -648,7 +647,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-vierneshh"
+                            android:layout_toStartOf="@+id/viernes_guionhh"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -667,7 +666,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-vierneshh"
+                            android:id="@+id/viernes_guionhh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -696,7 +695,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-sabadohh"
+                            android:layout_toStartOf="@+id/sabado_guionhh"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -715,7 +714,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-sabadohh"
+                            android:id="@+id/sabado_guionhh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -744,7 +743,7 @@
                             android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_toStartOf="@+id/-domingohh"
+                            android:layout_toStartOf="@+id/domingo_guionhh"
                             android:layout_weight="1"
                             android:ems="10"
                             android:inputType="number" />
@@ -763,7 +762,7 @@
                             android:inputType="number" />
 
                         <TextView
-                            android:id="@+id/-domingohh"
+                            android:id="@+id/domingo_guionhh"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
