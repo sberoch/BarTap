@@ -12,11 +12,9 @@ import android.widget.TextView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.PaginaJuegoContract;
 import com.eriochrome.bartime.presenters.PaginaJuegoPresenter;
+import com.eriochrome.bartime.vistas.dialogs.DialogValidarGanador;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 

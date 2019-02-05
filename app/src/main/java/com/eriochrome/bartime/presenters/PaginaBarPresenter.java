@@ -108,6 +108,12 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
         view.finCargaDeComentarios();
     }
 
+    @Override
+    public void setPuntos(Integer puntos) {
+        view.finCargando();
+        view.setPuntos(puntos);
+    }
+
     public Intent enviarBar(Intent i) {
         return i.putExtra("bar", interaccion.getBar());
     }
@@ -123,4 +129,10 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
     public Bar getBar() {
         return interaccion.getBar();
     }
+
+    public void cargarPuntosEnElBar() {
+        view.cargando();
+        interaccion.cargarPuntosEnElBar();
+    }
+
 }

@@ -15,6 +15,7 @@ public interface PaginaBarContract {
         void yaCalificoElBar();
         void cargaDeComentarios();
         void finCargaDeComentarios();
+        void setPuntos(Integer puntos);
     }
 
     interface Interaccion {
@@ -30,6 +31,7 @@ public interface PaginaBarContract {
         Bar getBar();
         ArrayList<Comentario> getComentarios();
         void cargarComentarios();
+        void cargarPuntosEnElBar();
     }
 
     interface CompleteListener {
@@ -39,5 +41,6 @@ public interface PaginaBarContract {
         void yaCalificoEsteBar();
         void cargaDeComentarios();
         void finCargaDeComentarios();
+        void setPuntos(Integer puntos);
     }
 }

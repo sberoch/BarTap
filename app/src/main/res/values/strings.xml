@@ -73,6 +73,11 @@
     <string name="mi_tienda">Mi Tienda</string>
     <string name="crear_nuevo_item">Crear nuevo item</string>
     <string name="es_un_desafio_de_unico_ganador">¿Es un desafio de unico ganador?</string>
+    <string name="comprar">Comprar</string>
+    <string name="actual">Actual:</string>
+    <string name="costo">Costo:</string>
+    <string name="total">Total:</string>
+    <string name="necesitas_cuenta_tienda">Necesitas una cuenta para ver la tienda de este bar</string>
 
 
 </resources>

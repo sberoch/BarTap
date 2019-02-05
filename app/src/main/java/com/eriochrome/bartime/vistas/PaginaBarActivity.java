@@ -19,6 +19,8 @@ import com.eriochrome.bartime.adapters.ViewPagerAdapter;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
+import com.eriochrome.bartime.vistas.dialogs.DialogComentario;
+import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
 import com.firebase.ui.auth.AuthUI;
 
 import java.util.Arrays;
@@ -36,6 +38,8 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private ListView listView;
     private Button verMas;
     private Button verMapa;
+    private TextView puntosText;
+    private Button tienda;
 
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
@@ -64,6 +68,8 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         favorito = findViewById(R.id.agregar_favorito);
         verMas = findViewById(R.id.ver_mas);
         verMapa = findViewById(R.id.ver_mapa);
+        puntosText = findViewById(R.id.puntos_text);
+        tienda = findViewById(R.id.tienda);
 
         viewPager = findViewById(R.id.view_pager);
         viewPagerAdapter = new ViewPagerAdapter(this, presenter.getBar());
@@ -74,6 +80,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         listView.setAdapter(listaComentariosAdapter);
 
         nombreBar.setText(presenter.getNombreDeBar());
+        puntosText.setVisibility(View.GONE);
         setupListeners();
 
         //TODO: se muestra de a un comentario, esta medio bug que repite dentro de la lista y no se porque
@@ -83,6 +90,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     protected void onResume() {
         super.onResume();
         if (presenter.hayUsuarioConectado()) {
+            presenter.cargarPuntosEnElBar();
             presenter.checkeoFavorito();
             presenter.checkearUsuarioCalificoBar();
         }
@@ -150,6 +158,18 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             i = presenter.enviarBar(i);
             startActivity(i);
         });
+
+        tienda.setOnClickListener(v -> {
+            if (presenter.hayUsuarioConectado()) {
+                Intent i = new Intent(PaginaBarActivity.this, TiendaActivity.class);
+                i = presenter.enviarBar(i);
+                startActivity(i);
+            } else {
+                DialogCrearCuenta dialogCrearCuenta = new DialogCrearCuenta();
+                dialogCrearCuenta.setTexto(getString(R.string.necesitas_cuenta_tienda));
+                dialogCrearCuenta.show(getFragmentManager(), "crearCuentaDialog");
+            }
+        });
     }
 
 
@@ -207,6 +227,12 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         listaComentariosAdapter.setItems(presenter.getComentarios());
     }
 
+    @Override
+    public void setPuntos(Integer puntos) {
+        String texto = "Tienes " + Integer.toString(puntos) + " puntos en el bar";
+        puntosText.setText(texto);
+        puntosText.setVisibility(View.VISIBLE);
+    }
 
     @Override
     protected void onDestroy() {

@@ -1,4 +1,4 @@
-package com.eriochrome.bartime.vistas;
+package com.eriochrome.bartime.vistas.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

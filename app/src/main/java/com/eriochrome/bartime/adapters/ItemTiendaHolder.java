@@ -17,16 +17,25 @@ public class ItemTiendaHolder extends RecyclerView.ViewHolder implements View.On
     private TextView descripcion;
     private TextView precio;
 
+    public interface ItemTiendaClickListener {
+        void onClickItemTienda(ItemTienda itemTienda);
+    }
+
+    private ItemTiendaClickListener listener;
+
     public ItemTiendaHolder(@NonNull View view, Context context) {
         super(view);
         this.context = context;
 
         descripcion = view.findViewById(R.id.descripcion);
         precio = view.findViewById(R.id.precio);
+
+        view.setOnClickListener(this);
     }
 
-    public void bindItem(ItemTienda itemTienda) {
+    public void bindItem(ItemTienda itemTienda, ItemTiendaClickListener listenerItem) {
         this.itemTienda = itemTienda;
+        this.listener = listenerItem;
 
         descripcion.setText(itemTienda.getDescripcion());
 
@@ -38,6 +47,7 @@ public class ItemTiendaHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public void onClick(View v) {
         //TODO: dialog comprar (que muestre la resta tipo una compra en brawlhalla)
+        listener.onClickItemTienda(itemTienda);
     }
 
 

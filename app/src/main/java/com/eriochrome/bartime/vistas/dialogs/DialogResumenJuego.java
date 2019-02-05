@@ -1,4 +1,4 @@
-package com.eriochrome.bartime.vistas;
+package com.eriochrome.bartime.vistas.dialogs;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;

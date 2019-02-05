@@ -27,6 +27,7 @@ import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
 import com.eriochrome.bartime.modelos.Bar;
 import com.eriochrome.bartime.presenters.BaresFragmentPresenter;
+import com.eriochrome.bartime.vistas.dialogs.DialogSeleccionFiltros;
 
 import java.util.ArrayList;
 

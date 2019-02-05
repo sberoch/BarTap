@@ -18,6 +18,7 @@ public class ListaItemsTiendaAdapter extends RecyclerView.Adapter<RecyclerView.V
     private ArrayList<ItemTienda> listaItems;
     private boolean esCreadoPorBar;
     private ItemTiendaBarHolder.HolderCallback listenerItemBar;
+    private ItemTiendaHolder.ItemTiendaClickListener listenerItem;
 
     public ListaItemsTiendaAdapter(Context context, boolean esCreadoPorBar) {
         this.context = context;
@@ -25,8 +26,12 @@ public class ListaItemsTiendaAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.esCreadoPorBar = esCreadoPorBar;
     }
 
-    public void setListener(ItemTiendaBarHolder.HolderCallback listener) {
+    public void setListenerBar(ItemTiendaBarHolder.HolderCallback listener) {
         this.listenerItemBar = listener;
+    }
+
+    public void setListener(ItemTiendaHolder.ItemTiendaClickListener listener) {
+        this.listenerItem = listener;
     }
 
     @NonNull
@@ -57,7 +62,7 @@ public class ListaItemsTiendaAdapter extends RecyclerView.Adapter<RecyclerView.V
         } else {
             ItemTiendaHolder itemTiendaHolder = (ItemTiendaHolder) viewHolder;
             ItemTienda itemTienda = listaItems.get(i);
-            itemTiendaHolder.bindItem(itemTienda);
+            itemTiendaHolder.bindItem(itemTienda, listenerItem);
         }
     }
 

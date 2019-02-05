@@ -5,44 +5,44 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
-import com.eriochrome.bartime.adapters.ItemTiendaBarHolder;
+import com.eriochrome.bartime.adapters.ItemTiendaHolder;
 import com.eriochrome.bartime.adapters.ListaItemsTiendaAdapter;
 import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
-import com.eriochrome.bartime.contracts.TiendaBarContract;
+import com.eriochrome.bartime.contracts.TiendaContract;
 import com.eriochrome.bartime.modelos.ItemTienda;
-import com.eriochrome.bartime.presenters.TiendaBarPresenter;
-import com.eriochrome.bartime.vistas.dialogs.DialogCrearItemTienda;
+import com.eriochrome.bartime.presenters.TiendaPresenter;
+import com.eriochrome.bartime.vistas.dialogs.DialogComprarItemTienda;
 
 import java.util.ArrayList;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class TiendaBarActivity extends AppCompatActivity implements
-        TiendaBarContract.View,
-        DialogCrearItemTienda.CrearItemListener,
-        ItemTiendaBarHolder.HolderCallback {
+public class TiendaActivity extends AppCompatActivity implements
+        TiendaContract.View,
+        ItemTiendaHolder.ItemTiendaClickListener,
+        DialogComprarItemTienda.ComprarListener{
 
-    private TiendaBarPresenter presenter;
+    //TODO: falta el tema de comprobantes, no tiene que ser una simple notificacion cuando se compra algo
+
+    private TiendaPresenter presenter;
 
     private RecyclerView recyclerView;
     private ListaItemsTiendaAdapter adapter;
+    private TextView puntosText;
 
     private ProgressBar progressBar;
-
-    private Button nuevoItem;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tienda_bar);
+        setContentView(R.layout.activity_tienda);
 
-        presenter = new TiendaBarPresenter();
+        presenter = new TiendaPresenter();
         presenter.bind(this);
         presenter.obtenerBar(getIntent());
 
@@ -52,21 +52,17 @@ public class TiendaBarActivity extends AppCompatActivity implements
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         setupRecyclerView();
-        adapter = new ListaItemsTiendaAdapter(this, true);
-        adapter.setListenerBar(this);
+        adapter = new ListaItemsTiendaAdapter(this, false);
+        adapter.setListener(this);
         recyclerView.setAdapter(adapter);
 
-        nuevoItem = findViewById(R.id.nuevoItem);
-        nuevoItem.setOnClickListener(v -> {
-            DialogCrearItemTienda dialogCrearItemTienda = new DialogCrearItemTienda();
-            dialogCrearItemTienda.show(getFragmentManager(), "crearItemTienda");
-        });
+        puntosText = findViewById(R.id.puntosText);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.mostrarItemsTienda();
+        presenter.setupTienda();
     }
 
     @Override
@@ -76,29 +72,28 @@ public class TiendaBarActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void finCargando(ArrayList<ItemTienda> items) {
+    public void finCargando(ArrayList<ItemTienda> items, Integer misPuntos) {
         if (items.size() == 0) {
             toastShort(this, getString(R.string.no_hay_resultados));
         }
         adapter.setItems(items);
+        puntosText.setText(String.format("%s puntos.", String.valueOf(misPuntos)));
         progressBar.setVisibility(View.GONE);
     }
 
     @Override
-    public void crearItem(ItemTienda itemTienda) {
-        presenter.crearItem(itemTienda);
+    public void onClickItemTienda(ItemTienda itemTienda) {
+        DialogComprarItemTienda dialogComprarItemTienda = new DialogComprarItemTienda();
+
+        int misPuntos = presenter.getPuntos();
+        dialogComprarItemTienda.setup(misPuntos, itemTienda);
+
+        dialogComprarItemTienda.show(getFragmentManager(), "comprarItem");
     }
 
     @Override
-    public void onRemoveItem(ItemTienda itemTienda) {
-        presenter.eliminarItem(itemTienda);
-    }
-
-    @Override
-    public void onEditItem(ItemTienda itemTienda) {
-        onRemoveItem(itemTienda);
-        DialogCrearItemTienda dialogCrearItemTienda = new DialogCrearItemTienda();
-        dialogCrearItemTienda.show(getFragmentManager(), "crearItemTienda");
+    public void onItemComprado(ItemTienda itemTienda) {
+        presenter.comprarItem(itemTienda);
     }
 
     private void setupRecyclerView() {
@@ -116,7 +111,7 @@ public class TiendaBarActivity extends AppCompatActivity implements
     @Override
     protected void onPause() {
         super.onPause();
-        presenter.dejarDeMostrarItems();
+        presenter.onPause();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.eriochrome.bartime.utils;
 
+import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.ItemTienda;
 import com.eriochrome.bartime.modelos.Juego;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,6 +29,15 @@ public class CreadorDeAvisos {
         String key = ref.child(juego.getNombreBar()).push().getKey();
         if (key != null) {
             ref.child(juego.getNombreBar()).child(key).setValue(texto);
+        }
+    }
+
+
+    public void avisarCompraDeDescuento(ItemTienda itemTienda, String displayName, Bar bar) {
+        String texto = getTextoCompraDeDescuento(itemTienda, displayName);
+        String key = ref.child(bar.getNombre()).push().getKey();
+        if (key != null) {
+            ref.child(bar.getNombre()).child(key).setValue(texto);
         }
     }
 
@@ -59,5 +70,13 @@ public class CreadorDeAvisos {
             default:
                 return "";
         }
+    }
+
+
+    private String getTextoCompraDeDescuento(ItemTienda itemTienda, String displayName) {
+        return displayName
+                + " ha comprado: '"
+                + itemTienda.getDescripcion()
+                + "'.";
     }
 }

@@ -143,4 +143,24 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
             }
         });
     }
+
+    @Override
+    public void cargarPuntosEnElBar() {
+        ref.child("puntos").child(auth.getCurrentUser().getDisplayName()).child(bar.getNombre())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Integer puntos = dataSnapshot.getValue(Integer.class);
+                        if (puntos != null) {
+                            listener.setPuntos(puntos);
+                        } else {
+                            listener.setPuntos(0);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) { }
+                });
+    }
 }

@@ -75,21 +75,41 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".vistas.VerMapaActivity" />
+            android:name=".vistas.VerMapaActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".vistas.NuevoJuegoActivity" />
+            android:name=".vistas.NuevoJuegoActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"  />
         <activity
-            android:name=".vistas.CrearDesafioActivity" />
+            android:name=".vistas.CrearDesafioActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"  />
         <activity
-            android:name=".vistas.JuegosGeneralActivity" />
+            android:name=".vistas.JuegosGeneralActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"  />
         <activity
-            android:name=".vistas.PaginaJuegoActivity" />
+            android:name=".vistas.PaginaJuegoActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".vistas.AvisosActivity" />
+            android:name=".vistas.AvisosActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"  />
         <activity
-            android:name=".vistas.AvisosBarActivity" />
+            android:name=".vistas.AvisosBarActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"  />
         <activity
-            android:name=".vistas.TiendaBarActivity" />
+            android:name=".vistas.TiendaBarActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"  />
+        <activity
+            android:name=".vistas.TiendaActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"  />
 
         <meta-data
             android:name="preloaded_fonts"
