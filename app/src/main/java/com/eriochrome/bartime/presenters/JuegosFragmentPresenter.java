@@ -1,7 +1,7 @@
 package com.eriochrome.bartime.presenters;
 
 import com.eriochrome.bartime.contracts.JuegosFragmentContract;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.modelos.JuegosFragmentInteraccion;
 
 public class JuegosFragmentPresenter implements JuegosFragmentContract.Listener{

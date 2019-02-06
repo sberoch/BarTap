@@ -3,8 +3,8 @@ package com.eriochrome.bartime.contracts;
 import android.app.AlertDialog;
 import android.location.Location;
 
-import com.eriochrome.bartime.modelos.Bar;
-import com.eriochrome.bartime.modelos.Filtro;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.Filtro;
 
 import java.util.ArrayList;
 

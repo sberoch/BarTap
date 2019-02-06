@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 
 public class DialogResumenJuego extends DialogFragment {
 

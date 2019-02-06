@@ -5,7 +5,7 @@ import android.location.Location;
 
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
 import com.eriochrome.bartime.modelos.BaresFragmentInteraccion;
-import com.eriochrome.bartime.modelos.Filtro;
+import com.eriochrome.bartime.modelos.entidades.Filtro;
 
 
 public class BaresFragmentPresenter implements BaresFragmentContract.CompleteListener {

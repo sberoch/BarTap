@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.modelos;
 
 import com.eriochrome.bartime.contracts.NuevoJuegoContract;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 
 public class NuevoJuegoInteraccion implements NuevoJuegoContract.Interaccion {
 

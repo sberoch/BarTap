@@ -3,8 +3,8 @@ package com.eriochrome.bartime.presenters;
 import android.content.Intent;
 
 import com.eriochrome.bartime.contracts.PaginaJuegoContract;
-import com.eriochrome.bartime.modelos.Bar;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.modelos.PaginaJuegoInteraccion;
 
 import java.util.ArrayList;

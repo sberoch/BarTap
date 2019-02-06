@@ -1,6 +1,8 @@
 package com.eriochrome.bartime.modelos;
 
 import com.eriochrome.bartime.contracts.CrearDesafioContract;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.Desafio;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

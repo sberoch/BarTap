@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.Aviso;
+import com.eriochrome.bartime.modelos.entidades.Aviso;
 
 import java.util.ArrayList;
 

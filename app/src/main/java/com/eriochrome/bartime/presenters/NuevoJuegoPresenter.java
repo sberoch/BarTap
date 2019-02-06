@@ -3,7 +3,7 @@ package com.eriochrome.bartime.presenters;
 import android.content.Intent;
 
 import com.eriochrome.bartime.contracts.NuevoJuegoContract;
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.NuevoJuegoInteraccion;
 
 public class NuevoJuegoPresenter {

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 

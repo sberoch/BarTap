@@ -1,8 +1,8 @@
 package com.eriochrome.bartime.utils;
 
-import com.eriochrome.bartime.modelos.Bar;
-import com.eriochrome.bartime.modelos.ItemTienda;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.ItemTienda;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

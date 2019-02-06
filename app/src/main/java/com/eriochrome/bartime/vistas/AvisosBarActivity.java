@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.AvisosAdapter;
 import com.eriochrome.bartime.contracts.AvisosContract;
-import com.eriochrome.bartime.modelos.Aviso;
+import com.eriochrome.bartime.modelos.entidades.Aviso;
 import com.eriochrome.bartime.presenters.AvisosPresenter;
 
 import java.util.ArrayList;

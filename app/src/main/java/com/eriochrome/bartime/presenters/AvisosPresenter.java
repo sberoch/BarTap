@@ -1,9 +1,8 @@
 package com.eriochrome.bartime.presenters;
 
 import com.eriochrome.bartime.contracts.AvisosContract;
-import com.eriochrome.bartime.modelos.Aviso;
+import com.eriochrome.bartime.modelos.entidades.Aviso;
 import com.eriochrome.bartime.modelos.AvisosInteraccion;
-import com.eriochrome.bartime.vistas.AvisosActivity;
 
 import java.util.ArrayList;
 

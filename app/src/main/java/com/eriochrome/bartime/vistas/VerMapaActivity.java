@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

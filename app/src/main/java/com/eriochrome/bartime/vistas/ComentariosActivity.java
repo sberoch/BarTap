@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.ListaComentariosAdapter;
 import com.eriochrome.bartime.contracts.ComentariosContract;
-import com.eriochrome.bartime.modelos.Comentario;
+import com.eriochrome.bartime.modelos.entidades.Comentario;
 import com.eriochrome.bartime.presenters.ComentariosPresenter;
 
 import java.util.ArrayList;

@@ -14,7 +14,7 @@ import com.eriochrome.bartime.adapters.ItemTiendaHolder;
 import com.eriochrome.bartime.adapters.ListaItemsTiendaAdapter;
 import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.TiendaContract;
-import com.eriochrome.bartime.modelos.ItemTienda;
+import com.eriochrome.bartime.modelos.entidades.ItemTienda;
 import com.eriochrome.bartime.presenters.TiendaPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogComprarItemTienda;
 

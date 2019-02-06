@@ -3,14 +3,13 @@ package com.eriochrome.bartime.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.utils.GlideApp;
 import com.eriochrome.bartime.utils.Utils;
 import com.google.firebase.storage.FirebaseStorage;

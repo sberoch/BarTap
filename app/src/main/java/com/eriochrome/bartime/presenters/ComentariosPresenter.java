@@ -3,7 +3,7 @@ package com.eriochrome.bartime.presenters;
 import android.content.Intent;
 
 import com.eriochrome.bartime.contracts.ComentariosContract;
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.ComentariosInteraccion;
 
 public class ComentariosPresenter implements ComentariosContract.CompleteListener{

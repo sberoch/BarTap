@@ -8,7 +8,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.Comentario;
+import com.eriochrome.bartime.modelos.entidades.Comentario;
 
 import java.util.ArrayList;
 

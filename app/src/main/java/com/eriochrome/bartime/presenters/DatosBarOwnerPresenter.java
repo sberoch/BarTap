@@ -3,9 +3,8 @@ package com.eriochrome.bartime.presenters;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.DatosBarOwnerContract;
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.DatosBarOwnerInteraccion;
 
 public class DatosBarOwnerPresenter implements DatosBarOwnerContract.CompleteListener {

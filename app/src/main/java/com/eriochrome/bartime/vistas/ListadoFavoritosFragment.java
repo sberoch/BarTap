@@ -19,7 +19,7 @@ import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.ListaBaresAdapter;
 import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.FavoritosFragmentContract;
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 
 import com.eriochrome.bartime.presenters.FavoritosFragmentPresenter;
 import java.util.ArrayList;

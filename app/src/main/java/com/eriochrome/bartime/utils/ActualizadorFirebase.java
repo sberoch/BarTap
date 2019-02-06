@@ -3,8 +3,7 @@ package com.eriochrome.bartime.utils;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.eriochrome.bartime.modelos.Bar;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

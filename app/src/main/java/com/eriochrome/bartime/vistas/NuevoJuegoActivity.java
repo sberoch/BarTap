@@ -38,7 +38,9 @@ public class NuevoJuegoActivity extends AppCompatActivity implements NuevoJuegoC
         });
 
         crearTrivia.setOnClickListener(v -> {
-            //TODO: crear trivia activity
+            Intent i = new Intent(NuevoJuegoActivity.this, CrearTriviaActivity.class);
+            i = presenter.enviarBar(i);
+            startActivity(i);
         });
     }
 

@@ -3,6 +3,9 @@ package com.eriochrome.bartime.modelos;
 import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.JuegosGeneralContract;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.Desafio;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

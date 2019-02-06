@@ -3,6 +3,7 @@ package com.eriochrome.bartime.modelos;
 import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.FavoritosFragmentContract;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.ItemTienda;
+import com.eriochrome.bartime.modelos.entidades.ItemTienda;
 
 public class ItemTiendaHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

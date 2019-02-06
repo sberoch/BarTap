@@ -20,7 +20,7 @@ import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.ListaJuegosAdapter;
 import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.JuegosFragmentContract;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.presenters.JuegosFragmentPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
 import com.eriochrome.bartime.vistas.dialogs.DialogResumenJuego;

@@ -4,7 +4,6 @@ import android.net.Uri;
 
 import com.eriochrome.bartime.contracts.AgregarBarUsuarioContract;
 import com.eriochrome.bartime.modelos.AgregarBarUsuarioInteraccion;
-import com.eriochrome.bartime.modelos.Bar;
 
 
 public class AgregarBarUsuarioPresenter {

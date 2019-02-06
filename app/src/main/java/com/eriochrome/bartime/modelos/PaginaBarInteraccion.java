@@ -3,8 +3,9 @@ package com.eriochrome.bartime.modelos;
 import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.PaginaBarContract;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.Comentario;
 import com.eriochrome.bartime.utils.ActualizadorFirebase;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

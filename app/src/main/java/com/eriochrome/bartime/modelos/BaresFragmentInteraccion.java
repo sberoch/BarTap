@@ -4,6 +4,8 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.Filtro;
 import com.eriochrome.bartime.utils.ComparadorBaresDistancia;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;

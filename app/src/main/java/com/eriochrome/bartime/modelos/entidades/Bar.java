@@ -1,4 +1,4 @@
-package com.eriochrome.bartime.modelos;
+package com.eriochrome.bartime.modelos.entidades;
 
 import com.eriochrome.bartime.utils.Utils;
 import com.google.android.gms.maps.model.LatLng;

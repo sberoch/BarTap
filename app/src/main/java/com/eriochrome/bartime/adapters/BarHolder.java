@@ -3,7 +3,6 @@ package com.eriochrome.bartime.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,13 +10,10 @@ import android.widget.TextView;
 
 import com.eriochrome.bartime.vistas.PaginaBarActivity;
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.utils.GlideApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 

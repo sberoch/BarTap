@@ -1,4 +1,4 @@
-package com.eriochrome.bartime.modelos;
+package com.eriochrome.bartime.modelos.entidades;
 
 import java.io.Serializable;
 

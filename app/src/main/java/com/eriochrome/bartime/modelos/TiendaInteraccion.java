@@ -3,6 +3,8 @@ package com.eriochrome.bartime.modelos;
 import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.TiendaContract;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.ItemTienda;
 import com.eriochrome.bartime.utils.CreadorDeAvisos;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

@@ -1,7 +1,7 @@
 package com.eriochrome.bartime.contracts;
 
-import com.eriochrome.bartime.modelos.Bar;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 
 import java.util.ArrayList;
 

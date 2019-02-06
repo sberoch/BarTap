@@ -17,7 +17,7 @@ import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.ListaComentariosAdapter;
 import com.eriochrome.bartime.adapters.ViewPagerAdapter;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
-import com.eriochrome.bartime.modelos.Comentario;
+import com.eriochrome.bartime.modelos.entidades.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogComentario;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;

@@ -15,7 +15,7 @@ import com.eriochrome.bartime.adapters.JuegoDelBarHolder;
 import com.eriochrome.bartime.adapters.ListaJuegosAdapter;
 import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.JuegosGeneralContract;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.presenters.JuegosGeneralPresenter;
 
 import java.util.ArrayList;

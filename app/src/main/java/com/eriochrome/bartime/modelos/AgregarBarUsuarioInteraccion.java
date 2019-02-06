@@ -3,6 +3,7 @@ package com.eriochrome.bartime.modelos;
 import android.net.Uri;
 
 import com.eriochrome.bartime.contracts.AgregarBarUsuarioContract;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;

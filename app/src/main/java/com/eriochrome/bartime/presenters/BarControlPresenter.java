@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.eriochrome.bartime.contracts.BarControlContract;
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.BarControlInteraccion;
 
 public class BarControlPresenter implements BarControlContract.CompleteListener {

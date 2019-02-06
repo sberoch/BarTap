@@ -2,7 +2,7 @@ package com.eriochrome.bartime.contracts;
 
 import android.net.Uri;
 
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 
 import java.util.ArrayList;
 import java.util.HashMap;

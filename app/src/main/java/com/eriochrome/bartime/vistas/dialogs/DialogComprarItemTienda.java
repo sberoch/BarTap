@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.ItemTienda;
+import com.eriochrome.bartime.modelos.entidades.ItemTienda;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 

@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.JuegoHolder;
 import com.eriochrome.bartime.contracts.ListadosContract;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.presenters.ListadosPresenter;
 import com.eriochrome.bartime.utils.LocationHelper;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;

@@ -2,12 +2,10 @@ package com.eriochrome.bartime.presenters;
 
 import android.content.Intent;
 
-import com.eriochrome.bartime.contracts.JuegosFragmentContract;
 import com.eriochrome.bartime.contracts.JuegosGeneralContract;
-import com.eriochrome.bartime.modelos.Bar;
-import com.eriochrome.bartime.modelos.Juego;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.modelos.JuegosGeneralInteraccion;
-import com.eriochrome.bartime.vistas.JuegosGeneralActivity;
 
 import java.util.ArrayList;
 

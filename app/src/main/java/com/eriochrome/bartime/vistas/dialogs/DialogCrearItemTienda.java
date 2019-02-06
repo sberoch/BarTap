@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.modelos.ItemTienda;
+import com.eriochrome.bartime.modelos.entidades.ItemTienda;
 
 import java.util.ArrayList;
 

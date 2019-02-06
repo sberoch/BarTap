@@ -1,6 +1,6 @@
 package com.eriochrome.bartime.contracts;
 
-import com.eriochrome.bartime.modelos.Bar;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 
 public interface CrearDesafioContract {
 

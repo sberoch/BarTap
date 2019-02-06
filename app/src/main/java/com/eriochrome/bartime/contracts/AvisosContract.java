@@ -1,6 +1,6 @@
 package com.eriochrome.bartime.contracts;
 
-import com.eriochrome.bartime.modelos.Aviso;
+import com.eriochrome.bartime.modelos.entidades.Aviso;
 
 import java.util.ArrayList;
 
