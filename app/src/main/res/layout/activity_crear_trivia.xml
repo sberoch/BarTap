@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".vistas.CrearTriviaActivity"
+    android:focusable="true">
 
+    <TextView
+        android:id="@+id/titulo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/titulo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/ingrese_un_breve_titulo_o_descripcion_para_la_trivia" />
+
+    <EditText
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cant_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="@string/breve_titulo"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/cant_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/ingrese_la_cantidad_de_preguntas_de_la_trivia" />
+
+    <EditText
+        android:id="@+id/cant_preguntas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cant_text"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/bounds_trivia"
+        android:inputType="numberSigned"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/continuar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/continuar" />
 </RelativeLayout>

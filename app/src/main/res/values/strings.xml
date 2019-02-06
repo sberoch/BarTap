@@ -78,6 +78,14 @@
     <string name="costo">Costo:</string>
     <string name="total">Total:</string>
     <string name="necesitas_cuenta_tienda">Necesitas una cuenta para ver la tienda de este bar</string>
+    <string name="debe_ingresar_titulo_trivia">Debe ingresar un titulo breve para la trivia</string>
+    <string name="debe_ingresar_cant_preguntas_trivia">Debe ingresar la cantidad de preguntas de la trivia</string>
+    <string name="out_of_bounds_cant_preguntas_trivia">Cantidad de preguntas: Minimo 1 - Maximo 10</string>
+    <string name="ingrese_un_breve_titulo_o_descripcion_para_la_trivia">Ingrese un breve titulo o descripcion para la trivia:</string>
+    <string name="breve_titulo">Breve titulo</string>
+    <string name="ingrese_la_cantidad_de_preguntas_de_la_trivia">Ingrese la cantidad de preguntas de la trivia:</string>
+    <string name="bounds_trivia">Min. 1 - Max. 10</string>
+    <string name="debe_ingresar_numero_preguntas_trivia">Debe ingresar un numero para la cantidad de preguntas</string>
 
 
 </resources>

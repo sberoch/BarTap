@@ -1,8 +1,9 @@
 package com.eriochrome.bartime.modelos.entidades;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Trivia {
+public class Trivia implements Serializable {
     private ArrayList<PreguntaTrivia> preguntas;
     private int cantPreguntas;
     private String titulo;
