@@ -26,7 +26,6 @@ public class Juego implements Serializable {
     public String getTipoDeJuego() {
         return tipoDeJuego;
     }
-
     protected void asignarTipo(String tipo) {
         this.tipoDeJuego = tipo;
     }
@@ -34,6 +33,9 @@ public class Juego implements Serializable {
     public String getTextoResumen() {
         if (this instanceof Desafio) {
             return ((Desafio) this).getDesafioTexto();
+        }
+        if (this instanceof Trivia) {
+            return ((Trivia) this).getTitulo();
         }
         return "";
     }

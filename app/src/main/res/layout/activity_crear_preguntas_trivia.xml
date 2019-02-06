@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vistas.CrearPreguntasTriviaActivity">
+
+    <View
+        android:id="@+id/hl"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_below="@+id/pregunta"
+        android:layout_marginBottom="2dp"
+        android:background="#ccc" />
+
+    <Button
+        android:id="@+id/siguiente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/siguiente_pregunta" />
+
+    <Button
+        android:id="@+id/listo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/listo"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/pregunta_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="Pregunta:" />
+
+    <EditText
+        android:id="@+id/pregunta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pregunta_titulo"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="¿Pregunta Ejemplo?"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/opcionA_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hl"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Opcion A:" />
+
+    <TextView
+        android:id="@+id/opcionB_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/opcionA"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Opcion B:" />
+
+    <TextView
+        android:id="@+id/opcionC_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/opcionB"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Opcion C:" />
+
+    <EditText
+        android:id="@+id/opcionA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/opcionA_titulo"
+        android:layout_marginStart="20dp"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/opcionB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/opcionB_titulo"
+        android:layout_marginStart="20dp"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/opcionC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/opcionC_titulo"
+        android:layout_marginStart="20dp"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/opcionA_titulo"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp">
+
+        <RadioButton
+            android:id="@+id/op_a_correcta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="53dp"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/op_b_correcta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="53dp"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/op_c_correcta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </RadioGroup>
+</RelativeLayout>

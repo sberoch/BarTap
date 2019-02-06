@@ -111,6 +111,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"  />
         <activity android:name=".vistas.CrearTriviaActivity" />
+        <activity android:name=".vistas.CrearPreguntasTriviaActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

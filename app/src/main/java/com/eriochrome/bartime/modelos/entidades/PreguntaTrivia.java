@@ -8,43 +8,31 @@ public class PreguntaTrivia {
     private String opcionB;
     private String opcionC;
 
+    public PreguntaTrivia() {
+    }
+
+    public PreguntaTrivia(String pregunta, String opcionA, String opcionB, String opcionC, String correcta) {
+        this.pregunta = pregunta;
+        this.opcionA = opcionA;
+        this.opcionB = opcionB;
+        this.opcionC = opcionC;
+        this.opcionCorrecta = correcta;
+    }
+
     public String getPregunta() {
         return pregunta;
     }
-
-    public void setPregunta(String pregunta) {
-        this.pregunta = pregunta;
-    }
-
     public String getOpcionCorrecta() {
         return opcionCorrecta;
     }
-
-    public void setOpcionCorrecta(String opcionCorrecta) {
-        this.opcionCorrecta = opcionCorrecta;
-    }
-
     public String getOpcionA() {
         return opcionA;
     }
-
-    public void setOpcionA(String opcionA) {
-        this.opcionA = opcionA;
-    }
-
     public String getOpcionB() {
         return opcionB;
     }
-
-    public void setOpcionB(String opcionB) {
-        this.opcionB = opcionB;
-    }
-
     public String getOpcionC() {
         return opcionC;
     }
 
-    public void setOpcionC(String opcionC) {
-        this.opcionC = opcionC;
-    }
 }

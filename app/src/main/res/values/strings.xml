@@ -86,6 +86,10 @@
     <string name="ingrese_la_cantidad_de_preguntas_de_la_trivia">Ingrese la cantidad de preguntas de la trivia:</string>
     <string name="bounds_trivia">Min. 1 - Max. 10</string>
     <string name="debe_ingresar_numero_preguntas_trivia">Debe ingresar un numero para la cantidad de preguntas</string>
+    <string name="siguiente_pregunta">Siguiente Pregunta</string>
+    <string name="debe_seleccionar_opcion_correcta">Debe seleccionar la opcion correcta antes de continuar.</string>
+    <string name="no_debe_dejar_campos_vacios">No debe dejar campos vacios.</string>
+    <string name="enviando_trivia">Enviando trivia...</string>
 
 
 </resources>
