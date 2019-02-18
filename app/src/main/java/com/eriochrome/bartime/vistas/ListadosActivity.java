@@ -327,10 +327,10 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     }
 
     @Override
-    public void participarDeJuego(Juego juego) {
+    public void intentarParticiparDeJuego(Juego juego) {
         Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
         if (f instanceof ListadoJuegosFragment) {
-            ((ListadoJuegosFragment) f).participarDeJuego(juego);
+            ((ListadoJuegosFragment) f).intentarParticiparDeJuego(juego);
         }
     }
 

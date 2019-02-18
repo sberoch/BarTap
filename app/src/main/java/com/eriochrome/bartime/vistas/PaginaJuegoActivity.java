@@ -30,6 +30,8 @@ public class PaginaJuegoActivity extends AppCompatActivity implements PaginaJueg
     private ArrayAdapter<String> adapter;
     private String posibleGanador;
 
+    //TODO: hacer algo para el caso trivia
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

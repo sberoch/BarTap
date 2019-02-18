@@ -26,10 +26,30 @@ public class Desafio extends Juego {
     public void setPermanente(boolean permanente) {
         this.permanente = permanente;
     }
-
     public boolean isPermanente() {
         return permanente;
     }
+
+    @Override
+    public String getTextoParticipacion(String nombreParticipante) {
+        return nombreParticipante
+                + " esta ahora participando en el desafio '"
+                + desafioTexto
+                + "'.";
+    }
+
+    @Override
+    public String getTextoGanadorDeJuego() {
+        String nombreBar = getNombreBar();
+        return "Has ganado "
+                + puntos
+                + " puntos por ganar el desafio '"
+                + desafioTexto
+                + "' en "
+                + nombreBar
+                + ".";
+    }
+
 
     /**
      * Requerido por firebase

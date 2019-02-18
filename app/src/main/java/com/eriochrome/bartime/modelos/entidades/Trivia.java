@@ -7,7 +7,6 @@ public class Trivia extends Juego {
     private int cantPreguntas;
     private String titulo;
 
-
     public ArrayList<PreguntaTrivia> getPreguntas() {
         return preguntas;
     }
@@ -36,10 +35,29 @@ public class Trivia extends Juego {
         super.asignarTipo("Trivia");
     }
 
+    @Override
+    public String getTextoParticipacion(String nombreParticipante) {
+        //No se avisa la participacion en una trivia
+        return "";
+    }
+
+    @Override
+    public String getTextoGanadorDeJuego() {
+        String nombreBar = getNombreBar();
+        return "Has ganado "
+                + puntos
+                + " puntos por ganar la trivia '"
+                + titulo
+                + "' en "
+                + nombreBar
+                + ".";
+    }
+
     /**
      * Requerido por firebase
      */
     public Trivia() {
+        preguntas = new ArrayList<>();
     }
     @Override
     public int getPuntos() {

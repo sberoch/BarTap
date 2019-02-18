@@ -2,7 +2,7 @@ package com.eriochrome.bartime.modelos.entidades;
 
 import java.io.Serializable;
 
-public class Juego implements Serializable {
+public abstract class Juego implements Serializable {
 
     protected int puntos;
     private String nombreBar;
@@ -43,8 +43,11 @@ public class Juego implements Serializable {
     public String getID() {
         return id;
     }
-
     public void setID(String id) {
         this.id = id;
     }
+
+    public abstract String getTextoParticipacion(String nombreParticipante);
+    public abstract String getTextoGanadorDeJuego();
+
 }

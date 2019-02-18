@@ -61,6 +61,10 @@ public class JuegoDelBarHolder extends RecyclerView.ViewHolder implements View.O
             case "Desafio":
                 imagenDelJuego.setImageResource(R.drawable.placeholder); //TODO: imagenes para cada juego
                 break;
+
+            case "Trivia":
+                imagenDelJuego.setImageResource(R.drawable.placeholder); //TODO: imagenes para cada juego
+                break;
         }
     }
 }

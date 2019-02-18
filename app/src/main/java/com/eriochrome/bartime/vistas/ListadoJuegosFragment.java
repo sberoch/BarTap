@@ -2,6 +2,7 @@ package com.eriochrome.bartime.vistas;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import com.eriochrome.bartime.adapters.ListaJuegosAdapter;
 import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.JuegosFragmentContract;
 import com.eriochrome.bartime.modelos.entidades.Juego;
+import com.eriochrome.bartime.modelos.entidades.Trivia;
 import com.eriochrome.bartime.presenters.JuegosFragmentPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
 import com.eriochrome.bartime.vistas.dialogs.DialogResumenJuego;
@@ -87,9 +89,9 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
     }
 
 
-    public void participarDeJuego(Juego juego) {
+    public void intentarParticiparDeJuego(Juego juego) {
         if (presenter.estaConectado()) {
-            presenter.participarDeJuego(juego);
+            presenter.intentarParticiparDeJuego(juego);
         } else {
             DialogCrearCuenta crearCuentaDialog = new DialogCrearCuenta();
             crearCuentaDialog.setTexto(getString(R.string.necesitas_cuenta_participar));
@@ -128,6 +130,18 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
     @Override
     public void successParticipando() {
         toastShort(getActivity(), getString(R.string.exito_participar_juego));
+    }
+
+    @Override
+    public void yaSeParticipo() {
+        toastShort(getActivity(), getString(R.string.ya_participaste_juego));
+    }
+
+    @Override
+    public void ingresarATrivia(Trivia trivia) {
+        Intent i = new Intent(getActivity(), TriviaActivity.class);
+        i.putExtra("trivia", trivia);
+        startActivity(i);
     }
 
     private void ocultarTeclado() {

@@ -58,6 +58,10 @@ public class JuegoHolder extends RecyclerView.ViewHolder implements View.OnClick
             case "Desafio":
                 imagenDelJuego.setImageResource(R.drawable.placeholder); //TODO: imagenes para cada juego
                 break;
+            case "Trivia":
+                imagenDelJuego.setImageResource(R.drawable.placeholder); //TODO: imagenes para cada juego
+                break;
+
         }
     }
 

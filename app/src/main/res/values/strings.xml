@@ -90,6 +90,7 @@
     <string name="debe_seleccionar_opcion_correcta">Debe seleccionar la opcion correcta antes de continuar.</string>
     <string name="no_debe_dejar_campos_vacios">No debe dejar campos vacios.</string>
     <string name="enviando_trivia">Enviando trivia...</string>
+    <string name="ya_participaste_juego">Ups! Ya participaste de este juego.</string>
 
 
 </resources>

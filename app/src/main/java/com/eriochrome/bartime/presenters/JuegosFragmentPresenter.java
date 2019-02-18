@@ -3,6 +3,7 @@ package com.eriochrome.bartime.presenters;
 import com.eriochrome.bartime.contracts.JuegosFragmentContract;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.modelos.JuegosFragmentInteraccion;
+import com.eriochrome.bartime.modelos.entidades.Trivia;
 
 public class JuegosFragmentPresenter implements JuegosFragmentContract.Listener{
 
@@ -36,13 +37,28 @@ public class JuegosFragmentPresenter implements JuegosFragmentContract.Listener{
         view.finCargando(interaccion.obtenerJuegos());
     }
 
+    public void intentarParticiparDeJuego(Juego juego) {
+        interaccion.intentarParticiparDeJuego(juego);
+    }
+
+    @Override
+    public void participarDeJuego(Juego juego) {
+        interaccion.participarDeJuego(juego);
+    }
+
     @Override
     public void successParticipando() {
         view.successParticipando();
     }
 
-    public void participarDeJuego(Juego juego) {
-        interaccion.participarDeJuego(juego);
+    @Override
+    public void yaSeParticipo() {
+        view.yaSeParticipo();
+    }
+
+    @Override
+    public void ingresarATrivia(Trivia trivia) {
+        view.ingresarATrivia(trivia);
     }
 
     public boolean estaConectado() {

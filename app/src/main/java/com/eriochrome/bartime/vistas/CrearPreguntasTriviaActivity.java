@@ -60,10 +60,15 @@ public class CrearPreguntasTriviaActivity extends AppCompatActivity implements C
         });
 
         listo.setOnClickListener(v -> {
-            presenter.subirTrivia();
-            toastShort(CrearPreguntasTriviaActivity.this, getString(R.string.enviando_trivia));
-            startActivity(new Intent(CrearPreguntasTriviaActivity.this, BarControlActivity.class));
-            finish();
+            if (camposValidos()) {
+                presenter.guardarPregunta();
+                presenter.subirTrivia();
+                toastShort(CrearPreguntasTriviaActivity.this, getString(R.string.enviando_trivia));
+                startActivity(new Intent(CrearPreguntasTriviaActivity.this, BarControlActivity.class));
+                finish();
+            } else {
+                mostrarError(textoError);
+            }
         });
     }
 

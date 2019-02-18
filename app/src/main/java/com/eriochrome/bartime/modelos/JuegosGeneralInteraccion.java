@@ -6,6 +6,7 @@ import com.eriochrome.bartime.contracts.JuegosGeneralContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Desafio;
 import com.eriochrome.bartime.modelos.entidades.Juego;
+import com.eriochrome.bartime.modelos.entidades.Trivia;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,9 +38,14 @@ public class JuegosGeneralInteraccion implements JuegosGeneralContract.Interacci
         refJuegos.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //TODO: esta solo para desafio, agregar mas fors a medida que ponga nuevos tipos de juego
                 for (DataSnapshot ds : dataSnapshot.child("Desafio").getChildren()) {
                     Juego juego = ds.getValue(Desafio.class);
+                    if (juego.getNombreBar().equals(bar.getNombre())) {
+                        juegos.add(juego);
+                    }
+                }
+                for (DataSnapshot ds : dataSnapshot.child("Trivia").getChildren()) {
+                    Juego juego = ds.getValue(Trivia.class);
                     if (juego.getNombreBar().equals(bar.getNombre())) {
                         juegos.add(juego);
                     }

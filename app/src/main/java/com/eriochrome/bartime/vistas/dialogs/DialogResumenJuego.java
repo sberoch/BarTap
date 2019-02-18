@@ -17,7 +17,7 @@ public class DialogResumenJuego extends DialogFragment {
     private Juego juego;
 
     public interface Listener {
-        void participarDeJuego(Juego juego);
+        void intentarParticiparDeJuego(Juego juego);
     }
 
     private DialogResumenJuego.Listener listener;
@@ -41,7 +41,7 @@ public class DialogResumenJuego extends DialogFragment {
         builder.setTitle(juego.getTipoDeJuego());
 
         builder.setPositiveButton(R.string.participar, (dialog, which) -> {
-            listener.participarDeJuego(juego);
+            listener.intentarParticiparDeJuego(juego);
             dismiss();
         });
 

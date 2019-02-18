@@ -65,6 +65,7 @@ public class PaginaJuegoInteraccion implements PaginaJuegoContract.Interaccion {
                         }
                     }
                 }
+                //Trivia no necesita lista de participantes
                 listener.onComplete(participantes);
             }
 
