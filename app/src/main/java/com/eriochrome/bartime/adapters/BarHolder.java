@@ -69,11 +69,11 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
 
 
     private void setEstrellas() {
-        //Para que el bar no quede mal, solo se muestran las estrellas que tiene si tiene una puntuacion
+        //Para que el bar no quede mal, solo se muestran las estrellas si tiene una puntuacion
         // mayor a la minima.
         double estrellasDelBar = bar.getEstrellas();
         if (estrellasDelBar >= MIN_ESTRELLAS) {
-            this.estrellas.setText(String.format("%.1f",bar.getEstrellas()));
+            this.estrellas.setText(String.format("%.1f", estrellasDelBar));
         } else {
             this.estrellas.setText(" -- ");
         }
