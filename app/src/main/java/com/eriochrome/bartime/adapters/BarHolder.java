@@ -28,10 +28,9 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
     private TextView estrellas;
     private ImageView imagenBar;
 
-
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-    private DatabaseReference baresRef = FirebaseDatabase.getInstance().getReference().child("bares");
 
+    private static final int MIN_ESTRELLAS = 2;
 
     public BarHolder(Context context, View view) {
         super(view);
@@ -59,17 +58,26 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
         this.ubicacionBar.setText(bar.getUbicacion());
         this.ubicacionBar.setTypeface(tfLight);
 
-        this.estrellas.setText(String.format("%.1f",bar.getEstrellas()));
+        setEstrellas();
 
         String imagePath = bar.getNombre() + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(imagePath);
         GlideApp.with(this.view)
                 .load(imagenRef).placeholder(R.drawable.placeholder)
                 .into(this.imagenBar);
-
     }
 
 
+    private void setEstrellas() {
+        //Para que el bar no quede mal, solo se muestran las estrellas que tiene si tiene una puntuacion
+        // mayor a la minima.
+        double estrellasDelBar = bar.getEstrellas();
+        if (estrellasDelBar >= MIN_ESTRELLAS) {
+            this.estrellas.setText(String.format("%.1f",bar.getEstrellas()));
+        } else {
+            this.estrellas.setText(" -- ");
+        }
+    }
 
 
     @Override
