@@ -3,19 +3,36 @@ package com.eriochrome.bartime.vistas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.TriviaContract;
 import com.eriochrome.bartime.presenters.TriviaPresenter;
 
+import static com.eriochrome.bartime.utils.Utils.toastShort;
+
 public class TriviaActivity extends AppCompatActivity implements TriviaContract.View {
+
+    //TODO: countdown
+    //TODO: hacer con todas las preguntas en ciclo
 
     private TriviaPresenter presenter;
 
-    private ProgressBar progressBar;
-    private RelativeLayout rl;
+    private TextView pregunta;
+    private Button opA;
+    private Button opB;
+    private Button opC;
+    private View.OnClickListener opcionClickListener = v -> {
+        String opcion = ((Button) v).getText().toString();
+        if (presenter.eligioOpcionCorrecta(opcion)) {
+            correcto();
+        } else {
+            incorrecto();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +43,14 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
         presenter.bind(this);
         presenter.obtenerTrivia(getIntent());
 
-        progressBar = findViewById(R.id.progressBar);
-        rl = findViewById(R.id.trivia_rl);
-        progressBar.setVisibility(View.GONE);
+        pregunta = findViewById(R.id.pregunta);
+        opA = findViewById(R.id.op_a);
+        opB = findViewById(R.id.op_b);
+        opC = findViewById(R.id.op_c);
 
+        opA.setOnClickListener(opcionClickListener);
+        opB.setOnClickListener(opcionClickListener);
+        opC.setOnClickListener(opcionClickListener);
     }
 
     @Override
@@ -45,14 +66,33 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
     }
 
     @Override
-    public void cargando() {
-        progressBar.setVisibility(View.VISIBLE);
-        rl.setVisibility(View.GONE);
+    public void llenar(String pregunta, String opA, String opB, String opC) {
+        this.pregunta.setText(pregunta);
+        this.opA.setText(opA);
+        this.opB.setText(opB);
+        this.opC.setText(opC);
     }
 
-    @Override
-    public void finCargando() {
-        progressBar.setVisibility(View.GONE);
-        rl.setVisibility(View.VISIBLE);
+
+    private void incorrecto() {
+        //TODO: poner en rojo
+        //TODO: perder
+        toastShort(this, "Incorrecto");
+    }
+
+    private void correcto() {
+        //TODO: poner en verde
+        //TODO: siguiente pregunta o terminar
+        toastShort(this, "Correcto");
+    }
+
+    private void perdio() {
+        //TODO: mostrar dialogo de salir (perdedor)
+    }
+
+    private void gano() {
+        //TODO: actualizar puntos
+        //TODO: ponerlo como ganador en la lista del bar
+        //TODO: mostrar dialogo de salir (ganador)
     }
 }

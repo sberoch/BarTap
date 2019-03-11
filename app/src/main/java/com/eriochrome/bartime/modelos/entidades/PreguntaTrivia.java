@@ -1,6 +1,8 @@
 package com.eriochrome.bartime.modelos.entidades;
 
-public class PreguntaTrivia {
+import java.io.Serializable;
+
+public class PreguntaTrivia implements Serializable {
 
     private String pregunta;
     private String opcionCorrecta;
