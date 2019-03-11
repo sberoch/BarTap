@@ -5,4 +5,81 @@
     android:layout_height="match_parent"
     tools:context=".vistas.TriviaActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:indeterminateDrawable="@drawable/barra_progreso_circular"
+        android:indeterminateDuration="2000" />
+
+    <RelativeLayout
+        android:id="@+id/trivia_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="40dp"
+            android:text="20"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/pregunta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/countdown"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:text="¿Pregunta de ejemplo?"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/op_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pregunta"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Opcion A" />
+
+        <Button
+            android:id="@+id/op_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/op_a"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Opcion B" />
+
+        <Button
+            android:id="@+id/op_c"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/op_b"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Opcion C" />
+
+    </RelativeLayout>
+
+
+
 </RelativeLayout>

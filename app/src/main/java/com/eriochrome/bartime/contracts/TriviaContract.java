@@ -9,6 +9,11 @@ public interface TriviaContract {
     }
 
     interface View {
+        void cargando();
+        void finCargando();
+    }
+
+    interface Listener {
 
     }
 }

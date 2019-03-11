@@ -6,13 +6,13 @@ import com.eriochrome.bartime.contracts.TriviaContract;
 import com.eriochrome.bartime.modelos.TriviaInteraccion;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
 
-public class TriviaPresenter {
+public class TriviaPresenter implements TriviaContract.Listener {
 
     private TriviaContract.Interaccion interaccion;
     private TriviaContract.View view;
 
     public TriviaPresenter() {
-        interaccion = new TriviaInteraccion();
+        interaccion = new TriviaInteraccion(this);
     }
 
     public void bind(TriviaContract.View view) {
@@ -26,5 +26,10 @@ public class TriviaPresenter {
     public void obtenerTrivia(Intent intent) {
         Trivia trivia = (Trivia) intent.getSerializableExtra("trivia");
         interaccion.setTrivia(trivia);
+    }
+
+    public void comenzarTrivia() {
+        view.cargando();
+        //TODO: cargar preguntas
     }
 }
