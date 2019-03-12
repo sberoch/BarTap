@@ -19,8 +19,8 @@ public class ActualizadorFirebase {
         baresRef.child(bar.getNombre()).child("numeroDeCalificaciones").setValue(bar.getNumeroDeCalificaciones());
     }
 
-    public static void actualizarPuntos(String ganador, Bar bar, int puntos, DatabaseReference refGlobal) {
-        refGlobal.child("puntos").child(ganador).child(bar.getNombre())
+    public static void actualizarPuntos(String ganador, String nombreBar, int puntos, DatabaseReference refGlobal) {
+        refGlobal.child("puntos").child(ganador).child(nombreBar)
                 .runTransaction(new Transaction.Handler() {
                     @NonNull
                     @Override

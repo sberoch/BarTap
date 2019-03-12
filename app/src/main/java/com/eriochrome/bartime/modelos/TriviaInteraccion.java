@@ -3,25 +3,44 @@ package com.eriochrome.bartime.modelos;
 import com.eriochrome.bartime.contracts.TriviaContract;
 import com.eriochrome.bartime.modelos.entidades.PreguntaTrivia;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
+import com.eriochrome.bartime.utils.ActualizadorFirebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class TriviaInteraccion implements TriviaContract.Interaccion {
 
     private Trivia trivia;
+    private DatabaseReference ref;
+    private FirebaseUser authuser;
+    private int preguntasRestantes;
+    private int numeroDePreguntaActual;
+
+    public TriviaInteraccion() {
+        ref = FirebaseDatabase.getInstance().getReference();
+        authuser = FirebaseAuth.getInstance().getCurrentUser();
+    }
 
     @Override
     public void setTrivia(Trivia trivia) {
         this.trivia = trivia;
+        preguntasRestantes = trivia.getCantPreguntas();
+        numeroDePreguntaActual = 0;
     }
 
     @Override
-    public PreguntaTrivia cargarPrimeraPregunta() {
-        return trivia.getPreguntas().get(0);
+    public PreguntaTrivia cargarSiguiente() {
+        PreguntaTrivia siguiente = trivia.getPreguntas().get(numeroDePreguntaActual);
+        preguntasRestantes--;
+        numeroDePreguntaActual++;
+        return siguiente;
     }
 
     @Override
     public boolean eligioOpcionCorrecta(String opcion) {
-        PreguntaTrivia preguntaTrivia =  trivia.getPreguntas().get(0);
+        PreguntaTrivia preguntaTrivia =  trivia.getPreguntas().get(numeroDePreguntaActual - 1);
         boolean esCorrecta = false;
         if (opcion.equals(preguntaTrivia.getOpcionA()) && preguntaTrivia.getOpcionCorrecta().equals("A")) {
             esCorrecta = true;
@@ -33,5 +52,15 @@ public class TriviaInteraccion implements TriviaContract.Interaccion {
             esCorrecta = true;
         }
         return esCorrecta;
+    }
+
+    @Override
+    public void actualizarPuntos() {
+        ActualizadorFirebase.actualizarPuntos(authuser.getDisplayName(), trivia.getNombreBar(), trivia.getPuntos(), ref);
+    }
+
+    @Override
+    public boolean quedanPreguntas() {
+        return preguntasRestantes > 0;
     }
 }

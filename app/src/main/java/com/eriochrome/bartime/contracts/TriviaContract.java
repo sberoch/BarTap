@@ -7,8 +7,10 @@ public interface TriviaContract {
 
     interface Interaccion {
         void setTrivia(Trivia trivia);
-        PreguntaTrivia cargarPrimeraPregunta();
+        PreguntaTrivia cargarSiguiente();
         boolean eligioOpcionCorrecta(String opcion);
+        void actualizarPuntos();
+        boolean quedanPreguntas();
     }
 
     interface View {

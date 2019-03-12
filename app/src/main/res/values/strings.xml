@@ -91,6 +91,8 @@
     <string name="no_debe_dejar_campos_vacios">No debe dejar campos vacios.</string>
     <string name="enviando_trivia">Enviando trivia...</string>
     <string name="ya_participaste_juego">Ups! Ya participaste de este juego.</string>
+    <string name="texto_perdedor_trivia">¡Ups! Has perdido.</string>
+    <string name="texto_ganador_trivia">¡Felicidades! Ganaste la trivia.</string>
 
 
 </resources>

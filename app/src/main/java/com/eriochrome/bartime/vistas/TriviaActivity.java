@@ -1,5 +1,6 @@
 package com.eriochrome.bartime.vistas;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +12,13 @@ import android.widget.TextView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.TriviaContract;
 import com.eriochrome.bartime.presenters.TriviaPresenter;
+import com.eriochrome.bartime.vistas.dialogs.DialogTerminoTrivia;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class TriviaActivity extends AppCompatActivity implements TriviaContract.View {
 
-    //TODO: countdown
-    //TODO: hacer con todas las preguntas en ciclo
+    private final static int TIMER_MAX = 10000; //10 segs
 
     private TriviaPresenter presenter;
 
@@ -30,7 +31,20 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
         if (presenter.eligioOpcionCorrecta(opcion)) {
             correcto();
         } else {
-            incorrecto();
+            perdio();
+        }
+    };
+
+    private TextView timerTextView;
+    private CountDownTimer cdtimer = new CountDownTimer(TIMER_MAX, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            timerTextView.setText(String.valueOf(millisUntilFinished / 1000));
+        }
+
+        @Override
+        public void onFinish() {
+            perdio();
         }
     };
 
@@ -42,6 +56,8 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
         presenter = new TriviaPresenter();
         presenter.bind(this);
         presenter.obtenerTrivia(getIntent());
+
+        timerTextView = findViewById(R.id.countdown);
 
         pregunta = findViewById(R.id.pregunta);
         opA = findViewById(R.id.op_a);
@@ -56,14 +72,10 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
     @Override
     protected void onStart() {
         super.onStart();
-        presenter.comenzarTrivia();
+        presenter.cargarSiguientePregunta();
+        cdtimer.start();
     }
 
-    @Override
-    protected void onDestroy() {
-        presenter.unbind();
-        super.onDestroy();
-    }
 
     @Override
     public void llenar(String pregunta, String opA, String opB, String opC) {
@@ -73,26 +85,40 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
         this.opC.setText(opC);
     }
 
-
-    private void incorrecto() {
-        //TODO: poner en rojo
-        //TODO: perder
-        toastShort(this, "Incorrecto");
-    }
-
     private void correcto() {
         //TODO: poner en verde
-        //TODO: siguiente pregunta o terminar
-        toastShort(this, "Correcto");
+
+        if (presenter.quedanPreguntas()) {
+            presenter.cargarSiguientePregunta();
+            cdtimer.start();
+        } else {
+            gano();
+        }
     }
 
     private void perdio() {
-        //TODO: mostrar dialogo de salir (perdedor)
+        DialogTerminoTrivia dialogTerminoTrivia = new DialogTerminoTrivia();
+        dialogTerminoTrivia.setTexto(getString(R.string.texto_perdedor_trivia));
+        dialogTerminoTrivia.show(getFragmentManager(), "terminoTrivia");
     }
 
     private void gano() {
-        //TODO: actualizar puntos
+        cdtimer.cancel();
+
+        presenter.actualizarPuntos();
         //TODO: ponerlo como ganador en la lista del bar
-        //TODO: mostrar dialogo de salir (ganador)
+
+        DialogTerminoTrivia dialogTerminoTrivia = new DialogTerminoTrivia();
+        dialogTerminoTrivia.setTexto(getString(R.string.texto_ganador_trivia));
+        dialogTerminoTrivia.show(getFragmentManager(), "terminoTrivia");
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        presenter.unbind();
+        if (cdtimer != null)
+            cdtimer.cancel();
+        super.onDestroy();
     }
 }

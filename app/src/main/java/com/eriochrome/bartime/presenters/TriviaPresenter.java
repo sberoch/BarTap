@@ -29,18 +29,24 @@ public class TriviaPresenter {
         interaccion.setTrivia(trivia);
     }
 
-    public void comenzarTrivia() {
-        PreguntaTrivia primeraPregunta = interaccion.cargarPrimeraPregunta();
-        String pregunta = primeraPregunta.getPregunta();
-        String opA =  primeraPregunta.getOpcionA();
-        String opB =  primeraPregunta.getOpcionB();
-        String opC =  primeraPregunta.getOpcionC();
-        view.llenar(pregunta, opA, opB, opC);
-        //TODO: cargar preguntas en un ciclo
-
-    }
-
     public boolean eligioOpcionCorrecta(String opcion) {
         return interaccion.eligioOpcionCorrecta(opcion);
+    }
+
+    public void actualizarPuntos() {
+        interaccion.actualizarPuntos();
+    }
+
+    public boolean quedanPreguntas() {
+        return interaccion.quedanPreguntas();
+    }
+
+    public void cargarSiguientePregunta() {
+        PreguntaTrivia preguntaTrivia = interaccion.cargarSiguiente();
+        String pregunta = preguntaTrivia.getPregunta();
+        String opA =  preguntaTrivia.getOpcionA();
+        String opB =  preguntaTrivia.getOpcionB();
+        String opC =  preguntaTrivia.getOpcionC();
+        view.llenar(pregunta, opA, opB, opC);
     }
 }

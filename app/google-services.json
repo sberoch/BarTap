@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "533804054577-1d8p7hmhg9u5f5h00vr1ud1keoatf2mj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eriochrome.bartime",
+            "certificate_hash": "7eaecd1a18be7fc311662375545216d42ef228e2"
+          }
+        },
+        {
           "client_id": "533804054577-250npes81rrafto60g93ikglnld9jhsf.apps.googleusercontent.com",
           "client_type": 3
         }

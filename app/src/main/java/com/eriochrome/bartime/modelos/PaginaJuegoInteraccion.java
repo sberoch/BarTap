@@ -85,7 +85,7 @@ public class PaginaJuegoInteraccion implements PaginaJuegoContract.Interaccion {
                 .child(juego.getTipoDeJuego()).child(juego.getID());
 
         //Sumarle puntos al ganador
-        ActualizadorFirebase.actualizarPuntos(ganador, bar, juego.getPuntos(), refGlobal);
+        ActualizadorFirebase.actualizarPuntos(ganador, bar.getNombre(), juego.getPuntos(), refGlobal);
 
         //Remover al usuario si es permantente, sino remover el juego
         if (!esJuegoPermanente()) {
