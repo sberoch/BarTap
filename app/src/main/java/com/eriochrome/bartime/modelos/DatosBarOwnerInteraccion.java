@@ -56,7 +56,6 @@ public class DatosBarOwnerInteraccion implements DatosBarOwnerContract.Interacci
 
     /**
      * Suposicion: el bar no cambia de nombre
-     * TODO: handle this
      */
     @Override
     public void editarBar() {

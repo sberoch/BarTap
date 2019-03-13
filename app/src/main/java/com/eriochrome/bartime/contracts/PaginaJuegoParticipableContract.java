@@ -5,7 +5,7 @@ import com.eriochrome.bartime.modelos.entidades.Juego;
 
 import java.util.ArrayList;
 
-public interface PaginaJuegoContract {
+public interface PaginaJuegoParticipableContract {
 
     interface Interaccion {
         void setJuego(Juego juego);

@@ -48,4 +48,8 @@ public class JuegosGeneralPresenter implements JuegosGeneralContract.Listener {
     public Intent enviarJuego(Intent i, Juego juego) {
         return i.putExtra("juego", juego);
     }
+
+    public boolean esParticipable(Juego juego) {
+        return interaccion.esParticipable(juego);
+    }
 }

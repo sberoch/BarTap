@@ -62,4 +62,10 @@ public class JuegosGeneralInteraccion implements JuegosGeneralContract.Interacci
     public Bar getBar() {
         return bar;
     }
+
+    @Override
+    public boolean esParticipable(Juego juego) {
+        //Ojo, funciona esto siempre y cuando no haya otro juego de la misma indole que trivia
+        return !juego.getTipoDeJuego().equals("Trivia");
+    }
 }

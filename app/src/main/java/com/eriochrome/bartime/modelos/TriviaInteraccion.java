@@ -1,13 +1,20 @@
 package com.eriochrome.bartime.modelos;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.eriochrome.bartime.contracts.TriviaContract;
 import com.eriochrome.bartime.modelos.entidades.PreguntaTrivia;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
 import com.eriochrome.bartime.utils.ActualizadorFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 
 
 public class TriviaInteraccion implements TriviaContract.Interaccion {
@@ -62,5 +69,28 @@ public class TriviaInteraccion implements TriviaContract.Interaccion {
     @Override
     public boolean quedanPreguntas() {
         return preguntasRestantes > 0;
+    }
+
+    @Override
+    public void agregarGanador() {
+        ref.child("juegos").child("Trivia").child(trivia.getID()).child("cantGanadores").runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Integer ganadoresActuales = mutableData.getValue(Integer.class);
+                if (ganadoresActuales == null) {
+                    mutableData.setValue(1);
+                }
+                else {
+                    mutableData.setValue(ganadoresActuales + 1);
+                }
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+            }
+        });
     }
 }

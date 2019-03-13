@@ -49,4 +49,8 @@ public class TriviaPresenter {
         String opC =  preguntaTrivia.getOpcionC();
         view.llenar(pregunta, opA, opB, opC);
     }
+
+    public void agregarGanador() {
+        interaccion.agregarGanador();
+    }
 }

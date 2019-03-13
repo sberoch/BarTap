@@ -10,17 +10,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.contracts.PaginaJuegoContract;
-import com.eriochrome.bartime.presenters.PaginaJuegoPresenter;
+import com.eriochrome.bartime.contracts.PaginaJuegoParticipableContract;
+import com.eriochrome.bartime.presenters.PaginaJuegoParticipablePresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogValidarGanador;
 
 import java.util.ArrayList;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class PaginaJuegoActivity extends AppCompatActivity implements PaginaJuegoContract.View, DialogValidarGanador.Listener {
+public class PaginaJuegoParticipableActivity extends AppCompatActivity implements PaginaJuegoParticipableContract.View, DialogValidarGanador.Listener {
 
-    private PaginaJuegoPresenter presenter;
+    private PaginaJuegoParticipablePresenter presenter;
 
     private ProgressBar progressBar;
 
@@ -30,14 +30,12 @@ public class PaginaJuegoActivity extends AppCompatActivity implements PaginaJueg
     private ArrayAdapter<String> adapter;
     private String posibleGanador;
 
-    //TODO: hacer algo para el caso trivia
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pagina_juego);
+        setContentView(R.layout.activity_pagina_juego_participable);
 
-        presenter = new PaginaJuegoPresenter();
+        presenter = new PaginaJuegoParticipablePresenter();
         presenter.bind(this);
         presenter.obtenerJuego(getIntent());
         presenter.obtenerBar(getIntent());

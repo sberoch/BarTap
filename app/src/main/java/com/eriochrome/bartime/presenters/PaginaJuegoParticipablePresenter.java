@@ -2,23 +2,23 @@ package com.eriochrome.bartime.presenters;
 
 import android.content.Intent;
 
-import com.eriochrome.bartime.contracts.PaginaJuegoContract;
+import com.eriochrome.bartime.contracts.PaginaJuegoParticipableContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Juego;
-import com.eriochrome.bartime.modelos.PaginaJuegoInteraccion;
+import com.eriochrome.bartime.modelos.PaginaJuegoParticipableInteraccion;
 
 import java.util.ArrayList;
 
-public class PaginaJuegoPresenter implements PaginaJuegoContract.Listener{
+public class PaginaJuegoParticipablePresenter implements PaginaJuegoParticipableContract.Listener{
 
-    private PaginaJuegoContract.Interaccion interaccion;
-    private PaginaJuegoContract.View view;
+    private PaginaJuegoParticipableContract.Interaccion interaccion;
+    private PaginaJuegoParticipableContract.View view;
 
-    public PaginaJuegoPresenter() {
-        interaccion = new PaginaJuegoInteraccion(this);
+    public PaginaJuegoParticipablePresenter() {
+        interaccion = new PaginaJuegoParticipableInteraccion(this);
     }
 
-    public void bind(PaginaJuegoContract.View view) {
+    public void bind(PaginaJuegoParticipableContract.View view) {
         this.view = view;
     }
 

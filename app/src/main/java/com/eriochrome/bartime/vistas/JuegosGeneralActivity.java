@@ -100,7 +100,12 @@ public class JuegosGeneralActivity extends AppCompatActivity implements JuegosGe
 
     @Override
     public void onClickJuego(Juego juego) {
-        Intent i = new Intent(this, PaginaJuegoActivity.class);
+        Intent i;
+        if (presenter.esParticipable(juego)) {
+            i = new Intent(this, PaginaJuegoParticipableActivity.class);
+        } else {
+            i = new Intent(this, PaginaTriviaActivity.class);
+        }
         i = presenter.enviarJuego(i, juego);
         i = presenter.enviarBar(i);
         startActivity(i);

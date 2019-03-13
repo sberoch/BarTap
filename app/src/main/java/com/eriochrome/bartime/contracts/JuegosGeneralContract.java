@@ -11,6 +11,7 @@ public interface JuegosGeneralContract {
         void setBar(Bar bar);
         void mostrarJuegos();
         Bar getBar();
+        boolean esParticipable(Juego juego);
     }
 
     interface View {

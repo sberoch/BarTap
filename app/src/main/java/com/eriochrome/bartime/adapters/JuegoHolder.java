@@ -14,9 +14,11 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class JuegoHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+
     private Context context;
     private Juego juego;
 
+    private TextView descripcionJuego;
     private TextView nombreJuego;
     private TextView barDelJuego;
     private ImageView imagenDelJuego;
@@ -32,6 +34,7 @@ public class JuegoHolder extends RecyclerView.ViewHolder implements View.OnClick
         this.context = context;
 
         nombreJuego = view.findViewById(R.id.nombre_juego);
+        descripcionJuego = view.findViewById(R.id.descripcion_juego);
         barDelJuego = view.findViewById(R.id.bar_del_juego);
         imagenDelJuego = view.findViewById(R.id.imagen_juego);
 
@@ -48,6 +51,7 @@ public class JuegoHolder extends RecyclerView.ViewHolder implements View.OnClick
         this.juego = juego;
 
         nombreJuego.setText(juego.getTipoDeJuego());
+        descripcionJuego.setText(String.format("'%s'", juego.getTextoResumen()));
         barDelJuego.setText(String.format("En %s", juego.getNombreBar()));
         setImagen(juego.getTipoDeJuego());
 

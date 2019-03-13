@@ -2,7 +2,7 @@ package com.eriochrome.bartime.modelos;
 
 import android.support.annotation.NonNull;
 
-import com.eriochrome.bartime.contracts.PaginaJuegoContract;
+import com.eriochrome.bartime.contracts.PaginaJuegoParticipableContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Desafio;
 import com.eriochrome.bartime.modelos.entidades.Juego;
@@ -16,16 +16,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class PaginaJuegoInteraccion implements PaginaJuegoContract.Interaccion {
+public class PaginaJuegoParticipableInteraccion implements PaginaJuegoParticipableContract.Interaccion {
 
     private Juego juego;
-    private PaginaJuegoContract.Listener listener;
+    private PaginaJuegoParticipableContract.Listener listener;
     private DatabaseReference refGlobal;
     private DatabaseReference refParticipantes;
     private ArrayList<String> participantes;
     private Bar bar;
 
-    public PaginaJuegoInteraccion(PaginaJuegoContract.Listener listener) {
+    public PaginaJuegoParticipableInteraccion(PaginaJuegoParticipableContract.Listener listener) {
         this.listener = listener;
         refGlobal = FirebaseDatabase.getInstance().getReference();
         refParticipantes = refGlobal.child("juegos");

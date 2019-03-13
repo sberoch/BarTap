@@ -91,7 +91,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"  />
         <activity
-            android:name=".vistas.PaginaJuegoActivity"
+            android:name=".vistas.PaginaJuegoParticipableActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
@@ -113,6 +113,7 @@
         <activity android:name=".vistas.CrearTriviaActivity" />
         <activity android:name=".vistas.CrearPreguntasTriviaActivity" />
         <activity android:name=".vistas.TriviaActivity" />
+        <activity android:name=".vistas.PaginaTriviaActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -11,6 +11,7 @@ public interface TriviaContract {
         boolean eligioOpcionCorrecta(String opcion);
         void actualizarPuntos();
         boolean quedanPreguntas();
+        void agregarGanador();
     }
 
     interface View {

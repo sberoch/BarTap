@@ -93,6 +93,8 @@
     <string name="ya_participaste_juego">Ups! Ya participaste de este juego.</string>
     <string name="texto_perdedor_trivia">¡Ups! Has perdido.</string>
     <string name="texto_ganador_trivia">¡Felicidades! Ganaste la trivia.</string>
+    <string name="cantidad_de_ganadores">Cantidad de Ganadores:</string>
+    <string name="total_de_participantes">Total de participantes:</string>
 
 
 </resources>

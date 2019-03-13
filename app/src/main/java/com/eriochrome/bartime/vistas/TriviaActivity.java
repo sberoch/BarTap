@@ -106,7 +106,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
         cdtimer.cancel();
 
         presenter.actualizarPuntos();
-        //TODO: ponerlo como ganador en la lista del bar
+        presenter.agregarGanador();
 
         DialogTerminoTrivia dialogTerminoTrivia = new DialogTerminoTrivia();
         dialogTerminoTrivia.setTexto(getString(R.string.texto_ganador_trivia));
