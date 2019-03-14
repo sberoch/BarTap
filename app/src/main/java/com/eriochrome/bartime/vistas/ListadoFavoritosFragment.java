@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.ListaBaresAdapter;
+import com.eriochrome.bartime.adapters.ListaBaresFavoritosAdapter;
 import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.FavoritosFragmentContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
@@ -31,7 +32,7 @@ public class ListadoFavoritosFragment extends Fragment implements FavoritosFragm
     private EditText buscar;
 
     private RecyclerView baresRecyclerView;
-    private ListaBaresAdapter baresAdapter;
+    private ListaBaresFavoritosAdapter baresAdapter;
 
     private ProgressBar loading;
 
@@ -60,7 +61,7 @@ public class ListadoFavoritosFragment extends Fragment implements FavoritosFragm
         loading = view.findViewById(R.id.progressBar);
         loading.setVisibility(View.GONE);
 
-        baresAdapter = new ListaBaresAdapter(getActivity());
+        baresAdapter = new ListaBaresFavoritosAdapter(getActivity());
         baresRecyclerView = view.findViewById(R.id.recycler_view);
         baresRecyclerView.setHasFixedSize(true);
         setupRecyclerView();

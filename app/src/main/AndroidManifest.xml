@@ -114,6 +114,9 @@
         <activity android:name=".vistas.CrearPreguntasTriviaActivity" />
         <activity android:name=".vistas.TriviaActivity" />
         <activity android:name=".vistas.PaginaTriviaActivity" />
+        <activity android:name=".vistas.MiPerfilActivity" />
+        <activity android:name=".vistas.MisComprasActivity" />
+        <activity android:name=".vistas.MisJuegosActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -111,7 +111,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
                 break;
 
             case R.id.perfil:
-                toastShort(ListadosActivity.this, "Mi Perfil");
+                startActivity(new Intent(ListadosActivity.this, MiPerfilActivity.class));
                 break;
 
             case R.id.guardados:
