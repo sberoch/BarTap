@@ -32,7 +32,7 @@ public class MiPerfilActivity extends AppCompatActivity implements MiPerfilContr
         });
 
         compras.setOnClickListener(v -> {
-            startActivity(new Intent(MiPerfilActivity.this, MisComprasActivity.class));
+            //startActivity(new Intent(MiPerfilActivity.this, MisComprasActivity.class));
         });
     }
 
