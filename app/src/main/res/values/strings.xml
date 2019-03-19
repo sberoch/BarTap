@@ -97,6 +97,13 @@
     <string name="total_de_participantes">Total de participantes:</string>
     <string name="compras">Compras</string>
     <string name="dejar_de_participar">Abandonar juego</string>
+    <string name="iniciar_sesion">Iniciar Sesion</string>
+    <string name="mis_juegos">Mis Juegos</string>
+    <string name="mis_compras">Mis Compras</string>
+    <string name="guardados">Guardados</string>
+    <string name="contacto">Contacto</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="salir">Salir</string>
 
 
 </resources>

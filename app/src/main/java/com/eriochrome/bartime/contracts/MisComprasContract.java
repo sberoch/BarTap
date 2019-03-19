@@ -1,6 +1,6 @@
 package com.eriochrome.bartime.contracts;
 
-public interface MiPerfilContract {
+public interface MisComprasContract {
 
     interface Interaccion {
 

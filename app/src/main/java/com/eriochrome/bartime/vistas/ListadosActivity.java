@@ -110,8 +110,12 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
                 loginUsuario();
                 break;
 
-            case R.id.perfil:
-                startActivity(new Intent(ListadosActivity.this, MiPerfilActivity.class));
+            case R.id.juegos:
+                startActivity(new Intent(ListadosActivity.this, MisJuegosActivity.class));
+                break;
+
+            case R.id.compras:
+                startActivity(new Intent(ListadosActivity.this, MisComprasActivity.class));
                 break;
 
             case R.id.guardados:
@@ -121,10 +125,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
             case R.id.contacto:
                 startActivity(new Intent(ListadosActivity.this, ContactoActivity.class));
-                break;
-
-            case R.id.ajustes:
-                toastShort(ListadosActivity.this, "Ajustes");
                 break;
 
             case R.id.cerrar_sesion:
@@ -252,17 +252,17 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     private void setupItems(Menu menu, boolean conectado) {
         if (conectado) {
             menu.findItem(R.id.iniciar_sesion).setVisible(false);
-            menu.findItem(R.id.perfil).setVisible(true);
+            menu.findItem(R.id.juegos).setVisible(true);
+            menu.findItem(R.id.compras).setVisible(true);
             menu.findItem(R.id.guardados).setVisible(true);
-            menu.findItem(R.id.ajustes).setVisible(true);
             menu.findItem(R.id.contacto).setVisible(true);
             menu.findItem(R.id.cerrar_sesion).setVisible(true);
             menu.findItem(R.id.salir).setVisible(false);
         } else {
             menu.findItem(R.id.iniciar_sesion).setVisible(true);
-            menu.findItem(R.id.perfil).setVisible(false);
+            menu.findItem(R.id.juegos).setVisible(false);
+            menu.findItem(R.id.compras).setVisible(false);
             menu.findItem(R.id.guardados).setVisible(false);
-            menu.findItem(R.id.ajustes).setVisible(false);
             menu.findItem(R.id.contacto).setVisible(false);
             menu.findItem(R.id.cerrar_sesion).setVisible(false);
             menu.findItem(R.id.salir).setVisible(true);

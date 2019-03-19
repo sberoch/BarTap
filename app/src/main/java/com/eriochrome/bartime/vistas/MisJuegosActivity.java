@@ -101,6 +101,7 @@ public class MisJuegosActivity extends AppCompatActivity implements
     @Override
     public void dejarDeParticipar(Juego juego) {
         presenter.dejarDeParticipar(juego);
+        //TODO: hago esto porque sino no aparece borrado el juego al toque;
         finish();
     }
 }
