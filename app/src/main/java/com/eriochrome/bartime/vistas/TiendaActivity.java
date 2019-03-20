@@ -94,6 +94,7 @@ public class TiendaActivity extends AppCompatActivity implements
     @Override
     public void onItemComprado(ItemTienda itemTienda) {
         presenter.comprarItem(itemTienda);
+        toastShort(this, getString(R.string.tu_compra_fue_un_exito));
     }
 
     private void setupRecyclerView() {

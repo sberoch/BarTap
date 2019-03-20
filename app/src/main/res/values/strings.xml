@@ -89,7 +89,7 @@
     <string name="siguiente_pregunta">Siguiente Pregunta</string>
     <string name="debe_seleccionar_opcion_correcta">Debe seleccionar la opcion correcta antes de continuar.</string>
     <string name="no_debe_dejar_campos_vacios">No debe dejar campos vacios.</string>
-    <string name="enviando_trivia">Enviando trivia...</string>
+    <string name="enviando_trivia">Enviando trivia…</string>
     <string name="ya_participaste_juego">Ups! Ya participaste de este juego.</string>
     <string name="texto_perdedor_trivia">¡Ups! Has perdido.</string>
     <string name="texto_ganador_trivia">¡Felicidades! Ganaste la trivia.</string>
@@ -104,6 +104,10 @@
     <string name="contacto">Contacto</string>
     <string name="cerrar_sesion">Cerrar Sesion</string>
     <string name="salir">Salir</string>
+    <string name="tu_compra_fue_un_exito">¡Tu compra fue un exito!</string>
+    <string name="recordatorio_compra">(Recorda que luego podes ver la compra en la seccion Mis Compras)</string>
+    <string name="no_tenes_puntos_suficientes_para_comprar_este_item">No tenes puntos suficientes para comprar este item.</string>
+    <string name="volver">Volver</string>
 
 
 </resources>

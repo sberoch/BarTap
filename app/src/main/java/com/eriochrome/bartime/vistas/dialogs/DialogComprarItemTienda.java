@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
@@ -23,7 +25,11 @@ public class DialogComprarItemTienda extends DialogFragment {
 
     private ItemTienda itemTienda;
     private int misPuntos;
+    private boolean puntosSuficientes;
     private ComprarListener listener;
+
+    private RelativeLayout rlNormal;
+    private TextView textViewPuntosInsuficientes;
     private TextView misPuntosText;
     private TextView costoText;
     private TextView totalText;
@@ -45,12 +51,18 @@ public class DialogComprarItemTienda extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.dialog_comprar_item_tienda, null));
 
-        builder.setPositiveButton(R.string.comprar, (dialogInterface, i) -> {
-            listener.onItemComprado(itemTienda);
-            dismiss();
-        });
+        if (puntosSuficientes) {
+            builder.setPositiveButton(R.string.comprar, (dialogInterface, i) -> {
+                listener.onItemComprado(itemTienda);
+                dismiss();
+            });
 
-        builder.setNegativeButton(R.string.cancelar, (dialogInterface, i) -> dismiss());
+            builder.setNegativeButton(R.string.cancelar, (dialogInterface, i) -> dismiss());
+
+        } else {
+
+            builder.setPositiveButton(R.string.volver, (dialogInterface, i) -> dismiss());
+        }
 
         return builder.create();
     }
@@ -67,9 +79,23 @@ public class DialogComprarItemTienda extends DialogFragment {
         misPuntosText = ((AlertDialog)getDialog()).findViewById(R.id.actual);
         costoText = ((AlertDialog)getDialog()).findViewById(R.id.costo);
         totalText = ((AlertDialog)getDialog()).findViewById(R.id.total);
+        textViewPuntosInsuficientes = ((AlertDialog)getDialog()).findViewById(R.id.puntos_insuficientes);
+        textViewPuntosInsuficientes.setVisibility(View.GONE);
+        rlNormal = ((AlertDialog)getDialog()).findViewById(R.id.rl_normal);
+        rlNormal.setVisibility(View.VISIBLE);
 
-        misPuntosText.setText(String.valueOf(misPuntos));
-        costoText.setText(String.valueOf(-itemTienda.getCosto()));
-        totalText.setText(String.valueOf(misPuntos-itemTienda.getCosto()));
+        puntosSuficientes = (misPuntos - itemTienda.getCosto()) > 0;
+        if (puntosSuficientes) {
+
+            textViewPuntosInsuficientes.setVisibility(View.GONE);
+            misPuntosText.setText(String.valueOf(misPuntos));
+            costoText.setText(String.valueOf(-itemTienda.getCosto()));
+            totalText.setText(String.valueOf(misPuntos-itemTienda.getCosto()));
+
+        } else {
+
+            rlNormal.setVisibility(View.GONE);
+            textViewPuntosInsuficientes.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -37,7 +37,12 @@ public class TiendaInteraccion implements TiendaContract.Interaccion {
             }
 
             DataSnapshot snapPuntos = dataSnapshot.child("puntos").child(authUser.getDisplayName()).child(bar.getNombre());
-            Integer puntos = snapPuntos.getValue(Integer.class);
+            Integer puntos;
+            if (snapPuntos.exists()) {
+                puntos = snapPuntos.getValue(Integer.class);
+            } else {
+                puntos = 0;
+            }
 
             listener.listo(itemsTienda, puntos);
         }
