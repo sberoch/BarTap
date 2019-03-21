@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -51,20 +52,19 @@ public class DialogComprarItemTienda extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.dialog_comprar_item_tienda, null));
 
-        if (puntosSuficientes) {
-            builder.setPositiveButton(R.string.comprar, (dialogInterface, i) -> {
-                listener.onItemComprado(itemTienda);
-                dismiss();
-            });
+        builder.setPositiveButton(R.string.comprar, (dialogInterface, i) -> {
+            listener.onItemComprado(itemTienda);
+            dismiss();
+        });
 
-            builder.setNegativeButton(R.string.cancelar, (dialogInterface, i) -> dismiss());
+        builder.setNegativeButton(R.string.cancelar, (dialogInterface, i) -> dismiss());
 
-        } else {
-
-            builder.setPositiveButton(R.string.volver, (dialogInterface, i) -> dismiss());
-        }
-
-        return builder.create();
+        AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(dialog1 -> {
+            if (!puntosSuficientes)
+                ((AlertDialog)dialog1).getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
+        });
+        return dialog;
     }
 
 

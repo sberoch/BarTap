@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.TiendaContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.ComprobanteDeCompra;
 import com.eriochrome.bartime.modelos.entidades.ItemTienda;
 import com.eriochrome.bartime.utils.CreadorDeAvisos;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,6 +83,10 @@ public class TiendaInteraccion implements TiendaContract.Interaccion {
     public void comprarItem(ItemTienda itemTienda) {
         misPuntos -= itemTienda.getCosto();
         ref.child("puntos").child(authUser.getDisplayName()).child(bar.getNombre()).setValue(misPuntos);
+
+        ComprobanteDeCompra comprobante = new ComprobanteDeCompra(itemTienda, bar.getNombre());
+        ref.child("comprobantesDeCompra").child(authUser.getDisplayName()).child(bar.getNombre())
+                .child(String.valueOf(comprobante.getNroComprobante())).setValue(comprobante);
 
         CreadorDeAvisos creadorDeAvisos = new CreadorDeAvisos();
         creadorDeAvisos.avisarCompraDeDescuento(itemTienda, authUser.getDisplayName(), bar);
