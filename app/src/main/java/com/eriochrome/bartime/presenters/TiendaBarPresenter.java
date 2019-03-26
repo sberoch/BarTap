@@ -53,4 +53,8 @@ public class TiendaBarPresenter implements TiendaBarContract.Listener{
     public void dejarDeMostrarItems() {
         interaccion.dejarDeMostrarItems();
     }
+
+    public Intent enviarBar(Intent i) {
+        return i.putExtra("bar", interaccion.getBar());
+    }
 }

@@ -6,6 +6,7 @@ public class ComprobanteDeCompra {
     private String nombreBar;
     private String descripcion;
     private int costo;
+    private String nombreUsuario;
     private int nroComprobante;
 
     private static final int MIN = 100000;
@@ -15,9 +16,10 @@ public class ComprobanteDeCompra {
 
     }
 
-    public ComprobanteDeCompra(ItemTienda itemTienda, String nombreBar) {
+    public ComprobanteDeCompra(ItemTienda itemTienda, String nombreBar, String nombreUsuario) {
         this.descripcion = itemTienda.getDescripcion();
         this.costo = itemTienda.getCosto();
+        this.nombreUsuario = nombreUsuario;
         this.nroComprobante = ThreadLocalRandom.current().nextInt(MIN, MAX);
         this.nombreBar = nombreBar;
 
@@ -39,4 +41,7 @@ public class ComprobanteDeCompra {
         return nroComprobante;
     }
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
 }

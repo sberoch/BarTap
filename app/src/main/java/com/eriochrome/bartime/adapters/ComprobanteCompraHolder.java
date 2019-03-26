@@ -10,7 +10,7 @@ import com.eriochrome.bartime.modelos.entidades.ComprobanteDeCompra;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-class ComprobanteCompraHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class ComprobanteCompraHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private Context context;
     private ComprobanteDeCompra comprobanteDeCompra;

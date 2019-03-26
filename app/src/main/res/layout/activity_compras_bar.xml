@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vistas.MisComprasActivity">
+    tools:context=".vistas.ComprasBarActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -17,4 +17,5 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </RelativeLayout>

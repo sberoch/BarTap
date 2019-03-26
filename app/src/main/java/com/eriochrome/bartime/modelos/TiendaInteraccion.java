@@ -84,7 +84,7 @@ public class TiendaInteraccion implements TiendaContract.Interaccion {
         misPuntos -= itemTienda.getCosto();
         ref.child("puntos").child(authUser.getDisplayName()).child(bar.getNombre()).setValue(misPuntos);
 
-        ComprobanteDeCompra comprobante = new ComprobanteDeCompra(itemTienda, bar.getNombre());
+        ComprobanteDeCompra comprobante = new ComprobanteDeCompra(itemTienda, bar.getNombre(), authUser.getDisplayName());
         ref.child("comprobantesDeCompra").child(authUser.getDisplayName()).child(bar.getNombre())
                 .child(String.valueOf(comprobante.getNroComprobante())).setValue(comprobante);
 

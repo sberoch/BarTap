@@ -5,39 +5,44 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.eriochrome.bartime.R;
+import com.eriochrome.bartime.modelos.entidades.ComprobanteDeCompra;
 
-public class DialogValidarGanador extends DialogFragment {
+public class DialogValidarCompra extends DialogFragment {
 
-    public interface Listener {
-        void declararGanador();
+    private ComprobanteDeCompra comprobanteDeCompra;
+
+    public void setComprobante(ComprobanteDeCompra comprobanteDeCompra) {
+        this.comprobanteDeCompra = comprobanteDeCompra;
     }
-    private DialogValidarGanador.Listener listener;
+
+    public interface OnValidarListener {
+        void onValidar(ComprobanteDeCompra comprobanteDeCompra);
+    }
+
+    private OnValidarListener listener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (DialogValidarGanador.Listener) context;
+            listener = (OnValidarListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement interface");
         }
     }
 
-    @NonNull
     @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        String texto = getString(R.string.deseas_declarar_ganador);
+        String texto = getString(R.string.canjear_compra_desea_continuar);
         builder.setMessage(texto);
 
-        builder.setPositiveButton(R.string.ok, (dialog, which) -> {
-            listener.declararGanador();
+        builder.setPositiveButton(R.string.validar, (dialog, which) -> {
+            listener.onValidar(comprobanteDeCompra);
             dismiss();
         });
 

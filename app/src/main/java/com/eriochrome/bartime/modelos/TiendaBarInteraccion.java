@@ -68,4 +68,9 @@ public class TiendaBarInteraccion implements TiendaBarContract.Interaccion {
     public void dejarDeMostrarItems() {
         ref.child("bares").child(bar.getNombre()).child("tienda").removeEventListener(valueEventListener);
     }
+
+    @Override
+    public Bar getBar() {
+        return bar;
+    }
 }

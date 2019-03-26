@@ -108,6 +108,9 @@
     <string name="recordatorio_compra">(Recorda que luego podes ver la compra en la seccion Mis Compras)</string>
     <string name="no_tenes_puntos_suficientes_para_comprar_este_item">No tenes puntos suficientes para comprar este item.</string>
     <string name="volver">Volver</string>
+    <string name="ver_mis_items_vendidos">Ver mis items vendidos</string>
+    <string name="canjear_compra_desea_continuar">Al clickear \'Validar\' se considera que el usuario ya canjeo su descuento   ¿Desea continuar?</string>
+    <string name="validar">Validar</string>
 
 
 </resources>

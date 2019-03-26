@@ -13,6 +13,7 @@ public interface TiendaBarContract {
         void crearItem(ItemTienda itemTienda);
         void eliminarItem(ItemTienda itemTienda);
         void dejarDeMostrarItems();
+        Bar getBar();
     }
 
     interface View {

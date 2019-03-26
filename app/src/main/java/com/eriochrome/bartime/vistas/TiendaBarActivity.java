@@ -1,5 +1,6 @@
 package com.eriochrome.bartime.vistas;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,6 +36,7 @@ public class TiendaBarActivity extends AppCompatActivity implements
     private ProgressBar progressBar;
 
     private Button nuevoItem;
+    private Button verVendidos;
 
 
     @Override
@@ -60,6 +62,13 @@ public class TiendaBarActivity extends AppCompatActivity implements
         nuevoItem.setOnClickListener(v -> {
             DialogCrearItemTienda dialogCrearItemTienda = new DialogCrearItemTienda();
             dialogCrearItemTienda.show(getFragmentManager(), "crearItemTienda");
+        });
+
+        verVendidos = findViewById(R.id.items_vendidos);
+        verVendidos.setOnClickListener(v -> {
+            Intent i = new Intent(TiendaBarActivity.this, ComprasBarActivity.class);
+            i = presenter.enviarBar(i);
+            startActivity(i);
         });
     }
 
