@@ -183,7 +183,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
             ejecutarOpcionMenu(menuItem.getItemId());
-            return true;
+            return false; //Devuelvo false para que no quede seleccionado.
         });
         avisos.setOnClickListener(v -> {
             if (presenter.estaConectado()) {

@@ -125,7 +125,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
             ejecutarOpcionMenu(menuItem.getItemId());
-            return true;
+            return false; //Devuelve false para que no quede seleccionado
         });
         drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
 
