@@ -21,6 +21,7 @@ import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.DatosBarOwnerContract;
 import com.eriochrome.bartime.presenters.DatosBarOwnerPresenter;
 import com.eriochrome.bartime.utils.TimePicker;
+import com.eriochrome.bartime.vistas.dialogs.DialogHourPicker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +29,9 @@ import java.util.HashMap;
 import static com.eriochrome.bartime.utils.Utils.editTextToInt;
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBarOwnerContract.View {
+public class DatosBarOwnerActivity extends AppCompatActivity implements
+        DatosBarOwnerContract.View,
+        DialogHourPicker.HourPicker {
 
     private static final int NUMERO_SOLICITUD_GALERIA = 1;
     private static final int NUMERO_SOLICITUD_UBICACION = 2;
@@ -71,6 +74,8 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
     private RadioButton tCredito;
     private RadioButton tDebito;
     private Button listo;
+
+    private RelativeLayout rlLunes;
 
     View.OnFocusChangeListener changeListener = (v, hasFocus) -> {
         if (!hasFocus) ocultarTeclado();
@@ -269,8 +274,27 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
     }
 
 
-    //TODO: muestra minutos :c
     private void setupHorarios() {
+
+        //TODO: hacerlo para todos
+        //TODO: no es necesario que sean edittext. Importante, que no sean clickeables
+        //TODO: ojo cuando pase esto a fragment
+        //TODO: para que quede bien cuando este cerrado, pasarle al dialog el relative de una y que se haga ahi (ver abajo)
+        /*rlLunes = findViewById(R.id.horario_lunes);
+        rlLunes.setOnClickListener(v -> {
+            DialogHourPicker hourPicker = new DialogHourPicker();
+            hourPicker.setContainer((RelativeLayout)v);
+            hourPicker.show(getFragmentManager(), "hourPicker");
+        }); */
+        rlLunes = findViewById(R.id.horario_lunes);
+        hiLunes = findViewById(R.id.hi_lunes);
+        hfLunes = findViewById(R.id.hf_lunes);
+        rlLunes.setOnClickListener(v -> {
+            DialogHourPicker hourPicker = new DialogHourPicker();
+            hourPicker.setContainers(hiLunes, hfLunes);
+            hourPicker.show(getFragmentManager(), "hourPicker");
+        });
+
         hiLunes = findViewById(R.id.hi_lunes);
         TimePicker hiLunesTp = new TimePicker(hiLunes, this);
         hiMartes = findViewById(R.id.hi_martes);
@@ -448,4 +472,13 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements DatosBar
     }
 
 
+    @Override
+    public void obtenerInicial(int horaInicial, EditText hiEditText) {
+        hiEditText.setText(String.valueOf(horaInicial));
+    }
+
+    @Override
+    public void obtenerFinal(int horaFinal, EditText hfEditText) {
+        hfEditText.setText(String.valueOf(horaFinal));
+    }
 }

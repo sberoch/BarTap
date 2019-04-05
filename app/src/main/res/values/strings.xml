@@ -111,6 +111,8 @@
     <string name="ver_mis_items_vendidos">Ver mis items vendidos</string>
     <string name="canjear_compra_desea_continuar">Al clickear \'Validar\' se considera que el usuario ya canjeo su descuento   ¿Desea continuar?</string>
     <string name="validar">Validar</string>
+    <string name="cerrado_este_dia">¿Cerrado este dia?</string>
+    <string name="entre_que_horarios_esta_abierto_el_bar">¿Entre que horarios esta abierto el bar?</string>
 
 
 </resources>

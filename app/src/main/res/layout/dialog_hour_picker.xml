@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/titulo_seleccione_hora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="@string/entre_que_horarios_esta_abierto_el_bar"
+        android:textAlignment="center" />
+
+    <com.appyvet.materialrangebar.RangeBar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/range_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titulo_seleccione_hora"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:mrb_connectingLineColor="@color/colorPrimary"
+        app:mrb_pinColor="@color/colorAccent"
+        app:mrb_pinMaxFont="15sp"
+        app:mrb_pinMinFont="12sp"
+        app:mrb_pinRadius="14dp"
+        app:mrb_pinTextColor="@android:color/background_light"
+        app:mrb_rangeBar="true"
+        app:mrb_rangeBarPaddingBottom="30dp"
+        app:mrb_rangeBar_rounded="true"
+        app:mrb_selectorColor="@color/colorPrimary"
+        app:mrb_selectorSize="10dp"
+        app:mrb_temporaryPins="false"
+        app:mrb_tickDefaultLabel="label"
+        app:mrb_tickStart="8"
+        app:mrb_tickEnd="28"
+        app:mrb_tickHeight="0dp"
+        app:mrb_tickInterval="1"
+        app:mrb_tickLabelColor="@color/colorSecundary"
+        app:mrb_tickLabelSelectedColor="@color/colorAccent"
+        app:mrb_tickLabelSize="4sp" />
+
+    <CheckBox
+        android:id="@+id/cerrado_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/range_bar"
+        android:layout_centerHorizontal="true"
+        android:text="@string/cerrado_este_dia" />
+
+</RelativeLayout>
