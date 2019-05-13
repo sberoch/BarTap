@@ -27,7 +27,7 @@ import com.eriochrome.bartime.adapters.JuegoHolder;
 import com.eriochrome.bartime.contracts.ListadosContract;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.presenters.ListadosPresenter;
-import com.eriochrome.bartime.utils.LocationHelper;
+//import com.eriochrome.bartime.utils.LocationHelper;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
 import com.eriochrome.bartime.vistas.dialogs.DialogResumenJuego;
 import com.eriochrome.bartime.vistas.dialogs.DialogSeleccionFiltros;
@@ -62,13 +62,13 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     private ListadosPresenter presenter;
 
-    private LocationHelper locationHelper;
+    //private LocationHelper locationHelper;
     private Location ultimaUbicacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listados);
+        setContentView(R.layout.activity_listados)
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerButton = findViewById(R.id.drawer_button);
@@ -79,11 +79,11 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         presenter = new ListadosPresenter();
         presenter.bind(this);
 
-        locationHelper = new LocationHelper(this);
+        /*locationHelper = new LocationHelper(this);
         locationHelper.checkpermission();
         if (locationHelper.checkPlayServices()) {
             locationHelper.buildGoogleApiClient();
-        }
+        }*/
         setupListeners();
     }
 
@@ -100,7 +100,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         if (presenter.estaConectado()) {
             presenter.checkearAvisos();
         }
-        locationHelper.checkPlayServices();
+        //locationHelper.checkPlayServices();
     }
 
     private void ejecutarOpcionMenu(int id) {
@@ -173,7 +173,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
                 toastShort(ListadosActivity.this, "Ocurrio un error. Intente nuevamente");
             }
         } else {
-            locationHelper.onActivityResult(requestCode, resultCode, data);
+            //locationHelper.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -277,7 +277,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     public void aplicarFiltros(AlertDialog dialog) {
         Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
-        ultimaUbicacion = locationHelper.getLocation();
+        //ultimaUbicacion = locationHelper.getLocation();
         if (f instanceof ListadoBaresFragment) {
             ((ListadoBaresFragment) f).aplicarFiltros(dialog, ultimaUbicacion);
         }
@@ -308,12 +308,12 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        ultimaUbicacion = locationHelper.getLocation();
+        //ultimaUbicacion = locationHelper.getLocation();
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-        locationHelper.connectApiClient();
+        //locationHelper.connectApiClient();
     }
 
     @Override
@@ -323,7 +323,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        locationHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //locationHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override

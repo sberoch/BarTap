@@ -5,12 +5,21 @@ import android.os.Bundle;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.entidades.Bar;
-import com.google.android.gms.maps.CameraUpdateFactory;
+/*import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.MarkerOptions;*/
+
+public class VerMapaActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ver_mapa);
+    }
+}
+/*
 
 public class VerMapaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -33,4 +42,4 @@ public class VerMapaActivity extends AppCompatActivity implements OnMapReadyCall
         googleMap.addMarker(new MarkerOptions().position(ubicacionBar).title(getString(R.string.ubicacion_del_bar)));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacionBar, DEFAULT_ZOOM));
     }
-}
+} */

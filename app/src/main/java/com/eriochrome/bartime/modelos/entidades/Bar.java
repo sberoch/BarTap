@@ -1,7 +1,7 @@
 package com.eriochrome.bartime.modelos.entidades;
 
 import com.eriochrome.bartime.utils.Utils;
-import com.google.android.gms.maps.model.LatLng;
+//import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -140,9 +140,10 @@ public class Bar implements Serializable {
         this.lng = lng;
     }
 
-    public LatLng getLatLng() {
+    /*public LatLng getLatLng() {
         return new LatLng(lat, lng);
-    }
+    }*/
+    //TODO: latlng
 
 
     public boolean contieneFiltros(Filtro filtro) {
