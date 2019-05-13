@@ -68,7 +68,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listados)
+        setContentView(R.layout.activity_listados);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerButton = findViewById(R.id.drawer_button);
