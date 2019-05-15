@@ -140,12 +140,6 @@ public class Bar implements Serializable {
         this.lng = lng;
     }
 
-    /*public LatLng getLatLng() {
-        return new LatLng(lat, lng);
-    }*/
-    //TODO: latlng
-
-
     public boolean contieneFiltros(Filtro filtro) {
         boolean contiene = true;
 

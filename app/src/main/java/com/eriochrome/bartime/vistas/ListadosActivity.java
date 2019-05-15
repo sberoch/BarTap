@@ -27,13 +27,10 @@ import com.eriochrome.bartime.adapters.JuegoHolder;
 import com.eriochrome.bartime.contracts.ListadosContract;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.presenters.ListadosPresenter;
-//import com.eriochrome.bartime.utils.LocationHelper;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
 import com.eriochrome.bartime.vistas.dialogs.DialogResumenJuego;
 import com.eriochrome.bartime.vistas.dialogs.DialogSeleccionFiltros;
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,8 +41,6 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 public class ListadosActivity extends AppCompatActivity implements ListadosContract.View,
         DialogSeleccionFiltros.FiltrosListener,
         JuegoHolder.OnJuegoHolderClickListener,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
         ActivityCompat.OnRequestPermissionsResultCallback,
         DialogResumenJuego.Listener,
         DialogCrearCuenta.Listener{
@@ -304,26 +299,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     public void noHayAvisos() {
         avisos.setImageResource(R.drawable.ic_notifications_none_violet_24dp);
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        //ultimaUbicacion = locationHelper.getLocation();
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        //locationHelper.connectApiClient();
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.i("Fallo", "Fallo en la conexion");
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //locationHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
