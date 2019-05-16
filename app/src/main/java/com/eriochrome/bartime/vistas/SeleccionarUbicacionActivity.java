@@ -1,12 +1,15 @@
 package com.eriochrome.bartime.vistas;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -15,28 +18,58 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.eriochrome.bartime.BuildConfig;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.utils.CustomDireccion;
-/*import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;*/
 import com.google.android.gms.tasks.Task;
 
+import org.osmdroid.api.IMapController;
+import org.osmdroid.config.Configuration;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 public class SeleccionarUbicacionActivity extends FragmentActivity {
+
+    private static final int DEFAULT_ZOOM = 20;
+    private MapView map;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Context context = getApplicationContext();
+        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
+        Configuration.getInstance().setUserAgentValue(getPackageName());
+
         setContentView(R.layout.activity_seleccionar_ubicacion);
+
+        map = findViewById(R.id.map);
+        map.setTileSource(TileSourceFactory.MAPNIK);
+
+        map.setBuiltInZoomControls(false);
+        map.setMultiTouchControls(true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        map.onResume();
+
+        IMapController mapController = map.getController();
+        mapController.setZoom(DEFAULT_ZOOM);
+        GeoPoint startPoint = new GeoPoint(-34.603722, -58.381592);
+        mapController.setCenter(startPoint);
     }
 }
+
+
+
 //TODO: banda de cosas
 /*
 public class SeleccionarUbicacionActivity extends FragmentActivity implements OnMapReadyCallback {

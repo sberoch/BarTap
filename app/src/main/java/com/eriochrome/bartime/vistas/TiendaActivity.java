@@ -27,8 +27,6 @@ public class TiendaActivity extends AppCompatActivity implements
         ItemTiendaHolder.ItemTiendaClickListener,
         DialogComprarItemTienda.ComprarListener{
 
-    //TODO: falta el tema de comprobantes, no tiene que ser una simple notificacion cuando se compra algo
-
     private TiendaPresenter presenter;
 
     private RecyclerView recyclerView;

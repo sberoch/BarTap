@@ -99,7 +99,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     }
 
     private void ejecutarOpcionMenu(int id) {
-        //TODO: mock
         switch (id) {
             case R.id.iniciar_sesion:
                 loginUsuario();
