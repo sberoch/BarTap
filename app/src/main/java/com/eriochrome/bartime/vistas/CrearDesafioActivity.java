@@ -1,5 +1,6 @@
 package com.eriochrome.bartime.vistas;
 
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -7,10 +8,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.CrearDesafioContract;
 import com.eriochrome.bartime.presenters.CrearDesafioPresenter;
+import com.eriochrome.bartime.vistas.dialogs.DialogDesafiosHint;
 
 import java.util.ArrayList;
 
@@ -24,6 +27,7 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
     private CheckBox unicoGanador;
     private Button listo;
     private ArrayAdapter<String> spinnerAdapter;
+    private TextView hint;
 
     //TODO: poner algun hint de posibles desafios
 
@@ -41,10 +45,16 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
         unicoGanador = findViewById(R.id.unico_ganador);
         listo = findViewById(R.id.listo);
 
+        hint = findViewById(R.id.hint);
+        hint.setTextColor(getResources().getColor(R.color.colorAccent));
+        hint.setPaintFlags(hint.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        hint.setOnClickListener(v -> mostrarHintDesafios());
         listo.setOnClickListener(v -> presenter.enviarDesafio());
 
         setupSpinner();
     }
+
 
     @Override
     protected void onStart() {
@@ -81,6 +91,11 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
     @Override
     public boolean esDeUnicoGanador() {
         return unicoGanador.isChecked();
+    }
+
+    private void mostrarHintDesafios() {
+        DialogDesafiosHint dialogDesafiosHint = new DialogDesafiosHint();
+        dialogDesafiosHint.show(getFragmentManager(), "desafiosHint");
     }
 
     @Override

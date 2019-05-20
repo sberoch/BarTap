@@ -19,12 +19,35 @@
         android:id="@+id/desafio_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/dificultad_spinner"
+        android:layout_above="@+id/hint"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="Escriba el desafio..."
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/unico_ganador"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="¿No se te ocurre nada?"
+        android:textColor="@color/colorAccent" />
+
+    <CheckBox
+        android:id="@+id/unico_ganador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dificultad_spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/es_un_desafio_de_unico_ganador" />
 
     <TextView
         android:id="@+id/dificultad_text"
@@ -35,15 +58,6 @@
         android:layout_marginStart="30dp"
         android:layout_marginBottom="100dp"
         android:text="Dificultad:" />
-
-    <CheckBox
-        android:id="@+id/unico_ganador"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/dificultad_spinner"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="30dp"
-        android:text="@string/es_un_desafio_de_unico_ganador" />
 
     <Spinner
         android:id="@+id/dificultad_spinner"
