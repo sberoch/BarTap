@@ -13,6 +13,7 @@ public class DatosBarOwnerPresenter implements DatosBarOwnerContract.CompleteLis
     private DatosBarOwnerContract.View view;
     private boolean seAgregoFotoNueva;
     private boolean esEditar;
+    private boolean hp;
 
     public DatosBarOwnerPresenter() {
         interaccion = new DatosBarOwnerInteraccion(this);
@@ -33,7 +34,6 @@ public class DatosBarOwnerPresenter implements DatosBarOwnerContract.CompleteLis
         if (view.tieneHappyHour()) {
             interaccion.getBar().agregarHappyhourHorarios(view.getHappyhourInicial(), view.getHappyhourFinal());
         }
-
         interaccion.getBar().agregarMetodosDePago(view.obtenerMetodosDePago());
 
         if (view.hayImagen()) {
@@ -95,10 +95,8 @@ public class DatosBarOwnerPresenter implements DatosBarOwnerContract.CompleteLis
         view.setNombreBar(bar.getNombre());
         view.yaTieneImagen();
         view.setUbicacion(bar.getUbicacion());
-        view.setHorariosIniciales(bar.getHorariosInicial());
-        view.setHorariosFinales(bar.getHorariosFinal());
-        view.setHappyHourInicial(bar.getHorariosInicial());
-        view.setHappyHourFinal(bar.getHorariosFinal());
+        view.setHorarios(bar.getHorariosInicial(), bar.getHorariosFinal());
+        view.setHappyHours(bar.getHappyhourInicial(), bar.getHappyhourFinal());
         view.setMetodosDePago(bar.getMetodosDePago());
     }
 

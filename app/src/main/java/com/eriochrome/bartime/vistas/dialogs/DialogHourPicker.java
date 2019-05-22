@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.appyvet.materialrangebar.RangeBar;
 import com.eriochrome.bartime.R;
@@ -17,31 +18,14 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class DialogHourPicker extends DialogFragment {
 
-
-
-
-    public interface HourPicker {
-        void obtenerInicial(int horaInicial, EditText hiEditText);
-        void obtenerFinal(int horaFinal, EditText hfEditText);
-    }
-
-    private HourPicker listener;
     private RangeBar rangeBar;
-    private CheckBox checkBox;
     private int horaInicial;
     private int horaFinal;
-    private EditText hiEditText;
-    private EditText hfEditText;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            listener = (HourPicker) context;
-        } catch (ClassCastException e) {
-            toastShort(context, "No se implemento la interfaz");
-        }
-    }
+    private CheckBox checkBox;
+    private boolean cerrado;
+
+    private TextView textView;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -50,8 +34,12 @@ public class DialogHourPicker extends DialogFragment {
         builder.setView(inflater.inflate(R.layout.dialog_hour_picker, null));
 
         builder.setPositiveButton(R.string.ok, (dialog, which) -> {
-            listener.obtenerInicial(horaInicial, hiEditText);
-            listener.obtenerFinal(horaFinal, hfEditText);
+            if (cerrado) {
+                textView.setText(R.string.cerrado);
+            } else {
+                String str = horaInicial + " - " + horaFinal;
+                textView.setText(str);
+            }
             dismiss();
         });
         builder.setNegativeButton(R.string.cancelar, ((dialog, which) -> dismiss()));
@@ -61,6 +49,7 @@ public class DialogHourPicker extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
+        cerrado = false;
         rangeBar = ((AlertDialog)getDialog()).findViewById(R.id.range_bar);
         checkBox = ((AlertDialog)getDialog()).findViewById(R.id.cerrado_checkbox);
 
@@ -71,6 +60,7 @@ public class DialogHourPicker extends DialogFragment {
             if (isChecked) {
                 horaInicial = 0;
                 horaFinal = 0;
+                cerrado = true;
             }
         });
 
@@ -91,12 +81,7 @@ public class DialogHourPicker extends DialogFragment {
         });
     }
 
-    public void setContainers(EditText hiEditText, EditText hfEditText) {
-        this.hiEditText = hiEditText;
-        this.hfEditText = hfEditText;
-    }
-
-    public void setContainer(RelativeLayout layout) {
-        //TODO: implementar
+    public void setTextView(TextView textView) {
+        this.textView = textView;
     }
 }

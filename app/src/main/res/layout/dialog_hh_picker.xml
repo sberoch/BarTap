@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <com.appyvet.materialrangebar.RangeBar
+        android:id="@+id/range_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titulo_seleccione_hh"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:mrb_connectingLineColor="@color/colorPrimary"
+        app:mrb_pinColor="@color/colorAccent"
+        app:mrb_pinMaxFont="15sp"
+        app:mrb_pinMinFont="12sp"
+        app:mrb_pinRadius="14dp"
+        app:mrb_pinTextColor="@android:color/background_light"
+        app:mrb_rangeBar="true"
+        app:mrb_rangeBarPaddingBottom="30dp"
+        app:mrb_rangeBar_rounded="true"
+        app:mrb_selectorColor="@color/colorPrimary"
+        app:mrb_selectorSize="10dp"
+        app:mrb_temporaryPins="false"
+        app:mrb_tickDefaultLabel="label"
+        app:mrb_tickEnd="28"
+        app:mrb_tickHeight="0dp"
+        app:mrb_tickInterval="1"
+        app:mrb_tickLabelColor="@color/colorSecundary"
+        app:mrb_tickLabelSelectedColor="@color/colorAccent"
+        app:mrb_tickLabelSize="4sp"
+        app:mrb_tickStart="8" />
+
+    <TextView
+        android:id="@+id/titulo_seleccione_hh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/horarios_del_happy_hour"
+        android:textAlignment="center" />
+</RelativeLayout>

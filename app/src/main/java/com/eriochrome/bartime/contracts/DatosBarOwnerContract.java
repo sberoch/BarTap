@@ -34,10 +34,8 @@ public interface DatosBarOwnerContract {
         void noHayImagenError();
         void mostrarError();
         void setNombreBar(String nombre);
-        void setHorariosIniciales(HashMap<String, Integer> horariosInicial);
-        void setHorariosFinales(HashMap<String, Integer> horariosFinal);
-        void setHappyHourInicial(HashMap<String, Integer> happyHourInicial);
-        void setHappyHourFinal(HashMap<String, Integer> happyHourFinal);
+        void setHorarios(HashMap<String, Integer> horariosInicial, HashMap<String, Integer> horariosFinal);
+        void setHappyHours(HashMap<String, Integer> happyHourInicial, HashMap<String, Integer> happyHourFinal);
         void setMetodosDePago(ArrayList<String> metodosDePago);
         void yaTieneImagen();
         void setTitleEditar();
