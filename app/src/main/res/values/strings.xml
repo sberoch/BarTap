@@ -116,6 +116,9 @@
     <string name="hint_desafios_title">Aca hay algunas ideas…</string>
     <string name="cerrado">Cerrado</string>
     <string name="horarios_del_happy_hour">¿Horarios del Happy Hour?</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="una_peque_a_descripcion">Una pequeña descripcion:</string>
+    <string name="nombre_del_bar">Nombre del bar:</string>
 
 
 </resources>

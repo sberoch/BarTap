@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/color_gradient_violeta"
     tools:context=".vistas.AgregarBarUsuarioActivity">
 
     <RelativeLayout
@@ -18,17 +19,20 @@
             android:id="@+id/superior"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:padding="5dp"
+            android:background="@android:color/transparent"
             android:focusable="true"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/titulo_agregar_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
                 android:fontFamily="@font/lato_bold"
                 android:padding="4dp"
                 android:text="@string/agregar_un_bar"
@@ -45,98 +49,110 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                android:drawableStart="@drawable/ic_arrow_back_white_24dp"
+                android:drawableStart="@drawable/ic_arrow_back_black_24dp"
                 android:padding="4dp" />
         </RelativeLayout>
 
-        <View
-            android:id="@+id/hline"
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
+        <RelativeLayout
+            android:id="@+id/medio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_below="@+id/superior"
-            android:background="@color/colorPrimary" />
+            android:layout_marginTop="15dp"
+            android:background="@drawable/button_login_white"
+            android:padding="30dp">
 
-        <EditText
-            android:id="@+id/nombre"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_below="@+id/hline"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/edittext_violet"
-            android:ems="10"
-            android:fontFamily="@font/lato_bold"
-            android:inputType="textPersonName"
-            android:text="@string/nombre"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textColorHighlight="@color/colorPrimary"
-            android:textColorLink="@color/colorPrimary"
-            android:textCursorDrawable="@drawable/cursor_violeta"
-            android:textSize="16sp" />
+            <EditText
+                android:id="@+id/nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_violeta"
+                android:elevation="2dp"
+                android:ems="10"
+                android:fontFamily="@font/lato_bold"
+                android:inputType="textPersonName"
+                android:minWidth="250dp"
+                android:text="@string/nombre"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textColorHighlight="@color/blancoSemiTransparente"
+                android:textColorLink="@color/blancoSemiTransparente"
+                android:textCursorDrawable="@drawable/cursor_violeta"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/ubicacion"
-            android:layout_width="250dp"
-            android:layout_height="45dp"
-            android:layout_below="@+id/nombre"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/edittext_violet"
-            android:ems="10"
-            android:fontFamily="@font/lato_bold"
-            android:gravity="center"
-            android:text="@string/seleccionar_ubicacion"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/ubicacion"
+                android:layout_width="250dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/nombre"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_violeta"
+                android:elevation="2dp"
+                android:ems="10"
+                android:fontFamily="@font/lato_bold"
+                android:gravity="center"
+                android:text="@string/seleccionar_ubicacion"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/foto"
-            android:layout_width="250dp"
-            android:layout_height="45dp"
-            android:layout_below="@+id/ubicacion"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/edittext_violet"
-            android:ems="10"
-            android:fontFamily="@font/lato_bold"
-            android:gravity="center"
-            android:text="@string/seleccionar_foto"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/foto"
+                android:layout_width="250dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/ubicacion"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_violeta"
+                android:elevation="2dp"
+                android:ems="10"
+                android:fontFamily="@font/lato_bold"
+                android:gravity="center"
+                android:text="@string/seleccionar_foto"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="16sp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imagen_bar"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_above="@+id/hline2"
-            android:layout_below="@+id/foto"
-            android:layout_centerHorizontal="true"
-            app:civ_border_color="@android:color/background_dark"
-            app:civ_border_width="2dp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imagen_bar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/foto"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="2dp" />
 
-        <View
-            android:id="@+id/hline2"
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
-            android:layout_above="@+id/listo"
-            android:background="@color/colorPrimary" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/inferior"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/background_light">
+
+        </RelativeLayout>
 
         <Button
             android:id="@+id/listo"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:background="@color/colorPrimary"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_violeta"
+            android:elevation="2dp"
             android:fontFamily="@font/lato_bold"
-            android:padding="20dp"
             android:text="@string/listo"
             android:textAllCaps="true"
             android:textColor="@android:color/background_light"
             android:textSize="16sp" />
 
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

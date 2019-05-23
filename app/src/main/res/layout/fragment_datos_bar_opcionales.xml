@@ -5,10 +5,47 @@
     android:layout_height="match_parent"
     tools:context=".vistas.DatosBarOpcionalesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:padding="10dp">
 
+        <TextView
+            android:id="@+id/metodos_pago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/metodos_de_pago"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/efectivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/metodos_pago"
+            android:layout_centerHorizontal="true"
+            android:text="@string/efectivo" />
+
+        <RadioButton
+            android:id="@+id/tarjeta_credito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/efectivo"
+            android:layout_centerHorizontal="true"
+            android:text="@string/tarjeta_de_credito" />
+
+        <RadioButton
+            android:id="@+id/tarjeta_debito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tarjeta_credito"
+            android:layout_centerHorizontal="true"
+            android:text="@string/tarjeta_de_debito" />
+    </RelativeLayout>
 </FrameLayout>

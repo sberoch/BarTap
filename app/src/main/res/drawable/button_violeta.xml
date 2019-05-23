@@ -4,7 +4,10 @@
     <item>
         <shape>
             <corners android:radius="30dp"/>
-            <solid android:color="@color/colorPrimary"/>
+            <gradient
+                android:startColor="@color/colorPrimary"
+                android:endColor="@color/colorPrimaryDark"
+                android:angle="180" />
         </shape>
     </item>
 

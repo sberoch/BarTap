@@ -1,149 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/button_login_white"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/titulo_filtros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="@string/filtros"
+        android:textColor="@android:color/background_dark"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/hl"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_below="@+id/titulo_filtros"
+        android:layout_marginBottom="5dp"
+        android:background="#ccc" />
+
+    <Switch
+        android:id="@+id/abierto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hl"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:text="@string/esta_abierto"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="16sp" />
+
+    <Switch
+        android:id="@+id/happyhour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/abierto"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:text="@string/happy_hour"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/hl2"
+        android:layout_width="250dp"
+        android:layout_height="1dip"
+        android:layout_below="@+id/happyhour"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="#ccc" />
+
+    <RadioGroup
+        android:id="@+id/ordenar_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ordenar_por"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:checkedButton="@+id/distancia">
+
+        <RadioButton
+            android:id="@+id/distancia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/distancia" />
+
+        <RadioButton
+            android:id="@+id/estrellas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/estrellas" />
+
+        <RadioButton
+            android:id="@+id/nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/nombre" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/ordenar_por"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hl2"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="@string/ordenar_por"
+        android:textColor="@android:color/background_dark"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/hl4"
+        android:layout_width="250dp"
+        android:layout_height="1dip"
+        android:layout_below="@+id/ordenar_group"
+        android:layout_centerHorizontal="true"
+        android:background="#ccc" />
 
     <RelativeLayout
+        android:id="@+id/metodos_pago"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ordenar_group">
 
-        <TextView
-            android:id="@+id/titulo_filtros"
+        <RadioButton
+            android:id="@+id/efectivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_toStartOf="@+id/credito"
+            android:text="E" />
+
+        <RadioButton
+            android:id="@+id/credito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
-            android:text="@string/filtros"
-            android:textColor="@android:color/background_dark"
-            android:textSize="16sp" />
+            android:text="C" />
 
-        <View
-            android:id="@+id/hl"
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
-            android:layout_below="@+id/titulo_filtros"
-            android:layout_marginBottom="5dp"
-            android:background="#ccc" />
-
-        <Switch
-            android:id="@+id/abierto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/hl"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentTop="false"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="25dp"
-            android:text="@string/esta_abierto"
-            android:textColorLink="@color/colorPrimary"
-            android:textSize="16sp" />
-
-        <Switch
-            android:id="@+id/happyhour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/abierto"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentTop="false"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="25dp"
-            android:text="@string/happy_hour"
-            android:textColorLink="@color/colorPrimary"
-            android:textSize="16sp" />
-
-        <View
-            android:id="@+id/hl2"
-            android:layout_width="250dp"
-            android:layout_height="1dip"
-            android:layout_below="@+id/happyhour"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:background="#ccc" />
-
-        <RadioGroup
-            android:id="@+id/ordenar_group"
+        <RadioButton
+            android:id="@+id/debito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ordenar_por"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:checkedButton="@+id/distancia">
-
-            <RadioButton
-                android:id="@+id/distancia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/distancia" />
-
-            <RadioButton
-                android:id="@+id/estrellas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/estrellas" />
-
-            <RadioButton
-                android:id="@+id/nombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/nombre" />
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/ordenar_por"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/hl2"
-            android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
-            android:text="@string/ordenar_por"
-            android:textColor="@android:color/background_dark"
-            android:textSize="16sp" />
-
-        <View
-            android:id="@+id/hl4"
-            android:layout_width="250dp"
-            android:layout_height="1dip"
-            android:layout_below="@+id/ordenar_group"
-            android:layout_centerHorizontal="true"
-            android:background="#ccc" />
-
-        <RelativeLayout
-            android:id="@+id/metodos_pago"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ordenar_group">
-
-            <RadioButton
-                android:id="@+id/efectivo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_toStartOf="@+id/credito"
-                android:text="E" />
-
-            <RadioButton
-                android:id="@+id/credito"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
-                android:text="C" />
-
-            <RadioButton
-                android:id="@+id/debito"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_toEndOf="@+id/credito"
-                android:text="D" />
-        </RelativeLayout>
-
+            android:layout_toEndOf="@+id/credito"
+            android:text="D" />
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
+

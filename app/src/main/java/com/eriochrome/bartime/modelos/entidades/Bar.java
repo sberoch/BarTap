@@ -24,6 +24,7 @@ public class Bar implements Serializable {
     private HashMap<String, Integer> happyhourFinal;
     private ArrayList<String> metodosDePago;
     private int cantidadDeFotos;
+    private String owner;
 
     //Requerido por la base de datos.
     public Bar() {
@@ -42,6 +43,7 @@ public class Bar implements Serializable {
         happyhourFinal = inicializarHorarios();
         metodosDePago = new ArrayList<>();
         cantidadDeFotos = 1;
+        owner = "";
     }
 
     public String getNombre() {
@@ -82,6 +84,9 @@ public class Bar implements Serializable {
     }
     public int getCantidadDeFotos() {
         return cantidadDeFotos;
+    }
+    public String getOwner() {
+        return owner;
     }
 
     public void actualizarEstrellas(int calificacion) {

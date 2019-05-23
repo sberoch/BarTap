@@ -104,11 +104,9 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
 
         int espacioVertical = 30;
         EspacioVerticalDecorator espacioVerticalDecorator = new EspacioVerticalDecorator(espacioVertical);
-        SombraEspacioVerticalDecorator sombra = new SombraEspacioVerticalDecorator(getActivity(), R.drawable.drop_shadow);
 
         juegosRecyclerView.setLayoutManager(layoutManager);
         juegosRecyclerView.addItemDecoration(espacioVerticalDecorator);
-        juegosRecyclerView.addItemDecoration(sombra);
     }
 
 

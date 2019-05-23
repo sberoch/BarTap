@@ -175,13 +175,11 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
     private void setupRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
-        int espacioVertical = 30;
+        int espacioVertical = 60;
         EspacioVerticalDecorator espacioVerticalDecorator = new EspacioVerticalDecorator(espacioVertical);
-        SombraEspacioVerticalDecorator sombra = new SombraEspacioVerticalDecorator(getActivity(), R.drawable.drop_shadow);
 
         baresRecyclerView.setLayoutManager(layoutManager);
         baresRecyclerView.addItemDecoration(espacioVerticalDecorator);
-        baresRecyclerView.addItemDecoration(sombra);
     }
 
 

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/background_light"
-    android:padding="5dp">
+    android:background="@drawable/button_login_white"
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/nombre_bar"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/sArriba"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/imagen_bar"
         android:fontFamily="@font/lato_bold"
         android:maxWidth="150dp"
@@ -35,36 +35,26 @@
         android:id="@+id/imagen_bar"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_below="@+id/sArriba"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="false"
-        android:layout_below="@+id/sArriba"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:elevation="10dp"
         app:civ_border_color="@android:color/darker_gray"
         app:civ_border_width="2dp" />
 
 
-    <Space
-        android:id="@+id/sAbajo"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_below="@+id/imagen_bar"
-        android:layout_centerHorizontal="true" />
-
-    <Space
-        android:id="@+id/sArriba"
-        android:layout_width="wrap_content"
-        android:layout_height="5dp"
-        android:layout_centerHorizontal="true" />
-
     <RelativeLayout
         android:id="@+id/estrellas_rl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/sArriba"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="20dp">
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp">
 
         <ImageButton
             android:id="@+id/estrellas_icon"

@@ -98,11 +98,9 @@ public class ListadoFavoritosFragment extends Fragment implements FavoritosFragm
 
         int espacioVertical = 30;
         EspacioVerticalDecorator espacioVerticalDecorator = new EspacioVerticalDecorator(espacioVertical);
-        SombraEspacioVerticalDecorator sombra = new SombraEspacioVerticalDecorator(getActivity(), R.drawable.drop_shadow);
 
         baresRecyclerView.setLayoutManager(layoutManager);
         baresRecyclerView.addItemDecoration(espacioVerticalDecorator);
-        baresRecyclerView.addItemDecoration(sombra);
     }
 
 
