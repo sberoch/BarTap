@@ -40,8 +40,8 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements
     private RelativeLayout agregarBarRl;
     private TextView titulo;
 
-    private EditText nombreBar;
-    private Button seleccionarFoto;
+    //private EditText nombreBar;
+    //private Button seleccionarFoto;
     private Button seleccionarUbicacion;
     private boolean hayImagen;
 
@@ -83,8 +83,8 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements
         agregarBarRl = findViewById(R.id.agregar_bar_rl);
         titulo = findViewById(R.id.titulo);
 
-        nombreBar = findViewById(R.id.nombre_bar_edit_text);
-        seleccionarFoto = findViewById(R.id.seleccionar_imagen);
+        //nombreBar = findViewById(R.id.nombre_bar_edit_text);
+        //seleccionarFoto = findViewById(R.id.seleccionar_imagen);
         seleccionarUbicacion = findViewById(R.id.seleccionar_ubicacion);
         setupHorarios();
         efectivo = findViewById(R.id.efectivo);
@@ -105,18 +105,19 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements
             presenter.listo();
             finish();
         });
-        seleccionarFoto.setOnClickListener(v -> seleccionarImagenDeGaleria());
+        //seleccionarFoto.setOnClickListener(v -> seleccionarImagenDeGaleria());
         seleccionarUbicacion.setOnClickListener(v -> {
             Intent i = new Intent(DatosBarOwnerActivity.this, SeleccionarUbicacionActivity.class);
             startActivityForResult(i, NUMERO_SOLICITUD_UBICACION);
         });
-        nombreBar.setOnFocusChangeListener(changeListener);
+        //nombreBar.setOnFocusChangeListener(changeListener);
     }
 
 
     @Override
     public String getTextNombreBar() {
-        return nombreBar.getText().toString();
+        //return nombreBar.getText().toString();
+        return null;
     }
 
     @Override
@@ -327,7 +328,7 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements
 
     @Override
     public void setNombreBar(String nombre) {
-        nombreBar.setText(nombre);
+        //nombreBar.setText(nombre);
     }
 
     @Override

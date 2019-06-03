@@ -98,11 +98,11 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
 
     private void setupListeners() {
         sinBarButton.setOnClickListener(v -> {
-            startActivity(new Intent(BarControlActivity.this, DatosBarOwnerActivity.class));
+            startActivity(new Intent(BarControlActivity.this, DatosBarActivity.class));
             finish();
         });
         editarBar.setOnClickListener(v -> {
-            Intent i = new Intent(BarControlActivity.this, DatosBarOwnerActivity.class);
+            Intent i = new Intent(BarControlActivity.this, DatosBarActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
         });

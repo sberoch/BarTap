@@ -434,6 +434,19 @@
                         android:text=" - " />
                 </RelativeLayout>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/continuar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_violeta"
+                android:text="@string/continuar"
+                android:textAllCaps="false"
+                android:textColor="@android:color/background_light" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

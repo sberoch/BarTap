@@ -10,6 +10,21 @@
         android:layout_height="match_parent"
         android:padding="10dp">
 
+        <Button
+            android:id="@+id/listo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_violeta"
+            android:text="@string/listo"
+            android:textAllCaps="false"
+            android:textColor="@android:color/background_light" />
+
         <TextView
             android:id="@+id/metodos_pago"
             android:layout_width="match_parent"
@@ -24,28 +39,31 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp" />
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/efectivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/metodos_pago"
             android:layout_centerHorizontal="true"
+            android:minWidth="250dp"
             android:text="@string/efectivo" />
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/tarjeta_credito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/efectivo"
             android:layout_centerHorizontal="true"
+            android:minWidth="250dp"
             android:text="@string/tarjeta_de_credito" />
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/tarjeta_debito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tarjeta_credito"
             android:layout_centerHorizontal="true"
+            android:minWidth="250dp"
             android:text="@string/tarjeta_de_debito" />
     </RelativeLayout>
 </FrameLayout>

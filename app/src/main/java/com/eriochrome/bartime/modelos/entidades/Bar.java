@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class Bar implements Serializable {
 
     private String nombre;
+    private String descripcion;
     private String ubicacion;
     private double lat;
     private double lng;
@@ -48,6 +49,9 @@ public class Bar implements Serializable {
 
     public String getNombre() {
         return nombre;
+    }
+    public String getDescripcion() {
+        return descripcion;
     }
     public String getUbicacion() {
         return ubicacion;
@@ -175,4 +179,11 @@ public class Bar implements Serializable {
     }
 
 
+    public void setNombre(String nombreBar) {
+        nombre = nombreBar;
+    }
+
+    public void setDescripcion(String desc) {
+        descripcion = desc;
+    }
 }
