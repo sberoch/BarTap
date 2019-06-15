@@ -15,6 +15,7 @@
         android:layout_toStartOf="@+id/editar_item"
         android:fontFamily="@font/lato_bold"
         android:text="10% de descuento"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp" />
 
     <TextView
@@ -25,7 +26,8 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Precio: 100 morlacos" />
+        android:text="Precio: 100 morlacos"
+        android:textColor="@color/colorPrimaryDark" />
 
     <ImageButton
         android:id="@+id/eliminar_item"

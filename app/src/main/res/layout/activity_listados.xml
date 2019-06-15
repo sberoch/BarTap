@@ -12,7 +12,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/color_gradient_violeta"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="70dp">
 
@@ -43,7 +42,7 @@
                 android:layout_toEndOf="@+id/drawer_button"
                 android:dropDownWidth="200dp"
                 android:spinnerMode="dropdown"
-                android:backgroundTint="@android:color/background_light"/>
+                android:backgroundTint="@color/colorAccent"/>
 
             <ImageButton
                 android:id="@+id/avisos"

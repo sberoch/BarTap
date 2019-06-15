@@ -21,9 +21,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ratingBar"
         android:layout_centerHorizontal="true"
-        android:layout_margin="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/edittext_violet"
         android:ems="10"
         android:hint="Deja tu comentario"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"/>
 
 </RelativeLayout>

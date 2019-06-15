@@ -12,9 +12,12 @@
             android:id="@+id/menuItemText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/lato_bold"
             android:text="TextView"
-            android:textColor="@android:color/background_dark" />
+            android:textColor="@color/colorPrimaryDark" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

@@ -10,9 +10,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/filtros"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="16sp" />
 
     <View
@@ -34,6 +37,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:text="@string/esta_abierto"
+        android:textColor="@color/colorPrimaryDark"
         android:textColorLink="@color/colorPrimary"
         android:textSize="16sp" />
 
@@ -48,6 +52,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:text="@string/happy_hour"
+        android:textColor="@color/colorPrimaryDark"
         android:textColorLink="@color/colorPrimary"
         android:textSize="16sp" />
 
@@ -60,6 +65,20 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
         android:background="#ccc" />
+
+    <TextView
+        android:id="@+id/ordenar_por"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hl2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/ordenar_por"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp" />
 
     <RadioGroup
         android:id="@+id/ordenar_group"
@@ -75,33 +94,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/distancia" />
+            android:text="@string/distancia"
+            android:textColor="@color/colorPrimaryDark" />
 
         <RadioButton
             android:id="@+id/estrellas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/estrellas" />
+            android:text="@string/estrellas"
+            android:textColor="@color/colorPrimaryDark" />
 
         <RadioButton
             android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/nombre" />
+            android:text="@string/nombre"
+            android:textColor="@color/colorPrimaryDark" />
     </RadioGroup>
-
-    <TextView
-        android:id="@+id/ordenar_por"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/hl2"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:text="@string/ordenar_por"
-        android:textColor="@android:color/background_dark"
-        android:textSize="16sp" />
 
     <View
         android:id="@+id/hl4"
@@ -121,25 +132,37 @@
             android:id="@+id/efectivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_toStartOf="@+id/credito"
-            android:text="E" />
+            android:text="E"
+            android:textColor="@color/colorPrimaryDark" />
 
         <RadioButton
             android:id="@+id/credito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:text="C" />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="C"
+            android:textColor="@color/colorPrimaryDark" />
 
         <RadioButton
             android:id="@+id/debito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_toEndOf="@+id/credito"
-            android:text="D" />
+            android:text="D"
+            android:textColor="@color/colorPrimaryDark" />
     </RelativeLayout>
 
 </RelativeLayout>

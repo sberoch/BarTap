@@ -14,8 +14,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        app:mrb_connectingLineColor="@color/colorPrimary"
-        app:mrb_pinColor="@color/colorAccent"
+        app:mrb_connectingLineColor="@color/colorAccent"
+        app:mrb_pinColor="@color/colorPrimary"
         app:mrb_pinMaxFont="15sp"
         app:mrb_pinMinFont="12sp"
         app:mrb_pinRadius="14dp"
@@ -45,5 +45,6 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:text="@string/horarios_del_happy_hour"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark" />
 </RelativeLayout>

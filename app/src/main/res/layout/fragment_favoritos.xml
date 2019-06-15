@@ -7,8 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/color_gradient_violeta">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/barra_sup"
@@ -25,7 +24,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/button_login"
+                android:background="@drawable/edittext_violet"
                 android:drawableStart="@drawable/ic_search_black_24dp"
                 android:ems="10"
                 android:fontFamily="@font/lato_bold"
@@ -36,9 +35,9 @@
                 android:singleLine="true"
                 android:text="@string/buscar"
                 android:textAlignment="center"
-                android:textColor="@android:color/background_light"
-                android:textColorHighlight="@android:color/background_light"
-                android:textColorLink="@android:color/background_light"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorLink="@color/colorAccent"
                 android:textCursorDrawable="@drawable/cursor_violeta" />
 
         </RelativeLayout>

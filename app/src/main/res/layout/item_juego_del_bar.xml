@@ -15,7 +15,7 @@
         android:fontFamily="@font/lato_bold"
         android:maxWidth="150dp"
         android:text="Desafio"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp" />
 
     <TextView
@@ -31,7 +31,8 @@
         android:ellipsize="end"
         android:fontFamily="@font/lato_bold"
         android:maxLines="1"
-        android:text="Un texto re largo y re loco a ver que pasa" />
+        android:text="Un texto re largo y re loco a ver que pasa"
+        android:textColor="@color/colorPrimaryDark" />
 
     <ImageView
         android:id="@+id/imagen_juego"

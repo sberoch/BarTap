@@ -7,6 +7,6 @@
     android:gravity="center"
     android:paddingStart="5dp"
     android:text="asd"
-    android:textColor="@android:color/background_light">
+    android:textColor="@color/colorAccent">
 
 </TextView>

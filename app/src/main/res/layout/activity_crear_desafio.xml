@@ -12,8 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:text="Crear Desafio" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Crear Desafio"
+        android:textColor="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/desafio_text"
@@ -22,6 +26,7 @@
         android:layout_above="@+id/hint"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/edittext_violet"
         android:ems="10"
         android:hint="Escriba el desafio..."
         android:inputType="textMultiLine"
@@ -44,10 +49,13 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/dificultad_spinner"
         android:layout_centerHorizontal="true"
-        android:layout_margin="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="30dp"
-        android:text="@string/es_un_desafio_de_unico_ganador" />
+        android:buttonTint="@color/colorPrimaryDark"
+        android:text="@string/es_un_desafio_de_unico_ganador"
+        android:textColor="@color/colorPrimaryDark" />
 
     <TextView
         android:id="@+id/dificultad_text"
@@ -55,9 +63,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/listo"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="40dp"
         android:layout_marginBottom="100dp"
-        android:text="Dificultad:" />
+        android:text="Dificultad:"
+        android:textColor="@color/colorPrimaryDark" />
 
     <Spinner
         android:id="@+id/dificultad_spinner"
@@ -65,8 +74,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/listo"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="100dp" />
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/listo"
@@ -74,6 +84,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/listo" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_violeta"
+        android:text="@string/listo"
+        android:textColor="@android:color/background_light" />
 
 </RelativeLayout>

@@ -36,17 +36,20 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:padding="10dp"
-                android:text="@string/aun_no_tenes_un_bar_asociado" />
+                android:text="@string/aun_no_tenes_un_bar_asociado"
+                android:textColor="@color/colorPrimaryDark" />
 
             <Button
                 android:id="@+id/sin_bar_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/sin_bar_text"
                 android:layout_alignParentStart="false"
                 android:layout_alignParentBottom="false"
                 android:layout_centerHorizontal="true"
-                android:text="@string/crear" />
+                android:background="@drawable/button_violeta"
+                android:text="@string/crear"
+                android:textColor="@android:color/background_light" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -83,15 +86,29 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
                 android:text="Nombre del Bar"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/editar_bar"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nombre_bar"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_toStartOf="@+id/asd"
-                app:srcCompat="@drawable/ic_edit_24dp" />
+                android:background="@drawable/button_violeta"
+                android:drawableEnd="@drawable/ic_edit_24dp"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="Editar bar"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/background_light" />
 
             <Space
                 android:id="@+id/asd"
@@ -99,15 +116,27 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nombre_bar"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp" />
+                android:layout_marginTop="10dp" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/agregar_fotos"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nombre_bar"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@+id/asd"
-                app:srcCompat="@drawable/ic_add_to_photos_24dp" />
+                android:background="@drawable/button_violeta"
+                android:drawableEnd="@drawable/ic_add_to_photos_24dp"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="Mas Fotos"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/background_light" />
 
             <Button
                 android:id="@+id/mi_tienda"
@@ -115,7 +144,9 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/juegos"
                 android:layout_centerHorizontal="true"
-                android:text="@string/mi_tienda" />
+                android:background="@drawable/button_violeta"
+                android:text="@string/mi_tienda"
+                android:textColor="@android:color/background_light" />
 
             <Button
                 android:id="@+id/juegos"
@@ -123,8 +154,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
-                android:text="@string/juegos" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/button_violeta"
+                android:text="@string/juegos"
+                android:textColor="@android:color/background_light" />
 
         </RelativeLayout>
     </RelativeLayout>

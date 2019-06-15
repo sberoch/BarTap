@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/no_tenes_puntos_suficientes_para_comprar_este_item"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark" />
 
     <RelativeLayout
         android:id="@+id/rl_normal"
@@ -28,6 +29,7 @@
             android:layout_marginBottom="20dp"
             android:text="@string/recordatorio_compra"
             android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="12sp" />
 
         <TextView
@@ -39,19 +41,20 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/actual" />
+            android:text="@string/actual"
+            android:textColor="@color/colorPrimaryDark" />
 
         <TextView
             android:id="@+id/costo_titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/actual_titulo"
-            android:layout_margin="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/costo" />
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/costo"
+            android:textColor="@color/colorPrimaryDark" />
 
         <TextView
             android:id="@+id/total_titulo"
@@ -62,7 +65,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/total" />
+            android:text="@string/total"
+            android:textColor="@color/colorPrimaryDark" />
 
         <View
             android:id="@+id/hl3"
@@ -82,7 +86,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="1000" />
+            android:text="1000"
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/costo"
@@ -94,7 +99,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="-200" />
+            android:text="-200"
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/total"
@@ -106,7 +112,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:text="800" />
+            android:text="800"
+            android:textColor="@color/colorAccent" />
 
     </RelativeLayout>
 

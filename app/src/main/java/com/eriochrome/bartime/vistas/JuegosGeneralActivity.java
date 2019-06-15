@@ -17,12 +17,16 @@ import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.JuegosGeneralContract;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.presenters.JuegosGeneralPresenter;
+import com.eriochrome.bartime.vistas.dialogs.DialogCrearJuego;
 
 import java.util.ArrayList;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
-public class JuegosGeneralActivity extends AppCompatActivity implements JuegosGeneralContract.View, JuegoDelBarHolder.OnJuegoHolderClickListener {
+public class JuegosGeneralActivity extends AppCompatActivity implements
+        JuegosGeneralContract.View,
+        JuegoDelBarHolder.OnJuegoHolderClickListener,
+        DialogCrearJuego.OnButtonClick {
 
     private JuegosGeneralPresenter presenter;
 
@@ -52,9 +56,8 @@ public class JuegosGeneralActivity extends AppCompatActivity implements JuegosGe
 
         crearJuego = findViewById(R.id.crear_juego);
         crearJuego.setOnClickListener(v -> {
-            Intent i = new Intent(JuegosGeneralActivity.this, NuevoJuegoActivity.class);
-            i = presenter.enviarBar(i);
-            startActivity(i);
+            DialogCrearJuego dialogCrearJuego = new DialogCrearJuego();
+            dialogCrearJuego.show(getFragmentManager(), "crearJuego");
         });
     }
 
@@ -107,6 +110,25 @@ public class JuegosGeneralActivity extends AppCompatActivity implements JuegosGe
             i = new Intent(this, PaginaTriviaActivity.class);
         }
         i = presenter.enviarJuego(i, juego);
+        i = presenter.enviarBar(i);
+        startActivity(i);
+    }
+
+    @Override
+    public void crearJuegoConTipo(String tipoDeJuego) {
+        Intent i = null;
+        switch (tipoDeJuego) {
+            case "Desafio":
+                i = new Intent(JuegosGeneralActivity.this, CrearDesafioActivity.class);
+                break;
+            case "Trivia":
+                i = new Intent(JuegosGeneralActivity.this, CrearTriviaActivity.class);
+                break;
+            default:
+                toastShort(this, "Ocurrio un error inesperado.");
+                finish();
+        }
+
         i = presenter.enviarBar(i);
         startActivity(i);
     }

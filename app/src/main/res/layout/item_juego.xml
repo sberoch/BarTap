@@ -27,7 +27,7 @@
         android:fontFamily="@font/lato_bold"
         android:maxWidth="150dp"
         android:text="Desafio"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp" />
 
     <TextView
@@ -41,7 +41,8 @@
         android:layout_toEndOf="@+id/imagen_juego"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text='"El mejor juego que vas a ver en años, te lo juro @string/fui_error_too_many_attempts"' />
+        android:text='"El mejor juego que vas a ver en años, te lo juro @string/fui_error_too_many_attempts"'
+        android:textColor="@color/colorPrimaryDark" />
 
     <TextView
         android:id="@+id/bar_del_juego"
@@ -52,7 +53,8 @@
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/imagen_juego"
         android:maxWidth="150dp"
-        android:text="En MegaBar" />
+        android:text="En MegaBar"
+        android:textColor="@color/colorPrimaryDark" />
 
 
     <Space

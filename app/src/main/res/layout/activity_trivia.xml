@@ -11,8 +11,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
         android:text="20"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp" />
 
     <TextView
@@ -21,13 +25,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/countdown"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:text="¿Pregunta de ejemplo?"
+        android:textColor="@color/colorAccent"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/op_a"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pregunta"
         android:layout_centerHorizontal="true"
@@ -35,11 +43,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Opcion A" />
+        android:background="@drawable/button_violeta"
+        android:text="Opcion A"
+        android:textColor="@android:color/background_light" />
 
     <Button
         android:id="@+id/op_b"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/op_a"
         android:layout_centerHorizontal="true"
@@ -47,11 +57,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Opcion B" />
+        android:background="@drawable/button_violeta"
+        android:text="Opcion B"
+        android:textColor="@android:color/background_light" />
 
     <Button
         android:id="@+id/op_c"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/op_b"
         android:layout_centerHorizontal="true"
@@ -59,7 +71,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Opcion C" />
+        android:background="@drawable/button_violeta"
+        android:text="Opcion C"
+        android:textColor="@android:color/background_light" />
 
 
 

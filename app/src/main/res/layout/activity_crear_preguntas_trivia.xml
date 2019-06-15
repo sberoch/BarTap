@@ -18,14 +18,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="@string/siguiente_pregunta" />
+        android:layout_margin="10dp"
+        android:background="@drawable/button_violeta"
+        android:text="@string/siguiente_pregunta"
+        android:textColor="@android:color/background_light" />
 
     <Button
         android:id="@+id/listo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_violeta"
         android:text="@string/listo"
+        android:textColor="@android:color/background_light"
         android:visibility="gone" />
 
     <TextView
@@ -36,7 +45,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/lato_bold"
-        android:text="Pregunta:" />
+        android:text="Pregunta:"
+        android:textColor="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/pregunta"
@@ -48,7 +58,10 @@
         android:ems="10"
         android:hint="¿Pregunta Ejemplo?"
         android:inputType="textPersonName"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/opcionA_titulo"
@@ -57,7 +70,8 @@
         android:layout_below="@+id/hl"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Opcion A:" />
+        android:text="Opcion A:"
+        android:textColor="@color/colorPrimaryDark" />
 
     <TextView
         android:id="@+id/opcionB_titulo"
@@ -66,7 +80,8 @@
         android:layout_below="@+id/opcionA"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Opcion B:" />
+        android:text="Opcion B:"
+        android:textColor="@color/colorPrimaryDark" />
 
     <TextView
         android:id="@+id/opcionC_titulo"
@@ -75,7 +90,8 @@
         android:layout_below="@+id/opcionB"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Opcion C:" />
+        android:text="Opcion C:"
+        android:textColor="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/opcionA"
@@ -84,7 +100,10 @@
         android:layout_below="@+id/opcionA_titulo"
         android:layout_marginStart="20dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"/>
 
     <EditText
         android:id="@+id/opcionB"
@@ -93,7 +112,10 @@
         android:layout_below="@+id/opcionB_titulo"
         android:layout_marginStart="20dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"/>
 
     <EditText
         android:id="@+id/opcionC"
@@ -102,7 +124,10 @@
         android:layout_below="@+id/opcionC_titulo"
         android:layout_marginStart="20dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"/>
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -117,19 +142,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="53dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:buttonTint="@color/colorAccent" />
 
         <RadioButton
             android:id="@+id/op_b_correcta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="53dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:buttonTint="@color/colorAccent" />
 
         <RadioButton
             android:id="@+id/op_c_correcta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:buttonTint="@color/colorAccent" />
     </RadioGroup>
 </RelativeLayout>

@@ -10,7 +10,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
-        android:text="Seleccione un item:" />
+        android:text="Seleccione un item:"
+        android:textColor="@color/colorPrimaryDark" />
 
     <Spinner
         android:id="@+id/spinner_items"
@@ -20,7 +21,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/colorAccent" />
 
     <TextView
         android:id="@+id/precio_titulo"
@@ -28,9 +30,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner_items"
         android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:text="Precio:"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/precio"
@@ -39,6 +45,7 @@
         android:layout_below="@+id/precio_titulo"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_violet"
         android:ems="10"
         android:hint="Precio"
         android:inputType="numberSigned"

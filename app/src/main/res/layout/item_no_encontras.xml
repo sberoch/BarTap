@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/no_encontras_rl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@drawable/button_login_white"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/no_encontras_rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/no_encontras_titulo"
@@ -18,7 +16,7 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/no_encontras_titulo"
-            android:textColor="@android:color/background_dark"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
 
         <TextView
@@ -31,5 +29,5 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/lato_bold"
             android:text="@string/no_encontras_link"
-            android:textColor="@color/colorSecundary" />
+            android:textColor="@color/colorAccent" />
 </RelativeLayout>

@@ -39,10 +39,10 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
 
     private RelativeLayout barControlRl;
     private TextView nombreBar;
-    private ImageButton editarBar;
+    private Button editarBar;
     private Button juegos;
     private Button miTienda;
-    private ImageButton agregarFotos;
+    private Button agregarFotos;
     private ImageButton avisos;
 
 

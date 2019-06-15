@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
@@ -9,9 +10,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/entre_que_horarios_esta_abierto_el_bar"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark" />
 
     <com.appyvet.materialrangebar.RangeBar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/range_bar"
@@ -22,8 +27,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        app:mrb_connectingLineColor="@color/colorPrimary"
-        app:mrb_pinColor="@color/colorAccent"
+        app:mrb_connectingLineColor="@color/colorAccent"
+        app:mrb_pinColor="@color/colorPrimary"
         app:mrb_pinMaxFont="15sp"
         app:mrb_pinMinFont="12sp"
         app:mrb_pinRadius="14dp"
@@ -35,13 +40,13 @@
         app:mrb_selectorSize="10dp"
         app:mrb_temporaryPins="false"
         app:mrb_tickDefaultLabel="label"
-        app:mrb_tickStart="8"
         app:mrb_tickEnd="28"
         app:mrb_tickHeight="0dp"
         app:mrb_tickInterval="1"
         app:mrb_tickLabelColor="@color/colorSecundary"
         app:mrb_tickLabelSelectedColor="@color/colorAccent"
-        app:mrb_tickLabelSize="4sp" />
+        app:mrb_tickLabelSize="4sp"
+        app:mrb_tickStart="8" />
 
     <CheckBox
         android:id="@+id/cerrado_checkbox"
