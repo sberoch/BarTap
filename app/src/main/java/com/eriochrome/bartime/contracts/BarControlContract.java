@@ -2,6 +2,7 @@ package com.eriochrome.bartime.contracts;
 
 import android.net.Uri;
 
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 
 public interface BarControlContract {
@@ -13,6 +14,7 @@ public interface BarControlContract {
         void subirFoto(Uri path);
         void checkearAvisos();
         void dejarDeCheckearAvisos();
+        void cargarImagenes();
     }
 
     interface View {
@@ -20,6 +22,7 @@ public interface BarControlContract {
         void finCargando();
         void hayAvisos();
         void noHayAvisos();
+        void onImageLoaded(String path);
     }
 
     interface CompleteListener {
@@ -27,5 +30,6 @@ public interface BarControlContract {
         void onComplete(Bar bar);
         void hayAvisos();
         void noHayAvisos();
+        void onImageLoaded(String path);
     }
 }

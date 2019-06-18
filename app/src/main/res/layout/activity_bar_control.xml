@@ -57,6 +57,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/drawer_button"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp" />
+
             <ImageButton
                 android:id="@+id/avisos"
                 android:layout_width="wrap_content"
@@ -91,24 +101,21 @@
 
             <Button
                 android:id="@+id/editar_bar"
-                android:layout_width="150dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nombre_bar"
-                android:layout_alignParentStart="true"
+                android:layout_below="@+id/slider"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_toStartOf="@+id/asd"
-                android:background="@drawable/button_violeta"
+                android:background="@drawable/edittext_violet"
                 android:drawableEnd="@drawable/ic_edit_24dp"
-                android:padding="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="Editar bar"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@android:color/background_light" />
+                android:textColor="@color/colorAccent" />
 
             <Space
                 android:id="@+id/asd"
@@ -120,23 +127,33 @@
 
             <Button
                 android:id="@+id/agregar_fotos"
-                android:layout_width="150dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/nombre_bar"
-                android:layout_marginStart="10dp"
+                android:layout_below="@+id/slider"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@+id/asd"
-                android:background="@drawable/button_violeta"
+                android:background="@drawable/edittext_violet"
                 android:drawableEnd="@drawable/ic_add_to_photos_24dp"
-                android:padding="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="Mas Fotos"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
-                android:textColor="@android:color/background_light" />
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editar_bar"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:text="Mock text para una descripcion del bar a ver como queda si es medio largo o que onda hay que ver viste"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/mi_tienda"
@@ -171,6 +188,7 @@
         android:id="@+id/nav_drawer"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:itemIconTint="@color/colorAccent"
         app:headerLayout="@layout/header_drawer"
         app:menu="@menu/drawer_menu_bar">
 

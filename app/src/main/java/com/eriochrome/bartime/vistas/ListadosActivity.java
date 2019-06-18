@@ -30,6 +30,7 @@ import com.eriochrome.bartime.presenters.ListadosPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
 import com.eriochrome.bartime.vistas.dialogs.DialogResumenJuego;
 import com.eriochrome.bartime.vistas.dialogs.DialogSeleccionFiltros;
+import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 
 import java.util.ArrayList;
@@ -93,6 +94,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         super.onResume();
         updateUI();
         if (presenter.estaConectado()) {
+            presenter.conectar();
             presenter.checkearAvisos();
         }
         //locationHelper.checkPlayServices();
@@ -137,6 +139,12 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     }
 
     private void loginUsuario() {
+        AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
+                .Builder(R.layout.custom_login_ui)
+                .setEmailButtonId(R.id.normal_login)
+                .setGoogleButtonId(R.id.google_login)
+                .build();
+
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
@@ -144,6 +152,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
+                        .setAuthMethodPickerLayout(customLayout)
                         .setAvailableProviders(providers)
                         .setTheme(R.style.AppTheme)
                         .setLogo(R.drawable.bar_time_2)

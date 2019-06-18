@@ -13,14 +13,18 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.ListaComentariosAdapter;
 import com.eriochrome.bartime.adapters.ViewPagerAdapter;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.entidades.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
+import com.eriochrome.bartime.utils.MySliderView;
 import com.eriochrome.bartime.vistas.dialogs.DialogComentario;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
+import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 
 import java.util.Arrays;
@@ -41,8 +45,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private TextView puntosText;
     private Button tienda;
 
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
+    private SliderLayout sliderShow;
 
     private ListaComentariosAdapter listaComentariosAdapter;
 
@@ -70,20 +73,19 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         verMapa = findViewById(R.id.ver_mapa);
         puntosText = findViewById(R.id.puntos_text);
         tienda = findViewById(R.id.tienda);
-
-        viewPager = findViewById(R.id.view_pager);
-        viewPagerAdapter = new ViewPagerAdapter(this, presenter.getBar());
-        viewPager.setAdapter(viewPagerAdapter);
+        sliderShow = findViewById(R.id.slider);
 
         listView = findViewById(R.id.listview);
         listaComentariosAdapter = new ListaComentariosAdapter();
         listView.setAdapter(listaComentariosAdapter);
+        listaComentariosAdapter.notifyDataSetChanged();
 
         nombreBar.setText(presenter.getNombreDeBar());
         puntosText.setVisibility(View.GONE);
         setupListeners();
 
-        //TODO: se muestra de a un comentario, esta medio bug que repite dentro de la lista y no se porque
+        presenter.cargarComentarios();
+        presenter.cargarImagenes();
     }
 
     @Override
@@ -94,7 +96,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             presenter.checkeoFavorito();
             presenter.checkearUsuarioCalificoBar();
         }
-        presenter.cargarComentarios();
+        listaComentariosAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -175,6 +177,12 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
     @Override
     public void login() {
+        AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
+                .Builder(R.layout.custom_login_ui)
+                .setGoogleButtonId(R.id.google_login)
+                .setEmailButtonId(R.id.normal_login)
+                .build();
+
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
@@ -182,6 +190,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
+                        .setAuthMethodPickerLayout(customLayout)
                         .setAvailableProviders(providers)
                         .setTheme(R.style.AppTheme)
                         .setLogo(R.drawable.bar_time_2)
@@ -225,6 +234,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     @Override
     public void finCargaDeComentarios() {
         listaComentariosAdapter.setItems(presenter.getComentarios());
+        listaComentariosAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -232,6 +242,20 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         String texto = "Tienes " + Integer.toString(puntos) + " puntos en el bar";
         puntosText.setText(texto);
         puntosText.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onImageLoaded(String path) {
+        MySliderView sliderView = new MySliderView(this);
+        sliderView.image(path)
+                .setScaleType(BaseSliderView.ScaleType.CenterInside);
+        sliderShow.addSlider(sliderView);
+    }
+
+    @Override
+    protected void onStop() {
+        sliderShow.stopAutoCycle();
+        super.onStop();
     }
 
     @Override

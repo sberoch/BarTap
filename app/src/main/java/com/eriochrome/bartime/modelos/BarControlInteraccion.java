@@ -3,8 +3,11 @@ package com.eriochrome.bartime.modelos;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.utils.Utils;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -76,8 +79,11 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     @Override
     public void subirFoto(Uri path) {
         listener.onStart();
+
         String strNumeroDeFoto = "_" + Integer.toString(bar.getCantidadDeFotos() + 1);
-        String caminoEnStorage = bar.getNombre() + strNumeroDeFoto + ".jpg";
+        String nombreBar = bar.getNombre().replaceAll(" ", "_");
+        String caminoEnStorage = nombreBar + strNumeroDeFoto + ".jpg";
+
         StorageReference imagenRef = storageReference.child("imagenes").child(caminoEnStorage);
         UploadTask uploadTask = imagenRef.putFile(path);
         uploadTask.addOnSuccessListener(taskSnapshot -> {
@@ -103,4 +109,14 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
         }
     }
 
+    @Override
+    public void cargarImagenes() {
+        for (int i = 0; i < bar.getCantidadDeFotos(); i++) {
+            String nombreBar = bar.getNombre().replaceAll(" ", "_");
+            String path = nombreBar + Utils.getNumeroDeFoto(i) + ".jpg";
+            storageReference.child("imagenes").child(path).getDownloadUrl().addOnSuccessListener(uri -> {
+                listener.onImageLoaded(uri.toString());
+            });
+        }
+    }
 }

@@ -91,7 +91,7 @@
 
         <RadioButton
             android:id="@+id/distancia"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/distancia"
@@ -99,7 +99,7 @@
 
         <RadioButton
             android:id="@+id/estrellas"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/estrellas"
@@ -107,7 +107,7 @@
 
         <RadioButton
             android:id="@+id/nombre"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/nombre"
@@ -120,48 +120,54 @@
         android:layout_height="1dip"
         android:layout_below="@+id/ordenar_group"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
         android:background="#ccc" />
+
+    <TextView
+        android:id="@+id/metodos_pago_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hl4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/metodos_de_pago"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp" />
 
     <RelativeLayout
         android:id="@+id/metodos_pago"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ordenar_group">
+        android:layout_below="@+id/metodos_pago_titulo">
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/efectivo"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toStartOf="@+id/credito"
-            android:text="E"
-            android:textColor="@color/colorPrimaryDark" />
-
-        <RadioButton
-            android:id="@+id/credito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="C"
+            android:text="@string/efectivo"
             android:textColor="@color/colorPrimaryDark" />
 
-        <RadioButton
-            android:id="@+id/debito"
-            android:layout_width="wrap_content"
+        <CheckBox
+            android:id="@+id/credito"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/credito"
-            android:text="D"
+            android:layout_below="@+id/efectivo"
+            android:layout_centerHorizontal="true"
+            android:text="@string/tarjeta_de_credito"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <CheckBox
+            android:id="@+id/debito"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/credito"
+            android:layout_centerHorizontal="true"
+            android:text="@string/tarjeta_de_debito"
             android:textColor="@color/colorPrimaryDark" />
     </RelativeLayout>
 

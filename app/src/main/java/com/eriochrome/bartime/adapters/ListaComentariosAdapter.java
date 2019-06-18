@@ -37,6 +37,11 @@ public class ListaComentariosAdapter extends BaseAdapter {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         if (view == null) {
             LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());

@@ -59,13 +59,14 @@ public class JuegosGeneralActivity extends AppCompatActivity implements
             DialogCrearJuego dialogCrearJuego = new DialogCrearJuego();
             dialogCrearJuego.show(getFragmentManager(), "crearJuego");
         });
+
+        presenter.mostrarJuegos();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        juegosAdapter.clear();
-        presenter.mostrarJuegos();
+        juegosAdapter.notifyDataSetChanged();
     }
 
     @Override

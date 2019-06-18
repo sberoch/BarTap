@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.DistincionContract;
 import com.eriochrome.bartime.presenters.DistincionPresenter;
+import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 
 import java.util.Arrays;
@@ -29,7 +30,7 @@ public class DistincionDeUsuarioActivity extends AppCompatActivity implements Di
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.distincion_de_usuario);
+        setContentView(R.layout.activity_distincion_de_usuario);
 
         tengoBar = findViewById(R.id.tengoBar);
         comenzar = findViewById(R.id.comenzar);
@@ -60,6 +61,12 @@ public class DistincionDeUsuarioActivity extends AppCompatActivity implements Di
 
     @Override
     public void loginBar() {
+        AuthMethodPickerLayout customLayout = new AuthMethodPickerLayout
+                .Builder(R.layout.custom_login_ui)
+                .setEmailButtonId(R.id.normal_login)
+                .setGoogleButtonId(R.id.google_login)
+                .build();
+
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
@@ -67,6 +74,7 @@ public class DistincionDeUsuarioActivity extends AppCompatActivity implements Di
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
+                        .setAuthMethodPickerLayout(customLayout)
                         .setAvailableProviders(providers)
                         .setTheme(R.style.AppTheme)
                         .setLogo(R.drawable.bar_time_2)

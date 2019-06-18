@@ -60,7 +60,9 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
 
         setEstrellas();
 
-        String imagePath = bar.getNombre() + ".jpg";
+        String nombreBar = bar.getNombre().replaceAll(" ", "_");
+
+        String imagePath = nombreBar + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(imagePath);
         GlideApp.with(this.view)
                 .load(imagenRef).placeholder(R.drawable.placeholder)

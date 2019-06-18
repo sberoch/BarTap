@@ -24,7 +24,7 @@
             android:title="@string/contacto" />
         <item
             android:id="@+id/cerrar_sesion"
-            android:icon="@drawable/ic_close_24dp"
+            android:icon="@drawable/ic_exit_to_app_violet_24dp"
             android:title="@string/cerrar_sesion" />
         <item
             android:id="@+id/salir"

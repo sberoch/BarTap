@@ -114,6 +114,11 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
         view.setPuntos(puntos);
     }
 
+    @Override
+    public void onImageLoaded(String path) {
+        view.onImageLoaded(path);
+    }
+
     public Intent enviarBar(Intent i) {
         return i.putExtra("bar", interaccion.getBar());
     }
@@ -135,4 +140,7 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
         interaccion.cargarPuntosEnElBar();
     }
 
+    public void cargarImagenes() {
+        interaccion.cargarImagenes();
+    }
 }

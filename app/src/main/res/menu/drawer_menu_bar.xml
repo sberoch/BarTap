@@ -3,8 +3,16 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/contacto"
+            android:icon="@drawable/ic_contacto_24dp"
+            android:title="@string/contacto" />
+        <item
+            android:id="@+id/mis_ventas"
+            android:icon="@drawable/ic_shopping_24dp"
+            android:title="Mis ventas" />
+        <item
             android:id="@+id/cerrar_sesion"
-            android:icon="@drawable/ic_close_24dp"
+            android:icon="@drawable/ic_exit_to_app_violet_24dp"
             android:title="Cerrar Sesion" />
         <item
             android:id="@+id/salir"

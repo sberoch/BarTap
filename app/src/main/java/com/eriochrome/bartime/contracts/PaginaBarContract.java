@@ -16,6 +16,7 @@ public interface PaginaBarContract {
         void cargaDeComentarios();
         void finCargaDeComentarios();
         void setPuntos(Integer puntos);
+        void onImageLoaded(String path);
     }
 
     interface Interaccion {
@@ -32,6 +33,7 @@ public interface PaginaBarContract {
         ArrayList<Comentario> getComentarios();
         void cargarComentarios();
         void cargarPuntosEnElBar();
+        void cargarImagenes();
     }
 
     interface CompleteListener {
@@ -42,5 +44,6 @@ public interface PaginaBarContract {
         void cargaDeComentarios();
         void finCargaDeComentarios();
         void setPuntos(Integer puntos);
+        void onImageLoaded(String toString);
     }
 }

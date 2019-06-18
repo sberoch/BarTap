@@ -46,7 +46,8 @@ public class ViewPagerAdapter extends PagerAdapter {
         ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.item_imagen_viewpager, container, false);
         ImageView imageView = layout.findViewById(R.id.imageView);
 
-        String path = bar.getNombre() + Utils.getNumeroDeFoto(position) + ".jpg";
+        String nombreBar = bar.getNombre().replaceAll(" ", "_");
+        String path = nombreBar + Utils.getNumeroDeFoto(position) + ".jpg";
         StorageReference imageRef = storageReference.child("imagenes").child(path);
 
         GlideApp.with(layout)

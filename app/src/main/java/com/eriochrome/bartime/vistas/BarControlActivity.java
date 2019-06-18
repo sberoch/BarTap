@@ -15,9 +15,13 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.presenters.BarControlPresenter;
+import com.eriochrome.bartime.utils.MySliderView;
 import com.firebase.ui.auth.AuthUI;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
@@ -38,6 +42,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     private Button sinBarButton;
 
     private RelativeLayout barControlRl;
+    private SliderLayout sliderShow;
     private TextView nombreBar;
     private Button editarBar;
     private Button juegos;
@@ -65,6 +70,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         sinBarButton = findViewById(R.id.sin_bar_btn);
 
         barControlRl = findViewById(R.id.bar_control_rl);
+        sliderShow = findViewById(R.id.slider);
         nombreBar = findViewById(R.id.nombre_bar);
         editarBar = findViewById(R.id.editar_bar);
         juegos = findViewById(R.id.juegos);
@@ -88,6 +94,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             barControlRl.setVisibility(View.VISIBLE);
             nombreBar.setText(presenter.getNombreBar());
             setupDrawer();
+            presenter.cargarImagenes();
         } else {
             sinBarRl.setVisibility(View.VISIBLE);
             barControlRl.setVisibility(View.GONE);
@@ -133,6 +140,16 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
 
     private void ejecutarOpcionMenu(int itemId) {
         switch (itemId) {
+            case R.id.contacto:
+                startActivity(new Intent(this, ContactoActivity.class));
+                break;
+
+            case R.id.mis_ventas:
+                Intent i = new Intent(this, ComprasBarActivity.class);
+                i = presenter.enviarBar(i);
+                startActivity(i);
+                break;
+
             case R.id.cerrar_sesion:
                 AuthUI.getInstance()
                         .signOut(this)
@@ -178,6 +195,14 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         avisos.setImageResource(R.drawable.ic_notifications_none_violet_24dp);
     }
 
+    @Override
+    public void onImageLoaded(String path) {
+        MySliderView sliderView = new MySliderView(this);
+        sliderView.image(path)
+                .setScaleType(BaseSliderView.ScaleType.CenterInside);
+        sliderShow.addSlider(sliderView);
+    }
+
     private void seleccionarImagenDeGaleria() {
         Intent elegirFotoIntent = new Intent(Intent.ACTION_PICK);
         elegirFotoIntent.setType("image/*");
@@ -196,6 +221,12 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
                 toastShort(BarControlActivity.this, "No elegiste ninguna imagen.");
             }
         }
+    }
+
+    @Override
+    protected void onStop() {
+        sliderShow.stopAutoCycle();
+        super.onStop();
     }
 
     @Override

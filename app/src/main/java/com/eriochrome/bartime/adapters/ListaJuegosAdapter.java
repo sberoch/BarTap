@@ -58,6 +58,16 @@ public class ListaJuegosAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return juegos.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     public void setItems(ArrayList<Juego> nuevosJuegos) {
         juegos.clear();
         juegos.addAll(nuevosJuegos);

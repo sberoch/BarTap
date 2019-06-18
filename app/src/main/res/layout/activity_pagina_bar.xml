@@ -50,45 +50,69 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/hl">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/view_pager"
+                <com.daimajia.slider.library.SliderLayout
+                    android:id="@+id/slider"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
-
-                </android.support.v4.view.ViewPager>
+                    android:layout_height="200dp"
+                    android:layout_below="@+id/drawer_button"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp" />
 
                 <Button
                     android:id="@+id/calificarBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_below="@+id/slider"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/calificar_bar" />
 
                 <Button
                     android:id="@+id/agregar_favorito"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_below="@+id/calificarBar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/agregar_a_favoritos" />
 
                 <Button
                     android:id="@+id/ver_mapa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_below="@+id/agregar_favorito"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/ver_en_mapa" />
 
                 <TextView
                     android:id="@+id/puntos_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_below="@+id/ver_mapa"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:text="Tienes 550 puntos en el bar."
                     android:textAlignment="center" />
 
@@ -96,22 +120,31 @@
                     android:id="@+id/tienda"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/puntos_text"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginBottom="5dp"
                     android:text="Tienda" />
 
                 <ListView
                     android:id="@+id/listview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tienda"
+                    android:layout_centerHorizontal="true" />
 
                 <Button
                     android:id="@+id/ver_mas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_below="@+id/listview"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/ver_mas" />
 
-            </LinearLayout>
+            </RelativeLayout>
         </ScrollView>
 
     </RelativeLayout>

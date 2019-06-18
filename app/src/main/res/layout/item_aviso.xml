@@ -10,10 +10,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_toStartOf="@+id/cerrar"
         android:fontFamily="@font/lato_bold"
-        android:text="Prueba de aviso" />
+        android:text="Prueba de aviso"
+        android:textColor="@color/colorPrimaryDark" />
 
     <ImageButton
         android:id="@+id/cerrar"

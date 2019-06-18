@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -111,19 +112,19 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
 
     @Override
     public boolean filtroEfectivo(AlertDialog dialog) {
-        RadioButton efectivo = dialog.findViewById(R.id.efectivo);
+        CheckBox efectivo = dialog.findViewById(R.id.efectivo);
         return efectivo.isChecked();
     }
 
     @Override
     public boolean filtroCredito(AlertDialog dialog) {
-        RadioButton credito = dialog.findViewById(R.id.credito);
+        CheckBox credito = dialog.findViewById(R.id.credito);
         return credito.isChecked();
     }
 
     @Override
     public boolean filtroDebito(AlertDialog dialog) {
-        RadioButton debito = dialog.findViewById(R.id.debito);
+        CheckBox debito = dialog.findViewById(R.id.debito);
         return debito.isChecked();
     }
 

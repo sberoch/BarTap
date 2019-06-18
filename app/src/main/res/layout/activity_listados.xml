@@ -74,6 +74,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_drawer"
+        app:itemIconTint="@color/colorAccent"
         app:menu="@menu/drawer_menu_usuario">
 
     </android.support.design.widget.NavigationView>

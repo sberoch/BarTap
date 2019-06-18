@@ -3,6 +3,7 @@ package com.eriochrome.bartime.presenters;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.BarControlInteraccion;
@@ -56,6 +57,12 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
         view.noHayAvisos();
     }
 
+    @Override
+    public void onImageLoaded(String path) {
+        view.onImageLoaded(path);
+    }
+
+
     public String getNombreBar() {
         return interaccion.getNombreBar();
     }
@@ -81,5 +88,9 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
 
     public void dejarDeCheckearAvisos() {
         interaccion.dejarDeCheckearAvisos();
+    }
+
+    public void cargarImagenes() {
+        interaccion.cargarImagenes();
     }
 }

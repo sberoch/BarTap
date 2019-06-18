@@ -6,12 +6,15 @@ import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Comentario;
 import com.eriochrome.bartime.utils.ActualizadorFirebase;
+import com.eriochrome.bartime.utils.Utils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,7 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     private DatabaseReference favoritosRef;
     private DatabaseReference refUsuario;
     private FirebaseAuth auth;
+    private StorageReference storageReference;
 
     private Bar bar;
     private ArrayList<Comentario> listaComentarios;
@@ -30,6 +34,7 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
         this.listener = listener;
         ref = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
         if (hayUsuarioConectado()) {
             refUsuario = ref.child("usuarios").child(auth.getCurrentUser().getUid());
             favoritosRef = refUsuario.child("favoritos");
@@ -163,5 +168,16 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) { }
                 });
+    }
+
+    @Override
+    public void cargarImagenes() {
+        for (int i = 0; i < bar.getCantidadDeFotos(); i++) {
+            String nombreBar = bar.getNombre().replaceAll(" ", "_");
+            String path = nombreBar + Utils.getNumeroDeFoto(i) + ".jpg";
+            storageReference.child("imagenes").child(path).getDownloadUrl().addOnSuccessListener(uri -> {
+                listener.onImageLoaded(uri.toString());
+            });
+        }
     }
 }

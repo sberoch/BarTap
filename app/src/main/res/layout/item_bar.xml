@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:padding="2dp">
 
     <TextView
         android:id="@+id/nombre_bar"
@@ -33,7 +33,6 @@
         android:id="@+id/imagen_bar"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_below="@+id/sArriba"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="false"
         android:layout_marginStart="10dp"
@@ -41,7 +40,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:elevation="10dp"
-        app:civ_border_color="@android:color/darker_gray"
+        app:civ_border_color="@color/colorAccent"
         app:civ_border_width="2dp" />
 
 
@@ -53,6 +52,20 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp">
 
+        <TextView
+            android:id="@+id/estrellas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@+id/estrellas_icon"
+            android:fontFamily="@font/lato_bold"
+            android:text="9.8"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp" />
+
         <ImageButton
             android:id="@+id/estrellas_icon"
             android:layout_width="18dp"
@@ -60,20 +73,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="0dp"
-            android:background="@drawable/ic_star_violet_24dp" />
-
-        <TextView
-            android:id="@+id/estrellas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/estrellas_icon"
-            android:fontFamily="@font/lato_bold"
-            android:text="9.8"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp" />
+            android:background="@drawable/ic_stars_violet_24dp"
+            android:translationY="1dp" />
     </RelativeLayout>
 
 </RelativeLayout>
