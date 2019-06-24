@@ -1,7 +1,10 @@
 package com.eriochrome.bartime.modelos.entidades;
 
+import android.net.Uri;
+
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.utils.Utils;
+import com.google.firebase.database.Exclude;
 //import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
@@ -179,7 +182,6 @@ public class Bar implements Serializable {
     public void aumentarCantidadDeFotos() {
         cantidadDeFotos++;
     }
-
 
     public void setNombre(String nombreBar) {
         nombre = nombreBar;

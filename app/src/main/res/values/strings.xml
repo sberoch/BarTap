@@ -119,6 +119,8 @@
     <string name="descripcion">Descripcion</string>
     <string name="una_peque_a_descripcion">Una pequeña descripcion:</string>
     <string name="nombre_del_bar">Nombre del bar:</string>
+    <string name="debes_completar_horarios_antes_de_continuar">Debes completar los horarios antes de continuar</string>
+    <string name="exito">¡Exito!</string>
     <string name="ingresar_con_google">Ingresar con google</string>
     <string name="ingresar_con_email">ingresar con email</string>
     <string name="correcto">¡Correcto!</string>

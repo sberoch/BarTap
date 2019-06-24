@@ -51,15 +51,6 @@ public class DatosBarPrincipalFragment extends Fragment {
 
     private Listener callback;
 
-    private SimpleTarget target = new SimpleTarget<Bitmap>() {
-        @Override
-        public void onResourceReady(Bitmap bitmap, @Nullable Transition<? super Bitmap> transition) {
-            // do something with the bitmap
-            // set it to an ImageView
-            imagenBar.setImageBitmap(bitmap);
-        }
-    };
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,7 +60,7 @@ public class DatosBarPrincipalFragment extends Fragment {
         nombreBar = view.findViewById(R.id.nombre_bar);
         descripcion = view.findViewById(R.id.desc);
         seleccionarImagen = view.findViewById(R.id.seleccionar_imagen_principal);
-        imagenBar = view.findViewById(R.id.image_bar);
+        imagenBar = view.findViewById(R.id.imageview_bar);
         continuar = view.findViewById(R.id.continuar);
 
         seleccionarImagen.setOnClickListener(v -> {

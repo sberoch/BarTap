@@ -89,8 +89,8 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements
         seleccionarUbicacion = findViewById(R.id.seleccionar_ubicacion);
         setupHorarios();
         efectivo = findViewById(R.id.efectivo);
-        tCredito = findViewById(R.id.tarjeta_credito);
-        tDebito = findViewById(R.id.tarjeta_debito);
+        //tCredito = findViewById(R.id.tarjeta_credito);
+        //tDebito = findViewById(R.id.tarjeta_debito);
         listo = findViewById(R.id.listo);
 
         setupListeners();

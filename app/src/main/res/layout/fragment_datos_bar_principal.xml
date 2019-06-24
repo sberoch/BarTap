@@ -116,7 +116,7 @@
             android:textSize="14sp" />
 
         <ImageView
-            android:id="@+id/image_bar"
+            android:id="@+id/imageview_bar"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_below="@+id/seleccionar_imagen_principal"

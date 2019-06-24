@@ -110,7 +110,9 @@
         <activity android:name=".vistas.MisComprasActivity" />
         <activity android:name=".vistas.MisJuegosActivity" />
         <activity android:name=".vistas.ComprasBarActivity" />
-        <activity android:name=".vistas.DatosBarActivity" />
+        <activity android:name=".vistas.DatosBarPrincipalActivity" />
+        <activity android:name=".vistas.DatosBarHorariosActivity" />
+        <activity android:name=".vistas.DatosBarOpcionalesActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
