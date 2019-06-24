@@ -119,4 +119,9 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
             });
         }
     }
+
+    @Override
+    public String getDescripcion() {
+        return bar.getDescripcion();
+    }
 }

@@ -45,7 +45,7 @@
         android:layout_below="@+id/precio_titulo"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/edittext_violet"
+        android:background="@android:color/transparent"
         android:ems="10"
         android:hint="Precio"
         android:inputType="numberSigned"

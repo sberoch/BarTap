@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import com.eriochrome.bartime.R;
@@ -34,6 +35,7 @@ public class TiendaBarActivity extends AppCompatActivity implements
     private ListaItemsTiendaAdapter adapter;
 
     private ProgressBar progressBar;
+    private ImageButton volver;
 
     private Button nuevoItem;
     private Button verVendidos;
@@ -50,6 +52,8 @@ public class TiendaBarActivity extends AppCompatActivity implements
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+        volver = findViewById(R.id.volver);
+        volver.setOnClickListener(v -> finish());
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);

@@ -16,138 +16,178 @@
         android:indeterminateDrawable="@drawable/barra_progreso_circular"
         android:indeterminateDuration="2000" />
 
-    <RelativeLayout
-        android:id="@+id/pagina_bar_rl"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true" >
 
-        <TextView
-            android:id="@+id/nombre_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/lato_bold"
-            android:text="Titulo"
-            android:textColor="@android:color/background_dark"
-            android:textSize="18sp" />
-
-        <View
-            android:id="@+id/hl"
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
-            android:layout_below="@+id/nombre_bar"
-            android:layout_marginBottom="2dp"
-            android:background="#ccc" />
-
-        <ScrollView
+        <RelativeLayout
+            android:id="@+id/pagina_bar_rl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/hl">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <RelativeLayout
+            <ImageButton
+                android:id="@+id/volver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="@android:color/transparent"
+                android:padding="15dp"
+                app:srcCompat="@drawable/ic_arrow_back_violet_24dp" />
+
+            <TextView
+                android:id="@+id/nombre_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="Titulo"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/favorito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:padding="15dp"
+                app:srcCompat="@drawable/ic_favorite_border_violet_24dp" />
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/nombre_bar"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/slider"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:text="Mock text para una descripcion del bar a ver como queda si es medio largo o que onda hay que ver viste"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/ubicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/descripcion"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_descubrir_black_24dp"
+                android:text="Un Lugar 777, Zarate, Buenos Aires, Argentina"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/juegos"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@+id/ubicacion"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_toStartOf="@+id/space_mid"
+                android:background="@drawable/button_violeta"
+                android:text="Juegos"
+                android:textColor="@android:color/background_light" />
+
+            <Space
+                android:id="@+id/space_mid"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ubicacion"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:id="@+id/tienda"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@+id/ubicacion"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_toEndOf="@+id/space_mid"
+                android:background="@drawable/button_violeta"
+                android:text="Tienda"
+                android:textColor="@android:color/background_light" />
+
+            <TextView
+                android:id="@+id/puntos_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_below="@+id/tienda"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/space_mid"
+                android:text="(550 puntos)"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark" />
 
-                <com.daimajia.slider.library.SliderLayout
-                    android:id="@+id/slider"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_below="@+id/drawer_button"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="10dp" />
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/puntos_text"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/edittext_violet"
+                android:minHeight="100dp"
+                android:padding="10dp" />
 
-                <Button
-                    android:id="@+id/calificarBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/slider"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/calificar_bar" />
+            <Button
+                android:id="@+id/ver_mas"
+                android:layout_width="145dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/listview"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/space_mid"
+                android:background="@drawable/edittext_violet_filled"
+                android:text="@string/ver_mas"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:translationY="-10dp" />
 
-                <Button
-                    android:id="@+id/agregar_favorito"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/calificarBar"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/agregar_a_favoritos" />
+            <Button
+                android:id="@+id/calificarBar"
+                android:layout_width="145dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/listview"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toStartOf="@+id/space_mid"
+                android:background="@drawable/edittext_violet_filled"
+                android:text="@string/calificar_bar"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:translationY="-10dp" />
 
-                <Button
-                    android:id="@+id/ver_mapa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/agregar_favorito"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/ver_en_mapa" />
-
-                <TextView
-                    android:id="@+id/puntos_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ver_mapa"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="Tienes 550 puntos en el bar."
-                    android:textAlignment="center" />
-
-                <Button
-                    android:id="@+id/tienda"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/puntos_text"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="5dp"
-                    android:text="Tienda" />
-
-                <ListView
-                    android:id="@+id/listview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tienda"
-                    android:layout_centerHorizontal="true" />
-
-                <Button
-                    android:id="@+id/ver_mas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/listview"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/ver_mas" />
-
-            </RelativeLayout>
-        </ScrollView>
-
-    </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

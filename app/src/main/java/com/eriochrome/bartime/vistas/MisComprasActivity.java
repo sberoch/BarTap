@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import com.eriochrome.bartime.R;
@@ -24,6 +25,7 @@ public class MisComprasActivity extends AppCompatActivity implements MisComprasC
     private MisComprasPresenter presenter;
 
     private ProgressBar progressBar;
+    private ImageButton volver;
 
     private RecyclerView comprasRecyclerView;
     private ListaComprasAdapter comprasAdapter;
@@ -36,6 +38,7 @@ public class MisComprasActivity extends AppCompatActivity implements MisComprasC
         presenter = new MisComprasPresenter();
         presenter.bind(this);
 
+        volver = findViewById(R.id.volver);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
@@ -44,6 +47,8 @@ public class MisComprasActivity extends AppCompatActivity implements MisComprasC
         setupRecyclerView();
         comprasAdapter = new ListaComprasAdapter(this, false);
         comprasRecyclerView.setAdapter(comprasAdapter);
+
+        volver.setOnClickListener(v -> finish());
     }
 
     @Override

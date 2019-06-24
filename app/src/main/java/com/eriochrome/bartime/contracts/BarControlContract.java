@@ -15,6 +15,7 @@ public interface BarControlContract {
         void checkearAvisos();
         void dejarDeCheckearAvisos();
         void cargarImagenes();
+        String getDescripcion();
     }
 
     interface View {

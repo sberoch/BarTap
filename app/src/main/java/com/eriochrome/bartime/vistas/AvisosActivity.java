@@ -3,6 +3,7 @@ package com.eriochrome.bartime.vistas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -23,6 +24,7 @@ public class AvisosActivity extends AppCompatActivity implements AvisosContract.
     private ProgressBar progressBar;
     private ListView listView;
     private AvisosAdapter adapter;
+    private ImageButton volver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class AvisosActivity extends AppCompatActivity implements AvisosContract.
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+        volver = findViewById(R.id.volver_avisos);
+        volver.setOnClickListener(v -> finish());
 
         listView = findViewById(R.id.listview);
         adapter = new AvisosAdapter(this);

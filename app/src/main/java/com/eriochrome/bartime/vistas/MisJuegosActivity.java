@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import com.eriochrome.bartime.R;
@@ -30,6 +31,7 @@ public class MisJuegosActivity extends AppCompatActivity implements
     private MisJuegosPresenter presenter;
 
     private ProgressBar progressBar;
+    private ImageButton volver;
 
     private RecyclerView juegosRecyclerView;
     private ListaJuegosAdapter juegosAdapter;
@@ -42,6 +44,8 @@ public class MisJuegosActivity extends AppCompatActivity implements
         presenter = new MisJuegosPresenter();
         presenter.bind(this);
 
+        volver = findViewById(R.id.volver);
+        volver.setOnClickListener(v -> finish());
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
@@ -50,6 +54,8 @@ public class MisJuegosActivity extends AppCompatActivity implements
         setupRecyclerView();
         juegosAdapter = new ListaJuegosAdapter(this, false);
         juegosRecyclerView.setAdapter(juegosAdapter);
+
+        volver.setOnClickListener(v -> finish());
     }
 
     @Override
@@ -101,7 +107,7 @@ public class MisJuegosActivity extends AppCompatActivity implements
     @Override
     public void dejarDeParticipar(Juego juego) {
         presenter.dejarDeParticipar(juego);
-        //TODO: hago esto porque sino no aparece borrado el juego al toque;
+        //hago esto porque sino no aparece borrado el juego al toque;
         finish();
     }
 }

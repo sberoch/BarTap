@@ -34,6 +34,7 @@ public interface PaginaBarContract {
         void cargarComentarios();
         void cargarPuntosEnElBar();
         void cargarImagenes();
+        String getDescripcion();
     }
 
     interface CompleteListener {

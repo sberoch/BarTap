@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
@@ -86,8 +84,7 @@ public class TriviaActivity extends AppCompatActivity implements TriviaContract.
     }
 
     private void correcto() {
-        //TODO: poner en verde
-
+        toastShort(this, getString(R.string.correcto));
         if (presenter.quedanPreguntas()) {
             presenter.cargarSiguientePregunta();
             cdtimer.start();

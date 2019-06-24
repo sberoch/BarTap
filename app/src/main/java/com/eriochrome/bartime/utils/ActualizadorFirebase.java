@@ -37,7 +37,6 @@ public class ActualizadorFirebase {
 
                     @Override
                     public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
-                        //TODO: enviar notificacion de que se ganaron tantos puntos
                     }
                 });
     }

@@ -29,8 +29,6 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
     private ArrayAdapter<String> spinnerAdapter;
     private TextView hint;
 
-    //TODO: poner algun hint de posibles desafios
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

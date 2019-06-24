@@ -3,6 +3,7 @@ package com.eriochrome.bartime.vistas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ public class PaginaTriviaActivity extends AppCompatActivity implements PaginaTri
 
     private PaginaTriviaPresenter presenter;
     private ProgressBar progressBar;
+    private ImageButton volver;
 
     private RelativeLayout container;
     private TextView tipoDeJuego;
@@ -33,6 +35,8 @@ public class PaginaTriviaActivity extends AppCompatActivity implements PaginaTri
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+        volver = findViewById(R.id.volver);
+        volver.setOnClickListener(v -> finish());
 
         container = findViewById(R.id.container_rl);
         tipoDeJuego = findViewById(R.id.tipo_de_juego);

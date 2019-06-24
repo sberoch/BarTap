@@ -121,6 +121,8 @@
     <string name="nombre_del_bar">Nombre del bar:</string>
     <string name="ingresar_con_google">Ingresar con google</string>
     <string name="ingresar_con_email">ingresar con email</string>
+    <string name="correcto">¡Correcto!</string>
+    <string name="aun_sin_descripcion">Aun sin descripcion</string>
 
 
 </resources>

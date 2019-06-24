@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class PaginaJuegoParticipableActivity extends AppCompatActivity implement
     private PaginaJuegoParticipablePresenter presenter;
 
     private ProgressBar progressBar;
+    private ImageButton volver;
 
     private TextView tipoDeJuego;
     private TextView resumenDelJuego;
@@ -42,6 +44,8 @@ public class PaginaJuegoParticipableActivity extends AppCompatActivity implement
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+        volver = findViewById(R.id.volver);
+        volver.setOnClickListener(v -> finish());
 
         tipoDeJuego = findViewById(R.id.tipo_de_juego);
         resumenDelJuego = findViewById(R.id.resumen_juego);

@@ -1,5 +1,6 @@
 package com.eriochrome.bartime.modelos.entidades;
 
+import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.utils.Utils;
 //import com.google.android.gms.maps.model.LatLng;
 
@@ -33,6 +34,7 @@ public class Bar implements Serializable {
 
     public Bar(String nombre) {
         this.nombre = nombre;
+        descripcion = "";
         estrellas = 0;
         calificacionesAcumuladas = 0;
         numeroDeCalificaciones = 0;

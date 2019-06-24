@@ -143,4 +143,8 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
     public void cargarImagenes() {
         interaccion.cargarImagenes();
     }
+
+    public String getDescripcion() {
+        return interaccion.getDescripcion();
+    }
 }

@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -44,6 +45,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     private RelativeLayout barControlRl;
     private SliderLayout sliderShow;
     private TextView nombreBar;
+    private TextView descripcion;
     private Button editarBar;
     private Button juegos;
     private Button miTienda;
@@ -72,6 +74,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         barControlRl = findViewById(R.id.bar_control_rl);
         sliderShow = findViewById(R.id.slider);
         nombreBar = findViewById(R.id.nombre_bar);
+        descripcion = findViewById(R.id.descripcion);
         editarBar = findViewById(R.id.editar_bar);
         juegos = findViewById(R.id.juegos);
         miTienda = findViewById(R.id.mi_tienda);
@@ -93,13 +96,25 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             sinBarRl.setVisibility(View.GONE);
             barControlRl.setVisibility(View.VISIBLE);
             nombreBar.setText(presenter.getNombreBar());
+            setupDescripcion();
             setupDrawer();
+            sliderShow.removeAllSliders();
             presenter.cargarImagenes();
         } else {
             sinBarRl.setVisibility(View.VISIBLE);
             barControlRl.setVisibility(View.GONE);
             navigationView.getHeaderView(0).setVisibility(View.GONE);
         }
+    }
+
+    private void setupDescripcion() {
+        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Lato-Light.ttf");
+        descripcion.setTypeface(tf);
+        String desc = presenter.getDescripcion();
+        if (!desc.equals(""))
+            descripcion.setText(desc);
+        else
+            descripcion.setText(getString(R.string.aun_sin_descripcion));
     }
 
 
@@ -124,6 +139,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             startActivity(i);
         });
         agregarFotos.setOnClickListener(v -> {
+            sliderShow.stopAutoCycle();
             seleccionarImagenDeGaleria();
         });
         avisos.setOnClickListener(v -> {
@@ -221,6 +237,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
                 toastShort(BarControlActivity.this, "No elegiste ninguna imagen.");
             }
         }
+        sliderShow.startAutoCycle();
     }
 
     @Override

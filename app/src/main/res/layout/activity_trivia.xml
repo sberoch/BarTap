@@ -43,9 +43,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button_violeta"
+        android:background="@drawable/edittext_violet"
         android:text="Opcion A"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:id="@+id/op_b"
@@ -57,9 +57,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button_violeta"
+        android:background="@drawable/edittext_violet"
         android:text="Opcion B"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:id="@+id/op_c"
@@ -71,9 +71,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/button_violeta"
+        android:background="@drawable/edittext_violet"
         android:text="Opcion C"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@color/colorAccent" />
 
 
 

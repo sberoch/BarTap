@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import com.eriochrome.bartime.R;
@@ -34,7 +35,9 @@ public class JuegosGeneralActivity extends AppCompatActivity implements
     private ListaJuegosAdapter juegosAdapter;
 
     private Button crearJuego;
+
     private ProgressBar progressBar;
+    private ImageButton volver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,8 @@ public class JuegosGeneralActivity extends AppCompatActivity implements
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+        volver = findViewById(R.id.volver);
+        volver.setOnClickListener(v -> finish());
 
         crearJuego = findViewById(R.id.crear_juego);
         crearJuego.setOnClickListener(v -> {

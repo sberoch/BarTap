@@ -180,4 +180,9 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
             });
         }
     }
+
+    @Override
+    public String getDescripcion() {
+        return bar.getDescripcion();
+    }
 }

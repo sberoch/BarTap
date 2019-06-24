@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -58,9 +59,9 @@ public class DatosBarOwnerActivity extends AppCompatActivity implements
     private TextView hSabado, hhSabado;
     private TextView hDomingo, hhDomingo;
 
-    private RadioButton efectivo;
-    private RadioButton tCredito;
-    private RadioButton tDebito;
+    private CheckBox efectivo;
+    private CheckBox tCredito;
+    private CheckBox tDebito;
     private Button listo;
 
     private boolean tieneHappyHour;

@@ -93,4 +93,8 @@ public class BarControlPresenter implements BarControlContract.CompleteListener 
     public void cargarImagenes() {
         interaccion.cargarImagenes();
     }
+
+    public String getDescripcion() {
+        return interaccion.getDescripcion();
+    }
 }

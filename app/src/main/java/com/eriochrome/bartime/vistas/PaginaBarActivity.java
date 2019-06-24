@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -37,11 +39,11 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private static final int RC_SIGN_IN = 1;
     private RelativeLayout paginaBarRl;
     private TextView nombreBar;
+    private TextView descripcion;
     private Button calificarBar;
-    private Button favorito;
+    private ImageButton favorito;
     private ListView listView;
     private Button verMas;
-    private Button verMapa;
     private TextView puntosText;
     private Button tienda;
 
@@ -50,6 +52,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private ListaComentariosAdapter listaComentariosAdapter;
 
     private ProgressBar progressBar;
+    private ImageButton volver;
 
     private PaginaBarPresenter presenter;
 
@@ -64,13 +67,15 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+        volver = findViewById(R.id.volver);
+        volver.setOnClickListener(v -> finish());
 
         paginaBarRl = findViewById(R.id.pagina_bar_rl);
         nombreBar = findViewById(R.id.nombre_bar);
+        descripcion = findViewById(R.id.descripcion);
         calificarBar = findViewById(R.id.calificarBar);
-        favorito = findViewById(R.id.agregar_favorito);
+        favorito = findViewById(R.id.favorito);
         verMas = findViewById(R.id.ver_mas);
-        verMapa = findViewById(R.id.ver_mapa);
         puntosText = findViewById(R.id.puntos_text);
         tienda = findViewById(R.id.tienda);
         sliderShow = findViewById(R.id.slider);
@@ -81,11 +86,22 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         listaComentariosAdapter.notifyDataSetChanged();
 
         nombreBar.setText(presenter.getNombreDeBar());
-        puntosText.setVisibility(View.GONE);
+        setupDescripcion();
+        puntosText.setVisibility(View.INVISIBLE);
         setupListeners();
 
         presenter.cargarComentarios();
         presenter.cargarImagenes();
+    }
+
+    private void setupDescripcion() {
+        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Lato-Light.ttf");
+        descripcion.setTypeface(tf);
+        String desc = presenter.getDescripcion();
+        if (!desc.equals(""))
+            descripcion.setText(desc);
+        else
+            descripcion.setText(getString(R.string.aun_sin_descripcion));
     }
 
     @Override
@@ -101,12 +117,12 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
     @Override
     public void agregadoAFavoritos() {
-        favorito.setText(getString(R.string.quitar_de_favoritos));
+        favorito.setImageResource(R.drawable.ic_favorite_24dp);
     }
 
     @Override
     public void quitadoDeFavoritos() {
-        favorito.setText(getString(R.string.agregar_a_favoritos));
+        favorito.setImageResource(R.drawable.ic_favorite_border_violet_24dp);
     }
 
     @Override
@@ -155,11 +171,11 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             startActivity(i);
         });
 
-        verMapa.setOnClickListener(v -> {
+        /*verMapa.setOnClickListener(v -> {
             Intent i = new Intent(PaginaBarActivity.this, VerMapaActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
-        });
+        });*/
 
         tienda.setOnClickListener(v -> {
             if (presenter.hayUsuarioConectado()) {
@@ -239,7 +255,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
     @Override
     public void setPuntos(Integer puntos) {
-        String texto = "Tienes " + Integer.toString(puntos) + " puntos en el bar";
+        String texto = "(" + Integer.toString(puntos) + " puntos)";
         puntosText.setText(texto);
         puntosText.setVisibility(View.VISIBLE);
     }
