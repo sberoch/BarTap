@@ -33,7 +33,6 @@ public class DatosBarOpcionalesActivity extends AppCompatActivity implements Dat
 
         presenter = new DatosBarOpcionalesPresenter();
         presenter.bind(this);
-        presenter.obtenerBar(getIntent());
 
         efectivo = findViewById(R.id.efectivo);
         tCredito = findViewById(R.id.tarjeta_credito);
@@ -44,6 +43,8 @@ public class DatosBarOpcionalesActivity extends AppCompatActivity implements Dat
             presenter.setMetodosDePago(getMetodosDePago());
             presenter.subirBar();
         });
+
+        presenter.obtenerBar(getIntent());
     }
 
     private ArrayList<String> getMetodosDePago() {
@@ -70,5 +71,18 @@ public class DatosBarOpcionalesActivity extends AppCompatActivity implements Dat
     public void terminar() {
         toastShort(DatosBarOpcionalesActivity.this, getResources().getString(R.string.exito));
         startActivity(new Intent(this, BarControlActivity.class));
+    }
+
+    @Override
+    public void setMetodosDePago(ArrayList<String> metodosDePago) {
+        if (metodosDePago.contains("efectivo")) {
+            efectivo.setChecked(true);
+        }
+        if (metodosDePago.contains("tarjeta de credito")) {
+            tCredito.setChecked(true);
+        }
+        if (metodosDePago.contains("tarjeta de debito")) {
+            tDebito.setChecked(true);
+        }
     }
 }

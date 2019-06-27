@@ -31,7 +31,7 @@ public class TiendaInteraccion implements TiendaContract.Interaccion {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             itemsTienda.clear();
 
-            DataSnapshot snapItems = dataSnapshot.child("bares").child(bar.getNombre()).child("tienda");
+            DataSnapshot snapItems = dataSnapshot.child("tiendas").child(bar.getNombre());
             for (DataSnapshot ds : snapItems.getChildren()) {
                 ItemTienda itemTienda = ds.getValue(ItemTienda.class);
                 itemsTienda.add(itemTienda);

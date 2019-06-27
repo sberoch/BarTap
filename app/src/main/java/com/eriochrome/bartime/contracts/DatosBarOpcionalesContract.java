@@ -10,11 +10,11 @@ public interface DatosBarOpcionalesContract {
         void setBar(Bar bar);
         void setMetodosDePago(ArrayList<String> metodosDePago);
         void subirDatos();
-        void subirImagenPrincipal();
     }
 
     interface View {
         void terminar();
+        void setMetodosDePago(ArrayList<String> metodosDePago);
     }
 
     interface Listener {

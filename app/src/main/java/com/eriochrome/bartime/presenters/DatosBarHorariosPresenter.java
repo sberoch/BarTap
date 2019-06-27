@@ -27,8 +27,8 @@ public class DatosBarHorariosPresenter {
 
     public void obtenerBar(Intent intent) {
         Bar bar = (Bar) intent.getSerializableExtra("bar");
+        interaccion.setBar(bar);
         if (estaAbierto(bar)) {
-            interaccion.setBar(bar);
             setInputs(bar);
         }
     }

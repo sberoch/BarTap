@@ -8,11 +8,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/lato_bold"
         android:text="Tomar 4 birras"
         android:textColor="@color/colorAccent"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/puntos_text"
@@ -26,5 +28,5 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/lato_bold"
         android:text="Ganaras 300 puntos"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorPrimaryDark" />
 </RelativeLayout>

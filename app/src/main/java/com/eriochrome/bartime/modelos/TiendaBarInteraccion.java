@@ -42,7 +42,7 @@ public class TiendaBarInteraccion implements TiendaBarContract.Interaccion {
 
     @Override
     public void mostrarItemsTienda() {
-        ref.child("bares").child(bar.getNombre()).child("tienda").addValueEventListener(valueEventListener);
+        ref.child("tiendas").child(bar.getNombre()).addValueEventListener(valueEventListener);
     }
 
     @Override
@@ -52,21 +52,21 @@ public class TiendaBarInteraccion implements TiendaBarContract.Interaccion {
 
     @Override
     public void crearItem(ItemTienda itemTienda) {
-        String key = ref.child("bares").child(bar.getNombre()).child("tienda").push().getKey();
+        String key = ref.child("tiendas").child(bar.getNombre()).push().getKey();
         if (key != null) {
             itemTienda.setID(key);
-            ref.child("bares").child(bar.getNombre()).child("tienda").child(key).setValue(itemTienda);
+            ref.child("tiendas").child(bar.getNombre()).child(key).setValue(itemTienda);
         }
     }
 
     @Override
     public void eliminarItem(ItemTienda itemTienda) {
-        ref.child("bares").child(bar.getNombre()).child("tienda").child(itemTienda.getID()).removeValue();
+        ref.child("tiendas").child(bar.getNombre()).child(itemTienda.getID()).removeValue();
     }
 
     @Override
     public void dejarDeMostrarItems() {
-        ref.child("bares").child(bar.getNombre()).child("tienda").removeEventListener(valueEventListener);
+        ref.child("tiendas").child(bar.getNombre()).removeEventListener(valueEventListener);
     }
 
     @Override

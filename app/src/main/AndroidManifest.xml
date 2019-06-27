@@ -113,6 +113,7 @@
         <activity android:name=".vistas.DatosBarPrincipalActivity" />
         <activity android:name=".vistas.DatosBarHorariosActivity" />
         <activity android:name=".vistas.DatosBarOpcionalesActivity" />
+        <activity android:name=".vistas.JuegosDelBarActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -26,7 +26,10 @@ public class DatosBarOpcionalesPresenter implements DatosBarOpcionalesContract.L
     }
 
     public void obtenerBar(Intent intent) {
-        interaccion.setBar((Bar)intent.getSerializableExtra("bar"));
+        Bar bar = (Bar)intent.getSerializableExtra("bar");
+        interaccion.setBar(bar);
+        view.setMetodosDePago(bar.getMetodosDePago());
+
     }
 
     public void setMetodosDePago(ArrayList<String> metodosDePago) {
@@ -35,7 +38,6 @@ public class DatosBarOpcionalesPresenter implements DatosBarOpcionalesContract.L
 
     public void subirBar() {
         interaccion.subirDatos();
-        interaccion.subirImagenPrincipal();
     }
 
     @Override

@@ -84,6 +84,7 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
     @Override
     public void enviado() {
         toastShort(this, "Se ha enviado el desafio con exito!");
+        finish();
     }
 
     @Override

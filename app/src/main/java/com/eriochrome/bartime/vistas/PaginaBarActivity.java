@@ -46,6 +46,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private Button verMas;
     private TextView puntosText;
     private Button tienda;
+    private Button juegos;
 
     private SliderLayout sliderShow;
 
@@ -78,6 +79,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         verMas = findViewById(R.id.ver_mas);
         puntosText = findViewById(R.id.puntos_text);
         tienda = findViewById(R.id.tienda);
+        juegos = findViewById(R.id.juegos);
         sliderShow = findViewById(R.id.slider);
 
         listView = findViewById(R.id.listview);
@@ -187,6 +189,12 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
                 dialogCrearCuenta.setTexto(getString(R.string.necesitas_cuenta_tienda));
                 dialogCrearCuenta.show(getFragmentManager(), "crearCuentaDialog");
             }
+        });
+
+        juegos.setOnClickListener(v -> {
+            Intent i = new Intent(PaginaBarActivity.this, JuegosDelBarActivity.class);
+            i = presenter.enviarBar(i);
+            startActivity(i);
         });
     }
 

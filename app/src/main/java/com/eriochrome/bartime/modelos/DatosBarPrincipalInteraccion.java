@@ -58,7 +58,8 @@ public class DatosBarPrincipalInteraccion implements DatosBarPrincipalContract.I
 
     @Override
     public void subirFoto(Uri path) throws RuntimeException {
-        String caminoEnStorage = bar.getNombre() + ".jpg";
+        String nombreBar = bar.getNombre().replaceAll(" ", "_");
+        String caminoEnStorage = nombreBar + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(caminoEnStorage);
         UploadTask uploadTask = imagenRef.putFile(path);
         uploadTask.addOnFailureListener(e -> {
