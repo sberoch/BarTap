@@ -125,6 +125,11 @@
     <string name="ingresar_con_email">ingresar con email</string>
     <string name="correcto">¡Correcto!</string>
     <string name="aun_sin_descripcion">Aun sin descripcion</string>
+    <string name="ocurrio_error_inesperado">Ocurrio un error inesperado</string>
+    <string name="no_elegiste_imagen">No elegiste ninguna imagen.</string>
+    <string name="se_debe_asignar_imagen_principal">Se debe asignar una imagen principal para el bar!</string>
+    <string name="falta_descripcion_para_bar">Falta una descripcion para el bar!</string>
+    <string name="falta_nombre_bar">Falta el nombre del bar!</string>
 
 
 </resources>

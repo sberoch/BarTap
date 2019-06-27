@@ -1,5 +1,6 @@
 package com.eriochrome.bartime.vistas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.widget.TextView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.DatosBarHorariosContract;
 import com.eriochrome.bartime.presenters.DatosBarHorariosPresenter;
-import com.eriochrome.bartime.utils.FragmentChangeListener;
 import com.eriochrome.bartime.vistas.dialogs.DialogHappyHourPicker;
 import com.eriochrome.bartime.vistas.dialogs.DialogHourPicker;
 
@@ -46,10 +46,12 @@ public class DatosBarHorariosActivity extends AppCompatActivity implements Datos
 
         presenter = new DatosBarHorariosPresenter();
         presenter.bind(this);
-        presenter.obtenerBar(getIntent());
 
         setupHorarios();
         continuar = findViewById(R.id.continuar);
+
+        presenter.obtenerBar(getIntent());
+
         continuar.setOnClickListener(v -> {
             if (completoHorarios()) {
                 Intent i = new Intent(DatosBarHorariosActivity.this, DatosBarOpcionalesActivity.class);
@@ -202,4 +204,34 @@ public class DatosBarHorariosActivity extends AppCompatActivity implements Datos
         presenter.unbind();
         super.onDestroy();
     }
+
+    @Override
+    public void setHorarios(HashMap<String, Integer> horariosInicial, HashMap<String, Integer> horariosFinal) {
+        hLunes.setText(formatHorario(horariosInicial.get("Lunes"), horariosFinal.get("Lunes")));
+        hMartes.setText(formatHorario(horariosInicial.get("Martes"), horariosFinal.get("Martes")));
+        hMiercoles.setText(formatHorario(horariosInicial.get("Miercoles"), horariosFinal.get("Miercoles")));
+        hJueves.setText(formatHorario(horariosInicial.get("Jueves"), horariosFinal.get("Jueves")));
+        hViernes.setText(formatHorario(horariosInicial.get("Viernes"), horariosFinal.get("Viernes")));
+        hSabado.setText(formatHorario(horariosInicial.get("Sabado"), horariosFinal.get("Sabado")));
+        hDomingo.setText(formatHorario(horariosInicial.get("Domingo"), horariosFinal.get("Domingo")));
+    }
+
+    @Override
+    public void setHappyHour(HashMap<String, Integer> happyhourInicial, HashMap<String, Integer> happyhourFinal) {
+        hhLunes.setText(formatHorario(happyhourInicial.get("Lunes"), happyhourFinal.get("Lunes")));
+        hhMartes.setText(formatHorario(happyhourInicial.get("Martes"), happyhourFinal.get("Martes")));
+        hhMiercoles.setText(formatHorario(happyhourInicial.get("Miercoles"), happyhourFinal.get("Miercoles")));
+        hhJueves.setText(formatHorario(happyhourInicial.get("Jueves"), happyhourFinal.get("Jueves")));
+        hhViernes.setText(formatHorario(happyhourInicial.get("Viernes"), happyhourFinal.get("Viernes")));
+        hhSabado.setText(formatHorario(happyhourInicial.get("Sabado"), happyhourFinal.get("Sabado")));
+        hhDomingo.setText(formatHorario(happyhourInicial.get("Domingo"), happyhourFinal.get("Domingo")));
+        tieneHappyHour = true;
+    }
+
+    @SuppressLint("DefaultLocale")
+    private String formatHorario(Integer ini, Integer fin) {
+        if (ini == 0 && fin == 0) return getString(R.string.cerrado);
+        return String.format("%d - %d", ini, fin);
+    }
+
 }

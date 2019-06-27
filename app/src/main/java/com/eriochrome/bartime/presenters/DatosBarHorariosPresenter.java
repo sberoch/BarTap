@@ -26,7 +26,18 @@ public class DatosBarHorariosPresenter {
     }
 
     public void obtenerBar(Intent intent) {
-        interaccion.setBar((Bar) intent.getSerializableExtra("bar"));
+        Bar bar = (Bar) intent.getSerializableExtra("bar");
+        if (estaAbierto(bar)) {
+            interaccion.setBar(bar);
+            setInputs(bar);
+        }
+    }
+
+    private void setInputs(Bar bar) {
+        view.setHorarios(bar.getHorariosInicial(), bar.getHorariosFinal());
+        if (tieneHappyHour(bar)) {
+            view.setHappyHour(bar.getHappyhourInicial(), bar.getHappyhourFinal());
+        }
     }
 
     public Intent enviarBar(Intent i) {
@@ -39,5 +50,29 @@ public class DatosBarHorariosPresenter {
 
     public void setHappyHour(HashMap<String, Integer> happyhourInicial, HashMap<String, Integer> happyhourFinal) {
         interaccion.setHappyHour(happyhourInicial, happyhourFinal);
+    }
+
+    private boolean estaAbierto(Bar bar) {
+        boolean hayDiaConHorarioInicial = false;
+        boolean hayDiaConHorarioFinal = false;
+        for (Integer horarioInicial : bar.getHorariosInicial().values()) {
+            if (horarioInicial != 0) hayDiaConHorarioInicial = true;
+        }
+        for (Integer horarioFinal : bar.getHorariosFinal().values()) {
+            if (horarioFinal != 0) hayDiaConHorarioFinal = true;
+        }
+        return hayDiaConHorarioInicial && hayDiaConHorarioFinal;
+    }
+
+    private boolean tieneHappyHour(Bar bar) {
+        boolean hayDiaConHHInicial = false;
+        boolean hayDiaConHHFinal = false;
+        for (Integer hhInicial : bar.getHappyhourInicial().values()) {
+            if (hhInicial != 0) hayDiaConHHInicial = true;
+        }
+        for (Integer hhFinal : bar.getHappyhourFinal().values()) {
+            if (hhFinal != 0) hayDiaConHHFinal = true;
+        }
+        return hayDiaConHHInicial && hayDiaConHHFinal;
     }
 }

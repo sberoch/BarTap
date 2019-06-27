@@ -5,14 +5,15 @@ import android.net.Uri;
 
 import com.eriochrome.bartime.contracts.DatosBarPrincipalContract;
 import com.eriochrome.bartime.modelos.DatosBarPrincipalInteraccion;
+import com.eriochrome.bartime.modelos.entidades.Bar;
 
-public class DatosBarPrincipalPresenter {
+public class DatosBarPrincipalPresenter implements DatosBarPrincipalContract.Listener {
 
     private DatosBarPrincipalContract.Interaccion interaccion;
     private DatosBarPrincipalContract.View view;
 
     public DatosBarPrincipalPresenter() {
-        interaccion = new DatosBarPrincipalInteraccion();
+        interaccion = new DatosBarPrincipalInteraccion(this);
     }
 
     public void bind(DatosBarPrincipalContract.View view) {
@@ -35,7 +36,33 @@ public class DatosBarPrincipalPresenter {
         return i.putExtra("bar", interaccion.getBar());
     }
 
-    public void setUbicacion(String mock_text) {
-        interaccion.setUbicacion(mock_text);
+    public void setUbicacion(String ubicacion) {
+        interaccion.setUbicacion(ubicacion);
+    }
+
+    public void obtenerBar(Intent intent) {
+        Bar bar = (Bar) intent.getSerializableExtra("bar");
+        if (bar != null) {
+            interaccion.setBar(bar);
+            setInputs(bar);
+            view.setTitleEditar();
+            view.tieneFoto();
+        }
+    }
+
+    private void setInputs(Bar bar) {
+        view.setNombreBar(bar.getNombre());
+        view.setDescripcion(bar.getDescripcion());
+        view.setUbicacion(bar.getUbicacion());
+        interaccion.cargarImagen(bar);
+    }
+
+    public void subirFoto(Uri path) throws RuntimeException {
+        interaccion.subirFoto(path);
+    }
+
+    @Override
+    public void onImageLoaded(String downloadUrl) {
+        view.onImageLoaded(downloadUrl);
     }
 }

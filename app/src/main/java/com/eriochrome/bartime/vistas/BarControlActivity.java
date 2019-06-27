@@ -30,7 +30,6 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 public class BarControlActivity extends AppCompatActivity implements BarControlContract.View {
 
     private static final int NUMERO_SOLICITUD_GALERIA = 1;
-    private Uri path;
 
     private BarControlPresenter presenter;
 
@@ -230,11 +229,16 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NUMERO_SOLICITUD_GALERIA) {
             if (resultCode == RESULT_OK) {
-                path = data.getData();
-                presenter.subirFoto(path);
+                Uri path = null;
+                if (data != null) {
+                    path = data.getData();
+                    presenter.subirFoto(path);
+                } else {
+                    toastShort(BarControlActivity.this, getString(R.string.ocurrio_error_inesperado));
+                }
             }
             else {
-                toastShort(BarControlActivity.this, "No elegiste ninguna imagen.");
+                toastShort(BarControlActivity.this, getString(R.string.no_elegiste_imagen));
             }
         }
         sliderShow.startAutoCycle();

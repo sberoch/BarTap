@@ -13,10 +13,12 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.DatosBarPrincipalContract;
 import com.eriochrome.bartime.presenters.DatosBarPrincipalPresenter;
+import com.eriochrome.bartime.utils.GlideApp;
 
 import java.io.IOException;
 
@@ -25,7 +27,6 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 public class DatosBarPrincipalActivity extends AppCompatActivity implements DatosBarPrincipalContract.View {
 
     //TODO: falta ubicacion (acordarse de ponerlo en las verificaciones)
-    //TODO: falta enviar la foto/uri/loquesea
 
     private DatosBarPrincipalPresenter presenter;
 
@@ -33,13 +34,16 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
     private static final int CODIGO_REQUEST_EXTERNAL_STORAGE = 100;
 
     private Button continuar;
+    private Button seleccionarUbicacion;
     private Button seleccionarImagen;
 
+    private TextView tituloActivity;
     private EditText nombreBar;
     private EditText descripcion;
     private ImageView imagenBar;
 
     Uri returnUri;
+    private boolean tieneFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +53,16 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
         presenter = new DatosBarPrincipalPresenter();
         presenter.bind(this);
 
+        tituloActivity = findViewById(R.id.titulo);
         nombreBar = findViewById(R.id.nombre_bar);
         descripcion = findViewById(R.id.desc);
+        seleccionarUbicacion = findViewById(R.id.seleccionar_ubicacion);
         seleccionarImagen = findViewById(R.id.seleccionar_imagen_principal);
         imagenBar = findViewById(R.id.imagen_bar);
         continuar = findViewById(R.id.continuar);
+        tieneFoto = false;
+
+        presenter.obtenerBar(getIntent());
 
         nombreBar.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) nombreBar.setHint("");
@@ -77,7 +86,16 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
                 Intent i = new Intent(DatosBarPrincipalActivity.this, DatosBarHorariosActivity.class);
                 presenter.setNombre(nombreBar.getText().toString());
                 presenter.setDescripcion(descripcion.getText().toString());
-                presenter.setUbicacion("Mock text");
+                presenter.setUbicacion("Mock text"); //TODO: ubicacion
+
+                //Ya subo la foto al storage porque total si no se crea el bar despues se puede sobreescribir
+                try {
+                    if (returnUri != null) {
+                        presenter.subirFoto(returnUri);
+                    }
+                }  catch (RuntimeException e) {
+                    toastShort(this, getString(R.string.ocurrio_error_inesperado));
+                }
                 i = presenter.enviarBar(i);
                 startActivity(i);
             }
@@ -105,7 +123,7 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
                 }
                 imagenBar.setImageBitmap(bitmapImage);
             } else {
-                toastShort(this, "No elegiste ninguna imagen.");
+                toastShort(this, getString(R.string.no_elegiste_imagen));
             }
         }
     }
@@ -114,7 +132,6 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
         return (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) ==
                 PackageManager.PERMISSION_GRANTED);
     }
-
 
     private void pedirPermisosUbicacion() {
         ActivityCompat.requestPermissions(this, new String[]{
@@ -125,14 +142,14 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
     private boolean datosListos() {
         boolean listo = true;
         if (nombreBar.getText().toString().equals("") || nombreBar.getText().toString().equals("Nombre")) {
-            listo = false; toastShort(this, "Falta el nombre del bar!");
+            listo = false; toastShort(this, getString(R.string.falta_nombre_bar));
         }
         else if (descripcion.getText().toString().equals("") || descripcion.getText().toString().equals("Descripcion")) {
-            listo = false; toastShort(this, "Falta una descripcion para el bar!");
+            listo = false; toastShort(this, getString(R.string.falta_descripcion_para_bar));
         }
-        //Ubicacion
-        else if (returnUri == null) {
-            listo = false; toastShort(this, "Se debe asignar una imagen principal para el bar!");
+        //TODO: Ubicacion
+        else if (returnUri == null && !tieneFoto) {
+            listo = false; toastShort(this, getString(R.string.se_debe_asignar_imagen_principal));
         }
         return listo;
     }
@@ -141,5 +158,38 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
     protected void onDestroy() {
         presenter.unbind();
         super.onDestroy();
+    }
+
+    @Override
+    public void setTitleEditar() {
+        tituloActivity.setText(getString(R.string.editar_bar));
+    }
+
+    @Override
+    public void setNombreBar(String nombre) {
+        nombreBar.setText(nombre);
+    }
+
+    @Override
+    public void setDescripcion(String descripcion) {
+        this.descripcion.setText(descripcion);
+    }
+
+    @Override
+    public void setUbicacion(String ubicacion) {
+        this.seleccionarUbicacion.setText(ubicacion);
+    }
+
+    @Override
+    public void onImageLoaded(String downloadUrl) {
+        GlideApp.with(this)
+                .load(downloadUrl)
+                .placeholder(R.drawable.barra_progreso_circular)
+                .into(imagenBar);
+    }
+
+    @Override
+    public void tieneFoto() {
+        tieneFoto = true;
     }
 }
