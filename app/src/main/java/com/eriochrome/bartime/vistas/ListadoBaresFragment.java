@@ -1,13 +1,13 @@
 package com.eriochrome.bartime.vistas;
 
-import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.app.DialogFragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +17,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.ListaBaresAdapter;
-import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.presenters.BaresFragmentPresenter;
@@ -157,7 +155,7 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
 
     private void mostrarFiltros() {
         DialogFragment filtros = new DialogSeleccionFiltros();
-        filtros.show(getFragmentManager(), "filtros");
+        filtros.show(getActivity().getFragmentManager(), "filtros");
     }
 
 

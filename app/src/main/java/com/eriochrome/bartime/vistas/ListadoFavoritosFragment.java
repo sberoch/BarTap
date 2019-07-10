@@ -3,9 +3,9 @@ package com.eriochrome.bartime.vistas;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +16,11 @@ import android.widget.ProgressBar;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
-import com.eriochrome.bartime.adapters.ListaBaresAdapter;
 import com.eriochrome.bartime.adapters.ListaBaresFavoritosAdapter;
-import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.FavoritosFragmentContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
-
 import com.eriochrome.bartime.presenters.FavoritosFragmentPresenter;
+
 import java.util.ArrayList;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;

@@ -21,7 +21,6 @@
             app:srcCompat="@drawable/ic_circulo_24dp" />
 
         <TextView
-            android:id="@+id/hint1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -50,7 +49,6 @@
             app:srcCompat="@drawable/ic_circulo_24dp" />
 
         <TextView
-            android:id="@+id/hint2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -62,7 +60,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rl3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl2">
@@ -79,7 +76,6 @@
             app:srcCompat="@drawable/ic_circulo_24dp" />
 
         <TextView
-            android:id="@+id/hint3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

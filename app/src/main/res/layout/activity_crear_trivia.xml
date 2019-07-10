@@ -9,7 +9,6 @@
     android:focusable="true">
 
     <TextView
-        android:id="@+id/titulo_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/titulo"

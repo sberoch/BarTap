@@ -1,7 +1,7 @@
 package com.eriochrome.bartime.contracts;
 
-import android.app.AlertDialog;
 import android.location.Location;
+import androidx.appcompat.app.AlertDialog;
 
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Filtro;

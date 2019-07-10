@@ -1,7 +1,6 @@
 package com.eriochrome.bartime.modelos;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.JuegosFragmentContract;
 import com.eriochrome.bartime.modelos.entidades.Desafio;
@@ -14,8 +13,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;

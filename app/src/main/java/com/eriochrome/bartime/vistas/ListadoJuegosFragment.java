@@ -4,9 +4,9 @@ package com.eriochrome.bartime.vistas;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +19,6 @@ import android.widget.ProgressBar;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.ListaJuegosAdapter;
-import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.JuegosFragmentContract;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
@@ -85,7 +84,7 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
     public void onClickJuego(Juego juego) {
         DialogResumenJuego dialog = new DialogResumenJuego();
         dialog.setJuego(juego);
-        dialog.show(getFragmentManager(), "juego");
+        dialog.show(getActivity().getFragmentManager(), "juego");
     }
 
 
@@ -95,7 +94,7 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
         } else {
             DialogCrearCuenta crearCuentaDialog = new DialogCrearCuenta();
             crearCuentaDialog.setTexto(getString(R.string.necesitas_cuenta_participar));
-            crearCuentaDialog.show(getFragmentManager(), "crearCuentaDialog");
+            crearCuentaDialog.show(getActivity().getFragmentManager(), "crearCuentaDialog");
         }
     }
 

@@ -2,11 +2,7 @@
     <string name="app_name">BarTime</string>
     <string name="tengo_un_bar">Tengo un bar</string>
     <string name="comenzar">Comenzar</string>
-    <string name="entrar">Entrar</string>
     <string name="crear_cuenta">Crear cuenta</string>
-    <string name="descubrir">Descubrir</string>
-    <string name="eventos">Eventos</string>
-    <string name="promociones">Promociones</string>
     <string name="no_encontras_titulo">¿No encontras el bar que buscas?</string>
     <string name="no_encontras_link">¡Agregalo por tu cuenta!</string>
     <string name="buscar">Buscar</string>
@@ -36,8 +32,6 @@
     <string name="efectivo">Efectivo</string>
     <string name="tarjeta_de_credito">Tarjeta de Credito</string>
     <string name="tarjeta_de_debito">Tarjeta de Debito</string>
-    <string name="agregar_a_favoritos">Agregar a Favoritos</string>
-    <string name="quitar_de_favoritos">Quitar de favoritos</string>
     <string name="contactate">¡Contactate!</string>
     <string name="contacto_text">¿Alguna sugerencia?¿Queres dejar un comentario?</string>
     <string name="esta_abierto">Esta abierto</string>
@@ -54,10 +48,6 @@
     <string name="mis_favoritos">Mis Favoritos</string>
     <string name="editar_bar">Editar Bar</string>
     <string name="se_requiere_cuenta">Se requiere cuenta</string>
-    <string name="no_se_encontro_direccion">No se encontro direccion</string>
-    <string name="no_se_puede_obtener_direccion">No se puede obtener direccion</string>
-    <string name="ubicacion_del_bar">Ubicacion del Bar</string>
-    <string name="ver_en_mapa">Ver en Mapa</string>
     <string name="crear_desafio">Crear Desafio</string>
     <string name="crear_trivia">Crear Trivia</string>
     <string name="dificil">Dificil</string>
@@ -95,7 +85,6 @@
     <string name="texto_ganador_trivia">¡Felicidades! Ganaste la trivia.</string>
     <string name="cantidad_de_ganadores">Cantidad de Ganadores:</string>
     <string name="total_de_participantes">Total de participantes:</string>
-    <string name="compras">Compras</string>
     <string name="dejar_de_participar">Abandonar juego</string>
     <string name="iniciar_sesion">Iniciar Sesion</string>
     <string name="mis_juegos">Mis Juegos</string>
@@ -107,7 +96,6 @@
     <string name="tu_compra_fue_un_exito">¡Tu compra fue un exito!</string>
     <string name="recordatorio_compra">(Recorda que luego podes ver la compra en la seccion Mis Compras)</string>
     <string name="no_tenes_puntos_suficientes_para_comprar_este_item">No tenes puntos suficientes para comprar este item.</string>
-    <string name="volver">Volver</string>
     <string name="ver_mis_items_vendidos">Ver mis items vendidos</string>
     <string name="canjear_compra_desea_continuar">Al clickear \'Validar\' se considera que el usuario ya canjeo su descuento   ¿Desea continuar?</string>
     <string name="validar">Validar</string>
@@ -130,6 +118,9 @@
     <string name="se_debe_asignar_imagen_principal">Se debe asignar una imagen principal para el bar!</string>
     <string name="falta_descripcion_para_bar">Falta una descripcion para el bar!</string>
     <string name="falta_nombre_bar">Falta el nombre del bar!</string>
+    <string name="no_se_encontro_direccion">No se encontro direccion</string>
+    <string name="no_se_puede_obtener_direccion">No se puede obtener direccion</string>
+    <string name="ubicacion_desconocida">Ubicacion Desconocida</string>
 
 
 </resources>

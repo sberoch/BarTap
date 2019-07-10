@@ -1,18 +1,16 @@
 package com.eriochrome.bartime.vistas;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.app.FragmentTransaction;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import androidx.annotation.Nullable;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -233,7 +231,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
 
     private void startFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -279,7 +277,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     @Override
     public void aplicarFiltros(AlertDialog dialog) {
-        Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         //ultimaUbicacion = locationHelper.getLocation();
         if (f instanceof ListadoBaresFragment) {
             ((ListadoBaresFragment) f).aplicarFiltros(dialog, ultimaUbicacion);
@@ -288,7 +286,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     @Override
     public void onClickJuego(Juego juego) {
-        Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (f instanceof ListadoJuegosFragment) {
             ((ListadoJuegosFragment) f).onClickJuego(juego);
         }
@@ -311,7 +309,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     @Override
     public void intentarParticiparDeJuego(Juego juego) {
-        Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (f instanceof ListadoJuegosFragment) {
             ((ListadoJuegosFragment) f).intentarParticiparDeJuego(juego);
         }

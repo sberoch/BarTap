@@ -1,6 +1,6 @@
 package com.eriochrome.bartime.modelos;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.JuegosGeneralContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;

@@ -39,10 +39,4 @@ public class AgregarBarUsuarioPresenter {
         interaccion.subirBar();
         view.startConfirmacion();
     }
-
-    public boolean datosCompletos() {
-        return view.hayImagenSeleccionada() &&
-               view.hayUbicacionSeleccionada() &&
-               view.hayNombreValido();
-    }
 }

@@ -1,10 +1,9 @@
 package com.eriochrome.bartime.modelos;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.MisComprasContract;
 import com.eriochrome.bartime.modelos.entidades.ComprobanteDeCompra;
-import com.eriochrome.bartime.presenters.MisComprasPresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

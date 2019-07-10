@@ -2,11 +2,10 @@ package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -19,7 +18,6 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.ListaComentariosAdapter;
-import com.eriochrome.bartime.adapters.ViewPagerAdapter;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.entidades.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
@@ -40,6 +38,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private RelativeLayout paginaBarRl;
     private TextView nombreBar;
     private TextView descripcion;
+    private TextView ubicacion;
     private Button calificarBar;
     private ImageButton favorito;
     private ListView listView;
@@ -74,6 +73,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         paginaBarRl = findViewById(R.id.pagina_bar_rl);
         nombreBar = findViewById(R.id.nombre_bar);
         descripcion = findViewById(R.id.descripcion);
+        ubicacion = findViewById(R.id.ubicacion);
         calificarBar = findViewById(R.id.calificarBar);
         favorito = findViewById(R.id.favorito);
         verMas = findViewById(R.id.ver_mas);
@@ -173,11 +173,11 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             startActivity(i);
         });
 
-        /*verMapa.setOnClickListener(v -> {
+        ubicacion.setOnClickListener(v -> {
             Intent i = new Intent(PaginaBarActivity.this, VerMapaActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
-        });*/
+        });
 
         tienda.setOnClickListener(v -> {
             if (presenter.hayUsuarioConectado()) {

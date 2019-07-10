@@ -1,10 +1,10 @@
 package com.eriochrome.bartime.vistas.dialogs;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
+import androidx.appcompat.app.AlertDialog;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.entidades.ComprobanteDeCompra;

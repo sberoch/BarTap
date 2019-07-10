@@ -40,5 +40,5 @@
         android:layout_marginBottom="20dp"
         android:text="Muy bueno!"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 </RelativeLayout>

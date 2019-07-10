@@ -1,7 +1,7 @@
 package com.eriochrome.bartime.presenters;
 
-import android.app.AlertDialog;
 import android.location.Location;
+import androidx.appcompat.app.AlertDialog;
 
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
 import com.eriochrome.bartime.modelos.BaresFragmentInteraccion;

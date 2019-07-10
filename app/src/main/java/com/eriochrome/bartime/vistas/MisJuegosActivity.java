@@ -1,9 +1,9 @@
 package com.eriochrome.bartime.vistas;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -17,7 +17,6 @@ import com.eriochrome.bartime.contracts.MisJuegosContract;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.presenters.MisJuegosPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogDejarDeParticipar;
-import com.eriochrome.bartime.vistas.dialogs.DialogResumenJuego;
 
 import java.util.ArrayList;
 
