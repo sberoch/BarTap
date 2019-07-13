@@ -45,8 +45,6 @@ public class DatosBarOpcionalesInteraccion implements DatosBarOpcionalesContract
     @Override
     public void subirDatos() {
         refGlobal.child("usuariosBar").child(authUser.getUid()).child("barAsociado").setValue(bar.getNombre());
-        baresRef.child(bar.getNombre()).setValue(bar).addOnSuccessListener(aVoid -> {
-            listener.listo();
-        });
+        baresRef.child(bar.getNombre()).setValue(bar).addOnSuccessListener(aVoid -> listener.listo());
     }
 }

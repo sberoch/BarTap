@@ -1,17 +1,26 @@
 package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,8 +65,10 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     private ListadosPresenter presenter;
 
-    //private LocationHelper locationHelper;
     private Location ultimaUbicacion;
+    private boolean mLocationPermissionGranted;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+    private static final int CODIGO_REQUEST_LOCATION = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +84,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         presenter = new ListadosPresenter();
         presenter.bind(this);
 
-        /*locationHelper = new LocationHelper(this);
-        locationHelper.checkpermission();
-        if (locationHelper.checkPlayServices()) {
-            locationHelper.buildGoogleApiClient();
-        }*/
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         setupListeners();
     }
 
@@ -88,6 +95,12 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        checkLocation();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         updateUI();
@@ -95,7 +108,47 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             presenter.conectar();
             presenter.checkearAvisos();
         }
-        //locationHelper.checkPlayServices();
+        getLastLocation();
+    }
+
+    private void checkLocation() {
+        if (!mLocationPermissionGranted) {
+            if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+                mLocationPermissionGranted = true;
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        CODIGO_REQUEST_LOCATION);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        mLocationPermissionGranted = false;
+        switch (requestCode) {
+            case CODIGO_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mLocationPermissionGranted = true;
+                }
+            }
+        }
+    }
+
+    private void getLastLocation() {
+        try {
+            if (mLocationPermissionGranted) {
+                Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
+                locationResult.addOnCompleteListener(task -> ultimaUbicacion = task.getResult());
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
     }
 
     private void ejecutarOpcionMenu(int id) {
@@ -161,7 +214,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 presenter.conectar();
@@ -173,14 +225,13 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             } else {
                 toastShort(ListadosActivity.this, "Ocurrio un error. Intente nuevamente");
             }
-        } else {
-            //locationHelper.onActivityResult(requestCode, resultCode, data);
+
         }
     }
 
 
     private void setupListeners() {
-        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
             ejecutarOpcionMenu(menuItem.getItemId());
@@ -278,7 +329,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     public void aplicarFiltros(AlertDialog dialog) {
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-        //ultimaUbicacion = locationHelper.getLocation();
         if (f instanceof ListadoBaresFragment) {
             ((ListadoBaresFragment) f).aplicarFiltros(dialog, ultimaUbicacion);
         }

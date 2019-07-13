@@ -5,6 +5,8 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import androidx.annotation.Nullable;
 import com.google.android.material.navigation.NavigationView;
+
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -148,7 +150,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             ejecutarOpcionMenu(menuItem.getItemId());
             return false; //Devuelve false para que no quede seleccionado
         });
-        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
     }
 

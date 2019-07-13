@@ -18,10 +18,10 @@
 
             <EditText
                 android:id="@+id/buscar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -41,27 +41,6 @@
                 android:textColorHighlight="@color/colorAccent"
                 android:textColorLink="@color/colorAccent"
                 android:textCursorDrawable="@drawable/cursor_violeta"
-                android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/filtrar"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_toEndOf="@+id/buscar"
-                android:background="@drawable/edittext_violet"
-                android:drawableStart="@drawable/ic_filter_list_24dp"
-                android:fontFamily="@font/lato_bold"
-                android:padding="8dp"
-                android:text="@string/filtrar"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
         </RelativeLayout>

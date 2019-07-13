@@ -10,7 +10,7 @@ public interface DatosBarPrincipalContract {
         void setNombre(String nombre);
         void setDescripcion(String descripcion);
         Bar getBar();
-        void setUbicacion(String mock_text);
+        void setUbicacion(String direccion, double lat, double lng);
         void setBar(Bar bar);
         void cargarImagen(Bar bar);
         void subirFoto(Uri path);
@@ -22,7 +22,7 @@ public interface DatosBarPrincipalContract {
         void setDescripcion(String descripcion);
         void setUbicacion(String ubicacion);
         void onImageLoaded(String downloadUrl);
-        void tieneFoto();
+        void esModoEditar();
     }
 
     interface Listener {

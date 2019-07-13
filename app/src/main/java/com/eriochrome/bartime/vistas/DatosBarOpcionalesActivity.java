@@ -16,9 +16,6 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class DatosBarOpcionalesActivity extends AppCompatActivity implements DatosBarOpcionalesContract.View {
 
-    //TODO: subir a database
-    //TODO: callback de cuando se termine de subir volver a barcontrol
-
     private DatosBarOpcionalesPresenter presenter;
 
     private CheckBox efectivo;

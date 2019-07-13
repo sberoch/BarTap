@@ -112,7 +112,7 @@
                 android:drawableEnd="@drawable/ic_edit_24dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="Editar bar"
+                android:text="@string/editar_bar"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="@color/colorAccent" />
@@ -138,7 +138,7 @@
                 android:drawableEnd="@drawable/ic_add_to_photos_24dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="Mas Fotos"
+                android:text="@string/mas_fotos"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="@color/colorAccent" />

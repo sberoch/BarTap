@@ -36,8 +36,8 @@ public class DatosBarPrincipalPresenter implements DatosBarPrincipalContract.Lis
         return i.putExtra("bar", interaccion.getBar());
     }
 
-    public void setUbicacion(String ubicacion) {
-        interaccion.setUbicacion(ubicacion);
+    public void setUbicacion(String ubicacion, double lat, double lng) {
+        interaccion.setUbicacion(ubicacion, lat, lng);
     }
 
     public void obtenerBar(Intent intent) {
@@ -46,7 +46,7 @@ public class DatosBarPrincipalPresenter implements DatosBarPrincipalContract.Lis
             interaccion.setBar(bar);
             setInputs(bar);
             view.setTitleEditar();
-            view.tieneFoto();
+            view.esModoEditar();
         }
     }
 

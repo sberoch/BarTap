@@ -26,9 +26,10 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class DatosBarPrincipalActivity extends AppCompatActivity implements DatosBarPrincipalContract.View {
 
-    //TODO: falta ubicacion (acordarse de ponerlo en las verificaciones)
+    private static final int NUMERO_SOLICITUD_UBICACION = 1;
 
     private DatosBarPrincipalPresenter presenter;
+    private boolean modoEditar;
 
     private static final int NUMERO_SOLICITUD_GALERIA = 2;
     private static final int CODIGO_REQUEST_EXTERNAL_STORAGE = 100;
@@ -44,6 +45,8 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
 
     Uri returnUri;
     private boolean tieneFoto;
+    private double lat;
+    private double lng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
         imagenBar = findViewById(R.id.imagen_bar);
         continuar = findViewById(R.id.continuar);
         tieneFoto = false;
+        modoEditar = false;
 
         presenter.obtenerBar(getIntent());
 
@@ -74,6 +78,11 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
             else descripcion.setHint(getResources().getString(R.string.descripcion));
         });
 
+        seleccionarUbicacion.setOnClickListener(v -> {
+            Intent intentUbicacion = new Intent(DatosBarPrincipalActivity.this, SeleccionarUbicacionActivity.class);
+            startActivityForResult(intentUbicacion, NUMERO_SOLICITUD_UBICACION);
+        });
+
         seleccionarImagen.setOnClickListener(v -> {
             if(tienePermisos())
                 seleccionarImagenDeGaleria();
@@ -82,12 +91,17 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
         });
 
         continuar.setOnClickListener(v -> {
+            Intent i;
+            if (modoEditar) {
+                i = new Intent(DatosBarPrincipalActivity.this, DatosBarHorariosActivity.class);
+            } else {
+                i = new Intent(DatosBarPrincipalActivity.this, DatosBarReclamarActivity.class); //TODO: reclamar
+            }
+
             if (datosListos()) {
-                Intent i = new Intent(DatosBarPrincipalActivity.this, DatosBarHorariosActivity.class);
                 presenter.setNombre(nombreBar.getText().toString());
                 presenter.setDescripcion(descripcion.getText().toString());
-                presenter.setUbicacion("Mock text"); //TODO: ubicacion
-
+                presenter.setUbicacion(seleccionarUbicacion.getText().toString(), lat, lng);
                 //Ya subo la foto al storage porque total si no se crea el bar despues se puede sobreescribir
                 try {
                     if (returnUri != null) {
@@ -126,6 +140,16 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
                 toastShort(this, getString(R.string.no_elegiste_imagen));
             }
         }
+        else if (requestCode == NUMERO_SOLICITUD_UBICACION) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    lat = data.getDoubleExtra("latitud", 0);
+                    lng = data.getDoubleExtra("longitud", 0);
+                    String direccion = data.getStringExtra("direccion");
+                    seleccionarUbicacion.setText(direccion);
+                }
+            }
+        }
     }
 
     private boolean tienePermisos() {
@@ -141,15 +165,24 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
 
     private boolean datosListos() {
         boolean listo = true;
-        if (nombreBar.getText().toString().equals("") || nombreBar.getText().toString().equals("Nombre")) {
-            listo = false; toastShort(this, getString(R.string.falta_nombre_bar));
+        if (nombreBar.getText().toString().equals("") ||
+                nombreBar.getText().toString().equals(getString(R.string.nombre))) {
+            listo = false;
+            toastShort(this, getString(R.string.falta_nombre_bar));
         }
-        else if (descripcion.getText().toString().equals("") || descripcion.getText().toString().equals("Descripcion")) {
-            listo = false; toastShort(this, getString(R.string.falta_descripcion_para_bar));
+        else if (descripcion.getText().toString().equals("") ||
+                descripcion.getText().toString().equals(getString(R.string.descripcion))) {
+            listo = false;
+            toastShort(this, getString(R.string.falta_descripcion_para_bar));
         }
-        //TODO: Ubicacion
+        else if (seleccionarUbicacion.getText().equals("") ||
+                seleccionarUbicacion.getText().equals(getString(R.string.seleccionar_ubicacion))) {
+            listo = false;
+            toastShort(this, getString(R.string.falta_ubicacion_bar));
+        }
         else if (returnUri == null && !tieneFoto) {
-            listo = false; toastShort(this, getString(R.string.se_debe_asignar_imagen_principal));
+            listo = false;
+            toastShort(this, getString(R.string.se_debe_asignar_imagen_principal));
         }
         return listo;
     }
@@ -189,7 +222,8 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
     }
 
     @Override
-    public void tieneFoto() {
+    public void esModoEditar() {
         tieneFoto = true;
+        modoEditar = true;
     }
 }

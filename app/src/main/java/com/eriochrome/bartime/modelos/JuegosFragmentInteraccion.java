@@ -7,6 +7,7 @@ import com.eriochrome.bartime.modelos.entidades.Desafio;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
 import com.eriochrome.bartime.utils.CreadorDeAvisos;
+import com.eriochrome.bartime.utils.StrCompareUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,9 +24,11 @@ public class JuegosFragmentInteraccion implements JuegosFragmentContract.Interac
     private ArrayList<Juego> juegos;
     private DatabaseReference refJuegos;
     private FirebaseUser authUser;
+    private StrCompareUtils strComparer;
 
     public JuegosFragmentInteraccion(JuegosFragmentContract.Listener listener) {
         this.listener = listener;
+        strComparer = new StrCompareUtils();
         juegos = new ArrayList<>();
         refJuegos = FirebaseDatabase.getInstance().getReference().child("juegos");
         authUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -40,13 +43,13 @@ public class JuegosFragmentInteraccion implements JuegosFragmentContract.Interac
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.child("Desafio").getChildren()) {
                     Juego juego = ds.getValue(Desafio.class);
-                    if (juego.getTipoDeJuego().toLowerCase().contains(busqueda)) {
+                    if (strComparer.juegoContiene(juego, busqueda)) {
                         juegos.add(juego);
                     }
                 }
                 for (DataSnapshot ds : dataSnapshot.child("Trivia").getChildren()) {
                     Juego juego = ds.getValue(Trivia.class);
-                    if (juego.getTipoDeJuego().toLowerCase().contains(busqueda)) {
+                    if (strComparer.juegoContiene(juego, busqueda)) {
                         juegos.add(juego);
                     }
                 }

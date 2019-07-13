@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".vistas.MisComprasActivity">
 
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/mis_compras"
+        android:textColor="@color/colorPrimaryDark" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -20,12 +32,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"
-        android:padding="5dp"
+        android:padding="10dp"
         app:srcCompat="@drawable/ic_arrow_back_violet_24dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/volver" />
+        android:layout_below="@+id/volver"
+        android:layout_margin="10dp" />
 </RelativeLayout>

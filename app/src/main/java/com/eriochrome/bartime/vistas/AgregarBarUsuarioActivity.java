@@ -56,6 +56,8 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
 
         presenter = new AgregarBarUsuarioPresenter();
         presenter.bind(this);
+
+        imagenBar.setImageDrawable(getDrawable(R.drawable.placeholder));
     }
 
 
@@ -79,12 +81,19 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
 
     private boolean datosCompletos() {
         boolean listo = true;
-        if (nombre.getText().toString().equals("") || nombre.getText().toString().equals("Nombre")) {
-            listo = false; toastShort(this, getString(R.string.falta_nombre_bar));
+        if (nombre.getText().toString().equals("") ||
+                nombre.getText().toString().equals(getString(R.string.nombre))) {
+            listo = false;
+            toastShort(this, getString(R.string.falta_nombre_bar));
         }
-        //TODO: Ubicacion
+        else if (ubicacion.getText().equals("") ||
+                ubicacion.getText().equals(getString(R.string.seleccionar_ubicacion))) {
+            listo = false;
+            toastShort(this, getString(R.string.falta_ubicacion_bar));
+        }
         else if (path == null) {
-            listo = false; toastShort(this, getString(R.string.se_debe_asignar_imagen_principal));
+            listo = false;
+            toastShort(this, getString(R.string.se_debe_asignar_imagen_principal));
         }
         return listo;
     }

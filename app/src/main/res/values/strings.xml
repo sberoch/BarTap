@@ -121,6 +121,12 @@
     <string name="no_se_encontro_direccion">No se encontro direccion</string>
     <string name="no_se_puede_obtener_direccion">No se puede obtener direccion</string>
     <string name="ubicacion_desconocida">Ubicacion Desconocida</string>
+    <string name="mas_fotos">Mas Fotos</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="mis_ventas">Mis Ventas</string>
+    <string name="juegos_del_bar">Juegos del Bar</string>
+    <string name="juegos_donde_participas">Juegos donde participas</string>
+    <string name="falta_ubicacion_bar">Falta una ubicacion para el bar!</string>
 
 
 </resources>

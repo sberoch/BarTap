@@ -30,7 +30,9 @@ public class BaresFragmentPresenter implements BaresFragmentContract.CompleteLis
 
     public void mostrarPrimerOrdenBares() {
         view.cargando();
-        interaccion.buscarConPalabra("");
+        Filtro filtroInicial = new Filtro();
+        filtroInicial.ordenarSegun("estrellas");
+        interaccion.mostrarConFiltros(filtroInicial);
     }
 
     public void buscarConPalabra(String s) {
