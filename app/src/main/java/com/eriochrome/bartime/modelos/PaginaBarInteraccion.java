@@ -185,4 +185,9 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     public String getDescripcion() {
         return bar.getDescripcion();
     }
+
+    @Override
+    public String getUbicacionDeBar() {
+        return bar.getUbicacion();
+    }
 }

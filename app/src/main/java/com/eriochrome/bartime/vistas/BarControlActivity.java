@@ -30,6 +30,8 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class BarControlActivity extends AppCompatActivity implements BarControlContract.View {
 
+    //TODO: no mostrar drawer si no tiene bar
+
     private static final int NUMERO_SOLICITUD_GALERIA = 1;
 
     private BarControlPresenter presenter;

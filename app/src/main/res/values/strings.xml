@@ -127,6 +127,12 @@
     <string name="juegos_del_bar">Juegos del Bar</string>
     <string name="juegos_donde_participas">Juegos donde participas</string>
     <string name="falta_ubicacion_bar">Falta una ubicacion para el bar!</string>
+    <string name="bares_tienen_nombre_parecido">Los siguientes bares fueron agregados por usuarios y tienen un nombre parecido al que ingresaste.</string>
+    <string name="deseas_reclamar_alguno">¿Deseas reclamar alguno como el tuyo?</string>
+    <string name="no_deseo_reclamar_bar">No deseo reclamar ningun bar</string>
+    <string name="deseas_reclamar_este_bar">¿Deseas reclamar este bar?</string>
+    <string name="reclamar">Reclamar</string>
+    <string name="reclamar_bar">Reclamar Bar</string>
 
 
 </resources>

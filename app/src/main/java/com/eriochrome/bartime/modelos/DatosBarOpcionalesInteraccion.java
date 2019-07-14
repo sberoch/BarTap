@@ -1,17 +1,13 @@
 package com.eriochrome.bartime.modelos;
 
-import android.app.usage.NetworkStats;
-
 import com.eriochrome.bartime.contracts.DatosBarOpcionalesContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
@@ -45,6 +41,7 @@ public class DatosBarOpcionalesInteraccion implements DatosBarOpcionalesContract
     @Override
     public void subirDatos() {
         refGlobal.child("usuariosBar").child(authUser.getUid()).child("barAsociado").setValue(bar.getNombre());
+        bar.setOwner(authUser.getDisplayName());
         baresRef.child(bar.getNombre()).setValue(bar).addOnSuccessListener(aVoid -> listener.listo());
     }
 }

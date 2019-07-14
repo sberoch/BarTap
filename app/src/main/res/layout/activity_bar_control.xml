@@ -109,11 +109,11 @@
                 android:layout_marginBottom="10dp"
                 android:layout_toStartOf="@+id/asd"
                 android:background="@drawable/edittext_violet"
-                android:drawableEnd="@drawable/ic_edit_24dp"
+                android:drawableStart="@drawable/ic_edit_24dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="@string/editar_bar"
-                android:textAlignment="viewStart"
+                android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/colorAccent" />
 
@@ -135,11 +135,11 @@
                 android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@+id/asd"
                 android:background="@drawable/edittext_violet"
-                android:drawableEnd="@drawable/ic_add_to_photos_24dp"
+                android:drawableStart="@drawable/ic_add_to_photos_24dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:text="@string/mas_fotos"
-                android:textAlignment="viewStart"
+                android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/colorAccent" />
 
@@ -153,6 +153,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
                 android:text="Mock text para una descripcion del bar a ver como queda si es medio largo o que onda hay que ver viste"
+                android:textAlignment="center"
                 android:textSize="12sp" />
 
             <Button

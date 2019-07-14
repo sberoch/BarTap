@@ -80,6 +80,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
                 android:text="Mock text para una descripcion del bar a ver como queda si es medio largo o que onda hay que ver viste"
+                android:textAlignment="center"
                 android:textSize="12sp" />
 
             <TextView

@@ -61,7 +61,7 @@ public class Bar implements Serializable {
     public String getUbicacion() {
         return ubicacion;
     }
-    public double getEstrellas() {
+    public float getEstrellas() {
         return estrellas;
     }
     public long getCalificacionesAcumuladas() {
@@ -189,5 +189,15 @@ public class Bar implements Serializable {
 
     public void setDescripcion(String desc) {
         descripcion = desc;
+    }
+
+    public void reclamar(Bar bar) {
+        estrellas = bar.getEstrellas();
+        numeroDeCalificaciones = bar.getNumeroDeCalificaciones();
+        calificacionesAcumuladas = bar.getCalificacionesAcumuladas();
+    }
+
+    public void setOwner(String displayName) {
+        owner = displayName;
     }
 }

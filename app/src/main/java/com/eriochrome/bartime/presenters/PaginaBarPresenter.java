@@ -147,4 +147,8 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
     public String getDescripcion() {
         return interaccion.getDescripcion();
     }
+
+    public String getUbicacionDeBar() {
+        return interaccion.getUbicacionDeBar();
+    }
 }

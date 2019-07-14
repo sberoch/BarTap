@@ -95,7 +95,7 @@ public class DatosBarPrincipalActivity extends AppCompatActivity implements Dato
             if (modoEditar) {
                 i = new Intent(DatosBarPrincipalActivity.this, DatosBarHorariosActivity.class);
             } else {
-                i = new Intent(DatosBarPrincipalActivity.this, DatosBarReclamarActivity.class); //TODO: reclamar
+                i = new Intent(DatosBarPrincipalActivity.this, DatosBarReclamarActivity.class);
             }
 
             if (datosListos()) {

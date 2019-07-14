@@ -89,6 +89,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
         nombreBar.setText(presenter.getNombreDeBar());
         setupDescripcion();
+        ubicacion.setText(presenter.getUbicacionDeBar());
         puntosText.setVisibility(View.INVISIBLE);
         setupListeners();
 
