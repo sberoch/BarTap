@@ -9,8 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ import com.eriochrome.bartime.vistas.dialogs.DialogMostrarHorarios;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,6 +39,7 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 public class PaginaBarActivity extends AppCompatActivity implements PaginaBarContract.View, DialogComentario.ComentarioListener, DialogCrearCuenta.Listener {
 
     private static final int RC_SIGN_IN = 1;
+    private static final int TAG_NO_COMENTARIOS = 0;
     private RelativeLayout paginaBarRl;
     private TextView nombreBar;
     private TextView descripcion;
@@ -44,15 +48,13 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private TextView verHorarios;
     private Button calificarBar;
     private ImageButton favorito;
-    private ListView listView;
     private Button verMas;
     private TextView puntosText;
     private Button tienda;
     private Button juegos;
+    private LinearLayout cajaComentarios;
 
     private SliderLayout sliderShow;
-
-    private ListaComentariosAdapter listaComentariosAdapter;
 
     private ProgressBar progressBar;
     private ImageButton volver;
@@ -85,12 +87,8 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         puntosText = findViewById(R.id.puntos_text);
         tienda = findViewById(R.id.tienda);
         juegos = findViewById(R.id.juegos);
+        cajaComentarios = findViewById(R.id.caja_comentarios);
         sliderShow = findViewById(R.id.slider);
-
-        listView = findViewById(R.id.listview);
-        listaComentariosAdapter = new ListaComentariosAdapter();
-        listView.setAdapter(listaComentariosAdapter);
-        listaComentariosAdapter.notifyDataSetChanged();
 
         nombreBar.setText(presenter.getNombreDeBar());
         setupDescripcion();
@@ -130,7 +128,6 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             presenter.checkeoFavorito();
             presenter.checkearUsuarioCalificoBar();
         }
-        listaComentariosAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -274,13 +271,40 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
     @Override
     public void cargaDeComentarios() {
-        listaComentariosAdapter.clear();
+        cajaComentarios.removeAllViews();
     }
 
     @Override
     public void finCargaDeComentarios() {
-        listaComentariosAdapter.setItems(presenter.getComentarios());
-        listaComentariosAdapter.notifyDataSetChanged();
+        ArrayList<Comentario> listaComentarios = presenter.getComentarios();
+        int cantidadDeComentarios = listaComentarios.size();
+
+        if (cantidadDeComentarios == 0) {
+            View sinComentariosView = View.inflate(this, R.layout.item_no_hay_comentarios, null);
+            sinComentariosView.setTag(TAG_NO_COMENTARIOS);
+            cajaComentarios.addView(sinComentariosView);
+
+        } else {
+            int i = 0;
+            while (i < cantidadDeComentarios && i < 3) {
+                View comentarioView = View.inflate(this, R.layout.item_comentario, null);
+                ponerValoresAComentario(comentarioView, listaComentarios.get(i));
+                comentarioView.setTag(i);
+                cajaComentarios.addView(comentarioView);
+                i++;
+            }
+        }
+    }
+
+    private void ponerValoresAComentario(View view, Comentario comentario) {
+        TextView nombreUsuario = view.findViewById(R.id.nombre_usuario);
+        nombreUsuario.setText(comentario.getComentador());
+
+        RatingBar ratingBar = view.findViewById(R.id.rating_bar);
+        ratingBar.setRating(comentario.getEstrellas());
+
+        TextView comentarioTexto = view.findViewById(R.id.comentario);
+        comentarioTexto.setText(comentario.getComentarioText());
     }
 
     @Override

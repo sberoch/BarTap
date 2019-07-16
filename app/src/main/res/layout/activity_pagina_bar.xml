@@ -172,23 +172,23 @@
                 android:textColor="@color/colorPrimaryDark" />
 
 
-            <ListView
-                android:id="@+id/listview"
+            <LinearLayout
+                android:id="@+id/caja_comentarios"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/puntos_text"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/edittext_violet"
-                android:minHeight="100dp"
+                android:orientation="vertical"
                 android:padding="10dp" />
 
             <Button
                 android:id="@+id/ver_mas"
                 android:layout_width="145dp"
                 android:layout_height="40dp"
-                android:layout_below="@+id/listview"
+                android:layout_below="@+id/caja_comentarios"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
@@ -203,7 +203,7 @@
                 android:id="@+id/calificarBar"
                 android:layout_width="145dp"
                 android:layout_height="40dp"
-                android:layout_below="@+id/listview"
+                android:layout_below="@+id/caja_comentarios"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="30dp"
                 android:layout_marginBottom="10dp"

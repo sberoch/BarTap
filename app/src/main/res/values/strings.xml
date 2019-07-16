@@ -138,6 +138,7 @@
     <string name="ver_horarios">Ver Horarios</string>
     <string name="volver">Volver</string>
     <string name="comentarios_y_calificaciones">Comentarios/Calificaciones</string>
+    <string name="aun_no_hay_comentarios_en_este_bar">Aun no hay comentarios en este bar. ¡Se el primero!</string>
 
 
 </resources>
