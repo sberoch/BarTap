@@ -133,6 +133,11 @@
     <string name="deseas_reclamar_este_bar">¿Deseas reclamar este bar?</string>
     <string name="reclamar">Reclamar</string>
     <string name="reclamar_bar">Reclamar Bar</string>
+    <string name="telefono">Telefono</string>
+    <string name="debes_ingresar_telefono">Debes ingresar un telefono!</string>
+    <string name="ver_horarios">Ver Horarios</string>
+    <string name="volver">Volver</string>
+    <string name="comentarios_y_calificaciones">Comentarios/Calificaciones</string>
 
 
 </resources>

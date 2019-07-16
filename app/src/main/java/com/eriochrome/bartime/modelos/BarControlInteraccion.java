@@ -65,8 +65,8 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     }
 
     @Override
-    public String getNombreBar() {
-        return bar.getNombre();
+    public String getNombreUsuario() {
+        return userAuth.getDisplayName();
     }
 
     @Override
@@ -121,5 +121,10 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     @Override
     public String getDescripcion() {
         return bar.getDescripcion();
+    }
+
+    @Override
+    public String getNombreBar() {
+        return bar.getNombre();
     }
 }

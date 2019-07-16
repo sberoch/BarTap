@@ -24,6 +24,7 @@ import com.eriochrome.bartime.presenters.PaginaBarPresenter;
 import com.eriochrome.bartime.utils.MySliderView;
 import com.eriochrome.bartime.vistas.dialogs.DialogComentario;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
+import com.eriochrome.bartime.vistas.dialogs.DialogMostrarHorarios;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 
@@ -39,6 +40,8 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     private TextView nombreBar;
     private TextView descripcion;
     private TextView ubicacion;
+    private TextView telefono;
+    private TextView verHorarios;
     private Button calificarBar;
     private ImageButton favorito;
     private ListView listView;
@@ -74,6 +77,8 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         nombreBar = findViewById(R.id.nombre_bar);
         descripcion = findViewById(R.id.descripcion);
         ubicacion = findViewById(R.id.ubicacion);
+        telefono = findViewById(R.id.telefono);
+        verHorarios = findViewById(R.id.horarios);
         calificarBar = findViewById(R.id.calificarBar);
         favorito = findViewById(R.id.favorito);
         verMas = findViewById(R.id.ver_mas);
@@ -90,6 +95,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         nombreBar.setText(presenter.getNombreDeBar());
         setupDescripcion();
         ubicacion.setText(presenter.getUbicacionDeBar());
+        telefono.setText(presenter.getTelefonoDeBar());
         puntosText.setVisibility(View.INVISIBLE);
         setupListeners();
 
@@ -105,6 +111,15 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             descripcion.setText(desc);
         else
             descripcion.setText(getString(R.string.aun_sin_descripcion));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!presenter.esBarConOwner()) {
+            telefono.setVisibility(View.GONE);
+            verHorarios.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -178,6 +193,12 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             Intent i = new Intent(PaginaBarActivity.this, VerMapaActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
+        });
+
+        verHorarios.setOnClickListener(v -> {
+            DialogMostrarHorarios dialogMostrarHorarios = new DialogMostrarHorarios();
+            dialogMostrarHorarios.setHorarios(presenter.getBar());
+            dialogMostrarHorarios.show(getSupportFragmentManager(), "mostrarHorarios");
         });
 
         tienda.setOnClickListener(v -> {

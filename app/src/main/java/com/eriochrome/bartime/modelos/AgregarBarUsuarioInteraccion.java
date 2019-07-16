@@ -35,7 +35,8 @@ public class AgregarBarUsuarioInteraccion implements AgregarBarUsuarioContract.I
 
     @Override
     public void agregarImagen(Uri path) {
-        String caminoEnStorage = bar.getNombre() + ".jpg";
+        String nombreBar = bar.getNombre().replaceAll(" ", "_");
+        String caminoEnStorage = nombreBar + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(caminoEnStorage);
         UploadTask uploadTask = imagenRef.putFile(path);
         uploadTask.addOnFailureListener(e -> {

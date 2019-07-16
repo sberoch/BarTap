@@ -38,7 +38,7 @@ public class DialogCrearCuenta extends DialogFragment {
         builder.setMessage(texto)
                .setTitle(getString(R.string.se_requiere_cuenta));
 
-        builder.setPositiveButton(R.string.crear_cuenta, (dialog, which) -> {
+        builder.setPositiveButton(R.string.continuar, (dialog, which) -> {
             listener.login();
             dismiss();
         });

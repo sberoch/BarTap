@@ -6,8 +6,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -16,7 +14,6 @@ public class DatosBarOpcionalesInteraccion implements DatosBarOpcionalesContract
     private Bar bar;
     private DatabaseReference refGlobal;
     private DatabaseReference baresRef;
-    private StorageReference storageReference;
     private DatosBarOpcionalesContract.Listener listener;
     private FirebaseUser authUser;
 
@@ -25,7 +22,6 @@ public class DatosBarOpcionalesInteraccion implements DatosBarOpcionalesContract
         authUser = FirebaseAuth.getInstance().getCurrentUser();
         refGlobal = FirebaseDatabase.getInstance().getReference();
         baresRef = refGlobal.child("bares");
-        storageReference = FirebaseStorage.getInstance().getReference();
     }
 
     @Override
@@ -43,5 +39,10 @@ public class DatosBarOpcionalesInteraccion implements DatosBarOpcionalesContract
         refGlobal.child("usuariosBar").child(authUser.getUid()).child("barAsociado").setValue(bar.getNombre());
         bar.setOwner(authUser.getDisplayName());
         baresRef.child(bar.getNombre()).setValue(bar).addOnSuccessListener(aVoid -> listener.listo());
+    }
+
+    @Override
+    public void setTelefono(String telefono) {
+        bar.setTelefono(telefono);
     }
 }

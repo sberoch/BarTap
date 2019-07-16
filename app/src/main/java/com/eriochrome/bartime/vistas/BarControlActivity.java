@@ -30,8 +30,6 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class BarControlActivity extends AppCompatActivity implements BarControlContract.View {
 
-    //TODO: no mostrar drawer si no tiene bar
-
     private static final int NUMERO_SOLICITUD_GALERIA = 1;
 
     private BarControlPresenter presenter;
@@ -86,7 +84,6 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         setupListeners();
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -94,18 +91,17 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     }
 
     private void updateUI() {
+        setupDrawer();
         if (presenter.hayBarAsociado()) {
             sinBarRl.setVisibility(View.GONE);
             barControlRl.setVisibility(View.VISIBLE);
             nombreBar.setText(presenter.getNombreBar());
             setupDescripcion();
-            setupDrawer();
             sliderShow.removeAllSliders();
             presenter.cargarImagenes();
         } else {
             sinBarRl.setVisibility(View.VISIBLE);
             barControlRl.setVisibility(View.GONE);
-            navigationView.getHeaderView(0).setVisibility(View.GONE);
         }
     }
 
@@ -118,7 +114,6 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         else
             descripcion.setText(getString(R.string.aun_sin_descripcion));
     }
-
 
     private void setupListeners() {
         sinBarButton.setOnClickListener(v -> {
@@ -163,9 +158,19 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
                 break;
 
             case R.id.mis_ventas:
-                Intent i = new Intent(this, ComprasBarActivity.class);
-                i = presenter.enviarBar(i);
-                startActivity(i);
+                if (presenter.hayBarAsociado()) {
+                    Intent i = new Intent(this, ComprasBarActivity.class);
+                    i = presenter.enviarBar(i);
+                    startActivity(i);
+                }
+                break;
+
+            case R.id.comentarios:
+                if (presenter.hayBarAsociado()) {
+                    Intent i = new Intent(this, ComentariosActivity.class);
+                    i = presenter.enviarBar(i);
+                    startActivity(i);
+                }
                 break;
 
             case R.id.cerrar_sesion:

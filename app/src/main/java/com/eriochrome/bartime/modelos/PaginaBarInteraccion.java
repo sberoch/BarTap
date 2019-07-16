@@ -190,4 +190,14 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     public String getUbicacionDeBar() {
         return bar.getUbicacion();
     }
+
+    @Override
+    public String getTelefonoDeBar() {
+        return bar.getTelefono();
+    }
+
+    @Override
+    public boolean esBarConOwner() {
+        return !bar.getOwner().equals("");
+    }
 }

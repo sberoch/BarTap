@@ -30,6 +30,7 @@ public class Bar implements Serializable {
     private ArrayList<String> metodosDePago;
     private int cantidadDeFotos;
     private String owner;
+    private String telefono;
 
     //Requerido por la base de datos.
     public Bar() {
@@ -96,6 +97,9 @@ public class Bar implements Serializable {
     }
     public String getOwner() {
         return owner;
+    }
+    public String getTelefono() {
+        return telefono;
     }
 
     public void actualizarEstrellas(int calificacion) {
@@ -199,5 +203,9 @@ public class Bar implements Serializable {
 
     public void setOwner(String displayName) {
         owner = displayName;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }
