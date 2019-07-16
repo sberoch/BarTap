@@ -16,7 +16,7 @@
         android:maxWidth="150dp"
         android:text="Bar de Prueba "
         android:textColor="@android:color/background_dark"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/ubicacion_bar"

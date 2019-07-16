@@ -28,14 +28,14 @@
         android:layout_above="@+id/cant_text"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/edittext_violet"
+        android:background="@android:color/transparent"
         android:ems="10"
         android:hint="@string/breve_titulo"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textColorHighlight="@color/colorAccent"
-        android:textColorLink="@color/colorAccent"/>
+        android:textColorLink="@color/colorAccent" />
 
     <TextView
         android:id="@+id/cant_text"
@@ -56,14 +56,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cant_text"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/edittext_violet"
+        android:background="@android:color/transparent"
         android:ems="10"
         android:hint="@string/bounds_trivia"
         android:inputType="numberSigned"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textColorHighlight="@color/colorAccent"
-        android:textColorLink="@color/colorAccent"/>
+        android:textColorLink="@color/colorAccent" />
 
     <Button
         android:id="@+id/continuar"

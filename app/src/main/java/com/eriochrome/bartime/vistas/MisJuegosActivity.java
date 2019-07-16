@@ -1,9 +1,6 @@
 package com.eriochrome.bartime.vistas;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -12,13 +9,16 @@ import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.JuegoHolder;
 import com.eriochrome.bartime.adapters.ListaJuegosAdapter;
-import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.MisJuegosContract;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.presenters.MisJuegosPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogDejarDeParticipar;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
@@ -72,14 +72,10 @@ public class MisJuegosActivity extends AppCompatActivity implements
 
     private void setupRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-
         int espacioVertical = 30;
         EspacioVerticalDecorator espacioVerticalDecorator = new EspacioVerticalDecorator(espacioVertical);
-        SombraEspacioVerticalDecorator sombra = new SombraEspacioVerticalDecorator(this, R.drawable.drop_shadow);
-
         juegosRecyclerView.setLayoutManager(layoutManager);
         juegosRecyclerView.addItemDecoration(espacioVerticalDecorator);
-        juegosRecyclerView.addItemDecoration(sombra);
     }
 
     @Override

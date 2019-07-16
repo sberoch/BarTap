@@ -9,21 +9,23 @@
         android:id="@+id/nombre_bar"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="5dp"
+        android:layout_toStartOf="@+id/estrellas_rl"
         android:layout_toEndOf="@+id/imagen_bar"
         android:fontFamily="@font/lato_bold"
         android:maxWidth="150dp"
         android:text="Bar de Prueba "
         android:textColor="@android:color/background_dark"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/ubicacion_bar"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nombre_bar"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/imagen_bar"
         android:maxWidth="150dp"
@@ -45,7 +47,8 @@
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/estrellas_rl"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
@@ -55,7 +58,6 @@
             android:id="@+id/estrellas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="false"
             android:layout_centerVertical="true"
             android:layout_marginEnd="5dp"
             android:layout_toStartOf="@+id/estrellas_icon"

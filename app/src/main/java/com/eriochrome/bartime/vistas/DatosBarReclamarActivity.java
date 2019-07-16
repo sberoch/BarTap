@@ -1,9 +1,5 @@
 package com.eriochrome.bartime.vistas;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,13 +11,16 @@ import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.BarReclamarHolder;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.ListaBaresAReclamarAdapter;
-import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.DatosBarReclamarContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.presenters.DatosBarReclamarPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogReclamarBar;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class DatosBarReclamarActivity extends AppCompatActivity implements
@@ -89,11 +88,8 @@ public class DatosBarReclamarActivity extends AppCompatActivity implements
 
         int espacioVertical = 30;
         EspacioVerticalDecorator espacioVerticalDecorator = new EspacioVerticalDecorator(espacioVertical);
-        SombraEspacioVerticalDecorator sombra = new SombraEspacioVerticalDecorator(this, R.drawable.drop_shadow);
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(espacioVerticalDecorator);
-        recyclerView.addItemDecoration(sombra);
     }
 
     @Override

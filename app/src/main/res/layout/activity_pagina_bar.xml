@@ -47,7 +47,9 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/lato_bold"
+                android:maxWidth="250dp"
                 android:text="Titulo"
+                android:textAlignment="center"
                 android:textColor="@android:color/background_dark"
                 android:textSize="18sp" />
 
@@ -93,6 +95,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
                 android:drawableStart="@drawable/ic_descubrir_black_24dp"
+                android:maxWidth="300dp"
                 android:text="Un Lugar 777, Zarate, Buenos Aires, Argentina"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp" />
