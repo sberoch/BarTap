@@ -1,26 +1,11 @@
 package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.navigation.NavigationView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,6 +13,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.JuegoHolder;
@@ -39,6 +35,10 @@ import com.eriochrome.bartime.vistas.dialogs.DialogResumenJuego;
 import com.eriochrome.bartime.vistas.dialogs.DialogSeleccionFiltros;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,6 +57,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     private ImageButton drawerButton;
     private NavigationView navigationView;
     private ImageButton avisos;
+    private ImageButton share;
 
     private Spinner spinner;
     private ArrayAdapter<String> spinnerAdapter;
@@ -75,9 +76,12 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listados);
 
+        checkPrimeraVez();
+
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerButton = findViewById(R.id.drawer_button);
         avisos = findViewById(R.id.avisos);
+        share = findViewById(R.id.share);
         navigationView = findViewById(R.id.nav_drawer);
         spinner = findViewById(R.id.spinner_listado);
 
@@ -86,6 +90,30 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         setupListeners();
+    }
+
+    private void checkPrimeraVez() {
+        Thread t = new Thread(() -> {
+            //  Initialize SharedPreferences
+            SharedPreferences getPrefs = PreferenceManager
+                    .getDefaultSharedPreferences(getBaseContext());
+            //  Create a new boolean and preference and set it to true
+            boolean isFirstStart = getPrefs.getBoolean("firstStartUser", true);
+            //  If the activity has never started before...
+            if (isFirstStart) {
+                //  Launch app intro
+                final Intent i = new Intent(ListadosActivity.this, IntroduccionUsuarioActivity.class);
+                runOnUiThread(() -> startActivity(i));
+                //  Make a new preferences editor
+                SharedPreferences.Editor e = getPrefs.edit();
+                //  Edit preference to make it false because we don't want this to run again
+                e.putBoolean("firstStartUser", false);
+                //  Apply changes
+                e.apply();
+            }
+        });
+
+        t.start();
     }
 
 
@@ -241,6 +269,17 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             if (presenter.estaConectado()) {
                 startActivity(new Intent(ListadosActivity.this, AvisosActivity.class));
             }
+        });
+        share.setOnClickListener(v -> {
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+
+            String invitacion = getString(R.string.share_text);
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, invitacion);
+
+            String chooserText = getString(R.string.compartir);
+            startActivity(Intent.createChooser(sharingIntent, chooserText));
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

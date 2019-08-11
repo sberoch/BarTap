@@ -1,4 +1,5 @@
 package com.eriochrome.bartime.vistas;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -8,8 +9,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.utils.CustomDireccion;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,16 +26,18 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 
 public class SeleccionarUbicacionActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -51,6 +61,23 @@ public class SeleccionarUbicacionActivity extends AppCompatActivity implements O
         setContentView(R.layout.activity_seleccionar_ubicacion);
 
         listo = findViewById(R.id.listo);
+
+        Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
+        PlacesClient placesClient = Places.createClient(this);
+
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG));
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), DEFAULT_ZOOM));
+            }
+            @Override
+            public void onError(Status status) {
+                Log.d("asds", "An error occurred: " + status);
+            }
+        });
 
         geocoder = new Geocoder(this, Locale.getDefault());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -105,10 +132,15 @@ public class SeleccionarUbicacionActivity extends AppCompatActivity implements O
                     if (task.isSuccessful()) {
                         // Set the map's camera position to the current location of the device.
                         ultimaUbicacionConocida = task.getResult();
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
-                                        ultimaUbicacionConocida.getLatitude(),
-                                        ultimaUbicacionConocida.getLongitude()),
-                                        DEFAULT_ZOOM));
+                        if (ultimaUbicacionConocida != null) {
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
+                                            ultimaUbicacionConocida.getLatitude(),
+                                            ultimaUbicacionConocida.getLongitude()),
+                                            DEFAULT_ZOOM));
+                        } else {
+                            toastShort(SeleccionarUbicacionActivity.this,
+                                    getResources().getString(R.string.no_ubicacion_intente_nuevamente));
+                        }
                     } else {
                         Log.d("fuck", "Current location is null. Using defaults.");
                         Log.e("fuck", "Exception: %s", task.getException());

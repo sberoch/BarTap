@@ -3,23 +3,22 @@ package com.eriochrome.bartime.vistas;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.adapters.ListaComentariosAdapter;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.entidades.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
@@ -37,6 +36,11 @@ import java.util.List;
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class PaginaBarActivity extends AppCompatActivity implements PaginaBarContract.View, DialogComentario.ComentarioListener, DialogCrearCuenta.Listener {
+
+    /**
+     * TODO: el bug de las fotos es porque las cargo asincronicamente. Buscar la forma de sincronizar
+     * Posibilidad: Esperar a que carguen todas (puede ser lento)
+     */
 
     private static final int RC_SIGN_IN = 1;
     private static final int TAG_NO_COMENTARIOS = 0;
@@ -309,9 +313,11 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
     @Override
     public void setPuntos(Integer puntos) {
-        String texto = "(" + Integer.toString(puntos) + " puntos)";
-        puntosText.setText(texto);
-        puntosText.setVisibility(View.VISIBLE);
+        if (puntos != 0) {
+            String texto = "(" + puntos + " puntos)";
+            puntosText.setText(texto);
+            puntosText.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

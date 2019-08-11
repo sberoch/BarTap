@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.eriochrome.bartime">
 
     <!--
@@ -117,18 +116,66 @@
             android:name=".vistas.TiendaActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".vistas.CrearTriviaActivity" />
-        <activity android:name=".vistas.CrearPreguntasTriviaActivity" />
-        <activity android:name=".vistas.TriviaActivity" />
-        <activity android:name=".vistas.PaginaTriviaActivity" />
-        <activity android:name=".vistas.MisComprasActivity" />
-        <activity android:name=".vistas.MisJuegosActivity" />
-        <activity android:name=".vistas.ComprasBarActivity" />
-        <activity android:name=".vistas.DatosBarPrincipalActivity" />
-        <activity android:name=".vistas.DatosBarHorariosActivity" />
-        <activity android:name=".vistas.DatosBarOpcionalesActivity" />
-        <activity android:name=".vistas.JuegosDelBarActivity" />
-        <activity android:name=".vistas.DatosBarReclamarActivity" />
+        <activity
+            android:name=".vistas.CrearTriviaActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".vistas.CrearPreguntasTriviaActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".vistas.TriviaActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".vistas.PaginaTriviaActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".vistas.MisComprasActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".vistas.MisJuegosActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.ComprasBarActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.DatosBarPrincipalActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.DatosBarHorariosActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.DatosBarOpcionalesActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.JuegosDelBarActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.DatosBarReclamarActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.MapaDeBaresActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".vistas.IntroduccionUsuarioActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".vistas.IntroduccionBarActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

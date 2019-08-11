@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.AgregarBarUsuarioContract;
@@ -20,7 +21,7 @@ import java.io.InputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.eriochrome.bartime.utils.Utils.*;
+import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class AgregarBarUsuarioActivity extends AppCompatActivity implements AgregarBarUsuarioContract.View {
 
@@ -53,6 +54,11 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
         listo = findViewById(R.id.listo);
 
         setupListeners();
+
+        nombre.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) nombre.setHint("");
+            else nombre.setHint(getString(R.string.nombre));
+        });
 
         presenter = new AgregarBarUsuarioPresenter();
         presenter.bind(this);

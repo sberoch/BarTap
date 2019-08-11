@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.modelos;
 
 import android.location.Location;
+
 import androidx.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
@@ -40,6 +41,7 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
         this.listener = listener;
     }
 
+    //Hace un query de todos los bares, posible mejora si lo hago en base a ubicacion o algo
     @Override
     public void buscarConPalabra(String s) {
         final String busqueda = s.toLowerCase();
@@ -48,8 +50,15 @@ public class BaresFragmentInteraccion implements BaresFragmentContract.Interacci
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    //Primero los que coinciden con nombre
                     String nombreBar = ds.child("nombre").getValue(String.class).toLowerCase();
                     if (nombreBar.contains(busqueda)) {
+                        listaBares.add(ds.getValue(Bar.class));
+                    }
+
+                    //Despues los que coinciden con ubicacion
+                    String ubicacionBar = ds.child("ubicacion").getValue(String.class).toLowerCase();
+                    if (ubicacionBar.contains(busqueda)) {
                         listaBares.add(ds.getValue(Bar.class));
                     }
                 }
