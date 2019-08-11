@@ -19,21 +19,23 @@ public class IntroduccionUsuarioActivity extends AppIntro {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Resources res = getResources();
-        addSlide(AppIntroFragment.newInstance(res.getString(R.string.intro_u1_tit), res.getString(R.string.intro_u1_des), R.drawable.logodesafio, res.getColor(R.color.colorPrimaryDark)));
-        addSlide(AppIntroFragment.newInstance(res.getString(R.string.intro_u2_tit), res.getString(R.string.intro_u2_des), R.drawable.logodesafio, res.getColor(R.color.colorPrimary)));
-        addSlide(AppIntroFragment.newInstance(res.getString(R.string.intro_u3_tit), res.getString(R.string.intro_u3_des), R.drawable.logodesafio, res.getColor(R.color.colorAccent)));
+        addSlide(AppIntroFragment.newInstance(res.getString(R.string.intro_u1_tit), res.getString(R.string.intro_u1_des), R.drawable.intro2, res.getColor(R.color.colorPrimaryDark)));
+        addSlide(AppIntroFragment.newInstance(res.getString(R.string.intro_u2_tit), res.getString(R.string.intro_u2_des), R.drawable.intro3, res.getColor(R.color.colorPrimary)));
+        addSlide(AppIntroFragment.newInstance(res.getString(R.string.intro_u3_tit), res.getString(R.string.intro_u3_des), R.drawable.intro5, res.getColor(R.color.colorAccent)));
     }
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
         startActivity(new Intent(this, ListadosActivity.class));
+        finish();
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
         startActivity(new Intent(this, ListadosActivity.class));
+        finish();
     }
 
 }
