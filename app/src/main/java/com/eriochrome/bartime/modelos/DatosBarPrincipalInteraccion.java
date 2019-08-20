@@ -39,8 +39,9 @@ public class DatosBarPrincipalInteraccion implements DatosBarPrincipalContract.I
     }
 
     @Override
-    public void setUbicacion(String mock_text) {
-        bar.setUbicacion(mock_text);
+    public void setUbicacion(String direccion, double lat, double lng) {
+        bar.setUbicacion(direccion);
+        bar.setLatLng(lat, lng);
     }
 
     @Override

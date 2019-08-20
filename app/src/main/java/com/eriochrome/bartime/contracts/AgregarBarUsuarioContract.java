@@ -13,10 +13,6 @@ public interface AgregarBarUsuarioContract {
     }
 
     interface View {
-        boolean hayImagenSeleccionada();
         void startConfirmacion();
-        boolean hayUbicacionSeleccionada();
-        boolean hayNombreValido();
-
     }
 }

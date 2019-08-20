@@ -1,137 +1,105 @@
 package com.eriochrome.bartime.vistas;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Environment;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.TextView;
 
-import com.eriochrome.bartime.BuildConfig;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.utils.CustomDireccion;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
-import org.osmdroid.api.IMapController;
-import org.osmdroid.config.Configuration;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-
-import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class SeleccionarUbicacionActivity extends FragmentActivity {
-
-    private static final int DEFAULT_ZOOM = 20;
-    private MapView map;
+import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Context context = getApplicationContext();
-        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
-        Configuration.getInstance().setUserAgentValue(getPackageName());
-
-        setContentView(R.layout.activity_seleccionar_ubicacion);
-
-        map = findViewById(R.id.map);
-        map.setTileSource(TileSourceFactory.MAPNIK);
-
-        map.setBuiltInZoomControls(false);
-        map.setMultiTouchControls(true);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        map.onResume();
-
-        IMapController mapController = map.getController();
-        mapController.setZoom(DEFAULT_ZOOM);
-        GeoPoint startPoint = new GeoPoint(-34.603722, -58.381592);
-        mapController.setCenter(startPoint);
-    }
-}
-
-
-
-//TODO: banda de cosas
-/*
-public class SeleccionarUbicacionActivity extends FragmentActivity implements OnMapReadyCallback {
+public class SeleccionarUbicacionActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final int CODIGO_REQUEST_LOCATION = 123;
 
     private GoogleMap mMap;
+    private Geocoder geocoder;
     private final LatLng ubicacionDefault = new LatLng(-34.603722, -58.381592); //Bsas
     private static final int DEFAULT_ZOOM = 15;
-
     private Location ultimaUbicacionConocida;
     private FusedLocationProviderClient mFusedLocationProviderClient;
-    private Geocoder geocoder;
+    private boolean mLocationPermissionGranted;
 
-    private LatLng posicion;
-    private TextView coorTV;
-    private TextView lugarTexto;
     private Button listo;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccionar_ubicacion);
 
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-        posicion = new LatLng(0,0);
-        coorTV = findViewById(R.id.coordenadas);
-        lugarTexto = findViewById(R.id.lugar);
         listo = findViewById(R.id.listo);
 
-        geocoder = new Geocoder(this, Locale.getDefault());
+        Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
+        PlacesClient placesClient = Places.createClient(this);
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG));
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), DEFAULT_ZOOM));
+            }
+            @Override
+            public void onError(Status status) {
+                Log.d("asds", "An error occurred: " + status);
+            }
+        });
+
+        geocoder = new Geocoder(this, Locale.getDefault());
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        listo.setOnClickListener(v -> {
-            Intent data = new Intent();
-            data.putExtra("latitud", posicion.latitude);
-            data.putExtra("longitud", posicion.longitude);
-            data.putExtra("direccion", lugarTexto.getText().toString());
-            setResult(RESULT_OK, data);
-            finish();
-        });
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+        listo.setOnClickListener(v -> enviarDatosPosicion());
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         updateLocationUI();
         getDeviceLocation();
-        mMap.setOnCameraIdleListener(() -> {
-            posicion = mMap.getCameraPosition().target;
-            coorTV.setText(posicion.toString());
-            obtenerDireccionConLatLng();
-        });
     }
 
-    private void obtenerDireccionConLatLng() {
+
+    private String obtenerDireccionConLatLng(LatLng posicion) {
+        String aDevolver;
         try {
             List<Address> direcciones = geocoder.getFromLocation(posicion.latitude, posicion.longitude, 1);
             if (direcciones.size() > 0) {
@@ -140,88 +108,113 @@ public class SeleccionarUbicacionActivity extends FragmentActivity implements On
                 String ciudad = direcciones.get(0).getLocality();
                 String provincia = direcciones.get(0).getAdminArea();
                 String pais = direcciones.get(0).getCountryName();
-                String aMostrar = new CustomDireccion(calle, numero, ciudad, provincia, pais).construir();
-                lugarTexto.setText(aMostrar);
+                aDevolver = new CustomDireccion(calle, numero, ciudad, provincia, pais).construir();
             } else {
-                lugarTexto.setText(getString(R.string.no_se_encontro_direccion));
+                aDevolver = getString(R.string.ubicacion_desconocida);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            lugarTexto.setText(getString(R.string.no_se_puede_obtener_direccion));
+            aDevolver = getString(R.string.no_se_puede_obtener_direccion);
         }
-    }
-
-
-    private void updateLocationUI() {
-        try {
-
-            if (tienePermisos()) {
-                mMap.setMyLocationEnabled(true);
-                mMap.getUiSettings().setMyLocationButtonEnabled(true);
-            } else {
-                mMap.setMyLocationEnabled(false);
-                mMap.getUiSettings().setMyLocationButtonEnabled(false);
-                pedirPermisosUbicacion();
-            }
-
-        } catch (SecurityException c) {
-            Log.e("Exception: %s", c.getMessage());
-        }
-
-    }
-
-    private boolean tienePermisos() {
-        return (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED);
-    }
-
-
-    private void pedirPermisosUbicacion() {
-        ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.ACCESS_FINE_LOCATION
-        }, CODIGO_REQUEST_LOCATION);
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == CODIGO_REQUEST_LOCATION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                updateLocationUI();
-            }
-        }
+        return aDevolver;
     }
 
 
     private void getDeviceLocation() {
+        /*
+         * Get the best and most recent location of the device, which may be null in rare
+         * cases when a location is not available.
+         */
         try {
-            if (tienePermisos()) {
+            if (mLocationPermissionGranted) {
                 Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
                 locationResult.addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // Set the map's camera position to the current location of the device.
                         ultimaUbicacionConocida = task.getResult();
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                new LatLng(ultimaUbicacionConocida.getLatitude(),
-                                        ultimaUbicacionConocida.getLongitude()), DEFAULT_ZOOM));
-                        posicion = mMap.getCameraPosition().target;
-                        coorTV.setText(posicion.toString());
-                    }
-                    else {
-                        Log.d("shit", "Current location is null. Using defaults.");
-                        Log.e("shit", "Exception: %s", task.getException());
-                        mMap.moveCamera(CameraUpdateFactory
-                                .newLatLngZoom(ubicacionDefault, DEFAULT_ZOOM));
+                        if (ultimaUbicacionConocida != null) {
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
+                                            ultimaUbicacionConocida.getLatitude(),
+                                            ultimaUbicacionConocida.getLongitude()),
+                                            DEFAULT_ZOOM));
+                        } else {
+                            toastShort(SeleccionarUbicacionActivity.this,
+                                    getResources().getString(R.string.no_ubicacion_intente_nuevamente));
+                        }
+                    } else {
+                        Log.d("fuck", "Current location is null. Using defaults.");
+                        Log.e("fuck", "Exception: %s", task.getException());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacionDefault, DEFAULT_ZOOM));
                         mMap.getUiSettings().setMyLocationButtonEnabled(false);
                     }
                 });
+            }
+        } catch(SecurityException e)  {
+            Log.e("Exception: %s", e.getMessage());
+        }
+    }
 
+    private void updateLocationUI() {
+        if (mMap == null) {
+            return;
+        }
+        try {
+            if (mLocationPermissionGranted) {
+                mMap.setMyLocationEnabled(true);
+                mMap.getUiSettings().setMyLocationButtonEnabled(true);
+            } else {
+                mMap.setMyLocationEnabled(false);
+                mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                ultimaUbicacionConocida = null;
+                getLocationPermission();
             }
         } catch (SecurityException e)  {
             Log.e("Exception: %s", e.getMessage());
         }
     }
 
+    private void getLocationPermission() {
+        /*
+         * Request location permission, so that we can get the location of the
+         * device. The result of the permission request is handled by a callback,
+         * onRequestPermissionsResult.
+         */
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mLocationPermissionGranted = true;
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    CODIGO_REQUEST_LOCATION);
+        }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        mLocationPermissionGranted = false;
+        switch (requestCode) {
+            case CODIGO_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mLocationPermissionGranted = true;
+                }
+            }
+        }
+        updateLocationUI();
+    }
+
+    //Cuando termino hago el reverse geocoding
+    private void enviarDatosPosicion() {
+        LatLng posicion = mMap.getCameraPosition().target;
+        String direccion = obtenerDireccionConLatLng(posicion);
+        Intent data = new Intent();
+        data.putExtra("latitud", posicion.latitude);
+        data.putExtra("longitud", posicion.longitude);
+        data.putExtra("direccion", direccion);
+        setResult(RESULT_OK, data);
+        finish();
+    }
 }
-*/

@@ -13,12 +13,12 @@ import com.google.firebase.storage.UploadTask;
 
 public class AgregarBarUsuarioInteraccion implements AgregarBarUsuarioContract.Interaccion {
 
-    private DatabaseReference baresRef;
+    private DatabaseReference baresRevisionRef;
     private StorageReference storageReference;
     private Bar bar;
 
    public AgregarBarUsuarioInteraccion() {
-       baresRef = FirebaseDatabase.getInstance().getReference().child("bares");
+       baresRevisionRef = FirebaseDatabase.getInstance().getReference().child("baresEnRevision");
        storageReference = FirebaseStorage.getInstance().getReference();
    }
 
@@ -35,7 +35,8 @@ public class AgregarBarUsuarioInteraccion implements AgregarBarUsuarioContract.I
 
     @Override
     public void agregarImagen(Uri path) {
-        String caminoEnStorage = bar.getNombre() + ".jpg";
+        String nombreBar = bar.getNombre().replaceAll(" ", "_");
+        String caminoEnStorage = nombreBar + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(caminoEnStorage);
         UploadTask uploadTask = imagenRef.putFile(path);
         uploadTask.addOnFailureListener(e -> {
@@ -44,6 +45,6 @@ public class AgregarBarUsuarioInteraccion implements AgregarBarUsuarioContract.I
 
     @Override
     public void subirBar() {
-        baresRef.child(bar.getNombre()).setValue(bar);
+        baresRevisionRef.child(bar.getNombre()).setValue(bar);
     }
 }

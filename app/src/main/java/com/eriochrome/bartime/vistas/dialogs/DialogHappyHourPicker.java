@@ -1,20 +1,21 @@
 package com.eriochrome.bartime.vistas.dialogs;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
+import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
-import com.appyvet.materialrangebar.RangeBar;
 import com.eriochrome.bartime.R;
+import com.super_rabbit.wheel_picker.WheelPicker;
 
 public class DialogHappyHourPicker extends DialogFragment {
 
-    private RangeBar rangeBar;
-    private int horaInicial;
-    private int horaFinal;
+    private WheelPicker desdeNP;
+    private WheelPicker hastaNP;
+    private String horaInicial;
+    private String horaFinal;
 
     private TextView textView;
 
@@ -36,26 +37,23 @@ public class DialogHappyHourPicker extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
-        rangeBar = ((AlertDialog)getDialog()).findViewById(R.id.range_bar);
+        desdeNP = ((AlertDialog)getDialog()).findViewById(R.id.desde_np);
+        hastaNP = ((AlertDialog)getDialog()).findViewById(R.id.hasta_np);
 
-        horaInicial = Integer.valueOf(rangeBar.getLeftPinValue());
-        horaFinal = Integer.valueOf(rangeBar.getRightPinValue()) - 24; //Supone que arranca en 28
+        horaInicial = "0";
+        horaFinal = "23";
 
-        rangeBar.setOnRangeBarChangeListener(
-                (rangeBar, leftPinIndex, rightPinIndex, leftPinValue, rightPinValue) -> {
-                    //TODO: falta cambiar el texto de los pins si es mayor que 24.
-                    int valIzq = Integer.valueOf(leftPinValue);
-                    if (valIzq >= 24) {
-                        valIzq = valIzq - 24;
-                    }
-                    horaInicial = valIzq;
+        desdeNP.setMin(0);
+        desdeNP.setMax(23);
+        desdeNP.setSelectorRoundedWrapPreferred(true);
+        desdeNP.setSelectedTextColor(R.color.colorAccent);
+        desdeNP.setOnValueChangeListener((picker, oldVal, newVal) -> horaInicial = newVal);
 
-                    int valDer = Integer.valueOf(rightPinValue);
-                    if (valDer >= 24) {
-                        valDer = valDer - 24;
-                    }
-                    horaFinal = valDer;
-                });
+        hastaNP.setMin(0);
+        hastaNP.setMax(23);
+        hastaNP.setSelectorRoundedWrapPreferred(true);
+        hastaNP.setSelectedTextColor(R.color.colorAccent);
+        hastaNP.setOnValueChangeListener((picker, oldVal, newVal) -> horaFinal = newVal);
     }
 
     public void setTextView(TextView textView) {

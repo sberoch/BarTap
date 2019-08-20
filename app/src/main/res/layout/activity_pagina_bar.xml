@@ -47,7 +47,9 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/lato_bold"
+                android:maxWidth="250dp"
                 android:text="Titulo"
+                android:textAlignment="center"
                 android:textColor="@android:color/background_dark"
                 android:textSize="18sp" />
 
@@ -80,6 +82,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
                 android:text="Mock text para una descripcion del bar a ver como queda si es medio largo o que onda hay que ver viste"
+                android:textAlignment="center"
                 android:textSize="12sp" />
 
             <TextView
@@ -92,7 +95,34 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
                 android:drawableStart="@drawable/ic_descubrir_black_24dp"
+                android:maxWidth="300dp"
                 android:text="Un Lugar 777, Zarate, Buenos Aires, Argentina"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/telefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ubicacion"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_local_phone_24dp"
+                android:text="555-6723452"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/horarios"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/telefono"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_time_24dp"
+                android:text="@string/ver_horarios"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp" />
 
@@ -100,7 +130,7 @@
                 android:id="@+id/juegos"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_below="@+id/ubicacion"
+                android:layout_below="@+id/horarios"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
@@ -113,14 +143,14 @@
                 android:id="@+id/space_mid"
                 android:layout_width="20dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ubicacion"
+                android:layout_below="@+id/horarios"
                 android:layout_centerHorizontal="true" />
 
             <Button
                 android:id="@+id/tienda"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_below="@+id/ubicacion"
+                android:layout_below="@+id/horarios"
                 android:layout_alignParentEnd="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
@@ -144,23 +174,24 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark" />
 
-            <ListView
-                android:id="@+id/listview"
+
+            <LinearLayout
+                android:id="@+id/caja_comentarios"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/puntos_text"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/edittext_violet"
-                android:minHeight="100dp"
+                android:orientation="vertical"
                 android:padding="10dp" />
 
             <Button
                 android:id="@+id/ver_mas"
                 android:layout_width="145dp"
                 android:layout_height="40dp"
-                android:layout_below="@+id/listview"
+                android:layout_below="@+id/caja_comentarios"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
@@ -175,7 +206,7 @@
                 android:id="@+id/calificarBar"
                 android:layout_width="145dp"
                 android:layout_height="40dp"
-                android:layout_below="@+id/listview"
+                android:layout_below="@+id/caja_comentarios"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="30dp"
                 android:layout_marginBottom="10dp"

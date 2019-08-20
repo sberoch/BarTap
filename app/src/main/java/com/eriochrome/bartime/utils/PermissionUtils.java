@@ -1,13 +1,13 @@
 package com.eriochrome.bartime.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -18,7 +18,7 @@ import java.util.Map;
 public class PermissionUtils {
 
     private Context context;
-    private Activity activityActual;
+    private AppCompatActivity activityActual;
 
     private PermissionResultCallback permissionResultCallback;
 
@@ -31,13 +31,13 @@ public class PermissionUtils {
 
     public PermissionUtils(Context context) {
         this.context=context;
-        this.activityActual = (Activity) context;
+        this.activityActual = (AppCompatActivity) context;
         permissionResultCallback= (PermissionResultCallback) context;
     }
 
     public PermissionUtils(Context context, PermissionResultCallback callback) {
         this.context = context;
-        this.activityActual = (Activity) context;
+        this.activityActual = (AppCompatActivity) context;
         permissionResultCallback= callback;
     }
 

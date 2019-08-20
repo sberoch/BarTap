@@ -1,14 +1,11 @@
 package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,14 +13,19 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.presenters.BarControlPresenter;
 import com.eriochrome.bartime.utils.MySliderView;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.material.navigation.NavigationView;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
@@ -58,6 +60,8 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bar_control);
 
+        checkPrimeraVez();
+
         presenter = new BarControlPresenter();
         presenter.bind(this);
 
@@ -83,6 +87,29 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         setupListeners();
     }
 
+    private void checkPrimeraVez() {
+        Thread t = new Thread(() -> {
+            //  Initialize SharedPreferences
+            SharedPreferences getPrefs = PreferenceManager
+                    .getDefaultSharedPreferences(getBaseContext());
+            //  Create a new boolean and preference and set it to true
+            boolean isFirstStart = getPrefs.getBoolean("firstStartBar", true);
+            //  If the activity has never started before...
+            if (isFirstStart) {
+                //  Launch app intro
+                final Intent i = new Intent(BarControlActivity.this, IntroduccionBarActivity.class);
+                runOnUiThread(() -> startActivity(i));
+                //  Make a new preferences editor
+                SharedPreferences.Editor e = getPrefs.edit();
+                //  Edit preference to make it false because we don't want this to run again
+                e.putBoolean("firstStartBar", false);
+                //  Apply changes
+                e.apply();
+            }
+        });
+
+        t.start();
+    }
 
     @Override
     protected void onStart() {
@@ -91,18 +118,17 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
     }
 
     private void updateUI() {
+        setupDrawer();
         if (presenter.hayBarAsociado()) {
             sinBarRl.setVisibility(View.GONE);
             barControlRl.setVisibility(View.VISIBLE);
             nombreBar.setText(presenter.getNombreBar());
             setupDescripcion();
-            setupDrawer();
             sliderShow.removeAllSliders();
             presenter.cargarImagenes();
         } else {
             sinBarRl.setVisibility(View.VISIBLE);
             barControlRl.setVisibility(View.GONE);
-            navigationView.getHeaderView(0).setVisibility(View.GONE);
         }
     }
 
@@ -115,7 +141,6 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         else
             descripcion.setText(getString(R.string.aun_sin_descripcion));
     }
-
 
     private void setupListeners() {
         sinBarButton.setOnClickListener(v -> {
@@ -149,7 +174,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             ejecutarOpcionMenu(menuItem.getItemId());
             return false; //Devuelve false para que no quede seleccionado
         });
-        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
     }
 
@@ -160,9 +185,19 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
                 break;
 
             case R.id.mis_ventas:
-                Intent i = new Intent(this, ComprasBarActivity.class);
-                i = presenter.enviarBar(i);
-                startActivity(i);
+                if (presenter.hayBarAsociado()) {
+                    Intent i = new Intent(this, ComprasBarActivity.class);
+                    i = presenter.enviarBar(i);
+                    startActivity(i);
+                }
+                break;
+
+            case R.id.comentarios:
+                if (presenter.hayBarAsociado()) {
+                    Intent i = new Intent(this, ComentariosActivity.class);
+                    i = presenter.enviarBar(i);
+                    startActivity(i);
+                }
                 break;
 
             case R.id.cerrar_sesion:

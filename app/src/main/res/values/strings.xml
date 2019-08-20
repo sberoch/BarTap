@@ -2,11 +2,7 @@
     <string name="app_name">BarTime</string>
     <string name="tengo_un_bar">Tengo un bar</string>
     <string name="comenzar">Comenzar</string>
-    <string name="entrar">Entrar</string>
     <string name="crear_cuenta">Crear cuenta</string>
-    <string name="descubrir">Descubrir</string>
-    <string name="eventos">Eventos</string>
-    <string name="promociones">Promociones</string>
     <string name="no_encontras_titulo">¿No encontras el bar que buscas?</string>
     <string name="no_encontras_link">¡Agregalo por tu cuenta!</string>
     <string name="buscar">Buscar</string>
@@ -36,8 +32,6 @@
     <string name="efectivo">Efectivo</string>
     <string name="tarjeta_de_credito">Tarjeta de Credito</string>
     <string name="tarjeta_de_debito">Tarjeta de Debito</string>
-    <string name="agregar_a_favoritos">Agregar a Favoritos</string>
-    <string name="quitar_de_favoritos">Quitar de favoritos</string>
     <string name="contactate">¡Contactate!</string>
     <string name="contacto_text">¿Alguna sugerencia?¿Queres dejar un comentario?</string>
     <string name="esta_abierto">Esta abierto</string>
@@ -54,10 +48,6 @@
     <string name="mis_favoritos">Mis Favoritos</string>
     <string name="editar_bar">Editar Bar</string>
     <string name="se_requiere_cuenta">Se requiere cuenta</string>
-    <string name="no_se_encontro_direccion">No se encontro direccion</string>
-    <string name="no_se_puede_obtener_direccion">No se puede obtener direccion</string>
-    <string name="ubicacion_del_bar">Ubicacion del Bar</string>
-    <string name="ver_en_mapa">Ver en Mapa</string>
     <string name="crear_desafio">Crear Desafio</string>
     <string name="crear_trivia">Crear Trivia</string>
     <string name="dificil">Dificil</string>
@@ -95,7 +85,6 @@
     <string name="texto_ganador_trivia">¡Felicidades! Ganaste la trivia.</string>
     <string name="cantidad_de_ganadores">Cantidad de Ganadores:</string>
     <string name="total_de_participantes">Total de participantes:</string>
-    <string name="compras">Compras</string>
     <string name="dejar_de_participar">Abandonar juego</string>
     <string name="iniciar_sesion">Iniciar Sesion</string>
     <string name="mis_juegos">Mis Juegos</string>
@@ -107,7 +96,6 @@
     <string name="tu_compra_fue_un_exito">¡Tu compra fue un exito!</string>
     <string name="recordatorio_compra">(Recorda que luego podes ver la compra en la seccion Mis Compras)</string>
     <string name="no_tenes_puntos_suficientes_para_comprar_este_item">No tenes puntos suficientes para comprar este item.</string>
-    <string name="volver">Volver</string>
     <string name="ver_mis_items_vendidos">Ver mis items vendidos</string>
     <string name="canjear_compra_desea_continuar">Al clickear \'Validar\' se considera que el usuario ya canjeo su descuento   ¿Desea continuar?</string>
     <string name="validar">Validar</string>
@@ -130,6 +118,50 @@
     <string name="se_debe_asignar_imagen_principal">Se debe asignar una imagen principal para el bar!</string>
     <string name="falta_descripcion_para_bar">Falta una descripcion para el bar!</string>
     <string name="falta_nombre_bar">Falta el nombre del bar!</string>
+    <string name="no_se_encontro_direccion">No se encontro direccion</string>
+    <string name="no_se_puede_obtener_direccion">No se puede obtener direccion</string>
+    <string name="ubicacion_desconocida">Ubicacion Desconocida</string>
+    <string name="mas_fotos">Mas Fotos</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="mis_ventas">Mis Ventas</string>
+    <string name="juegos_del_bar">Juegos del Bar</string>
+    <string name="juegos_donde_participas">Juegos donde participas</string>
+    <string name="falta_ubicacion_bar">Falta una ubicacion para el bar!</string>
+    <string name="bares_tienen_nombre_parecido">Los siguientes bares fueron agregados por usuarios y tienen un nombre parecido al que ingresaste.</string>
+    <string name="deseas_reclamar_alguno">¿Deseas reclamar alguno como el tuyo?</string>
+    <string name="no_deseo_reclamar_bar">No deseo reclamar ningun bar</string>
+    <string name="deseas_reclamar_este_bar">¿Deseas reclamar este bar?</string>
+    <string name="reclamar">Reclamar</string>
+    <string name="reclamar_bar">Reclamar Bar</string>
+    <string name="telefono">Telefono</string>
+    <string name="debes_ingresar_telefono">Debes ingresar un telefono!</string>
+    <string name="ver_horarios">Ver Horarios</string>
+    <string name="volver">Volver</string>
+    <string name="comentarios_y_calificaciones">Comentarios/Calificaciones</string>
+    <string name="aun_no_hay_comentarios_en_este_bar">Aun no hay comentarios en este bar. ¡Se el primero!</string>
+    <string name="no_ubicacion_intente_nuevamente">No se pudo obtener una ubicacion, intente nuevamente</string>
+    <string name="tipu_1">Si tenés alguna idea o sugerencia no dudes en expresarla en \"Contacto\".</string>
+    <string name="tipu_2">¿No aparece tu bar favorito? ¡Vos mismo podés agregarlo!</string>
+    <string name="tipu_3">No olvides dejar tus comentarios y calificaciones en los bares que visitas.</string>
+    <string name="tipu_4">¡Busca el juego que más te guste y participa! Conseguirás puntos para canjear en el bar.</string>
+    <string name="tipb_1">Recorda que podés poner descuentos en la tienda, los usuarios canjearán sus puntos en ella.</string>
+    <string name="tipb_2">A los usuarios les gustan los juegos, ¡No olvides crear los tuyos!</string>
+    <string name="tipb_3">No olvides que, una vez terminado un desafío del bar, debes declarar un ganador.</string>
+    <string name="share_text">Te invito a probar la aplicacion BarTime! https://play.google.com/store/apps/details?id=com.eriochrome.bartime</string>
+    <string name="compartir">Compartir</string>
+    <string name="ver_en_mapa">Ver en mapa</string>
+    <string name="intro_u1_des">Navega y encontrá el que más te guste, filtra hasta quedarte solo lo mejor</string>
+    <string name="intro_u2_des">¡Los bares tienen juegos! Participa para ganar puntos</string>
+    <string name="intro_u3_des">Los puntos que conseguiste serviran para comprar descuentos en la tienda del bar</string>
+    <string name="intro_u1_tit">Encontra Bares</string>
+    <string name="intro_u2_tit">Juga Juegos</string>
+    <string name="intro_u3_tit">Consegui Descuentos</string>
+    <string name="intro_b1_tit">Cuenta del Bar</string>
+    <string name="intro_b2_tit">Juegos</string>
+    <string name="intro_b3_tit">Tienda</string>
+    <string name="intro_b1_des">Completa la informacion para que los usuarios puedan encontrar el bar en sus busquedas</string>
+    <string name="intro_b2_des">Podes crear juegos, los usuarios participaran ¡No olvides nombrar al ganador para que se le acrediten sus puntos!</string>
+    <string name="intro_b3_des">Tu bar tendra una tienda, los usuarios pueden gastar sus puntos en los descuentos que agregues</string>
 
 
 </resources>

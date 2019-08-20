@@ -4,6 +4,19 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="17dp"
+        android:text="@string/contacto"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
         android:id="@+id/contacto_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,11 +54,8 @@
         android:id="@+id/volver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
         android:background="@android:color/transparent"
+        android:padding="10dp"
         app:srcCompat="@drawable/ic_arrow_back_violet_24dp" />
 
 </RelativeLayout>

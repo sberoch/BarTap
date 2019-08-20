@@ -9,13 +9,14 @@ public interface BarControlContract {
 
     interface Interaccion {
         void setupBar();
-        String getNombreBar();
+        String getNombreUsuario();
         Bar getBar();
         void subirFoto(Uri path);
         void checkearAvisos();
         void dejarDeCheckearAvisos();
         void cargarImagenes();
         String getDescripcion();
+        String getNombreBar();
     }
 
     interface View {

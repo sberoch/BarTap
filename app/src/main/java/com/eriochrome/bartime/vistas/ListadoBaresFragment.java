@@ -1,13 +1,10 @@
 package com.eriochrome.bartime.vistas;
 
-import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.app.DialogFragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +14,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.crashlytics.android.Crashlytics;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.ListaBaresAdapter;
-import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.presenters.BaresFragmentPresenter;
@@ -37,6 +38,7 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 public class ListadoBaresFragment extends Fragment implements BaresFragmentContract.View{
 
     private Button filtrar;
+    private Button verEnMapa;
     private EditText buscar;
 
     private RecyclerView baresRecyclerView;
@@ -53,6 +55,7 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
         View view = inflater.inflate(R.layout.fragment_listado_bares, container, false);
 
         filtrar = view.findViewById(R.id.filtrar);
+        verEnMapa = view.findViewById(R.id.ver_en_mapa);
         buscar = view.findViewById(R.id.buscar);
         loading = view.findViewById(R.id.progressBar);
         loading.setVisibility(View.GONE);
@@ -157,7 +160,7 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
 
     private void mostrarFiltros() {
         DialogFragment filtros = new DialogSeleccionFiltros();
-        filtros.show(getFragmentManager(), "filtros");
+        filtros.show(getActivity().getFragmentManager(), "filtros");
     }
 
 
@@ -186,6 +189,10 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
 
     private void setupListeners() {
         filtrar.setOnClickListener(v -> mostrarFiltros());
+        verEnMapa.setOnClickListener(v -> {
+            Intent i = new Intent(getActivity(), MapaDeBaresActivity.class);
+            startActivity(i);
+        });
         buscar.setOnEditorActionListener((textView, actionId, keyEvent) -> {
             if(actionId == EditorInfo.IME_ACTION_DONE) {
                 presenter.buscarConPalabra(buscar.getText().toString());
@@ -199,7 +206,12 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
 
     @Override
     public void onDestroy() {
-        presenter.unbind();
+        try {
+            presenter.unbind();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            Crashlytics.log("Error onDestroy bares fragment");
+        }
         super.onDestroy();
     }
 }

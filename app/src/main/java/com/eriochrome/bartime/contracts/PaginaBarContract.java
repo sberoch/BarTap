@@ -35,6 +35,9 @@ public interface PaginaBarContract {
         void cargarPuntosEnElBar();
         void cargarImagenes();
         String getDescripcion();
+        String getUbicacionDeBar();
+        String getTelefonoDeBar();
+        boolean esBarConOwner();
     }
 
     interface CompleteListener {

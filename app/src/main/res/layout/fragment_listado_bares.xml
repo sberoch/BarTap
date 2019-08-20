@@ -63,6 +63,24 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
+            <Button
+                android:id="@+id/ver_en_mapa"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/buscar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_violeta"
+                android:drawableStart="@drawable/ic_map_white_24dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/ver_en_mapa"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light" />
+
         </RelativeLayout>
 
         <ProgressBar
@@ -73,7 +91,7 @@
             android:indeterminateDrawable="@drawable/barra_progreso_circular"
             android:indeterminateDuration="2000" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

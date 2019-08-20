@@ -2,8 +2,8 @@ package com.eriochrome.bartime.vistas;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -68,8 +68,7 @@ public class DatosBarHorariosActivity extends AppCompatActivity implements Datos
 
     private boolean completoHorarios() {
         for (TextView horario : listaHorarios) {
-            if (horario.getText().equals(" - ") ||
-                horario.getText().equals("0 - 0"))
+            if (horario.getText().equals(" - ") || horario.getText().equals("0 - 0"))
                 return false;
         }
         return true;
@@ -181,7 +180,7 @@ public class DatosBarHorariosActivity extends AppCompatActivity implements Datos
             if (str.equals("Cerrado")) return 0;
             return Integer.valueOf(str.split(" - ")[0]);
         } catch (RuntimeException e) {
-            toastShort(this, "Ocurrio un error inesperado.");
+            if (!tieneHappyHour) toastShort(this, "Ocurrio un error inesperado.");
             finish();
             return 0;
         }
@@ -193,7 +192,7 @@ public class DatosBarHorariosActivity extends AppCompatActivity implements Datos
             if (str.equals("Cerrado")) return 0;
             return Integer.valueOf(str.split(" - ")[1]);
         } catch (RuntimeException e) {
-            toastShort(this, "Ocurrio un error inesperado.");
+            if (!tieneHappyHour) toastShort(this, "Ocurrio un error inesperado.");
             finish();
             return 0;
         }

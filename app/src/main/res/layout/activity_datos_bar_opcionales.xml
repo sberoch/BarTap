@@ -22,12 +22,40 @@
         android:textColor="@android:color/background_light" />
 
     <TextView
-        android:id="@+id/metodos_pago"
+        android:id="@+id/telefono_titulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/telefono"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/telefono_titulo"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:drawableStart="@drawable/ic_local_phone_24dp"
+        android:ems="10"
+        android:inputType="phone"
+        android:minWidth="250dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/metodos_pago"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/telefono"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:text="@string/metodos_de_pago"

@@ -29,6 +29,7 @@ public class DatosBarOpcionalesPresenter implements DatosBarOpcionalesContract.L
         Bar bar = (Bar)intent.getSerializableExtra("bar");
         interaccion.setBar(bar);
         view.setMetodosDePago(bar.getMetodosDePago());
+        view.setTelefono(bar.getTelefono());
 
     }
 
@@ -43,5 +44,9 @@ public class DatosBarOpcionalesPresenter implements DatosBarOpcionalesContract.L
     @Override
     public void listo() {
         view.terminar();
+    }
+
+    public void setTelefono(String telefono) {
+        interaccion.setTelefono(telefono);
     }
 }

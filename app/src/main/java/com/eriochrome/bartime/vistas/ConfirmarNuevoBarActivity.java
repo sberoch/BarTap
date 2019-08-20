@@ -1,7 +1,7 @@
 package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -26,6 +26,7 @@ public class ConfirmarNuevoBarActivity extends AppCompatActivity implements Conf
         continuar = findViewById(R.id.continuar);
         continuar.setOnClickListener(v -> {
             startActivity(new Intent(ConfirmarNuevoBarActivity.this, ListadosActivity.class));
+            finish();
         });
     }
 

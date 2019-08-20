@@ -1,6 +1,6 @@
 package com.eriochrome.bartime.modelos;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
@@ -184,5 +184,20 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     @Override
     public String getDescripcion() {
         return bar.getDescripcion();
+    }
+
+    @Override
+    public String getUbicacionDeBar() {
+        return bar.getUbicacion();
+    }
+
+    @Override
+    public String getTelefonoDeBar() {
+        return bar.getTelefono();
+    }
+
+    @Override
+    public boolean esBarConOwner() {
+        return !bar.getOwner().equals("");
     }
 }

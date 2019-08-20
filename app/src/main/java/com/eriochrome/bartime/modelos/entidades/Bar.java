@@ -30,6 +30,7 @@ public class Bar implements Serializable {
     private ArrayList<String> metodosDePago;
     private int cantidadDeFotos;
     private String owner;
+    private String telefono;
 
     //Requerido por la base de datos.
     public Bar() {
@@ -61,7 +62,7 @@ public class Bar implements Serializable {
     public String getUbicacion() {
         return ubicacion;
     }
-    public double getEstrellas() {
+    public float getEstrellas() {
         return estrellas;
     }
     public long getCalificacionesAcumuladas() {
@@ -96,6 +97,9 @@ public class Bar implements Serializable {
     }
     public String getOwner() {
         return owner;
+    }
+    public String getTelefono() {
+        return telefono;
     }
 
     public void actualizarEstrellas(int calificacion) {
@@ -189,5 +193,19 @@ public class Bar implements Serializable {
 
     public void setDescripcion(String desc) {
         descripcion = desc;
+    }
+
+    public void reclamar(Bar bar) {
+        estrellas = bar.getEstrellas();
+        numeroDeCalificaciones = bar.getNumeroDeCalificaciones();
+        calificacionesAcumuladas = bar.getCalificacionesAcumuladas();
+    }
+
+    public void setOwner(String displayName) {
+        owner = displayName;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }

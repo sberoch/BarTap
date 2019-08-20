@@ -7,17 +7,21 @@
             android:icon="@drawable/ic_contacto_24dp"
             android:title="@string/contacto" />
         <item
+            android:id="@+id/comentarios"
+            android:icon="@drawable/ic_star_violet_24dp"
+            android:title="@string/comentarios_y_calificaciones" />
+        <item
             android:id="@+id/mis_ventas"
             android:icon="@drawable/ic_shopping_24dp"
-            android:title="Mis ventas" />
+            android:title="@string/mis_ventas" />
         <item
             android:id="@+id/cerrar_sesion"
             android:icon="@drawable/ic_exit_to_app_violet_24dp"
-            android:title="Cerrar Sesion" />
+            android:title="@string/cerrar_sesion" />
         <item
             android:id="@+id/salir"
             android:icon="@drawable/ic_close_24dp"
-            android:title="Salir" />
+            android:title="@string/salir" />
     </group>
 
 

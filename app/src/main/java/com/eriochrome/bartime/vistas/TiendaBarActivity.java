@@ -1,10 +1,7 @@
 package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,13 +11,16 @@ import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.ItemTiendaBarHolder;
 import com.eriochrome.bartime.adapters.ListaItemsTiendaAdapter;
-import com.eriochrome.bartime.adapters.SombraEspacioVerticalDecorator;
 import com.eriochrome.bartime.contracts.TiendaBarContract;
 import com.eriochrome.bartime.modelos.entidades.ItemTienda;
 import com.eriochrome.bartime.presenters.TiendaBarPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearItemTienda;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
@@ -116,14 +116,10 @@ public class TiendaBarActivity extends AppCompatActivity implements
 
     private void setupRecyclerView() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-
         int espacioVertical = 30;
         EspacioVerticalDecorator espacioVerticalDecorator = new EspacioVerticalDecorator(espacioVertical);
-        SombraEspacioVerticalDecorator sombra = new SombraEspacioVerticalDecorator(this, R.drawable.drop_shadow);
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(espacioVerticalDecorator);
-        recyclerView.addItemDecoration(sombra);
     }
 
     @Override

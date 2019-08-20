@@ -1,13 +1,11 @@
 package com.eriochrome.bartime.modelos;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.eriochrome.bartime.contracts.BarControlContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.utils.Utils;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -67,8 +65,8 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     }
 
     @Override
-    public String getNombreBar() {
-        return bar.getNombre();
+    public String getNombreUsuario() {
+        return userAuth.getDisplayName();
     }
 
     @Override
@@ -123,5 +121,10 @@ public class BarControlInteraccion implements BarControlContract.Interaccion {
     @Override
     public String getDescripcion() {
         return bar.getDescripcion();
+    }
+
+    @Override
+    public String getNombreBar() {
+        return bar.getNombre();
     }
 }

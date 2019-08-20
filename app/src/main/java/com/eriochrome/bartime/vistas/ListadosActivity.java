@@ -1,19 +1,11 @@
 package com.eriochrome.bartime.vistas;
 
-import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.app.FragmentTransaction;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Gravity;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +13,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.JuegoHolder;
@@ -32,6 +35,10 @@ import com.eriochrome.bartime.vistas.dialogs.DialogResumenJuego;
 import com.eriochrome.bartime.vistas.dialogs.DialogSeleccionFiltros;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +57,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     private ImageButton drawerButton;
     private NavigationView navigationView;
     private ImageButton avisos;
+    private ImageButton share;
 
     private Spinner spinner;
     private ArrayAdapter<String> spinnerAdapter;
@@ -58,35 +66,66 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     private ListadosPresenter presenter;
 
-    //private LocationHelper locationHelper;
     private Location ultimaUbicacion;
+    private boolean mLocationPermissionGranted;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+    private static final int CODIGO_REQUEST_LOCATION = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listados);
 
+        checkPrimeraVez();
+
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerButton = findViewById(R.id.drawer_button);
         avisos = findViewById(R.id.avisos);
+        share = findViewById(R.id.share);
         navigationView = findViewById(R.id.nav_drawer);
         spinner = findViewById(R.id.spinner_listado);
 
         presenter = new ListadosPresenter();
         presenter.bind(this);
 
-        /*locationHelper = new LocationHelper(this);
-        locationHelper.checkpermission();
-        if (locationHelper.checkPlayServices()) {
-            locationHelper.buildGoogleApiClient();
-        }*/
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         setupListeners();
+    }
+
+    private void checkPrimeraVez() {
+        Thread t = new Thread(() -> {
+            //  Initialize SharedPreferences
+            SharedPreferences getPrefs = PreferenceManager
+                    .getDefaultSharedPreferences(getBaseContext());
+            //  Create a new boolean and preference and set it to true
+            boolean isFirstStart = getPrefs.getBoolean("firstStartUser", true);
+            //  If the activity has never started before...
+            if (isFirstStart) {
+                //  Launch app intro
+                final Intent i = new Intent(ListadosActivity.this, IntroduccionUsuarioActivity.class);
+                runOnUiThread(() -> startActivity(i));
+                //  Make a new preferences editor
+                SharedPreferences.Editor e = getPrefs.edit();
+                //  Edit preference to make it false because we don't want this to run again
+                e.putBoolean("firstStartUser", false);
+                //  Apply changes
+                e.apply();
+            }
+        });
+
+        t.start();
     }
 
 
     private void updateUI() {
         setupDrawer();
         setupSpinner();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkLocation();
     }
 
     @Override
@@ -97,7 +136,47 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             presenter.conectar();
             presenter.checkearAvisos();
         }
-        //locationHelper.checkPlayServices();
+        getLastLocation();
+    }
+
+    private void checkLocation() {
+        if (!mLocationPermissionGranted) {
+            if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+                mLocationPermissionGranted = true;
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        CODIGO_REQUEST_LOCATION);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        mLocationPermissionGranted = false;
+        switch (requestCode) {
+            case CODIGO_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mLocationPermissionGranted = true;
+                }
+            }
+        }
+    }
+
+    private void getLastLocation() {
+        try {
+            if (mLocationPermissionGranted) {
+                Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
+                locationResult.addOnCompleteListener(task -> ultimaUbicacion = task.getResult());
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
     }
 
     private void ejecutarOpcionMenu(int id) {
@@ -163,7 +242,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 presenter.conectar();
@@ -175,14 +253,13 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             } else {
                 toastShort(ListadosActivity.this, "Ocurrio un error. Intente nuevamente");
             }
-        } else {
-            //locationHelper.onActivityResult(requestCode, resultCode, data);
+
         }
     }
 
 
     private void setupListeners() {
-        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        drawerButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
             ejecutarOpcionMenu(menuItem.getItemId());
@@ -192,6 +269,17 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             if (presenter.estaConectado()) {
                 startActivity(new Intent(ListadosActivity.this, AvisosActivity.class));
             }
+        });
+        share.setOnClickListener(v -> {
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+
+            String invitacion = getString(R.string.share_text);
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, invitacion);
+
+            String chooserText = getString(R.string.compartir);
+            startActivity(Intent.createChooser(sharingIntent, chooserText));
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -233,7 +321,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
 
     private void startFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -279,8 +367,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     @Override
     public void aplicarFiltros(AlertDialog dialog) {
-        Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
-        //ultimaUbicacion = locationHelper.getLocation();
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (f instanceof ListadoBaresFragment) {
             ((ListadoBaresFragment) f).aplicarFiltros(dialog, ultimaUbicacion);
         }
@@ -288,7 +375,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     @Override
     public void onClickJuego(Juego juego) {
-        Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (f instanceof ListadoJuegosFragment) {
             ((ListadoJuegosFragment) f).onClickJuego(juego);
         }
@@ -311,7 +398,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 
     @Override
     public void intentarParticiparDeJuego(Juego juego) {
-        Fragment f = getFragmentManager().findFragmentById(R.id.fragment_container);
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         if (f instanceof ListadoJuegosFragment) {
             ((ListadoJuegosFragment) f).intentarParticiparDeJuego(juego);
         }

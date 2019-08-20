@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".vistas.ComprasBarActivity">
 
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/mis_ventas"
+        android:textColor="@color/colorPrimaryDark" />
+
     <ImageButton
         android:id="@+id/volver"
         android:layout_width="wrap_content"
@@ -23,7 +35,7 @@
         android:indeterminateDrawable="@drawable/barra_progreso_circular"
         android:indeterminateDuration="2000" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

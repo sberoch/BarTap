@@ -1,7 +1,5 @@
 package com.eriochrome.bartime.modelos;
 
-import android.support.annotation.NonNull;
-
 import com.eriochrome.bartime.contracts.PaginaTriviaContract;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
@@ -10,6 +8,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import androidx.annotation.NonNull;
 
 public class PaginaTriviaInteraccion implements PaginaTriviaContract.Interaccion {
 
@@ -33,7 +33,12 @@ public class PaginaTriviaInteraccion implements PaginaTriviaContract.Interaccion
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int cantParticipantes = (int) dataSnapshot.child("participantes").getChildrenCount();
-                int cantGanadores = dataSnapshot.child("cantGanadores").getValue(Integer.class);
+                int cantGanadores;
+                try {
+                    cantGanadores = dataSnapshot.child("cantGanadores").getValue(Integer.class);
+                } catch (NullPointerException e) {
+                    cantGanadores = 0;
+                }
                 listener.onComplete(cantParticipantes, cantGanadores);
             }
 

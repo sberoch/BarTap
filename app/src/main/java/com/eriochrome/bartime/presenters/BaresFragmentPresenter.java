@@ -1,7 +1,7 @@
 package com.eriochrome.bartime.presenters;
 
-import android.app.AlertDialog;
 import android.location.Location;
+import androidx.appcompat.app.AlertDialog;
 
 import com.eriochrome.bartime.contracts.BaresFragmentContract;
 import com.eriochrome.bartime.modelos.BaresFragmentInteraccion;
@@ -30,7 +30,9 @@ public class BaresFragmentPresenter implements BaresFragmentContract.CompleteLis
 
     public void mostrarPrimerOrdenBares() {
         view.cargando();
-        interaccion.buscarConPalabra("");
+        Filtro filtroInicial = new Filtro();
+        filtroInicial.ordenarSegun("estrellas");
+        interaccion.mostrarConFiltros(filtroInicial);
     }
 
     public void buscarConPalabra(String s) {

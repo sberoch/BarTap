@@ -1,13 +1,12 @@
 package com.eriochrome.bartime.modelos;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.JuegosDelBarContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Desafio;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
-import com.eriochrome.bartime.presenters.JuegosDelBarPresenter;
 import com.eriochrome.bartime.utils.CreadorDeAvisos;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

@@ -1,10 +1,12 @@
 package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.DatosBarOpcionalesContract;
@@ -16,15 +18,14 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class DatosBarOpcionalesActivity extends AppCompatActivity implements DatosBarOpcionalesContract.View {
 
-    //TODO: subir a database
-    //TODO: callback de cuando se termine de subir volver a barcontrol
-
     private DatosBarOpcionalesPresenter presenter;
 
     private CheckBox efectivo;
     private CheckBox tCredito;
     private CheckBox tDebito;
+    private EditText telefono;
     private Button listo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +38,24 @@ public class DatosBarOpcionalesActivity extends AppCompatActivity implements Dat
         efectivo = findViewById(R.id.efectivo);
         tCredito = findViewById(R.id.tarjeta_credito);
         tDebito = findViewById(R.id.tarjeta_debito);
+        telefono = findViewById(R.id.telefono);
         listo = findViewById(R.id.listo);
 
+        telefono.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) telefono.setHint("");
+        });
+
         listo.setOnClickListener(v -> {
+            presenter.setTelefono(getTelefono());
             presenter.setMetodosDePago(getMetodosDePago());
             presenter.subirBar();
         });
 
         presenter.obtenerBar(getIntent());
+    }
+
+    private String getTelefono() {
+        return telefono.getText().toString();
     }
 
     private ArrayList<String> getMetodosDePago() {
@@ -69,8 +80,12 @@ public class DatosBarOpcionalesActivity extends AppCompatActivity implements Dat
 
     @Override
     public void terminar() {
-        toastShort(DatosBarOpcionalesActivity.this, getResources().getString(R.string.exito));
-        startActivity(new Intent(this, BarControlActivity.class));
+        if (!telefono.getText().toString().equals("")) {
+            toastShort(DatosBarOpcionalesActivity.this, getResources().getString(R.string.exito));
+            startActivity(new Intent(this, BarControlActivity.class));
+        } else {
+            toastShort(this, getString(R.string.debes_ingresar_telefono));
+        }
     }
 
     @Override
@@ -84,5 +99,10 @@ public class DatosBarOpcionalesActivity extends AppCompatActivity implements Dat
         if (metodosDePago.contains("tarjeta de debito")) {
             tDebito.setChecked(true);
         }
+    }
+
+    @Override
+    public void setTelefono(String telefono) {
+        this.telefono.setText(telefono);
     }
 }

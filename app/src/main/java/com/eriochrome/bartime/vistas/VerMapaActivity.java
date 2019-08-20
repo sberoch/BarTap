@@ -1,71 +1,48 @@
 package com.eriochrome.bartime.vistas;
 
-import android.content.Context;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.eriochrome.bartime.BuildConfig;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.osmdroid.api.IMapController;
-import org.osmdroid.config.Configuration;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.Marker;
+public class VerMapaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-//TODO: anda, pero es lento en cargar los tiles
-
-public class VerMapaActivity extends AppCompatActivity {
-
-    private MapView map;
     private Bar bar;
+    private GoogleMap mMap;
+    SupportMapFragment mapFragment;
 
-    private final int DEFAULT_ZOOM = 20;
+    private final int DEFAULT_ZOOM = 16;
+    private final float ACCENT_VIOLET_HUE = 285.15f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Context context = getApplicationContext();
-        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
-        Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
-
         setContentView(R.layout.activity_ver_mapa);
         bar = (Bar) getIntent().getSerializableExtra("bar");
 
-        map = findViewById(R.id.map);
-        map.setTileSource(TileSourceFactory.MAPNIK);
-
-        map.setBuiltInZoomControls(true);
-        map.setMultiTouchControls(true);
-
-
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        map.onResume();
-
-        IMapController mapController = map.getController();
-        mapController.setZoom(DEFAULT_ZOOM);
-        GeoPoint startPoint = new GeoPoint( bar.getLat(), bar.getLng());
-        mapController.setCenter(startPoint);
-
-        Marker startMarker = new Marker(map);
-        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        map.getOverlays().add(startMarker);
-        startMarker.setIcon(getResources().getDrawable(R.drawable.ic_place_24dp));
-        startMarker.setPosition(startPoint);
-        startMarker.setTitle(getString(R.string.ubicacion_del_bar));
-    }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        map.onPause();
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        mMap.setMinZoomPreference(8.0f);
+
+        LatLng barPos = new LatLng(bar.getLat(), bar.getLng());
+        mMap.addMarker(new MarkerOptions()
+                .icon(BitmapDescriptorFactory.defaultMarker(ACCENT_VIOLET_HUE))
+                .position(barPos)
+                .title(bar.getNombre()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(barPos, DEFAULT_ZOOM));
     }
 }

@@ -3,7 +3,7 @@ package com.eriochrome.bartime.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +12,6 @@ import com.eriochrome.bartime.vistas.PaginaBarActivity;
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.utils.GlideApp;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -61,7 +59,6 @@ public class BarHolder extends RecyclerView.ViewHolder implements View.OnClickLi
         setEstrellas();
 
         String nombreBar = bar.getNombre().replaceAll(" ", "_");
-
         String imagePath = nombreBar + ".jpg";
         StorageReference imagenRef = storageReference.child("imagenes").child(imagePath);
         GlideApp.with(this.view)

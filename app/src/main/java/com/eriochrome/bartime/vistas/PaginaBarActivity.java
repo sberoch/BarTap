@@ -2,33 +2,34 @@ package com.eriochrome.bartime.vistas;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.eriochrome.bartime.R;
-import com.eriochrome.bartime.adapters.ListaComentariosAdapter;
-import com.eriochrome.bartime.adapters.ViewPagerAdapter;
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.entidades.Comentario;
 import com.eriochrome.bartime.presenters.PaginaBarPresenter;
 import com.eriochrome.bartime.utils.MySliderView;
 import com.eriochrome.bartime.vistas.dialogs.DialogComentario;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
+import com.eriochrome.bartime.vistas.dialogs.DialogMostrarHorarios;
 import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,21 +37,28 @@ import static com.eriochrome.bartime.utils.Utils.toastShort;
 
 public class PaginaBarActivity extends AppCompatActivity implements PaginaBarContract.View, DialogComentario.ComentarioListener, DialogCrearCuenta.Listener {
 
+    /**
+     * TODO: el bug de las fotos es porque las cargo asincronicamente. Buscar la forma de sincronizar
+     * Posibilidad: Esperar a que carguen todas (puede ser lento)
+     */
+
     private static final int RC_SIGN_IN = 1;
+    private static final int TAG_NO_COMENTARIOS = 0;
     private RelativeLayout paginaBarRl;
     private TextView nombreBar;
     private TextView descripcion;
+    private TextView ubicacion;
+    private TextView telefono;
+    private TextView verHorarios;
     private Button calificarBar;
     private ImageButton favorito;
-    private ListView listView;
     private Button verMas;
     private TextView puntosText;
     private Button tienda;
     private Button juegos;
+    private LinearLayout cajaComentarios;
 
     private SliderLayout sliderShow;
-
-    private ListaComentariosAdapter listaComentariosAdapter;
 
     private ProgressBar progressBar;
     private ImageButton volver;
@@ -74,21 +82,22 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
         paginaBarRl = findViewById(R.id.pagina_bar_rl);
         nombreBar = findViewById(R.id.nombre_bar);
         descripcion = findViewById(R.id.descripcion);
+        ubicacion = findViewById(R.id.ubicacion);
+        telefono = findViewById(R.id.telefono);
+        verHorarios = findViewById(R.id.horarios);
         calificarBar = findViewById(R.id.calificarBar);
         favorito = findViewById(R.id.favorito);
         verMas = findViewById(R.id.ver_mas);
         puntosText = findViewById(R.id.puntos_text);
         tienda = findViewById(R.id.tienda);
         juegos = findViewById(R.id.juegos);
+        cajaComentarios = findViewById(R.id.caja_comentarios);
         sliderShow = findViewById(R.id.slider);
-
-        listView = findViewById(R.id.listview);
-        listaComentariosAdapter = new ListaComentariosAdapter();
-        listView.setAdapter(listaComentariosAdapter);
-        listaComentariosAdapter.notifyDataSetChanged();
 
         nombreBar.setText(presenter.getNombreDeBar());
         setupDescripcion();
+        ubicacion.setText(presenter.getUbicacionDeBar());
+        telefono.setText(presenter.getTelefonoDeBar());
         puntosText.setVisibility(View.INVISIBLE);
         setupListeners();
 
@@ -107,6 +116,15 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if (!presenter.esBarConOwner()) {
+            telefono.setVisibility(View.GONE);
+            verHorarios.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         if (presenter.hayUsuarioConectado()) {
@@ -114,7 +132,6 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             presenter.checkeoFavorito();
             presenter.checkearUsuarioCalificoBar();
         }
-        listaComentariosAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -173,11 +190,17 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
             startActivity(i);
         });
 
-        /*verMapa.setOnClickListener(v -> {
+        ubicacion.setOnClickListener(v -> {
             Intent i = new Intent(PaginaBarActivity.this, VerMapaActivity.class);
             i = presenter.enviarBar(i);
             startActivity(i);
-        });*/
+        });
+
+        verHorarios.setOnClickListener(v -> {
+            DialogMostrarHorarios dialogMostrarHorarios = new DialogMostrarHorarios();
+            dialogMostrarHorarios.setHorarios(presenter.getBar());
+            dialogMostrarHorarios.show(getSupportFragmentManager(), "mostrarHorarios");
+        });
 
         tienda.setOnClickListener(v -> {
             if (presenter.hayUsuarioConectado()) {
@@ -252,20 +275,49 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
     @Override
     public void cargaDeComentarios() {
-        listaComentariosAdapter.clear();
+        cajaComentarios.removeAllViews();
     }
 
     @Override
     public void finCargaDeComentarios() {
-        listaComentariosAdapter.setItems(presenter.getComentarios());
-        listaComentariosAdapter.notifyDataSetChanged();
+        ArrayList<Comentario> listaComentarios = presenter.getComentarios();
+        int cantidadDeComentarios = listaComentarios.size();
+
+        if (cantidadDeComentarios == 0) {
+            View sinComentariosView = View.inflate(this, R.layout.item_no_hay_comentarios, null);
+            sinComentariosView.setTag(TAG_NO_COMENTARIOS);
+            cajaComentarios.addView(sinComentariosView);
+
+        } else {
+            int i = 0;
+            while (i < cantidadDeComentarios && i < 3) {
+                View comentarioView = View.inflate(this, R.layout.item_comentario, null);
+                ponerValoresAComentario(comentarioView, listaComentarios.get(i));
+                comentarioView.setTag(i);
+                cajaComentarios.addView(comentarioView);
+                i++;
+            }
+        }
+    }
+
+    private void ponerValoresAComentario(View view, Comentario comentario) {
+        TextView nombreUsuario = view.findViewById(R.id.nombre_usuario);
+        nombreUsuario.setText(comentario.getComentador());
+
+        RatingBar ratingBar = view.findViewById(R.id.rating_bar);
+        ratingBar.setRating(comentario.getEstrellas());
+
+        TextView comentarioTexto = view.findViewById(R.id.comentario);
+        comentarioTexto.setText(comentario.getComentarioText());
     }
 
     @Override
     public void setPuntos(Integer puntos) {
-        String texto = "(" + Integer.toString(puntos) + " puntos)";
-        puntosText.setText(texto);
-        puntosText.setVisibility(View.VISIBLE);
+        if (puntos != 0) {
+            String texto = "(" + puntos + " puntos)";
+            puntosText.setText(texto);
+            puntosText.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
