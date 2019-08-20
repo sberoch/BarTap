@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.eriochrome.bartime.contracts.MisJuegosContract;
 import com.eriochrome.bartime.modelos.entidades.Desafio;
 import com.eriochrome.bartime.modelos.entidades.Juego;
+import com.eriochrome.bartime.modelos.entidades.Sorteo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,10 +37,20 @@ public class MisJuegosInteraccion implements MisJuegosContract.Interaccion {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot dsJuego : dataSnapshot.child("Desafio").getChildren()) {
-                    Juego juego = dsJuego.getValue(Desafio.class);
-                    for (DataSnapshot dsParticipante : dsJuego.child("participantes").getChildren()) {
+                //Desafios
+                for (DataSnapshot dsDesafio : dataSnapshot.child("Desafio").getChildren()) {
+                    Juego juego = dsDesafio.getValue(Desafio.class);
+                    for (DataSnapshot dsParticipante : dsDesafio.child("participantes").getChildren()) {
+                        String participante = dsParticipante.getValue(String.class);
+                        if (nombreUsuario.equals(participante)) {
+                            juegos.add(juego);
+                        }
+                    }
+                }
+                //Sorteos
+                for (DataSnapshot dsSorteo : dataSnapshot.child("Sorteo").getChildren()) {
+                    Juego juego = dsSorteo.getValue(Sorteo.class);
+                    for (DataSnapshot dsParticipante : dsSorteo.child("participantes").getChildren()) {
                         String participante = dsParticipante.getValue(String.class);
                         if (nombreUsuario.equals(participante)) {
                             juegos.add(juego);

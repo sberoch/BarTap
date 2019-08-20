@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
-    android:focusableInTouchMode="true"
-    tools:context=".vistas.CrearTriviaActivity"
-    android:focusable="true">
+    tools:context=".vistas.CrearSorteoActivity">
 
     <TextView
-        android:id="@+id/titulo_juego"
+        android:id="@+id/titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -18,73 +15,71 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/crear_trivia"
+        android:text="@string/crear_sorteo"
         android:textColor="@color/colorPrimaryDark" />
 
     <TextView
         android:id="@+id/de_que_se_trata"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/titulo_juego"
+        android:layout_below="@id/titulo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/de_que_se_trata_trivia"
+        android:text="@string/de_que_se_trata_sorteo"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="12sp"
         android:textStyle="italic" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/titulo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/lato_bold"
-        android:text="@string/ingrese_un_breve_titulo_o_descripcion_para_la_trivia"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <EditText
-        android:id="@+id/titulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/cant_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:hint="@string/breve_titulo"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        android:textColorHighlight="@color/colorAccent"
-        android:textColorLink="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/cant_text"
+        android:id="@+id/fecha_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/ingrese_la_fecha_del_sorteo"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/fecha"
+        style="@style/AppIntroButtonStyleCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fecha_text"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/placeholder_fecha"
+        android:textColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/puntos_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fecha"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/lato_bold"
-        android:text="@string/ingrese_la_cantidad_de_preguntas_de_la_trivia"
+        android:text="Ingrese la cantidad de puntos a sortear:"
         android:textColor="@color/colorPrimaryDark" />
 
     <EditText
-        android:id="@+id/cant_preguntas"
+        android:id="@+id/puntos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cant_text"
+        android:layout_below="@id/puntos_text"
         android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
         android:ems="10"
-        android:hint="@string/bounds_trivia"
+        android:hint="600"
         android:inputType="numberSigned"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
@@ -103,4 +98,5 @@
         android:background="@drawable/button_violeta"
         android:text="@string/continuar"
         android:textColor="@android:color/background_light" />
+
 </RelativeLayout>

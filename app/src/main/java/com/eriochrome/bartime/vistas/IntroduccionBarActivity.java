@@ -13,8 +13,6 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 
 public class IntroduccionBarActivity extends AppIntro {
 
-    //TODO: imagenes
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

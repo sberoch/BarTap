@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.eriochrome.bartime.contracts.JuegosFragmentContract;
 import com.eriochrome.bartime.modelos.entidades.Desafio;
 import com.eriochrome.bartime.modelos.entidades.Juego;
+import com.eriochrome.bartime.modelos.entidades.Sorteo;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
 import com.eriochrome.bartime.utils.CreadorDeAvisos;
 import com.eriochrome.bartime.utils.StrCompareUtils;
@@ -22,6 +23,7 @@ public class JuegosFragmentInteraccion implements JuegosFragmentContract.Interac
 
     private JuegosFragmentContract.Listener listener;
     private ArrayList<Juego> juegos;
+    private DatabaseReference ref;
     private DatabaseReference refJuegos;
     private FirebaseUser authUser;
     private StrCompareUtils strComparer;
@@ -30,7 +32,8 @@ public class JuegosFragmentInteraccion implements JuegosFragmentContract.Interac
         this.listener = listener;
         strComparer = new StrCompareUtils();
         juegos = new ArrayList<>();
-        refJuegos = FirebaseDatabase.getInstance().getReference().child("juegos");
+        ref = FirebaseDatabase.getInstance().getReference();
+        refJuegos = ref.child("juegos");
         authUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
@@ -41,6 +44,12 @@ public class JuegosFragmentInteraccion implements JuegosFragmentContract.Interac
         refJuegos.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.child("Sorteo").getChildren()) {
+                    Juego juego = ds.getValue(Sorteo.class);
+                    if (strComparer.juegoContiene(juego, busqueda)) {
+                        juegos.add(juego);
+                    }
+                }
                 for (DataSnapshot ds : dataSnapshot.child("Desafio").getChildren()) {
                     Juego juego = ds.getValue(Desafio.class);
                     if (strComparer.juegoContiene(juego, busqueda)) {

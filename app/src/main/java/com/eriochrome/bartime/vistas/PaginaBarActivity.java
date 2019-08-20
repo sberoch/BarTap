@@ -103,6 +103,7 @@ public class PaginaBarActivity extends AppCompatActivity implements PaginaBarCon
 
         presenter.cargarComentarios();
         presenter.cargarImagenes();
+        presenter.visitar();
     }
 
     private void setupDescripcion() {

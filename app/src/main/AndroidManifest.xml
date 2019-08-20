@@ -176,6 +176,7 @@
             android:name=".vistas.IntroduccionBarActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+        <activity android:name=".vistas.CrearSorteoActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

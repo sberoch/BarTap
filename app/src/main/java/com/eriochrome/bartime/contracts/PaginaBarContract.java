@@ -1,9 +1,9 @@
 package com.eriochrome.bartime.contracts;
 
-        import com.eriochrome.bartime.modelos.entidades.Bar;
-        import com.eriochrome.bartime.modelos.entidades.Comentario;
+import com.eriochrome.bartime.modelos.entidades.Bar;
+import com.eriochrome.bartime.modelos.entidades.Comentario;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
 public interface PaginaBarContract {
     interface View {
@@ -38,6 +38,7 @@ public interface PaginaBarContract {
         String getUbicacionDeBar();
         String getTelefonoDeBar();
         boolean esBarConOwner();
+        void visitar();
     }
 
     interface CompleteListener {

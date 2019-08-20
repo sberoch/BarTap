@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.modelos;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.eriochrome.bartime.contracts.TiendaContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
@@ -13,6 +14,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -81,6 +84,8 @@ public class TiendaInteraccion implements TiendaContract.Interaccion {
 
     @Override
     public void comprarItem(ItemTienda itemTienda) {
+        contabilizarCompra();
+
         misPuntos -= itemTienda.getCosto();
         ref.child("puntos").child(authUser.getDisplayName()).child(bar.getNombre()).setValue(misPuntos);
 
@@ -90,6 +95,27 @@ public class TiendaInteraccion implements TiendaContract.Interaccion {
 
         CreadorDeAvisos creadorDeAvisos = new CreadorDeAvisos();
         creadorDeAvisos.avisarCompraDeDescuento(itemTienda, authUser.getDisplayName(), bar);
+    }
+
+    private void contabilizarCompra() {
+        //Para estadistica
+        ref.child("bares").child(bar.getNombre()).child("cantidadItemsVendidos").runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Integer valorActual = mutableData.getValue(Integer.class);
+                if (valorActual == null) {
+                    mutableData.setValue(1);
+                }
+                else {
+                    mutableData.setValue(valorActual + 1);
+                }
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {}
+        });
     }
 
     @Override

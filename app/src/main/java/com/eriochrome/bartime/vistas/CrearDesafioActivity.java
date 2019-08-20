@@ -2,13 +2,14 @@ package com.eriochrome.bartime.vistas;
 
 import android.graphics.Paint;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.contracts.CrearDesafioContract;
@@ -83,7 +84,7 @@ public class CrearDesafioActivity extends AppCompatActivity implements CrearDesa
 
     @Override
     public void enviado() {
-        toastShort(this, "Se ha enviado el desafio con exito!");
+        toastShort(this, getString(R.string.desafio_enviado_exito));
         finish();
     }
 

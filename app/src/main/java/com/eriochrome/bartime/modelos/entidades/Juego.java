@@ -37,6 +37,9 @@ public abstract class Juego implements Serializable {
         if (this instanceof Trivia) {
             return ((Trivia) this).getTitulo();
         }
+        if (this instanceof Sorteo) {
+            return ((Sorteo) this).getDescripcionSorteo();
+        }
         return "";
     }
 

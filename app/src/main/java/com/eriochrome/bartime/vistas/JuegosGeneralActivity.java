@@ -7,6 +7,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.adapters.EspacioVerticalDecorator;
 import com.eriochrome.bartime.adapters.JuegoDelBarHolder;
@@ -17,10 +21,6 @@ import com.eriochrome.bartime.presenters.JuegosGeneralPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogCrearJuego;
 
 import java.util.ArrayList;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
@@ -125,6 +125,9 @@ public class JuegosGeneralActivity extends AppCompatActivity implements
                 break;
             case "Trivia":
                 i = new Intent(JuegosGeneralActivity.this, CrearTriviaActivity.class);
+                break;
+            case "Sorteo":
+                i = new Intent(JuegosGeneralActivity.this, CrearSorteoActivity.class);
                 break;
             default:
                 toastShort(this, "Ocurrio un error inesperado.");

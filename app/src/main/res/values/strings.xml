@@ -55,7 +55,6 @@
     <string name="facil">Facil</string>
     <string name="participar">Participar</string>
     <string name="necesitas_cuenta_participar">Necesitas una cuenta para participar del juego.</string>
-    <string name="premio">Premio:</string>
     <string name="lista_de_participantes">Lista de participantes:</string>
     <string name="deseas_declarar_ganador">¿Deseas declarar a este usuario como ganador del juego?</string>
     <string name="ok">OK</string>
@@ -162,6 +161,19 @@
     <string name="intro_b1_des">Completa la informacion para que los usuarios puedan encontrar el bar en sus busquedas</string>
     <string name="intro_b2_des">Podes crear juegos, los usuarios participaran ¡No olvides nombrar al ganador para que se le acrediten sus puntos!</string>
     <string name="intro_b3_des">Tu bar tendra una tienda, los usuarios pueden gastar sus puntos en los descuentos que agregues</string>
+    <string name="crear_sorteo">Crear Sorteo</string>
+    <string name="sorteo">Sorteo</string>
+    <string name="trivia">Trivia</string>
+    <string name="desafio">Desafio</string>
+    <string name="ingrese_la_fecha_del_sorteo">Ingrese la fecha de finalizacion del sorteo:</string>
+    <string name="placeholder_fecha">-- / -- / --</string>
+    <string name="debes_elegir_fecha">Debes elegir una fecha antes de continuar</string>
+    <string name="debes_recompensa_ganador">Debes poner una recompensa para el ganador</string>
+    <string name="sorteo_enviado_exito">Se ha enviado el sorteo con exito!</string>
+    <string name="desafio_enviado_exito">Se ha enviado el desafio con exito!</string>
+    <string name="de_que_se_trata_sorteo">En un sorteo los puntos que pongas como recompensa seran otorgados al ganador, elegido al azar cuando se llegue a la fecha de finalizacion. Los usuarios que comparten el sorteo tienen mas chances de ganar.</string>
+    <string name="de_que_se_trata_desafio">Un desafio puede ser cualquier cosa... ¡Pensa en algo divertido o avergonzante para quien participe! Eso si, necesitan una buena recompensa.</string>
+    <string name="de_que_se_trata_trivia">Una trivia consiste en una serie de preguntas de cualquier cosa que se te ocurra ¡Los participantes trataran de contestarlas y ganaran puntos si aciertan en todas!.</string>
 
 
 </resources>
