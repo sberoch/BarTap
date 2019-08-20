@@ -11,7 +11,7 @@ public interface PaginaJuegoParticipableContract {
         void setJuego(Juego juego);
         String getTipoDeJuego();
         String getResumenJuego();
-        void obtenerJuegos();
+        void obtenerParticipantes();
         boolean esUnJuegoValidable();
         void declararGanador(String ganador);
         void setBar(Bar bar);

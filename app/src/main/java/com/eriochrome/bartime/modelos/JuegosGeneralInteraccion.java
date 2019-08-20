@@ -6,6 +6,7 @@ import com.eriochrome.bartime.contracts.JuegosGeneralContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Desafio;
 import com.eriochrome.bartime.modelos.entidades.Juego;
+import com.eriochrome.bartime.modelos.entidades.Sorteo;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +39,12 @@ public class JuegosGeneralInteraccion implements JuegosGeneralContract.Interacci
         refJuegos.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.child("Sorteo").getChildren()) {
+                    Juego juego = ds.getValue(Sorteo.class);
+                    if (juego.getNombreBar().equals(bar.getNombre())) {
+                        juegos.add(juego);
+                    }
+                }
                 for (DataSnapshot ds : dataSnapshot.child("Desafio").getChildren()) {
                     Juego juego = ds.getValue(Desafio.class);
                     if (juego.getNombreBar().equals(bar.getNombre())) {
@@ -65,6 +72,7 @@ public class JuegosGeneralInteraccion implements JuegosGeneralContract.Interacci
 
     @Override
     public boolean esParticipable(Juego juego) {
+        //TODO: hay problema con Sorteo?
         //Ojo, funciona esto siempre y cuando no haya otro juego de la misma indole que trivia
         return !juego.getTipoDeJuego().equals("Trivia");
     }

@@ -16,8 +16,21 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Crear Desafio"
+        android:text="@string/crear_desafio"
         android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/de_que_se_trata"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titulo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/de_que_se_trata_desafio"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="12sp"
+        android:textStyle="italic" />
 
     <EditText
         android:id="@+id/desafio_text"
@@ -36,9 +49,7 @@
         android:id="@+id/hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/unico_ganador"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
+        android:layout_centerInParent="true"
         android:fontFamily="@font/lato_bold"
         android:text="¿No se te ocurre nada?"
         android:textColor="@color/colorAccent" />
@@ -47,7 +58,7 @@
         android:id="@+id/unico_ganador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/dificultad_spinner"
+        android:layout_below="@id/hint"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
@@ -60,7 +71,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/listo"
+        android:layout_below="@id/unico_ganador"
         android:layout_alignParentStart="true"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="100dp"
@@ -71,7 +82,7 @@
         android:id="@+id/dificultad_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/listo"
+        android:layout_below="@id/unico_ganador"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="100dp"

@@ -1,11 +1,12 @@
 package com.eriochrome.bartime.adapters;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.entidades.Juego;
@@ -61,9 +62,11 @@ public class JuegoDelBarHolder extends RecyclerView.ViewHolder implements View.O
             case "Desafio":
                 imagenDelJuego.setImageResource(R.drawable.logodesafio);
                 break;
-
             case "Trivia":
                 imagenDelJuego.setImageResource(R.drawable.logotrivia);
+                break;
+            case "Sorteo":
+                imagenDelJuego.setImageResource(R.drawable.logosorteo);
                 break;
         }
     }

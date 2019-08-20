@@ -4,9 +4,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.widget.Button;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.eriochrome.bartime.R;
 
@@ -54,6 +55,11 @@ public class DialogCrearJuego extends DialogFragment {
         Button crearTrivia = ((AlertDialog)getDialog()).findViewById(R.id.crear_trivia);
         crearTrivia.setOnClickListener(v -> {
             listener.crearJuegoConTipo("Trivia");
+        });
+
+        Button crearSorteo = ((AlertDialog)getDialog()).findViewById(R.id.crear_sorteo);
+        crearSorteo.setOnClickListener(v -> {
+            listener.crearJuegoConTipo("Sorteo");
         });
     }
 }

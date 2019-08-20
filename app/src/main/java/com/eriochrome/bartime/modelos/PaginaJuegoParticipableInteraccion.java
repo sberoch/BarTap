@@ -53,19 +53,25 @@ public class PaginaJuegoParticipableInteraccion implements PaginaJuegoParticipab
     }
 
     @Override
-    public void obtenerJuegos() {
+    public void obtenerParticipantes() {
+        String id = juego.getID();
         refParticipantes.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dsJuego : dataSnapshot.child("Desafio").getChildren()) {
-                    Juego juego = dsJuego.getValue(Desafio.class);
-                    if (juego.getID().equals(dsJuego.getKey())) {
+                    if (id.equals(dsJuego.getKey())) {
                         for (DataSnapshot dsParticipante : dsJuego.child("participantes").getChildren()) {
                             participantes.add(dsParticipante.getValue(String.class));
                         }
                     }
                 }
-                //Trivia no necesita lista de participantes
+                for (DataSnapshot dsSorteo : dataSnapshot.child("Sorteo").getChildren()) {
+                    if (id.equals(dsSorteo.getKey())) {
+                        for (DataSnapshot dsParticipante : dsSorteo.child("participantes").getChildren()) {
+                            participantes.add(dsParticipante.getValue(String.class));
+                        }
+                    }
+                }
                 listener.onComplete(participantes);
             }
 

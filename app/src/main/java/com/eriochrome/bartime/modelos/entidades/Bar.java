@@ -1,17 +1,14 @@
 package com.eriochrome.bartime.modelos.entidades;
 
-import android.net.Uri;
-
-import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.utils.Utils;
-import com.google.firebase.database.Exclude;
-//import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+
+//import com.google.android.gms.maps.model.LatLng;
 
 public class Bar implements Serializable {
 
@@ -31,6 +28,11 @@ public class Bar implements Serializable {
     private int cantidadDeFotos;
     private String owner;
     private String telefono;
+    //Para estadisticas
+    private int visitas;
+    private int cantidadFavoritos;
+    private int cantidadItemsVendidos;
+    private int cantidadParticipantesJuegos;
 
     //Requerido por la base de datos.
     public Bar() {
@@ -100,6 +102,18 @@ public class Bar implements Serializable {
     }
     public String getTelefono() {
         return telefono;
+    }
+    public int getVisitas() {
+        return visitas;
+    }
+    public int getCantidadFavoritos() {
+        return cantidadFavoritos;
+    }
+    public int getCantidadItemsVendidos() {
+        return cantidadItemsVendidos;
+    }
+    public int getCantidadParticipantesJuegos() {
+        return cantidadParticipantesJuegos;
     }
 
     public void actualizarEstrellas(int calificacion) {

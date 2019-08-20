@@ -1,6 +1,7 @@
 package com.eriochrome.bartime.modelos;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
@@ -12,6 +13,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -67,11 +70,44 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     public void agregarAFavoritos() {
         String nombreBar = bar.getNombre();
         favoritosRef.child(nombreBar).setValue(nombreBar);
+        //Para estadistica, aumenta el numero de favoritos
+        ref.child("bares").child(bar.getNombre()).child("cantidadFavoritos").runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Integer valorActual = mutableData.getValue(Integer.class);
+                if (valorActual == null) {
+                    mutableData.setValue(1);
+                }
+                else {
+                    mutableData.setValue(valorActual + 1);
+                }
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {}
+        });
     }
 
     @Override
     public void quitarDeFavoritos() {
         favoritosRef.child(bar.getNombre()).removeValue();
+        //Para estadisitica, reduce el numero de favoritos
+        ref.child("bares").child(bar.getNombre()).child("cantidadFavoritos").runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Integer valorActual = mutableData.getValue(Integer.class);
+                if (valorActual != null) {
+                    mutableData.setValue(valorActual - 1);
+                }
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {}
+        });
     }
 
     @Override
@@ -199,5 +235,26 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
     @Override
     public boolean esBarConOwner() {
         return !bar.getOwner().equals("");
+    }
+
+    @Override
+    public void visitar() {
+        ref.child("bares").child(bar.getNombre()).child("visitas").runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Integer valorActual = mutableData.getValue(Integer.class);
+                if (valorActual == null) {
+                    mutableData.setValue(1);
+                }
+                else {
+                    mutableData.setValue(valorActual + 1);
+                }
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {}
+        });
     }
 }

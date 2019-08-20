@@ -3,9 +3,9 @@ package com.eriochrome.bartime.presenters;
 import android.content.Intent;
 
 import com.eriochrome.bartime.contracts.PaginaJuegoParticipableContract;
+import com.eriochrome.bartime.modelos.PaginaJuegoParticipableInteraccion;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Juego;
-import com.eriochrome.bartime.modelos.PaginaJuegoParticipableInteraccion;
 
 import java.util.ArrayList;
 
@@ -41,7 +41,7 @@ public class PaginaJuegoParticipablePresenter implements PaginaJuegoParticipable
 
     public void setupAdapter() {
         view.cargando();
-        interaccion.obtenerJuegos();
+        interaccion.obtenerParticipantes();
     }
 
     @Override

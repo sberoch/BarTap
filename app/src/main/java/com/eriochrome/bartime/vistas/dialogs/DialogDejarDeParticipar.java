@@ -5,9 +5,10 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.eriochrome.bartime.R;
 import com.eriochrome.bartime.modelos.entidades.Juego;
@@ -39,12 +40,15 @@ public class DialogDejarDeParticipar extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.dialog_resumen_juego, null));
 
-        builder.setTitle(juego.getTipoDeJuego());
+        String tipoDeJuego = juego.getTipoDeJuego();
+        builder.setTitle(tipoDeJuego);
 
-        builder.setPositiveButton(R.string.dejar_de_participar, (dialog, which) -> {
-            listener.dejarDeParticipar(juego);
-            dismiss();
-        });
+        if (tipoDeJuego.equals("Desafio")) {
+            builder.setPositiveButton(R.string.dejar_de_participar, (dialog, which) -> {
+                listener.dejarDeParticipar(juego);
+                dismiss();
+            });
+        }
 
         builder.setNegativeButton(R.string.cancelar, (dialog, which) -> {
             dismiss();
@@ -61,8 +65,8 @@ public class DialogDejarDeParticipar extends DialogFragment {
         TextView puntosTextView = ((AlertDialog)getDialog()).findViewById(R.id.puntos_text);
 
         resumenJuego.setText(juego.getTextoResumen());
-        puntosTextView.setText(getString(R.string.premio) +
-                juego.getPuntos());
+        puntosTextView.setText("Premio: " +
+                juego.getPuntos() + " puntos");
     }
 
     public void setJuego(Juego juego) {

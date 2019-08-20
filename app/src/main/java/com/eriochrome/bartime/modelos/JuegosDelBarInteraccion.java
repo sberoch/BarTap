@@ -6,6 +6,7 @@ import com.eriochrome.bartime.contracts.JuegosDelBarContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Desafio;
 import com.eriochrome.bartime.modelos.entidades.Juego;
+import com.eriochrome.bartime.modelos.entidades.Sorteo;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
 import com.eriochrome.bartime.utils.CreadorDeAvisos;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,6 +44,12 @@ public class JuegosDelBarInteraccion implements JuegosDelBarContract.Interaccion
         ref.child("juegos").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.child("Sorteo").getChildren()) {
+                    Juego juego = ds.getValue(Sorteo.class);
+                    if (juego.getNombreBar().equals(bar.getNombre())) {
+                        juegos.add(juego);
+                    }
+                }
                 for (DataSnapshot ds : dataSnapshot.child("Desafio").getChildren()) {
                     Juego juego = ds.getValue(Desafio.class);
                     if (juego.getNombreBar().equals(bar.getNombre())) {

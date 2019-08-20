@@ -3,9 +3,9 @@ package com.eriochrome.bartime.presenters;
 import android.content.Intent;
 
 import com.eriochrome.bartime.contracts.PaginaBarContract;
+import com.eriochrome.bartime.modelos.PaginaBarInteraccion;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Comentario;
-import com.eriochrome.bartime.modelos.PaginaBarInteraccion;
 
 import java.util.ArrayList;
 
@@ -158,5 +158,9 @@ public class PaginaBarPresenter implements PaginaBarContract.CompleteListener {
 
     public boolean esBarConOwner() {
         return interaccion.esBarConOwner();
+    }
+
+    public void visitar() {
+        interaccion.visitar();
     }
 }
