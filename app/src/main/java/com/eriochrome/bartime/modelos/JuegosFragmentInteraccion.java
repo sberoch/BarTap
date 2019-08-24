@@ -112,6 +112,11 @@ public class JuegosFragmentInteraccion implements JuegosFragmentContract.Interac
                     }
                 });
 
+        //Si es sorteo hay que agregarlo a la seccion extra donde ademas se tiene en cuenta los invitados
+        if (juego.getTipoDeJuego().equals("Sorteo")) {
+            ref.child("invitadosSorteo").child(juego.getID()).child(authUser.getDisplayName()).setValue(0);
+        }
+
         avisarParticipacion(juego);
     }
 

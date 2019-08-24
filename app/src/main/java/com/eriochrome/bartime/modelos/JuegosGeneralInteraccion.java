@@ -71,9 +71,12 @@ public class JuegosGeneralInteraccion implements JuegosGeneralContract.Interacci
     }
 
     @Override
-    public boolean esParticipable(Juego juego) {
-        //TODO: hay problema con Sorteo?
-        //Ojo, funciona esto siempre y cuando no haya otro juego de la misma indole que trivia
-        return !juego.getTipoDeJuego().equals("Trivia");
+    public boolean esSorteo(Juego juego) {
+        return juego.getTipoDeJuego().equals("Sorteo");
+    }
+
+    @Override
+    public boolean esTrivia(Juego juego) {
+        return juego.getTipoDeJuego().equals("Trivia");
     }
 }
