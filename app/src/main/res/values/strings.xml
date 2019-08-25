@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BarTime</string>
+    <string name="app_name">BarTap</string>
     <string name="tengo_un_bar">Tengo un bar</string>
     <string name="comenzar">Comenzar</string>
     <string name="crear_cuenta">Crear cuenta</string>
@@ -146,7 +146,7 @@
     <string name="tipb_1">Recorda que podés poner descuentos en la tienda, los usuarios canjearán sus puntos en ella.</string>
     <string name="tipb_2">A los usuarios les gustan los juegos, ¡No olvides crear los tuyos!</string>
     <string name="tipb_3">No olvides que, una vez terminado un desafío del bar, debes declarar un ganador.</string>
-    <string name="share_text">Te invito a probar la aplicacion BarTime! https://play.google.com/store/apps/details?id=com.eriochrome.bartime</string>
+    <string name="share_text">Te invito a probar la aplicacion BarTap! https://play.google.com/store/apps/details?id=com.eriochrome.bartime</string>
     <string name="compartir">Compartir</string>
     <string name="ver_en_mapa">Ver en mapa</string>
     <string name="intro_u1_des">Navega y encontrá el que más te guste, filtra hasta quedarte solo lo mejor</string>
@@ -172,8 +172,9 @@
     <string name="sorteo_enviado_exito">Se ha enviado el sorteo con exito!</string>
     <string name="desafio_enviado_exito">Se ha enviado el desafio con exito!</string>
     <string name="de_que_se_trata_sorteo">En un sorteo los puntos que pongas como recompensa seran otorgados al ganador, elegido al azar cuando se llegue a la fecha de finalizacion. Los usuarios que comparten el sorteo tienen mas chances de ganar.</string>
-    <string name="de_que_se_trata_desafio">Un desafio puede ser cualquier cosa... ¡Pensa en algo divertido o avergonzante para quien participe! Eso si, necesitan una buena recompensa.</string>
+    <string name="de_que_se_trata_desafio">Un desafio puede ser cualquier cosa… ¡Pensa en algo divertido o avergonzante para quien participe! Eso si, necesitan una buena recompensa.</string>
     <string name="de_que_se_trata_trivia">Una trivia consiste en una serie de preguntas de cualquier cosa que se te ocurra ¡Los participantes trataran de contestarlas y ganaran puntos si aciertan en todas!.</string>
-
+    <string name="sortear">Sortear</string>
+    <string name="no_sortear_sin_participantes">No podes sortear sin participantes!</string>
 
 </resources>

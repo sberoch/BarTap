@@ -3,6 +3,7 @@ package com.eriochrome.bartime.utils;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.ItemTienda;
 import com.eriochrome.bartime.modelos.entidades.Juego;
+import com.eriochrome.bartime.modelos.entidades.Sorteo;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -51,5 +52,21 @@ public class CreadorDeAvisos {
                 + " ha comprado: '"
                 + itemTienda.getDescripcion()
                 + "'.";
+    }
+
+    public void avisarPerdedorDeSorteo(Sorteo sorteo, String perdedor) {
+        String texto = getTextoPerderSorteo(sorteo);
+        String key = refAvisos.child(perdedor).push().getKey();
+        if (key != null) {
+            refAvisos.child(perdedor).child(key).setValue(texto);
+        }
+    }
+
+    private String getTextoPerderSorteo(Sorteo sorteo) {
+        return "No resultaste ganador del sorteo por "
+                + sorteo.getPuntos()
+                + " puntos del bar "
+                + sorteo.getNombreBar()
+                + ".";
     }
 }

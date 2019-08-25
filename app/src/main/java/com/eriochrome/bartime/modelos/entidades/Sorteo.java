@@ -31,11 +31,11 @@ public class Sorteo extends Juego {
     @Override
     public String getTextoGanadorDeJuego() {
         String nombreBar = getNombreBar();
-        return "Has ganado el sorteo de "
+        return "¡Has ganado el sorteo de "
                 + nombreBar
                 + " por "
                 + puntos
-                + ".";
+                + "!";
     }
 
     public String getDescripcionSorteo() {

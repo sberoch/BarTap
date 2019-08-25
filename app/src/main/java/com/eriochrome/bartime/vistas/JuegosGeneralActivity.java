@@ -106,10 +106,12 @@ public class JuegosGeneralActivity extends AppCompatActivity implements
     @Override
     public void onClickJuego(Juego juego) {
         Intent i;
-        if (presenter.esParticipable(juego)) {
-            i = new Intent(this, PaginaJuegoParticipableActivity.class);
-        } else {
+        if (presenter.esSorteo(juego)) {
+            i = new Intent(this, PaginaSorteoActivity.class);
+        } else if (presenter.esTrivia(juego)) {
             i = new Intent(this, PaginaTriviaActivity.class);
+        } else {
+            i = new Intent(this, PaginaJuegoParticipableActivity.class);
         }
         i = presenter.enviarJuego(i, juego);
         i = presenter.enviarBar(i);
@@ -134,7 +136,10 @@ public class JuegosGeneralActivity extends AppCompatActivity implements
                 finish();
         }
 
-        i = presenter.enviarBar(i);
-        startActivity(i);
+        if (i != null) {
+            i = presenter.enviarBar(i);
+            startActivity(i);
+            finish();
+        }
     }
 }

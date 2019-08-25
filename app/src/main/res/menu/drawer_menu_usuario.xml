@@ -7,6 +7,10 @@
             android:icon="@drawable/ic_directions_walk_black_24dp"
             android:title="@string/iniciar_sesion" />
         <item
+            android:id="@+id/agregar_bar"
+            android:icon="@drawable/ic_add_circle_24dp"
+            android:title="@string/agregar_un_bar" />
+        <item
             android:id="@+id/juegos"
             android:icon="@drawable/ic_videogame_24dp"
             android:title="@string/mis_juegos" />

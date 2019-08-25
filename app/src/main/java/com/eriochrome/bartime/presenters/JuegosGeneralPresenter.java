@@ -49,7 +49,11 @@ public class JuegosGeneralPresenter implements JuegosGeneralContract.Listener {
         return i.putExtra("juego", juego);
     }
 
-    public boolean esParticipable(Juego juego) {
-        return interaccion.esParticipable(juego);
+    public boolean esSorteo(Juego juego) {
+        return interaccion.esSorteo(juego);
+    }
+
+    public boolean esTrivia(Juego juego) {
+        return interaccion.esTrivia(juego);
     }
 }

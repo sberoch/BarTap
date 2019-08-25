@@ -185,6 +185,10 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
                 loginUsuario();
                 break;
 
+            case R.id.agregar_bar:
+                startActivity(new Intent(ListadosActivity.this, AgregarBarUsuarioActivity.class));
+                break;
+
             case R.id.juegos:
                 startActivity(new Intent(ListadosActivity.this, MisJuegosActivity.class));
                 break;
@@ -343,6 +347,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     private void setupItems(Menu menu, boolean conectado) {
         if (conectado) {
             menu.findItem(R.id.iniciar_sesion).setVisible(false);
+            menu.findItem(R.id.agregar_bar).setVisible(true);
             menu.findItem(R.id.juegos).setVisible(true);
             menu.findItem(R.id.compras).setVisible(true);
             menu.findItem(R.id.guardados).setVisible(true);
@@ -351,6 +356,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             menu.findItem(R.id.salir).setVisible(false);
         } else {
             menu.findItem(R.id.iniciar_sesion).setVisible(true);
+            menu.findItem(R.id.agregar_bar).setVisible(false);
             menu.findItem(R.id.juegos).setVisible(false);
             menu.findItem(R.id.compras).setVisible(false);
             menu.findItem(R.id.guardados).setVisible(false);
