@@ -1,5 +1,7 @@
 package com.eriochrome.bartime.presenters;
 
+import android.net.Uri;
+
 import com.eriochrome.bartime.contracts.ListadosContract;
 import com.eriochrome.bartime.modelos.ListadosInteraccion;
 
@@ -53,6 +55,11 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
         view.noHayAvisos();
     }
 
+    @Override
+    public void setInvUrl(Uri shortLink) {
+        view.setInvUrl(shortLink);
+    }
+
     public void conectar() {
         interaccion.conectar();
     }
@@ -63,5 +70,9 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
 
     public void dejarDeCheckearAvisos() {
         interaccion.dejarDeCheckearAvisos();
+    }
+
+    public void mockCompartirConDynLink() {
+        interaccion.mockCompartirConDynLink();
     }
 }

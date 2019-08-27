@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -275,7 +276,8 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             }
         });
         share.setOnClickListener(v -> {
-            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            presenter.mockCompartirConDynLink();
+            /*Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
 
@@ -283,7 +285,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             sharingIntent.putExtra(Intent.EXTRA_TEXT, invitacion);
 
             String chooserText = getString(R.string.compartir);
-            startActivity(Intent.createChooser(sharingIntent, chooserText));
+            startActivity(Intent.createChooser(sharingIntent, chooserText));*/
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -400,6 +402,22 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     public void noHayAvisos() {
         avisos.setImageResource(R.drawable.ic_notifications_none_violet_24dp);
+    }
+
+    @Override
+    public void setInvUrl(Uri shortLink) {
+        //TODO: como sospechaba esto abre un link que no anda
+        //TODO: ver como hacer para que ande cuando no hay pagina y ver que hacer con tema bartime/bartap
+        Intent sharingIntent = new Intent(Intent.ACTION_SENDTO);
+        sharingIntent.setData(Uri.parse("mailto:"));
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+
+        String invitacion = "Link: " + shortLink.toString();
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, invitacion);
+
+        if (sharingIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sharingIntent);
+        }
     }
 
     @Override

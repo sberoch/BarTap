@@ -1,17 +1,24 @@
 package com.eriochrome.bartime.modelos;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.ListadosContract;
 import com.eriochrome.bartime.modelos.entidades.UsuarioAnonimo;
 import com.eriochrome.bartime.modelos.entidades.UsuarioComun;
 import com.eriochrome.bartime.modelos.entidades.UsuarioRegistrado;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.ShortDynamicLink;
 
 public class ListadosInteraccion implements ListadosContract.Interaccion {
 
@@ -65,6 +72,25 @@ public class ListadosInteraccion implements ListadosContract.Interaccion {
     public void dejarDeCheckearAvisos() {
         refGlobal.child("avisos").child(auth.getCurrentUser().getDisplayName())
                 .removeEventListener(valueEventListener);
+    }
+
+    @Override
+    public void mockCompartirConDynLink() {
+        FirebaseUser user = auth.getCurrentUser();
+        String uid = user.getUid();
+        String link = "https://bartap.eriochrome.com/?invitedby=" + uid;
+        FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLink(Uri.parse(link))
+                .setDomainUriPrefix("https://eriochrome.page.link")
+                .setAndroidParameters(
+                        new DynamicLink.AndroidParameters.Builder("com.eriochrome.android")
+                            .setMinimumVersion(125)
+                            .build())
+                .buildShortDynamicLink()
+                .addOnSuccessListener(shortDynamicLink -> {
+                    listener.setInvUrl(shortDynamicLink.getShortLink());
+                });
+
     }
 
     @Override
