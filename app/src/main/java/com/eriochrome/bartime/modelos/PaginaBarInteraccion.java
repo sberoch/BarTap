@@ -7,8 +7,10 @@ import com.eriochrome.bartime.contracts.PaginaBarContract;
 import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.modelos.entidades.Comentario;
 import com.eriochrome.bartime.utils.ActualizadorFirebase;
+import com.eriochrome.bartime.utils.CreadorDeAvisos;
 import com.eriochrome.bartime.utils.Utils;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -130,17 +132,23 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
 
     @Override
     public void enviarComentario(Comentario comentario) {
-        comentario.setComentador(auth.getCurrentUser().getDisplayName());
-        comentario.setNombreBar(bar.getNombre());
+        FirebaseUser authUser = auth.getCurrentUser();
+        if (authUser != null) {
+            comentario.setComentador(authUser.getDisplayName());
+            comentario.setNombreBar(bar.getNombre());
 
-        String comentarioID = ref.child("comentarios").child(bar.getNombre()).push().getKey();
-        comentario.setID(comentarioID);
+            String comentarioID = ref.child("comentarios").child(bar.getNombre()).push().getKey();
+            comentario.setID(comentarioID);
 
-        refUsuario.child("calificoEn").child(bar.getNombre()).setValue(bar.getNombre());
-        ref.child("comentarios").child(bar.getNombre()).child(comentario.getID()).setValue(comentario)
-            .addOnSuccessListener(aVoid -> {
-                listener.comentarioListo();
-            });
+            CreadorDeAvisos creadorDeAvisos = new CreadorDeAvisos();
+            creadorDeAvisos.avisarComentarioEnBar(authUser.getDisplayName(), bar.getNombre());
+
+            refUsuario.child("calificoEn").child(bar.getNombre()).setValue(bar.getNombre());
+            ref.child("comentarios").child(bar.getNombre()).child(comentario.getID()).setValue(comentario)
+                    .addOnSuccessListener(aVoid -> {
+                        listener.comentarioListo();
+                    });
+        }
     }
 
     @Override

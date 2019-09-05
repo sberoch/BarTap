@@ -5,6 +5,7 @@ import com.eriochrome.bartime.modelos.entidades.ItemTienda;
 import com.eriochrome.bartime.modelos.entidades.Juego;
 import com.eriochrome.bartime.modelos.entidades.Sorteo;
 import com.eriochrome.bartime.modelos.entidades.Trivia;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -68,5 +69,19 @@ public class CreadorDeAvisos {
                 + " puntos del bar "
                 + sorteo.getNombreBar()
                 + ".";
+    }
+
+    public void avisarComentarioEnBar(String user, String nombreBar) {
+        String texto = getTextoComentarioBar(user);
+        String key = refAvisos.child(nombreBar).push().getKey();
+        if (key != null) {
+            refAvisos.child(nombreBar).child(key).setValue(texto);
+        }
+    }
+
+    private String getTextoComentarioBar(String user) {
+        return "¡"
+               + user
+               + " ha calificado tu bar!";
     }
 }
