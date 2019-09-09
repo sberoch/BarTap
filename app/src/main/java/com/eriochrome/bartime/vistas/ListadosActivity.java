@@ -239,7 +239,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
                         .setAuthMethodPickerLayout(customLayout)
                         .setAvailableProviders(providers)
                         .setTheme(R.style.AppTheme)
-                        .setLogo(R.drawable.bar_time_2)
+                        .setLogo(R.drawable.bar_tap_2)
                         .build(),
                 RC_SIGN_IN);
     }

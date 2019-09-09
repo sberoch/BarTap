@@ -13,5 +13,5 @@
         android:layout_height="300dp"
         android:layout_centerInParent="true"
         android:adjustViewBounds="true"
-        app:srcCompat="@drawable/bar_time_2" />
+        app:srcCompat="@drawable/bar_tap_2" />
 </RelativeLayout>

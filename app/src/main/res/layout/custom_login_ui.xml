@@ -71,7 +71,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="31dp"
-            app:srcCompat="@drawable/bar_time" />
+            app:srcCompat="@drawable/bar_tap" />
 
     </RelativeLayout>
 </RelativeLayout>

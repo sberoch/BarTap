@@ -67,7 +67,7 @@ public class JuegoHolder extends RecyclerView.ViewHolder implements View.OnClick
                 imagenDelJuego.setImageResource(R.drawable.logotrivia);
                 break;
             case "Sorteo":
-                imagenDelJuego.setImageResource(R.drawable.logosorteo);
+                imagenDelJuego.setImageResource(R.drawable.logomision);
                 break;
 
         }
