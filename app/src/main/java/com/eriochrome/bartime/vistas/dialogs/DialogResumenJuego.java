@@ -37,7 +37,7 @@ public class DialogResumenJuego extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialog_resumen_juego, null));
+        builder.setView(inflater.inflate(R.layout.dialog_resumen_desafio, null));
 
         builder.setTitle(juego.getTipoDeJuego());
 

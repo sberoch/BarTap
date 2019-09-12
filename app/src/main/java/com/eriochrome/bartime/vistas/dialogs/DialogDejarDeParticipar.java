@@ -38,22 +38,26 @@ public class DialogDejarDeParticipar extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialog_resumen_juego, null));
 
         String tipoDeJuego = juego.getTipoDeJuego();
-        builder.setTitle(tipoDeJuego);
 
         if (tipoDeJuego.equals("Desafio")) {
+            builder.setView(inflater.inflate(R.layout.dialog_resumen_desafio, null));
+            builder.setNegativeButton(R.string.cancelar, (dialog, which) -> dismiss());
             builder.setPositiveButton(R.string.dejar_de_participar, (dialog, which) -> {
                 listener.dejarDeParticipar(juego);
                 dismiss();
             });
+
+        } else if (tipoDeJuego.equals("Sorteo")) {
+            //TODO: hacer boton para invitar
+            builder.setView(inflater.inflate(R.layout.dialog_resumen_sorteo, null));
+            builder.setNegativeButton(R.string.volver, ((dialog, which) -> dismiss()));
         }
 
-        builder.setNegativeButton(R.string.cancelar, (dialog, which) -> {
-            dismiss();
-        });
 
+
+        builder.setTitle(tipoDeJuego);
         return builder.create();
     }
 
@@ -67,6 +71,10 @@ public class DialogDejarDeParticipar extends DialogFragment {
         resumenJuego.setText(juego.getTextoResumen());
         puntosTextView.setText("Premio: " +
                 juego.getPuntos() + " puntos");
+
+        if (juego.getTipoDeJuego().equals("Sorteo")) {
+            //TODO: accionar con el boton de invitar
+        }
     }
 
     public void setJuego(Juego juego) {
