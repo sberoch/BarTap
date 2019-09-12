@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".vistas.FinSorteoActivity"></activity>
+        <activity android:name=".vistas.FinSorteoActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -41,7 +41,16 @@
         <activity
             android:name=".vistas.ListadosActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="eriochrome.com"
+                    android:scheme="https"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".vistas.AgregarBarUsuarioActivity"
             android:configChanges="orientation"
@@ -164,6 +173,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".vistas.CrearSorteoActivity" />
         <activity android:name=".vistas.PaginaSorteoActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

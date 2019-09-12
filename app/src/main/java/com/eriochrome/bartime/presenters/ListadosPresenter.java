@@ -9,7 +9,6 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
 
     private ListadosContract.Interaccion interaccion;
     private ListadosContract.View view;
-    private boolean esNuevoUsuario;
 
     public ListadosPresenter() {
         this.interaccion = new ListadosInteraccion(this);
@@ -35,16 +34,6 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
         return interaccion.getNombreUsuario();
     }
 
-    public boolean esNuevoUsuario() {
-        interaccion.checkearNuevo();
-        return esNuevoUsuario;
-    }
-
-    @Override
-    public void checkearNuevo(boolean esNuevoUsuario) {
-        this.esNuevoUsuario = esNuevoUsuario;
-    }
-
     @Override
     public void hayAvisos() {
         view.hayAvisos();
@@ -58,10 +47,6 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
     @Override
     public void setInvUrl(Uri shortLink) {
         view.setInvUrl(shortLink);
-    }
-
-    public void conectar() {
-        interaccion.conectar();
     }
 
     public void checkearAvisos() {

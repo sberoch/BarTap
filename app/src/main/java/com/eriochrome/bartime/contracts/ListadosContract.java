@@ -14,8 +14,6 @@ public interface ListadosContract {
         boolean estaConectado();
         void subirUsuarioADatabase();
         String getNombreUsuario();
-        void checkearNuevo();
-        void conectar();
         void checkearAvisos();
         void dejarDeCheckearAvisos();
 
@@ -23,7 +21,6 @@ public interface ListadosContract {
     }
 
     interface CompleteListener {
-        void checkearNuevo(boolean esNuevoUsuario);
         void hayAvisos();
         void noHayAvisos();
 

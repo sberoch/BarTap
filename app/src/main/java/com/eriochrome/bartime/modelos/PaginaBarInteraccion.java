@@ -145,9 +145,7 @@ public class PaginaBarInteraccion implements PaginaBarContract.Interaccion {
 
             refUsuario.child("calificoEn").child(bar.getNombre()).setValue(bar.getNombre());
             ref.child("comentarios").child(bar.getNombre()).child(comentario.getID()).setValue(comentario)
-                    .addOnSuccessListener(aVoid -> {
-                        listener.comentarioListo();
-                    });
+                    .addOnSuccessListener(aVoid -> listener.comentarioListo());
         }
     }
 
