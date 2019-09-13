@@ -1,7 +1,5 @@
 package com.eriochrome.bartime.modelos;
 
-import android.net.Uri;
-
 import androidx.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.ListadosContract;
@@ -12,8 +10,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.dynamiclinks.DynamicLink;
-import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+
 
 public class ListadosInteraccion implements ListadosContract.Interaccion {
 
@@ -55,22 +52,6 @@ public class ListadosInteraccion implements ListadosContract.Interaccion {
     public void dejarDeCheckearAvisos() {
         refGlobal.child("avisos").child(auth.getCurrentUser().getDisplayName())
                 .removeEventListener(valueEventListener);
-    }
-
-    @Override
-    public void mockCompartirConDynLink() {
-        FirebaseUser user = auth.getCurrentUser();
-        String uid = user.getUid();
-        String link = "https://eriochrome.com/?invitedby=" + uid;
-        FirebaseDynamicLinks.getInstance().createDynamicLink()
-                .setLink(Uri.parse(link))
-                .setDomainUriPrefix("https://eriochrome.page.link")
-                .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
-                .buildShortDynamicLink()
-                .addOnSuccessListener(shortDynamicLink -> {
-                    listener.setInvUrl(shortDynamicLink.getShortLink());
-                });
-
     }
 
     @Override

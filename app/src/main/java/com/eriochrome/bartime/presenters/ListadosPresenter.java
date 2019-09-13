@@ -44,11 +44,6 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
         view.noHayAvisos();
     }
 
-    @Override
-    public void setInvUrl(Uri shortLink) {
-        view.setInvUrl(shortLink);
-    }
-
     public void checkearAvisos() {
         interaccion.checkearAvisos();
     }
@@ -57,7 +52,4 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
         interaccion.dejarDeCheckearAvisos();
     }
 
-    public void mockCompartirConDynLink() {
-        interaccion.mockCompartirConDynLink();
-    }
 }

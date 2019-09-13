@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -19,6 +20,7 @@ public class DialogDejarDeParticipar extends DialogFragment {
 
     public interface Listener {
         void dejarDeParticipar(Juego juego);
+        void invitarASorteo(Juego juego);
     }
 
     private DialogDejarDeParticipar.Listener listener;
@@ -50,7 +52,6 @@ public class DialogDejarDeParticipar extends DialogFragment {
             });
 
         } else if (tipoDeJuego.equals("Sorteo")) {
-            //TODO: hacer boton para invitar
             builder.setView(inflater.inflate(R.layout.dialog_resumen_sorteo, null));
             builder.setNegativeButton(R.string.volver, ((dialog, which) -> dismiss()));
         }
@@ -73,7 +74,8 @@ public class DialogDejarDeParticipar extends DialogFragment {
                 juego.getPuntos() + " puntos");
 
         if (juego.getTipoDeJuego().equals("Sorteo")) {
-            //TODO: accionar con el boton de invitar
+            Button invitar = ((AlertDialog)getDialog()).findViewById(R.id.invitar_sorteo);
+            invitar.setOnClickListener(v -> listener.invitarASorteo(juego));
         }
     }
 

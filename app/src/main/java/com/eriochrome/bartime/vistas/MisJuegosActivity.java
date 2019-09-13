@@ -1,5 +1,7 @@
 package com.eriochrome.bartime.vistas;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -100,9 +102,26 @@ public class MisJuegosActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void setInvitationUrl(Uri shortLink) {
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shortLink.toString());
+
+        String chooserText = getString(R.string.compartir);
+        startActivity(Intent.createChooser(sharingIntent, chooserText));
+    }
+
+    @Override
     public void dejarDeParticipar(Juego juego) {
         presenter.dejarDeParticipar(juego);
         //hago esto porque sino no aparece borrado el juego al toque;
         finish();
+    }
+
+    @Override
+    public void invitarASorteo(Juego juego) {
+        presenter.invitarASorteo(juego);
     }
 }

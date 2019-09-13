@@ -340,10 +340,8 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             }
         });
 
-        //TODO: si bien esto no va aca, creashea cuando no hay usuario conectado, hacer que sea solo si el user esta conectado
         share.setOnClickListener(v -> {
-            presenter.mockCompartirConDynLink();
-            /*Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
 
@@ -351,7 +349,7 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
             sharingIntent.putExtra(Intent.EXTRA_TEXT, invitacion);
 
             String chooserText = getString(R.string.compartir);
-            startActivity(Intent.createChooser(sharingIntent, chooserText));*/
+            startActivity(Intent.createChooser(sharingIntent, chooserText));
         });
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -496,18 +494,6 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
     @Override
     public void noHayAvisos() {
         avisos.setImageResource(R.drawable.ic_notifications_none_violet_24dp);
-    }
-
-    @Override
-    public void setInvUrl(Uri shortLink) {
-        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-
-        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-        sharingIntent.putExtra(Intent.EXTRA_TEXT, shortLink.toString());
-
-        String chooserText = getString(R.string.compartir);
-        startActivity(Intent.createChooser(sharingIntent, chooserText));
     }
 
     /**

@@ -32,15 +32,31 @@
         android:textColor="@color/colorPrimaryDark" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/invitar_sorteo"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/puntos_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/edittext_violet"
-        android:padding="20dp"
+        android:drawableStart="@drawable/ic_add_circle_outline_24dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:text="Invitar amigos al sorteo"
         android:textColor="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/inv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/invitar_sorteo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="¡Tendras mas chances de ganar!"
+        android:textColor="@color/colorPrimaryDark" />
+
 </RelativeLayout>

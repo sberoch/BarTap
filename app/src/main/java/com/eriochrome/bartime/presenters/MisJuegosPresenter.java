@@ -1,5 +1,7 @@
 package com.eriochrome.bartime.presenters;
 
+import android.net.Uri;
+
 import com.eriochrome.bartime.contracts.MisJuegosContract;
 import com.eriochrome.bartime.modelos.MisJuegosInteraccion;
 import com.eriochrome.bartime.modelos.entidades.Juego;
@@ -33,7 +35,16 @@ public class MisJuegosPresenter implements MisJuegosContract.Listener{
         view.finCargando(juegos);
     }
 
+    @Override
+    public void setInvitationUrl(Uri shortLink) {
+        view.setInvitationUrl(shortLink);
+    }
+
     public void dejarDeParticipar(Juego juego) {
         interaccion.dejarDeParticipar(juego);
+    }
+
+    public void invitarASorteo(Juego juego) {
+        interaccion.invitarASorteo(juego);
     }
 }

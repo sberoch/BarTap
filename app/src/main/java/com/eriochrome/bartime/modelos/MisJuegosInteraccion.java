@@ -1,5 +1,7 @@
 package com.eriochrome.bartime.modelos;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 
 import com.eriochrome.bartime.contracts.MisJuegosContract;
@@ -13,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 
 import java.util.ArrayList;
 
@@ -74,5 +78,19 @@ public class MisJuegosInteraccion implements MisJuegosContract.Interaccion {
         ref.child(juego.getTipoDeJuego()).child(juego.getID())
                 .child("participantes").child(authUser.getDisplayName())
                 .setValue(null);
+    }
+
+    @Override
+    public void invitarASorteo(Juego juego) {
+        String uid = authUser.getUid();
+        String link = "https://eriochrome.com/?invitedby=" + uid;
+        FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLink(Uri.parse(link))
+                .setDomainUriPrefix("https://eriochrome.page.link")
+                .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
+                .buildShortDynamicLink()
+                .addOnSuccessListener(shortDynamicLink -> {
+                    listener.setInvitationUrl(shortDynamicLink.getShortLink());
+                });
     }
 }
