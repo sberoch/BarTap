@@ -1,14 +1,19 @@
 package com.eriochrome.bartime.modelos;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.eriochrome.bartime.contracts.ListadosContract;
+import com.eriochrome.bartime.modelos.entidades.Juego;
+import com.eriochrome.bartime.modelos.entidades.Sorteo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 
@@ -52,6 +57,53 @@ public class ListadosInteraccion implements ListadosContract.Interaccion {
     public void dejarDeCheckearAvisos() {
         refGlobal.child("avisos").child(auth.getCurrentUser().getDisplayName())
                 .removeEventListener(valueEventListener);
+    }
+
+    //TODO: no funca
+	@Override
+	public void anotarReferrer(String referrerUid, String gameID) {
+        refUsuarios.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String nombre = dataSnapshot.child(gameID).child("nombre").getValue(String.class);
+                if (nombre != null) {
+                    refGlobal.child("juegos").child("Sorteo")
+                            .child(gameID).child("participantes")
+                            .child(nombre).runTransaction(new Transaction.Handler() {
+                        @NonNull
+                        @Override
+                        public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                            Integer valorActual = mutableData.getValue(Integer.class);
+                            if (valorActual == null) {
+                                mutableData.setValue(1);
+                            } else {
+                                mutableData.setValue(valorActual + 1);
+                            }
+                            return Transaction.success(mutableData);
+                        }
+                        @Override
+                        public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {}
+                    });
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+
+	}
+
+    @Override
+    public void obtenerSorteoConId(String gameID) {
+        refGlobal.child("juegos").child("Sorteo").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Sorteo sorteo = dataSnapshot.child(gameID).getValue(Sorteo.class);
+                listener.abrirSorteo(sorteo);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
     }
 
     @Override

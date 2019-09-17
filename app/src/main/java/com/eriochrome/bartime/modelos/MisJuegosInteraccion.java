@@ -83,7 +83,10 @@ public class MisJuegosInteraccion implements MisJuegosContract.Interaccion {
     @Override
     public void invitarASorteo(Juego juego) {
         String uid = authUser.getUid();
-        String link = "https://eriochrome.com/?invitedby=" + uid;
+        String link = "https://eriochrome.com/?invitedby="
+                + uid
+                + "&gameId="
+                + juego.getID();
         FirebaseDynamicLinks.getInstance().createDynamicLink()
                 .setLink(Uri.parse(link))
                 .setDomainUriPrefix("https://eriochrome.page.link")

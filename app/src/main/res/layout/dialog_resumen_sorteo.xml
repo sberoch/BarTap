@@ -38,7 +38,7 @@
         android:layout_below="@id/puntos_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_violet"
         android:drawableStart="@drawable/ic_add_circle_outline_24dp"
         android:paddingStart="10dp"
