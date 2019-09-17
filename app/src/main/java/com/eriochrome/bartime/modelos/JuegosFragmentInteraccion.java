@@ -107,7 +107,7 @@ public class JuegosFragmentInteraccion implements JuegosFragmentContract.Interac
                     if (juego.getTipoDeJuego().equals("Trivia")) {
                         listener.ingresarATrivia((Trivia)juego);
                     } else {
-                        listener.successParticipando();
+                        listener.successParticipando(juego);
 
                     }
                 });

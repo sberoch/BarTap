@@ -50,7 +50,12 @@ public class ListadosPresenter implements ListadosContract.CompleteListener{
          view.abrirSorteo(juego);
     }
 
-    public void checkearAvisos() {
+	@Override
+	public void anotarConNombre(String nombre, String gameID) {
+		interaccion.anotarConNombre(nombre, gameID);
+	}
+
+	public void checkearAvisos() {
         interaccion.checkearAvisos();
     }
 

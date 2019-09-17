@@ -125,8 +125,12 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
     }
 
     @Override
-    public void successParticipando() {
-        toastShort(getActivity(), getString(R.string.exito_participar_juego));
+    public void successParticipando(Juego juego) {
+        if (juego.getTipoDeJuego().equals("Sorteo"))  {
+            toastShort(getActivity(), getString(R.string.exito_participar_juego_sorteo));
+        } else {
+            toastShort(getActivity(), getString(R.string.exito_participar_juego));
+        }
     }
 
     @Override

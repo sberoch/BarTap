@@ -7,6 +7,7 @@ public interface ListadosContract {
         void hayAvisos();
         void noHayAvisos();
         void abrirSorteo(Juego juego);
+
     }
 
     interface Interaccion {
@@ -17,11 +18,14 @@ public interface ListadosContract {
         void dejarDeCheckearAvisos();
 		void anotarReferrer(String referrerUid, String gameID);
         void obtenerSorteoConId(String gameID);
+        void anotarConNombre(String nombre, String gameID);
     }
 
     interface CompleteListener {
         void hayAvisos();
         void noHayAvisos();
         void abrirSorteo(Juego juego);
+        void anotarConNombre(String nombre, String gameID);
+
     }
 }

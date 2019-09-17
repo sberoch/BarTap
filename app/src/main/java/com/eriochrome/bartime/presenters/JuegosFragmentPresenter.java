@@ -47,8 +47,8 @@ public class JuegosFragmentPresenter implements JuegosFragmentContract.Listener{
     }
 
     @Override
-    public void successParticipando() {
-        view.successParticipando();
+    public void successParticipando(Juego juego) {
+        view.successParticipando(juego);
     }
 
     @Override

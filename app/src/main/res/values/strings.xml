@@ -176,5 +176,6 @@
     <string name="de_que_se_trata_trivia">Una trivia consiste en una serie de preguntas de cualquier cosa que se te ocurra ¡Los participantes trataran de contestarlas y ganaran puntos si aciertan en todas!.</string>
     <string name="sortear">Sortear</string>
     <string name="no_sortear_sin_participantes">No podes sortear sin participantes!</string>
+    <string name="exito_participar_juego_sorteo">¡Exito! Ahora podes invitar a tus amigos desde la seccion \'Mis juegos\'</string>
 
 </resources>

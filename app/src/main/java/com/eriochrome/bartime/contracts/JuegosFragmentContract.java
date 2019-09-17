@@ -18,14 +18,14 @@ public interface JuegosFragmentContract {
     interface View {
         void cargando();
         void finCargando(ArrayList<Juego> juegos);
-        void successParticipando();
+        void successParticipando(Juego juego);
         void yaSeParticipo();
         void ingresarATrivia(Trivia trivia);
     }
 
     interface Listener {
         void listo();
-        void successParticipando();
+        void successParticipando(Juego juego);
         void yaSeParticipo();
         void participarDeJuego(Juego juego);
         void ingresarATrivia(Trivia trivia);
