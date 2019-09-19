@@ -48,7 +48,12 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data
                     android:host="eriochrome.com"
+                    android:pathPattern=".*"
                     android:scheme="https"/>
+                <data
+                    android:host="eriochrome.page.link"
+                    android:scheme="https"
+                    android:pathPattern=".*"/>
             </intent-filter>
         </activity>
         <activity
