@@ -25,16 +25,19 @@ public class LauncherPresenter implements LauncherContract.CompleteListener{
         if (interaccion.estaConectado()) {
             interaccion.esBar();
         } else {
-            view.startNuevo();
+            if (view != null)
+                view.startNuevo();
         }
     }
 
     @Override
     public void esBar(boolean esBar) {
-        if (esBar) {
-            view.startBar();
-        } else {
-            view.startUsuario();
+        if (view != null) {
+            if (esBar) {
+                view.startBar();
+            } else {
+                view.startUsuario();
+            }
         }
     }
 }
