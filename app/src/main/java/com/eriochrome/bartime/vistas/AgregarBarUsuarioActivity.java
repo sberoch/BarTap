@@ -118,10 +118,12 @@ public class AgregarBarUsuarioActivity extends AppCompatActivity implements Agre
         if (requestCode == NUMERO_SOLICITUD_GALERIA) {
             if (resultCode == RESULT_OK) {
                 try {
-                    path = data.getData();
-                    final InputStream imageStream = getContentResolver().openInputStream(path);
-                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                    imagenBar.setImageBitmap(selectedImage);
+                    if (data != null) {
+                        path = data.getData();
+                        final InputStream imageStream = getContentResolver().openInputStream(path);
+                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                        imagenBar.setImageBitmap(selectedImage);
+                    }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     toastShort(AgregarBarUsuarioActivity.this, "Algo fallo");

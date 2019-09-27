@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,6 +33,7 @@ import com.eriochrome.bartime.presenters.BaresFragmentPresenter;
 import com.eriochrome.bartime.vistas.dialogs.DialogSeleccionFiltros;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
@@ -66,7 +68,7 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         presenter = new BaresFragmentPresenter();
@@ -104,54 +106,56 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
     @Override
     public boolean filtroHappyHour(AlertDialog dialog) {
         Switch happyhour = dialog.findViewById(R.id.happyhour);
-        return happyhour.isChecked();
+        return happyhour != null && happyhour.isChecked();
     }
 
     @Override
     public boolean filtroAbierto(AlertDialog dialog) {
         Switch abierto = dialog.findViewById(R.id.abierto);
-        return abierto.isChecked();
+        return abierto != null && abierto.isChecked();
     }
 
     @Override
     public boolean filtroEfectivo(AlertDialog dialog) {
         CheckBox efectivo = dialog.findViewById(R.id.efectivo);
-        return efectivo.isChecked();
+        return efectivo != null && efectivo.isChecked();
     }
 
     @Override
     public boolean filtroCredito(AlertDialog dialog) {
         CheckBox credito = dialog.findViewById(R.id.credito);
-        return credito.isChecked();
+        return credito != null && credito.isChecked();
     }
 
     @Override
     public boolean filtroDebito(AlertDialog dialog) {
         CheckBox debito = dialog.findViewById(R.id.debito);
-        return debito.isChecked();
+        return debito != null && debito.isChecked();
     }
 
     @Override
     public String getOrdenamiento(AlertDialog dialog) {
         String ordenamiento = "";
         RadioGroup ordenamientoId = dialog.findViewById(R.id.ordenar_group);
-        switch (ordenamientoId.getCheckedRadioButtonId()) {
-            case R.id.distancia:
-                ordenamiento = "distancia";
-                break;
-            case R.id.estrellas:
-                ordenamiento = "estrellas";
-                break;
-            case R.id.nombre:
-                ordenamiento = "nombre";
-                break;
+        if (ordenamientoId != null) {
+            switch (ordenamientoId.getCheckedRadioButtonId()) {
+                case R.id.distancia:
+                    ordenamiento = "distancia";
+                    break;
+                case R.id.estrellas:
+                    ordenamiento = "estrellas";
+                    break;
+                case R.id.nombre:
+                    ordenamiento = "nombre";
+                    break;
+            }
         }
         return ordenamiento;
     }
 
 
     private void ocultarTeclado(){
-        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         }
@@ -160,11 +164,11 @@ public class ListadoBaresFragment extends Fragment implements BaresFragmentContr
 
     private void mostrarFiltros() {
         DialogFragment filtros = new DialogSeleccionFiltros();
-        filtros.show(getActivity().getFragmentManager(), "filtros");
+        filtros.show(Objects.requireNonNull(getActivity()).getFragmentManager(), "filtros");
     }
 
 
-    public void aplicarFiltros(AlertDialog dialog, Location ultimaUbicacion) {
+    void aplicarFiltros(AlertDialog dialog, Location ultimaUbicacion) {
         if (getOrdenamiento(dialog).equals("distancia")) {
             if (ultimaUbicacion != null) {
                 presenter.setUltimaUbicacion(ultimaUbicacion);

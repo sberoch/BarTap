@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
@@ -27,6 +26,7 @@ import com.eriochrome.bartime.vistas.dialogs.DialogCrearCuenta;
 import com.eriochrome.bartime.vistas.dialogs.DialogResumenJuego;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
@@ -35,7 +35,6 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
 
     private JuegosFragmentPresenter presenter;
 
-    private Button filtrar;
     private EditText buscar;
 
     private RecyclerView juegosRecyclerView;
@@ -57,7 +56,6 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
         juegosAdapter = new ListaJuegosAdapter(getActivity(), false);
         juegosRecyclerView.setAdapter(juegosAdapter);
 
-        filtrar = view.findViewById(R.id.filtrar);
         buscar = view.findViewById(R.id.buscar);
 
         loading = view.findViewById(R.id.progressBar);
@@ -81,10 +79,10 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
         presenter.mostrarJuegos();
     }
 
-    public void onClickJuego(Juego juego) {
+    void onClickJuego(Juego juego) {
         DialogResumenJuego dialog = new DialogResumenJuego();
         dialog.setJuego(juego);
-        dialog.show(getActivity().getFragmentManager(), "juego");
+        dialog.show(Objects.requireNonNull(getActivity()).getFragmentManager(), "juego");
     }
 
 
@@ -94,7 +92,7 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
         } else {
             DialogCrearCuenta crearCuentaDialog = new DialogCrearCuenta();
             crearCuentaDialog.setTexto(getString(R.string.necesitas_cuenta_participar));
-            crearCuentaDialog.show(getActivity().getFragmentManager(), "crearCuentaDialog");
+            crearCuentaDialog.show(Objects.requireNonNull(getActivity()).getFragmentManager(), "crearCuentaDialog");
         }
     }
 
@@ -146,7 +144,8 @@ public class ListadoJuegosFragment extends Fragment implements JuegosFragmentCon
     }
 
     private void ocultarTeclado() {
-        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) Objects.requireNonNull(getActivity())
+                                    .getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         }

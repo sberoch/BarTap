@@ -22,6 +22,7 @@ import com.eriochrome.bartime.modelos.entidades.Bar;
 import com.eriochrome.bartime.presenters.FavoritosFragmentPresenter;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.eriochrome.bartime.utils.Utils.toastShort;
 
@@ -103,7 +104,8 @@ public class ListadoFavoritosFragment extends Fragment implements FavoritosFragm
 
 
     private void ocultarTeclado(){
-        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) Objects.requireNonNull(getActivity())
+                                        .getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
         }

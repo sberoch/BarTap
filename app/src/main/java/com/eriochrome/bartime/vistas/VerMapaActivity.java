@@ -29,7 +29,9 @@ public class VerMapaActivity extends AppCompatActivity implements OnMapReadyCall
         bar = (Bar) getIntent().getSerializableExtra("bar");
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
     }
 
 

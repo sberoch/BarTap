@@ -166,9 +166,8 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
             sliderShow.stopAutoCycle();
             seleccionarImagenDeGaleria();
         });
-        avisos.setOnClickListener(v -> {
-            startActivity(new Intent(BarControlActivity.this, AvisosBarActivity.class));
-        });
+        avisos.setOnClickListener(v ->
+                startActivity(new Intent(BarControlActivity.this, AvisosBarActivity.class)));
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
             ejecutarOpcionMenu(menuItem.getItemId());
@@ -264,7 +263,7 @@ public class BarControlActivity extends AppCompatActivity implements BarControlC
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NUMERO_SOLICITUD_GALERIA) {
             if (resultCode == RESULT_OK) {
-                Uri path = null;
+                Uri path;
                 if (data != null) {
                     path = data.getData();
                     presenter.subirFoto(path);

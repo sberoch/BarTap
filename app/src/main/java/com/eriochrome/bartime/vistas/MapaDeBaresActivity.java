@@ -1,5 +1,6 @@
 package com.eriochrome.bartime.vistas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -28,7 +29,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -36,6 +36,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class MapaDeBaresActivity extends AppCompatActivity implements
         MapaDeBaresContract.View,
@@ -64,7 +65,9 @@ public class MapaDeBaresActivity extends AppCompatActivity implements
         marcadores = new HashMap<>();
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
 
         barRL = findViewById(R.id.bar_rl);
         barRL.setVisibility(View.GONE);
@@ -73,21 +76,23 @@ public class MapaDeBaresActivity extends AppCompatActivity implements
         presenter.bind(this);
 
         Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
-        PlacesClient placesClient = Places.createClient(this);
+        Places.createClient(this);
 
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG));
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(@NonNull Place place) {
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), DEFAULT_ZOOM));
-            }
-            @Override
-            public void onError(Status status) {
-                Log.d("asds", "An error occurred: " + status);
-            }
-        });
+        if (autocompleteFragment != null) {
+            autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.NAME, Place.Field.LAT_LNG));
+            autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+                @Override
+                public void onPlaceSelected(@NonNull Place place) {
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), DEFAULT_ZOOM));
+                }
+                @Override
+                public void onError(@NonNull Status status) {
+                    Log.d("asds", "An error occurred: " + status);
+                }
+            });
+        }
     }
 
     @Override
@@ -127,7 +132,7 @@ public class MapaDeBaresActivity extends AppCompatActivity implements
         View barView = View.inflate(MapaDeBaresActivity.this, R.layout.item_bar, null);
         barRL.removeAllViews();
         barView.setTag(marker.hashCode());
-        ponerValoresAlView(marcadores.get(marker), barView);
+        ponerValoresAlView(Objects.requireNonNull(marcadores.get(marker)), barView);
         barRL.addView(barView);
         barRL.setVisibility(View.VISIBLE);
         return false;
@@ -161,6 +166,7 @@ public class MapaDeBaresActivity extends AppCompatActivity implements
         });
     }
 
+    @SuppressLint("DefaultLocale")
     private void setEstrellas(Bar bar, TextView estrellas) {
         //Para que el bar no quede mal, solo se muestran las estrellas si tiene una puntuacion
         // mayor a la minima.

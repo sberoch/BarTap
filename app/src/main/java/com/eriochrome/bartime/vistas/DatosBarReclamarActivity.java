@@ -63,9 +63,7 @@ public class DatosBarReclamarActivity extends AppCompatActivity implements
         presenter.bind(this);
         presenter.obtenerBar(getIntent());
 
-        noDeseoReclamar.setOnClickListener(v -> {
-            seguir();
-        });
+        noDeseoReclamar.setOnClickListener(v -> seguir());
 
         presenter.mostrarBaresParaReclamar();
     }

@@ -108,18 +108,18 @@ public class ListadosActivity extends AppCompatActivity implements ListadosContr
 					Uri deepLink;
 					if (pendingDynamicLinkData != null) {
 						deepLink = pendingDynamicLinkData.getLink();
-						startFragment(new ListadoJuegosFragment());
-						spinner.setSelection(spinnerAdapter.getPosition("Juegos"));
+						if (deepLink != null) {
+							startFragment(new ListadoJuegosFragment());
+							spinner.setSelection(spinnerAdapter.getPosition("Juegos"));
 
-						String referrerUid = deepLink.getQueryParameter("invitedby");
-						String gameID = deepLink.getQueryParameter("gameId");
+							String referrerUid = deepLink.getQueryParameter("invitedby");
+							String gameID = deepLink.getQueryParameter("gameId");
 
-						//Se anota el referrer en este punto, puede no participar pero se
-						//supone que si abrio el link quiere participar
-						presenter.anotarReferrer(referrerUid, gameID);
-						presenter.obtenerSorteoConId(gameID);
-
-
+							//Se anota el referrer en este punto, puede no participar pero se
+							//supone que si abrio el link quiere participar
+							presenter.anotarReferrer(referrerUid, gameID);
+							presenter.obtenerSorteoConId(gameID);
+						}
 					}
 				})
 				.addOnFailureListener(this,
